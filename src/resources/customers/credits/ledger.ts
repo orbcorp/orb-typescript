@@ -1,0 +1,1508 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { APIResource } from '../../../core/resource';
+import * as Shared from '../../shared';
+import { APIPromise } from '../../../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../../../core/pagination';
+import { RequestOptions } from '../../../internal/request-options';
+import { path } from '../../../internal/utils/path';
+
+/**
+ * The [Credit Ledger Entry resource](/product-catalog/prepurchase) models prepaid credits within Orb.
+ */
+export class Ledger extends APIResource {
+  /**
+   * The credits ledger provides _auditing_ functionality over Orb's credits system
+   * with a list of actions that have taken place to modify a customer's credit
+   * balance. This [paginated endpoint](/api-reference/pagination) lists these
+   * entries, starting from the most recent ledger entry.
+   *
+   * More details on using Orb's real-time credit feature are
+   * [here](/product-catalog/prepurchase).
+   *
+   * There are four major types of modifications to credit balance, detailed below.
+   *
+   * ## Increment
+   *
+   * Credits (which optionally expire on a future date) can be added via the API
+   * ([Add Ledger Entry](create-ledger-entry)). The ledger entry for such an action
+   * will always contain the total eligible starting and ending balance for the
+   * customer at the time the entry was added to the ledger.
+   *
+   * ## Decrement
+   *
+   * Deductions can occur as a result of an API call to create a ledger entry (see
+   * [Add Ledger Entry](create-ledger-entry)), or automatically as a result of
+   * incurring usage. Both ledger entries present the `decrement` entry type.
+   *
+   * As usage for a customer is reported into Orb, credits may be deducted according
+   * to the customer's plan configuration. An automated deduction of this type will
+   * result in a ledger entry, also with a starting and ending balance. Each day's
+   * usage for a particular price, invoice, and block will be grouped into a single
+   * entry.
+   *
+   * By default, Orb uses an algorithm that automatically deducts from the _soonest
+   * expiring credit block_ first in order to ensure that all credits are utilized
+   * appropriately. As an example, if trial credits with an expiration date of 2
+   * weeks from now are present for a customer, they will be used before any
+   * deductions take place from a non-expiring credit block.
+   *
+   * If there are multiple blocks with the same expiration date, Orb will deduct from
+   * the block with the _lower cost basis_ first (e.g. trial credits with a \$0 cost
+   * basis before paid credits with a \$5.00 cost basis).
+   *
+   * It's also possible for a single usage event's deduction to _span_ credit blocks.
+   * In this case, Orb will deduct from the next block, ending at the credit block
+   * which consists of unexpiring credits. Each of these deductions will lead to a
+   * _separate_ ledger entry, one per credit block that is deducted from. By default,
+   * the customer's total credit balance in Orb can be negative as a result of a
+   * decrement.
+   *
+   * ## Expiration change
+   *
+   * The expiry of credits can be changed as a result of the API (See
+   * [Add Ledger Entry](create-ledger-entry)). This will create a ledger entry that
+   * specifies the balance as well as the initial and target expiry dates.
+   *
+   * Note that for this entry type, `starting_balance` will equal `ending_balance`,
+   * and the `amount` represents the balance transferred. The credit block linked to
+   * the ledger entry is the source credit block from which there was an expiration
+   * change.
+   *
+   * ## Credits expiry
+   *
+   * When a set of credits expire on pre-set expiration date, the customer's balance
+   * automatically reflects this change and adds an entry to the ledger indicating
+   * this event. Note that credit expiry should always happen close to a date
+   * boundary in the customer's timezone.
+   *
+   * ## Void initiated
+   *
+   * Credit blocks can be voided via the API. The `amount` on this entry corresponds
+   * to the number of credits that were remaining in the block at time of void.
+   * `void_reason` will be populated if the void is created with a reason.
+   *
+   * ## Void
+   *
+   * When a set of credits is voided, the customer's balance automatically reflects
+   * this change and adds an entry to the ledger indicating this event.
+   *
+   * ## Amendment
+   *
+   * When credits are added to a customer's balance as a result of a correction, this
+   * entry will be added to the ledger to indicate the adjustment of credits.
+   */
+  list(
+    customerID: string,
+    query: LedgerListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LedgerListResponsesPage, LedgerListResponse> {
+    return this._client.getAPIList(path`/customers/${customerID}/credits/ledger`, Page<LedgerListResponse>, {
+      query,
+      ...options,
+    });
+  }
+
+  /**
+   * This endpoint allows you to create a new ledger entry for a specified customer's
+   * balance. This can be used to increment balance, deduct credits, and change the
+   * expiry date of existing credits.
+   *
+   * ## Effects of adding a ledger entry
+   *
+   * 1. After calling this endpoint, [Fetch Credit Balance](fetch-customer-credits)
+   *    will return a credit block that represents the changes (i.e. balance changes
+   *    or transfers).
+   * 2. A ledger entry will be added to the credits ledger for this customer, and
+   *    therefore returned in the
+   *    [View Credits Ledger](fetch-customer-credits-ledger) response as well as
+   *    serialized in the response to this request. In the case of deductions without
+   *    a specified block, multiple ledger entries may be created if the deduction
+   *    spans credit blocks.
+   * 3. If `invoice_settings` is specified, an invoice will be created that reflects
+   *    the cost of the credits (based on `amount` and `per_unit_cost_basis`).
+   *
+   * ## Adding credits
+   *
+   * Adding credits is done by creating an entry of type `increment`. This requires
+   * the caller to specify a number of credits as well as an optional expiry date in
+   * `YYYY-MM-DD` format. Orb also recommends specifying a description to assist with
+   * auditing. When adding credits, the caller can also specify a cost basis
+   * per-credit, to indicate how much in USD a customer paid for a single credit in a
+   * block. This can later be used for revenue recognition.
+   *
+   * The following snippet illustrates a sample request body to increment credits
+   * which will expire in January of 2022.
+   *
+   * ```json
+   * {
+   *   "entry_type": "increment",
+   *   "amount": 100,
+   *   "expiry_date": "2022-12-28",
+   *   "per_unit_cost_basis": "0.20",
+   *   "description": "Purchased 100 credits"
+   * }
+   * ```
+   *
+   * Note that an `increment` entry always creates a new credit block (defined by the
+   * optional `effective_date` and `expiry_date`); it never modifies an existing
+   * block.
+   *
+   * ### Invoicing for credits
+   *
+   * By default, Orb manipulates the credit ledger but does not charge for credits.
+   * However, if you pass `invoice_settings` in the body of this request, Orb will
+   * also generate a one-off invoice for the customer for the credits pre-purchase.
+   * Note that you _must_ provide the `per_unit_cost_basis`, since the total charges
+   * on the invoice are calculated by multiplying the cost basis with the number of
+   * credit units added. If you invoice or handle payment of credits outside of Orb
+   * (i.e. marketplace customers), set `mark_as_paid` in the `invoice_settings` to
+   * `true` to prevent duplicate invoicing effects.
+   *
+   * - if `per_unit_cost_basis` is greater than zero, an invoice will be generated
+   *   and `invoice_settings` must be included
+   * - if `invoice_settings` is passed, one of either `custom_due_date` or
+   *   `net_terms` is required to determine the due date
+   *
+   * ## Deducting Credits
+   *
+   * Orb allows you to deduct credits from a customer by creating an entry of type
+   * `decrement`. A `decrement` entry records credits as usage and immediately
+   * recognizes revenue at the block's `per_unit_cost_basis`.
+   *
+   * For most credit removals, use `void` (no revenue impact) or `expiration_change`
+   * (revenue recognized on expiration) instead. Only use `decrement` when credits
+   * were genuinely consumed outside of normal event ingestion.
+   *
+   * Orb matches the algorithm for automatic deductions for determining which credit
+   * blocks to decrement from. In the case that the deduction leads to multiple
+   * ledger entries, the response from this endpoint will be the final deduction. Orb
+   * also optionally allows specifying a description to assist with auditing.
+   *
+   * The following snippet illustrates a sample request body to decrement credits.
+   *
+   * ```json
+   * {
+   *   "entry_type": "decrement",
+   *   "amount": 20,
+   *   "description": "Removing excess credits"
+   * }
+   * ```
+   *
+   * ## Changing credits expiry
+   *
+   * If you'd like to change when existing credits expire, you should create a ledger
+   * entry of type `expiration_change`. For this entry, the required parameter
+   * `expiry_date` identifies the _originating_ block, and the required parameter
+   * `target_expiry_date` identifies when the transferred credits should now expire.
+   * A new credit block will be created with expiry date `target_expiry_date`, with
+   * the same cost basis data as the original credit block, if present.
+   *
+   * Note that the balance of the block with the given `expiry_date` must be at least
+   * equal to the desired transfer amount determined by the `amount` parameter.
+   *
+   * The following snippet illustrates a sample request body to extend the expiration
+   * date of credits by one year:
+   *
+   * ```json
+   * {
+   *   "entry_type": "expiration_change",
+   *   "amount": 10,
+   *   "expiry_date": "2022-12-28",
+   *   "block_id": "UiUhFWeLHPrBY4Ad",
+   *   "target_expiry_date": "2023-12-28",
+   *   "description": "Extending credit validity"
+   * }
+   * ```
+   *
+   * ## Voiding credits
+   *
+   * If you'd like to void a credit block, create a ledger entry of type `void`. For
+   * this entry, `block_id` is required to identify the block, and `amount` indicates
+   * how many credits to void, up to the block's initial balance. Pass in a
+   * `void_reason` of `refund` if the void is due to a refund.
+   *
+   * ## Amendment
+   *
+   * If you'd like to undo a decrement on a credit block, create a ledger entry of
+   * type `amendment`. For this entry, `block_id` is required to identify the block
+   * that was originally decremented from, and `amount` indicates how many credits to
+   * return to the customer, up to the block's initial balance.
+   */
+  createEntry(
+    customerID: string,
+    body: LedgerCreateEntryParams,
+    options?: RequestOptions,
+  ): APIPromise<LedgerCreateEntryResponse> {
+    return this._client.post(path`/customers/${customerID}/credits/ledger_entry`, { body, ...options });
+  }
+
+  /**
+   * This endpoint allows you to create a new ledger entry for a specified customer's
+   * balance. This can be used to increment balance, deduct credits, and change the
+   * expiry date of existing credits.
+   *
+   * ## Effects of adding a ledger entry
+   *
+   * 1. After calling this endpoint, [Fetch Credit Balance](fetch-customer-credits)
+   *    will return a credit block that represents the changes (i.e. balance changes
+   *    or transfers).
+   * 2. A ledger entry will be added to the credits ledger for this customer, and
+   *    therefore returned in the
+   *    [View Credits Ledger](fetch-customer-credits-ledger) response as well as
+   *    serialized in the response to this request. In the case of deductions without
+   *    a specified block, multiple ledger entries may be created if the deduction
+   *    spans credit blocks.
+   * 3. If `invoice_settings` is specified, an invoice will be created that reflects
+   *    the cost of the credits (based on `amount` and `per_unit_cost_basis`).
+   *
+   * ## Adding credits
+   *
+   * Adding credits is done by creating an entry of type `increment`. This requires
+   * the caller to specify a number of credits as well as an optional expiry date in
+   * `YYYY-MM-DD` format. Orb also recommends specifying a description to assist with
+   * auditing. When adding credits, the caller can also specify a cost basis
+   * per-credit, to indicate how much in USD a customer paid for a single credit in a
+   * block. This can later be used for revenue recognition.
+   *
+   * The following snippet illustrates a sample request body to increment credits
+   * which will expire in January of 2022.
+   *
+   * ```json
+   * {
+   *   "entry_type": "increment",
+   *   "amount": 100,
+   *   "expiry_date": "2022-12-28",
+   *   "per_unit_cost_basis": "0.20",
+   *   "description": "Purchased 100 credits"
+   * }
+   * ```
+   *
+   * Note that an `increment` entry always creates a new credit block (defined by the
+   * optional `effective_date` and `expiry_date`); it never modifies an existing
+   * block.
+   *
+   * ### Invoicing for credits
+   *
+   * By default, Orb manipulates the credit ledger but does not charge for credits.
+   * However, if you pass `invoice_settings` in the body of this request, Orb will
+   * also generate a one-off invoice for the customer for the credits pre-purchase.
+   * Note that you _must_ provide the `per_unit_cost_basis`, since the total charges
+   * on the invoice are calculated by multiplying the cost basis with the number of
+   * credit units added. If you invoice or handle payment of credits outside of Orb
+   * (i.e. marketplace customers), set `mark_as_paid` in the `invoice_settings` to
+   * `true` to prevent duplicate invoicing effects.
+   *
+   * - if `per_unit_cost_basis` is greater than zero, an invoice will be generated
+   *   and `invoice_settings` must be included
+   * - if `invoice_settings` is passed, one of either `custom_due_date` or
+   *   `net_terms` is required to determine the due date
+   *
+   * ## Deducting Credits
+   *
+   * Orb allows you to deduct credits from a customer by creating an entry of type
+   * `decrement`. A `decrement` entry records credits as usage and immediately
+   * recognizes revenue at the block's `per_unit_cost_basis`.
+   *
+   * For most credit removals, use `void` (no revenue impact) or `expiration_change`
+   * (revenue recognized on expiration) instead. Only use `decrement` when credits
+   * were genuinely consumed outside of normal event ingestion.
+   *
+   * Orb matches the algorithm for automatic deductions for determining which credit
+   * blocks to decrement from. In the case that the deduction leads to multiple
+   * ledger entries, the response from this endpoint will be the final deduction. Orb
+   * also optionally allows specifying a description to assist with auditing.
+   *
+   * The following snippet illustrates a sample request body to decrement credits.
+   *
+   * ```json
+   * {
+   *   "entry_type": "decrement",
+   *   "amount": 20,
+   *   "description": "Removing excess credits"
+   * }
+   * ```
+   *
+   * ## Changing credits expiry
+   *
+   * If you'd like to change when existing credits expire, you should create a ledger
+   * entry of type `expiration_change`. For this entry, the required parameter
+   * `expiry_date` identifies the _originating_ block, and the required parameter
+   * `target_expiry_date` identifies when the transferred credits should now expire.
+   * A new credit block will be created with expiry date `target_expiry_date`, with
+   * the same cost basis data as the original credit block, if present.
+   *
+   * Note that the balance of the block with the given `expiry_date` must be at least
+   * equal to the desired transfer amount determined by the `amount` parameter.
+   *
+   * The following snippet illustrates a sample request body to extend the expiration
+   * date of credits by one year:
+   *
+   * ```json
+   * {
+   *   "entry_type": "expiration_change",
+   *   "amount": 10,
+   *   "expiry_date": "2022-12-28",
+   *   "block_id": "UiUhFWeLHPrBY4Ad",
+   *   "target_expiry_date": "2023-12-28",
+   *   "description": "Extending credit validity"
+   * }
+   * ```
+   *
+   * ## Voiding credits
+   *
+   * If you'd like to void a credit block, create a ledger entry of type `void`. For
+   * this entry, `block_id` is required to identify the block, and `amount` indicates
+   * how many credits to void, up to the block's initial balance. Pass in a
+   * `void_reason` of `refund` if the void is due to a refund.
+   *
+   * ## Amendment
+   *
+   * If you'd like to undo a decrement on a credit block, create a ledger entry of
+   * type `amendment`. For this entry, `block_id` is required to identify the block
+   * that was originally decremented from, and `amount` indicates how many credits to
+   * return to the customer, up to the block's initial balance.
+   */
+  createEntryByExternalID(
+    externalCustomerID: string,
+    body: LedgerCreateEntryByExternalIDParams,
+    options?: RequestOptions,
+  ): APIPromise<LedgerCreateEntryByExternalIDResponse> {
+    return this._client.post(
+      path`/customers/external_customer_id/${externalCustomerID}/credits/ledger_entry`,
+      { body, ...options },
+    );
+  }
+
+  /**
+   * The credits ledger provides _auditing_ functionality over Orb's credits system
+   * with a list of actions that have taken place to modify a customer's credit
+   * balance. This [paginated endpoint](/api-reference/pagination) lists these
+   * entries, starting from the most recent ledger entry.
+   *
+   * More details on using Orb's real-time credit feature are
+   * [here](/product-catalog/prepurchase).
+   *
+   * There are four major types of modifications to credit balance, detailed below.
+   *
+   * ## Increment
+   *
+   * Credits (which optionally expire on a future date) can be added via the API
+   * ([Add Ledger Entry](create-ledger-entry)). The ledger entry for such an action
+   * will always contain the total eligible starting and ending balance for the
+   * customer at the time the entry was added to the ledger.
+   *
+   * ## Decrement
+   *
+   * Deductions can occur as a result of an API call to create a ledger entry (see
+   * [Add Ledger Entry](create-ledger-entry)), or automatically as a result of
+   * incurring usage. Both ledger entries present the `decrement` entry type.
+   *
+   * As usage for a customer is reported into Orb, credits may be deducted according
+   * to the customer's plan configuration. An automated deduction of this type will
+   * result in a ledger entry, also with a starting and ending balance. Each day's
+   * usage for a particular price, invoice, and block will be grouped into a single
+   * entry.
+   *
+   * By default, Orb uses an algorithm that automatically deducts from the _soonest
+   * expiring credit block_ first in order to ensure that all credits are utilized
+   * appropriately. As an example, if trial credits with an expiration date of 2
+   * weeks from now are present for a customer, they will be used before any
+   * deductions take place from a non-expiring credit block.
+   *
+   * If there are multiple blocks with the same expiration date, Orb will deduct from
+   * the block with the _lower cost basis_ first (e.g. trial credits with a \$0 cost
+   * basis before paid credits with a \$5.00 cost basis).
+   *
+   * It's also possible for a single usage event's deduction to _span_ credit blocks.
+   * In this case, Orb will deduct from the next block, ending at the credit block
+   * which consists of unexpiring credits. Each of these deductions will lead to a
+   * _separate_ ledger entry, one per credit block that is deducted from. By default,
+   * the customer's total credit balance in Orb can be negative as a result of a
+   * decrement.
+   *
+   * ## Expiration change
+   *
+   * The expiry of credits can be changed as a result of the API (See
+   * [Add Ledger Entry](create-ledger-entry)). This will create a ledger entry that
+   * specifies the balance as well as the initial and target expiry dates.
+   *
+   * Note that for this entry type, `starting_balance` will equal `ending_balance`,
+   * and the `amount` represents the balance transferred. The credit block linked to
+   * the ledger entry is the source credit block from which there was an expiration
+   * change.
+   *
+   * ## Credits expiry
+   *
+   * When a set of credits expire on pre-set expiration date, the customer's balance
+   * automatically reflects this change and adds an entry to the ledger indicating
+   * this event. Note that credit expiry should always happen close to a date
+   * boundary in the customer's timezone.
+   *
+   * ## Void initiated
+   *
+   * Credit blocks can be voided via the API. The `amount` on this entry corresponds
+   * to the number of credits that were remaining in the block at time of void.
+   * `void_reason` will be populated if the void is created with a reason.
+   *
+   * ## Void
+   *
+   * When a set of credits is voided, the customer's balance automatically reflects
+   * this change and adds an entry to the ledger indicating this event.
+   *
+   * ## Amendment
+   *
+   * When credits are added to a customer's balance as a result of a correction, this
+   * entry will be added to the ledger to indicate the adjustment of credits.
+   */
+  listByExternalID(
+    externalCustomerID: string,
+    query: LedgerListByExternalIDParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<LedgerListByExternalIDResponsesPage, LedgerListByExternalIDResponse> {
+    return this._client.getAPIList(
+      path`/customers/external_customer_id/${externalCustomerID}/credits/ledger`,
+      Page<LedgerListByExternalIDResponse>,
+      { query, ...options },
+    );
+  }
+}
+
+export type LedgerListResponsesPage = Page<LedgerListResponse>;
+
+export type LedgerListByExternalIDResponsesPage = Page<LedgerListByExternalIDResponse>;
+
+export interface AffectedBlock {
+  id: string;
+
+  expiry_date: string | null;
+
+  filters: Array<AffectedBlock.Filter>;
+
+  per_unit_cost_basis: string | null;
+}
+
+export namespace AffectedBlock {
+  export interface Filter {
+    /**
+     * The property of the price to filter on.
+     */
+    field: 'price_id' | 'item_id' | 'price_type' | 'currency' | 'pricing_unit_id';
+
+    /**
+     * Should prices that match the filter be included or excluded.
+     */
+    operator: 'includes' | 'excludes';
+
+    /**
+     * The IDs or values that match this filter.
+     */
+    values: Array<string>;
+  }
+}
+
+export interface AmendmentLedgerEntry {
+  id: string;
+
+  amount: number;
+
+  created_at: string;
+
+  credit_block: AffectedBlock;
+
+  currency: string;
+
+  customer: Shared.CustomerMinified;
+
+  description: string | null;
+
+  ending_balance: number;
+
+  entry_status: 'committed' | 'pending';
+
+  entry_type: 'amendment';
+
+  ledger_sequence_number: number;
+
+  /**
+   * User specified key-value pairs for the resource. If not present, this defaults
+   * to an empty dictionary. Individual keys can be removed by setting the value to
+   * `null`, and the entire metadata mapping can be cleared by setting `metadata` to
+   * `null`.
+   */
+  metadata: { [key: string]: string };
+
+  starting_balance: number;
+}
+
+export interface CreditBlockExpiryLedgerEntry {
+  id: string;
+
+  amount: number;
+
+  created_at: string;
+
+  credit_block: AffectedBlock;
+
+  currency: string;
+
+  customer: Shared.CustomerMinified;
+
+  description: string | null;
+
+  ending_balance: number;
+
+  entry_status: 'committed' | 'pending';
+
+  entry_type: 'credit_block_expiry';
+
+  ledger_sequence_number: number;
+
+  /**
+   * User specified key-value pairs for the resource. If not present, this defaults
+   * to an empty dictionary. Individual keys can be removed by setting the value to
+   * `null`, and the entire metadata mapping can be cleared by setting `metadata` to
+   * `null`.
+   */
+  metadata: { [key: string]: string };
+
+  starting_balance: number;
+}
+
+export interface DecrementLedgerEntry {
+  id: string;
+
+  amount: number;
+
+  created_at: string;
+
+  credit_block: AffectedBlock;
+
+  currency: string;
+
+  customer: Shared.CustomerMinified;
+
+  description: string | null;
+
+  ending_balance: number;
+
+  entry_status: 'committed' | 'pending';
+
+  entry_type: 'decrement';
+
+  ledger_sequence_number: number;
+
+  /**
+   * User specified key-value pairs for the resource. If not present, this defaults
+   * to an empty dictionary. Individual keys can be removed by setting the value to
+   * `null`, and the entire metadata mapping can be cleared by setting `metadata` to
+   * `null`.
+   */
+  metadata: { [key: string]: string };
+
+  starting_balance: number;
+
+  /**
+   * @deprecated This field is deprecated and will always be null. Decrements are not
+   * associated with individual events.
+   */
+  event_id?: string | null;
+
+  invoice_id?: string | null;
+
+  price_id?: string | null;
+}
+
+export interface ExpirationChangeLedgerEntry {
+  id: string;
+
+  amount: number;
+
+  created_at: string;
+
+  credit_block: AffectedBlock;
+
+  currency: string;
+
+  customer: Shared.CustomerMinified;
+
+  description: string | null;
+
+  ending_balance: number;
+
+  entry_status: 'committed' | 'pending';
+
+  entry_type: 'expiration_change';
+
+  ledger_sequence_number: number;
+
+  /**
+   * User specified key-value pairs for the resource. If not present, this defaults
+   * to an empty dictionary. Individual keys can be removed by setting the value to
+   * `null`, and the entire metadata mapping can be cleared by setting `metadata` to
+   * `null`.
+   */
+  metadata: { [key: string]: string };
+
+  new_block_expiry_date: string | null;
+
+  starting_balance: number;
+}
+
+export interface IncrementLedgerEntry {
+  id: string;
+
+  amount: number;
+
+  created_at: string;
+
+  credit_block: AffectedBlock;
+
+  currency: string;
+
+  customer: Shared.CustomerMinified;
+
+  description: string | null;
+
+  ending_balance: number;
+
+  entry_status: 'committed' | 'pending';
+
+  entry_type: 'increment';
+
+  ledger_sequence_number: number;
+
+  /**
+   * User specified key-value pairs for the resource. If not present, this defaults
+   * to an empty dictionary. Individual keys can be removed by setting the value to
+   * `null`, and the entire metadata mapping can be cleared by setting `metadata` to
+   * `null`.
+   */
+  metadata: { [key: string]: string };
+
+  starting_balance: number;
+
+  /**
+   * If the increment resulted in invoice creation, the list of created invoices
+   */
+  created_invoices?: Array<Shared.Invoice> | null;
+}
+
+export interface VoidInitiatedLedgerEntry {
+  id: string;
+
+  amount: number;
+
+  created_at: string;
+
+  credit_block: AffectedBlock;
+
+  currency: string;
+
+  customer: Shared.CustomerMinified;
+
+  description: string | null;
+
+  ending_balance: number;
+
+  entry_status: 'committed' | 'pending';
+
+  entry_type: 'void_initiated';
+
+  ledger_sequence_number: number;
+
+  /**
+   * User specified key-value pairs for the resource. If not present, this defaults
+   * to an empty dictionary. Individual keys can be removed by setting the value to
+   * `null`, and the entire metadata mapping can be cleared by setting `metadata` to
+   * `null`.
+   */
+  metadata: { [key: string]: string };
+
+  new_block_expiry_date: string;
+
+  starting_balance: number;
+
+  void_amount: number;
+
+  void_reason: string | null;
+}
+
+export interface VoidLedgerEntry {
+  id: string;
+
+  amount: number;
+
+  created_at: string;
+
+  credit_block: AffectedBlock;
+
+  currency: string;
+
+  customer: Shared.CustomerMinified;
+
+  description: string | null;
+
+  ending_balance: number;
+
+  entry_status: 'committed' | 'pending';
+
+  entry_type: 'void';
+
+  ledger_sequence_number: number;
+
+  /**
+   * User specified key-value pairs for the resource. If not present, this defaults
+   * to an empty dictionary. Individual keys can be removed by setting the value to
+   * `null`, and the entire metadata mapping can be cleared by setting `metadata` to
+   * `null`.
+   */
+  metadata: { [key: string]: string };
+
+  starting_balance: number;
+
+  void_amount: number;
+
+  void_reason: string | null;
+}
+
+/**
+ * The [Credit Ledger Entry resource](/product-catalog/prepurchase) models prepaid
+ * credits within Orb.
+ */
+export type LedgerListResponse =
+  | IncrementLedgerEntry
+  | DecrementLedgerEntry
+  | ExpirationChangeLedgerEntry
+  | CreditBlockExpiryLedgerEntry
+  | VoidLedgerEntry
+  | VoidInitiatedLedgerEntry
+  | AmendmentLedgerEntry;
+
+/**
+ * The [Credit Ledger Entry resource](/product-catalog/prepurchase) models prepaid
+ * credits within Orb.
+ */
+export type LedgerCreateEntryResponse =
+  | IncrementLedgerEntry
+  | DecrementLedgerEntry
+  | ExpirationChangeLedgerEntry
+  | CreditBlockExpiryLedgerEntry
+  | VoidLedgerEntry
+  | VoidInitiatedLedgerEntry
+  | AmendmentLedgerEntry;
+
+/**
+ * The [Credit Ledger Entry resource](/product-catalog/prepurchase) models prepaid
+ * credits within Orb.
+ */
+export type LedgerCreateEntryByExternalIDResponse =
+  | IncrementLedgerEntry
+  | DecrementLedgerEntry
+  | ExpirationChangeLedgerEntry
+  | CreditBlockExpiryLedgerEntry
+  | VoidLedgerEntry
+  | VoidInitiatedLedgerEntry
+  | AmendmentLedgerEntry;
+
+/**
+ * The [Credit Ledger Entry resource](/product-catalog/prepurchase) models prepaid
+ * credits within Orb.
+ */
+export type LedgerListByExternalIDResponse =
+  | IncrementLedgerEntry
+  | DecrementLedgerEntry
+  | ExpirationChangeLedgerEntry
+  | CreditBlockExpiryLedgerEntry
+  | VoidLedgerEntry
+  | VoidInitiatedLedgerEntry
+  | AmendmentLedgerEntry;
+
+export interface LedgerListParams extends PageParams {
+  'created_at[gt]'?: string | null;
+
+  'created_at[gte]'?: string | null;
+
+  'created_at[lt]'?: string | null;
+
+  'created_at[lte]'?: string | null;
+
+  /**
+   * The ledger currency or custom pricing unit to use.
+   */
+  currency?: string | null;
+
+  entry_status?: 'committed' | 'pending' | null;
+
+  entry_type?:
+    | 'increment'
+    | 'decrement'
+    | 'expiration_change'
+    | 'credit_block_expiry'
+    | 'void'
+    | 'void_initiated'
+    | 'amendment'
+    | null;
+
+  minimum_amount?: string | null;
+}
+
+export type LedgerCreateEntryParams =
+  | LedgerCreateEntryParams.AddIncrementCreditLedgerEntryRequestParams
+  | LedgerCreateEntryParams.AddDecrementCreditLedgerEntryRequestParams
+  | LedgerCreateEntryParams.AddExpirationChangeCreditLedgerEntryRequestParams
+  | LedgerCreateEntryParams.AddVoidCreditLedgerEntryRequestParams
+  | LedgerCreateEntryParams.AddAmendmentCreditLedgerEntryRequestParams;
+
+export declare namespace LedgerCreateEntryParams {
+  export interface AddIncrementCreditLedgerEntryRequestParams {
+    /**
+     * The number of credits to effect. Note that this is required for increment,
+     * decrement, void, or undo operations.
+     */
+    amount: number;
+
+    entry_type: 'increment';
+
+    /**
+     * The currency or custom pricing unit to use for this ledger entry. If this is a
+     * real-world currency, it must match the customer's invoicing currency.
+     */
+    currency?: string | null;
+
+    /**
+     * Optional metadata that can be specified when adding ledger results via the API.
+     * For example, this can be used to note an increment refers to trial credits, or
+     * for noting corrections as a result of an incident, etc.
+     */
+    description?: string | null;
+
+    /**
+     * An ISO 8601 format date that denotes when this credit balance should become
+     * available for use.
+     */
+    effective_date?: string | null;
+
+    /**
+     * An ISO 8601 format date that denotes when this credit balance should expire.
+     */
+    expiry_date?: string | null;
+
+    /**
+     * Optional filter to specify which items this credit block applies to. If not
+     * specified, the block will apply to all items for the pricing unit.
+     */
+    filters?: Array<AddIncrementCreditLedgerEntryRequestParams.Filter> | null;
+
+    /**
+     * Passing `invoice_settings` automatically generates an invoice for the newly
+     * added credits. If `invoice_settings` is passed, you must specify
+     * per_unit_cost_basis, as the calculation of the invoice total is done on that
+     * basis.
+     */
+    invoice_settings?: AddIncrementCreditLedgerEntryRequestParams.InvoiceSettings | null;
+
+    /**
+     * User-specified key/value pairs for the resource. Individual keys can be removed
+     * by setting the value to `null`, and the entire metadata mapping can be cleared
+     * by setting `metadata` to `null`.
+     */
+    metadata?: { [key: string]: string | null } | null;
+
+    /**
+     * Can only be specified when entry_type=increment. How much, in the customer's
+     * currency, a customer paid for a single credit in this block
+     */
+    per_unit_cost_basis?: string | null;
+  }
+
+  export namespace AddIncrementCreditLedgerEntryRequestParams {
+    /**
+     * A PriceFilter that only allows item_id field for block filters.
+     */
+    export interface Filter {
+      /**
+       * The property of the price the block applies to. Only item_id is supported.
+       */
+      field: 'item_id';
+
+      /**
+       * Should prices that match the filter be included or excluded.
+       */
+      operator: 'includes' | 'excludes';
+
+      /**
+       * The IDs or values that match this filter.
+       */
+      values: Array<string>;
+    }
+
+    /**
+     * Passing `invoice_settings` automatically generates an invoice for the newly
+     * added credits. If `invoice_settings` is passed, you must specify
+     * per_unit_cost_basis, as the calculation of the invoice total is done on that
+     * basis.
+     */
+    export interface InvoiceSettings {
+      /**
+       * Whether the credits purchase invoice should auto collect with the customer's
+       * saved payment method.
+       */
+      auto_collection: boolean;
+
+      /**
+       * An optional custom due date for the invoice. If not set, the due date will be
+       * calculated based on the `net_terms` value.
+       */
+      custom_due_date?: (string & {}) | (string & {}) | null;
+
+      /**
+       * An ISO 8601 format date that denotes when this invoice should be dated in the
+       * customer's timezone. If not provided, the invoice date will default to the
+       * credit block's effective date.
+       */
+      invoice_date?: (string & {}) | (string & {}) | null;
+
+      /**
+       * The ID of the Item to be used for the invoice line item. If not provided, a
+       * default 'Credits' item will be used.
+       */
+      item_id?: string | null;
+
+      /**
+       * If true, the new credits purchase invoice will be marked as paid.
+       */
+      mark_as_paid?: boolean;
+
+      /**
+       * An optional memo to display on the invoice.
+       */
+      memo?: string | null;
+
+      /**
+       * The net terms determines the due date of the invoice. Due date is calculated
+       * based on the invoice or issuance date, depending on the account's configured due
+       * date calculation method. A value of '0' here represents that the invoice is due
+       * on issue, whereas a value of '30' represents that the customer has 30 days to
+       * pay the invoice. You must set either `net_terms` or `custom_due_date`, but not
+       * both.
+       */
+      net_terms?: number | null;
+
+      /**
+       * If true, the new credit block will require that the corresponding invoice is
+       * paid before it can be drawn down from.
+       */
+      require_successful_payment?: boolean;
+    }
+  }
+
+  export interface AddDecrementCreditLedgerEntryRequestParams {
+    /**
+     * The number of credits to effect. Note that this is required for increment,
+     * decrement, void, or undo operations.
+     */
+    amount: number;
+
+    entry_type: 'decrement';
+
+    /**
+     * The currency or custom pricing unit to use for this ledger entry. If this is a
+     * real-world currency, it must match the customer's invoicing currency.
+     */
+    currency?: string | null;
+
+    /**
+     * Optional metadata that can be specified when adding ledger results via the API.
+     * For example, this can be used to note an increment refers to trial credits, or
+     * for noting corrections as a result of an incident, etc.
+     */
+    description?: string | null;
+
+    /**
+     * User-specified key/value pairs for the resource. Individual keys can be removed
+     * by setting the value to `null`, and the entire metadata mapping can be cleared
+     * by setting `metadata` to `null`.
+     */
+    metadata?: { [key: string]: string | null } | null;
+  }
+
+  export interface AddExpirationChangeCreditLedgerEntryRequestParams {
+    entry_type: 'expiration_change';
+
+    /**
+     * A date (specified in YYYY-MM-DD format) used for expiration change, denoting
+     * when credits transferred (as part of a partial block expiration) should expire.
+     * This date must be on or after the effective date of the credit block.
+     */
+    target_expiry_date: string;
+
+    /**
+     * The number of credits to effect. Note that this is required for increment,
+     * decrement, void, or undo operations.
+     */
+    amount?: number | null;
+
+    /**
+     * The ID of the block affected by an expiration_change, used to differentiate
+     * between multiple blocks with the same `expiry_date`.
+     */
+    block_id?: string | null;
+
+    /**
+     * The currency or custom pricing unit to use for this ledger entry. If this is a
+     * real-world currency, it must match the customer's invoicing currency.
+     */
+    currency?: string | null;
+
+    /**
+     * Optional metadata that can be specified when adding ledger results via the API.
+     * For example, this can be used to note an increment refers to trial credits, or
+     * for noting corrections as a result of an incident, etc.
+     */
+    description?: string | null;
+
+    /**
+     * An ISO 8601 format date that identifies the origination credit block to expire
+     */
+    expiry_date?: string | null;
+
+    /**
+     * User-specified key/value pairs for the resource. Individual keys can be removed
+     * by setting the value to `null`, and the entire metadata mapping can be cleared
+     * by setting `metadata` to `null`.
+     */
+    metadata?: { [key: string]: string | null } | null;
+  }
+
+  export interface AddVoidCreditLedgerEntryRequestParams {
+    /**
+     * The number of credits to effect. Note that this is required for increment,
+     * decrement, void, or undo operations.
+     */
+    amount: number;
+
+    /**
+     * The ID of the block to void.
+     */
+    block_id: string;
+
+    entry_type: 'void';
+
+    /**
+     * The currency or custom pricing unit to use for this ledger entry. If this is a
+     * real-world currency, it must match the customer's invoicing currency.
+     */
+    currency?: string | null;
+
+    /**
+     * Optional metadata that can be specified when adding ledger results via the API.
+     * For example, this can be used to note an increment refers to trial credits, or
+     * for noting corrections as a result of an incident, etc.
+     */
+    description?: string | null;
+
+    /**
+     * User-specified key/value pairs for the resource. Individual keys can be removed
+     * by setting the value to `null`, and the entire metadata mapping can be cleared
+     * by setting `metadata` to `null`.
+     */
+    metadata?: { [key: string]: string | null } | null;
+
+    /**
+     * Can only be specified when `entry_type=void`. The reason for the void.
+     */
+    void_reason?: 'refund' | null;
+  }
+
+  export interface AddAmendmentCreditLedgerEntryRequestParams {
+    /**
+     * The number of credits to effect. Note that this is required for increment,
+     * decrement or void operations.
+     */
+    amount: number;
+
+    /**
+     * The ID of the block to reverse a decrement from.
+     */
+    block_id: string;
+
+    entry_type: 'amendment';
+
+    /**
+     * The currency or custom pricing unit to use for this ledger entry. If this is a
+     * real-world currency, it must match the customer's invoicing currency.
+     */
+    currency?: string | null;
+
+    /**
+     * Optional metadata that can be specified when adding ledger results via the API.
+     * For example, this can be used to note an increment refers to trial credits, or
+     * for noting corrections as a result of an incident, etc.
+     */
+    description?: string | null;
+
+    /**
+     * User-specified key/value pairs for the resource. Individual keys can be removed
+     * by setting the value to `null`, and the entire metadata mapping can be cleared
+     * by setting `metadata` to `null`.
+     */
+    metadata?: { [key: string]: string | null } | null;
+  }
+}
+
+export type LedgerCreateEntryByExternalIDParams =
+  | LedgerCreateEntryByExternalIDParams.AddIncrementCreditLedgerEntryRequestParams
+  | LedgerCreateEntryByExternalIDParams.AddDecrementCreditLedgerEntryRequestParams
+  | LedgerCreateEntryByExternalIDParams.AddExpirationChangeCreditLedgerEntryRequestParams
+  | LedgerCreateEntryByExternalIDParams.AddVoidCreditLedgerEntryRequestParams
+  | LedgerCreateEntryByExternalIDParams.AddAmendmentCreditLedgerEntryRequestParams;
+
+export declare namespace LedgerCreateEntryByExternalIDParams {
+  export interface AddIncrementCreditLedgerEntryRequestParams {
+    /**
+     * The number of credits to effect. Note that this is required for increment,
+     * decrement, void, or undo operations.
+     */
+    amount: number;
+
+    entry_type: 'increment';
+
+    /**
+     * The currency or custom pricing unit to use for this ledger entry. If this is a
+     * real-world currency, it must match the customer's invoicing currency.
+     */
+    currency?: string | null;
+
+    /**
+     * Optional metadata that can be specified when adding ledger results via the API.
+     * For example, this can be used to note an increment refers to trial credits, or
+     * for noting corrections as a result of an incident, etc.
+     */
+    description?: string | null;
+
+    /**
+     * An ISO 8601 format date that denotes when this credit balance should become
+     * available for use.
+     */
+    effective_date?: string | null;
+
+    /**
+     * An ISO 8601 format date that denotes when this credit balance should expire.
+     */
+    expiry_date?: string | null;
+
+    /**
+     * Optional filter to specify which items this credit block applies to. If not
+     * specified, the block will apply to all items for the pricing unit.
+     */
+    filters?: Array<AddIncrementCreditLedgerEntryRequestParams.Filter> | null;
+
+    /**
+     * Passing `invoice_settings` automatically generates an invoice for the newly
+     * added credits. If `invoice_settings` is passed, you must specify
+     * per_unit_cost_basis, as the calculation of the invoice total is done on that
+     * basis.
+     */
+    invoice_settings?: AddIncrementCreditLedgerEntryRequestParams.InvoiceSettings | null;
+
+    /**
+     * User-specified key/value pairs for the resource. Individual keys can be removed
+     * by setting the value to `null`, and the entire metadata mapping can be cleared
+     * by setting `metadata` to `null`.
+     */
+    metadata?: { [key: string]: string | null } | null;
+
+    /**
+     * Can only be specified when entry_type=increment. How much, in the customer's
+     * currency, a customer paid for a single credit in this block
+     */
+    per_unit_cost_basis?: string | null;
+  }
+
+  export namespace AddIncrementCreditLedgerEntryRequestParams {
+    /**
+     * A PriceFilter that only allows item_id field for block filters.
+     */
+    export interface Filter {
+      /**
+       * The property of the price the block applies to. Only item_id is supported.
+       */
+      field: 'item_id';
+
+      /**
+       * Should prices that match the filter be included or excluded.
+       */
+      operator: 'includes' | 'excludes';
+
+      /**
+       * The IDs or values that match this filter.
+       */
+      values: Array<string>;
+    }
+
+    /**
+     * Passing `invoice_settings` automatically generates an invoice for the newly
+     * added credits. If `invoice_settings` is passed, you must specify
+     * per_unit_cost_basis, as the calculation of the invoice total is done on that
+     * basis.
+     */
+    export interface InvoiceSettings {
+      /**
+       * Whether the credits purchase invoice should auto collect with the customer's
+       * saved payment method.
+       */
+      auto_collection: boolean;
+
+      /**
+       * An optional custom due date for the invoice. If not set, the due date will be
+       * calculated based on the `net_terms` value.
+       */
+      custom_due_date?: (string & {}) | (string & {}) | null;
+
+      /**
+       * An ISO 8601 format date that denotes when this invoice should be dated in the
+       * customer's timezone. If not provided, the invoice date will default to the
+       * credit block's effective date.
+       */
+      invoice_date?: (string & {}) | (string & {}) | null;
+
+      /**
+       * The ID of the Item to be used for the invoice line item. If not provided, a
+       * default 'Credits' item will be used.
+       */
+      item_id?: string | null;
+
+      /**
+       * If true, the new credits purchase invoice will be marked as paid.
+       */
+      mark_as_paid?: boolean;
+
+      /**
+       * An optional memo to display on the invoice.
+       */
+      memo?: string | null;
+
+      /**
+       * The net terms determines the due date of the invoice. Due date is calculated
+       * based on the invoice or issuance date, depending on the account's configured due
+       * date calculation method. A value of '0' here represents that the invoice is due
+       * on issue, whereas a value of '30' represents that the customer has 30 days to
+       * pay the invoice. You must set either `net_terms` or `custom_due_date`, but not
+       * both.
+       */
+      net_terms?: number | null;
+
+      /**
+       * If true, the new credit block will require that the corresponding invoice is
+       * paid before it can be drawn down from.
+       */
+      require_successful_payment?: boolean;
+    }
+  }
+
+  export interface AddDecrementCreditLedgerEntryRequestParams {
+    /**
+     * The number of credits to effect. Note that this is required for increment,
+     * decrement, void, or undo operations.
+     */
+    amount: number;
+
+    entry_type: 'decrement';
+
+    /**
+     * The currency or custom pricing unit to use for this ledger entry. If this is a
+     * real-world currency, it must match the customer's invoicing currency.
+     */
+    currency?: string | null;
+
+    /**
+     * Optional metadata that can be specified when adding ledger results via the API.
+     * For example, this can be used to note an increment refers to trial credits, or
+     * for noting corrections as a result of an incident, etc.
+     */
+    description?: string | null;
+
+    /**
+     * User-specified key/value pairs for the resource. Individual keys can be removed
+     * by setting the value to `null`, and the entire metadata mapping can be cleared
+     * by setting `metadata` to `null`.
+     */
+    metadata?: { [key: string]: string | null } | null;
+  }
+
+  export interface AddExpirationChangeCreditLedgerEntryRequestParams {
+    entry_type: 'expiration_change';
+
+    /**
+     * A date (specified in YYYY-MM-DD format) used for expiration change, denoting
+     * when credits transferred (as part of a partial block expiration) should expire.
+     * This date must be on or after the effective date of the credit block.
+     */
+    target_expiry_date: string;
+
+    /**
+     * The number of credits to effect. Note that this is required for increment,
+     * decrement, void, or undo operations.
+     */
+    amount?: number | null;
+
+    /**
+     * The ID of the block affected by an expiration_change, used to differentiate
+     * between multiple blocks with the same `expiry_date`.
+     */
+    block_id?: string | null;
+
+    /**
+     * The currency or custom pricing unit to use for this ledger entry. If this is a
+     * real-world currency, it must match the customer's invoicing currency.
+     */
+    currency?: string | null;
+
+    /**
+     * Optional metadata that can be specified when adding ledger results via the API.
+     * For example, this can be used to note an increment refers to trial credits, or
+     * for noting corrections as a result of an incident, etc.
+     */
+    description?: string | null;
+
+    /**
+     * An ISO 8601 format date that identifies the origination credit block to expire
+     */
+    expiry_date?: string | null;
+
+    /**
+     * User-specified key/value pairs for the resource. Individual keys can be removed
+     * by setting the value to `null`, and the entire metadata mapping can be cleared
+     * by setting `metadata` to `null`.
+     */
+    metadata?: { [key: string]: string | null } | null;
+  }
+
+  export interface AddVoidCreditLedgerEntryRequestParams {
+    /**
+     * The number of credits to effect. Note that this is required for increment,
+     * decrement, void, or undo operations.
+     */
+    amount: number;
+
+    /**
+     * The ID of the block to void.
+     */
+    block_id: string;
+
+    entry_type: 'void';
+
+    /**
+     * The currency or custom pricing unit to use for this ledger entry. If this is a
+     * real-world currency, it must match the customer's invoicing currency.
+     */
+    currency?: string | null;
+
+    /**
+     * Optional metadata that can be specified when adding ledger results via the API.
+     * For example, this can be used to note an increment refers to trial credits, or
+     * for noting corrections as a result of an incident, etc.
+     */
+    description?: string | null;
+
+    /**
+     * User-specified key/value pairs for the resource. Individual keys can be removed
+     * by setting the value to `null`, and the entire metadata mapping can be cleared
+     * by setting `metadata` to `null`.
+     */
+    metadata?: { [key: string]: string | null } | null;
+
+    /**
+     * Can only be specified when `entry_type=void`. The reason for the void.
+     */
+    void_reason?: 'refund' | null;
+  }
+
+  export interface AddAmendmentCreditLedgerEntryRequestParams {
+    /**
+     * The number of credits to effect. Note that this is required for increment,
+     * decrement or void operations.
+     */
+    amount: number;
+
+    /**
+     * The ID of the block to reverse a decrement from.
+     */
+    block_id: string;
+
+    entry_type: 'amendment';
+
+    /**
+     * The currency or custom pricing unit to use for this ledger entry. If this is a
+     * real-world currency, it must match the customer's invoicing currency.
+     */
+    currency?: string | null;
+
+    /**
+     * Optional metadata that can be specified when adding ledger results via the API.
+     * For example, this can be used to note an increment refers to trial credits, or
+     * for noting corrections as a result of an incident, etc.
+     */
+    description?: string | null;
+
+    /**
+     * User-specified key/value pairs for the resource. Individual keys can be removed
+     * by setting the value to `null`, and the entire metadata mapping can be cleared
+     * by setting `metadata` to `null`.
+     */
+    metadata?: { [key: string]: string | null } | null;
+  }
+}
+
+export interface LedgerListByExternalIDParams extends PageParams {
+  'created_at[gt]'?: string | null;
+
+  'created_at[gte]'?: string | null;
+
+  'created_at[lt]'?: string | null;
+
+  'created_at[lte]'?: string | null;
+
+  /**
+   * The ledger currency or custom pricing unit to use.
+   */
+  currency?: string | null;
+
+  entry_status?: 'committed' | 'pending' | null;
+
+  entry_type?:
+    | 'increment'
+    | 'decrement'
+    | 'expiration_change'
+    | 'credit_block_expiry'
+    | 'void'
+    | 'void_initiated'
+    | 'amendment'
+    | null;
+
+  minimum_amount?: string | null;
+}
+
+export declare namespace Ledger {
+  export {
+    type AffectedBlock as AffectedBlock,
+    type AmendmentLedgerEntry as AmendmentLedgerEntry,
+    type CreditBlockExpiryLedgerEntry as CreditBlockExpiryLedgerEntry,
+    type DecrementLedgerEntry as DecrementLedgerEntry,
+    type ExpirationChangeLedgerEntry as ExpirationChangeLedgerEntry,
+    type IncrementLedgerEntry as IncrementLedgerEntry,
+    type VoidInitiatedLedgerEntry as VoidInitiatedLedgerEntry,
+    type VoidLedgerEntry as VoidLedgerEntry,
+    type LedgerListResponse as LedgerListResponse,
+    type LedgerCreateEntryResponse as LedgerCreateEntryResponse,
+    type LedgerCreateEntryByExternalIDResponse as LedgerCreateEntryByExternalIDResponse,
+    type LedgerListByExternalIDResponse as LedgerListByExternalIDResponse,
+    type LedgerListResponsesPage as LedgerListResponsesPage,
+    type LedgerListByExternalIDResponsesPage as LedgerListByExternalIDResponsesPage,
+    type LedgerListParams as LedgerListParams,
+    type LedgerCreateEntryParams as LedgerCreateEntryParams,
+    type LedgerCreateEntryByExternalIDParams as LedgerCreateEntryByExternalIDParams,
+    type LedgerListByExternalIDParams as LedgerListByExternalIDParams,
+  };
+}

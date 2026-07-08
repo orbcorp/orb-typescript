@@ -1,0 +1,210 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { APIResource } from '../../core/resource';
+import * as Shared from '../shared';
+import { APIPromise } from '../../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../../core/pagination';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
+
+/**
+ * A customer is a buyer of your products, and the other party to the billing relationship.
+ *
+ * In Orb, customers are assigned system generated identifiers automatically, but it's often desirable to have these
+ * match existing identifiers in your system. To avoid having to denormalize Orb ID information, you can pass in an
+ * `external_customer_id` with your own identifier. See
+ * [Customer ID Aliases](/events-and-metrics/customer-aliases) for further information about how these
+ * aliases work in Orb.
+ *
+ * In addition to having an identifier in your system, a customer may exist in a payment provider solution like
+ * Stripe. Use the `payment_provider_id` and the `payment_provider` enum field to express this mapping.
+ *
+ * A customer also has a timezone (from the standard [IANA timezone database](https://www.iana.org/time-zones)), which
+ * defaults to your account's timezone. See [Timezone localization](/essentials/timezones) for
+ * information on what this timezone parameter influences within Orb.
+ */
+export class BalanceTransactions extends APIResource {
+  /**
+   * Creates an immutable balance transaction that updates the customer's balance and
+   * returns back the newly created transaction.
+   */
+  create(
+    customerID: string,
+    body: BalanceTransactionCreateParams,
+    options?: RequestOptions,
+  ): APIPromise<BalanceTransactionCreateResponse> {
+    return this._client.post(path`/customers/${customerID}/balance_transactions`, { body, ...options });
+  }
+
+  /**
+   * ## The customer balance
+   *
+   * The customer balance is an amount in the customer's currency, which Orb
+   * automatically applies to subsequent invoices. This balance can be adjusted
+   * manually via Orb's webapp on the customer details page. You can use this balance
+   * to provide a fixed mid-period credit to the customer. Commonly, this is done due
+   * to system downtime/SLA violation, or an adhoc adjustment discussed with the
+   * customer.
+   *
+   * If the balance is a positive value at the time of invoicing, it represents that
+   * the customer has credit that should be used to offset the amount due on the next
+   * issued invoice. In this case, Orb will automatically reduce the next invoice by
+   * the balance amount, and roll over any remaining balance if the invoice is fully
+   * discounted.
+   *
+   * If the balance is a negative value at the time of invoicing, Orb will increase
+   * the invoice's amount due with a positive adjustment, and reset the balance to 0.
+   *
+   * This endpoint retrieves all customer balance transactions in reverse
+   * chronological order for a single customer, providing a complete audit trail of
+   * all adjustments and invoice applications.
+   */
+  list(
+    customerID: string,
+    query: BalanceTransactionListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<BalanceTransactionListResponsesPage, BalanceTransactionListResponse> {
+    return this._client.getAPIList(
+      path`/customers/${customerID}/balance_transactions`,
+      Page<BalanceTransactionListResponse>,
+      { query, ...options },
+    );
+  }
+}
+
+export type BalanceTransactionListResponsesPage = Page<BalanceTransactionListResponse>;
+
+export interface BalanceTransactionCreateResponse {
+  /**
+   * A unique id for this transaction.
+   */
+  id: string;
+
+  action:
+    | 'applied_to_invoice'
+    | 'manual_adjustment'
+    | 'prorated_refund'
+    | 'revert_prorated_refund'
+    | 'return_from_voiding'
+    | 'credit_note_applied'
+    | 'credit_note_voided'
+    | 'overpayment_refund'
+    | 'external_payment'
+    | 'small_invoice_carryover';
+
+  /**
+   * The value of the amount changed in the transaction.
+   */
+  amount: string;
+
+  /**
+   * The creation time of this transaction.
+   */
+  created_at: string;
+
+  credit_note: Shared.CreditNoteTiny | null;
+
+  /**
+   * An optional description provided for manual customer balance adjustments.
+   */
+  description: string | null;
+
+  /**
+   * The new value of the customer's balance prior to the transaction, in the
+   * customer's currency.
+   */
+  ending_balance: string;
+
+  invoice: Shared.InvoiceTiny | null;
+
+  /**
+   * The original value of the customer's balance prior to the transaction, in the
+   * customer's currency.
+   */
+  starting_balance: string;
+
+  type: 'increment' | 'decrement';
+}
+
+export interface BalanceTransactionListResponse {
+  /**
+   * A unique id for this transaction.
+   */
+  id: string;
+
+  action:
+    | 'applied_to_invoice'
+    | 'manual_adjustment'
+    | 'prorated_refund'
+    | 'revert_prorated_refund'
+    | 'return_from_voiding'
+    | 'credit_note_applied'
+    | 'credit_note_voided'
+    | 'overpayment_refund'
+    | 'external_payment'
+    | 'small_invoice_carryover';
+
+  /**
+   * The value of the amount changed in the transaction.
+   */
+  amount: string;
+
+  /**
+   * The creation time of this transaction.
+   */
+  created_at: string;
+
+  credit_note: Shared.CreditNoteTiny | null;
+
+  /**
+   * An optional description provided for manual customer balance adjustments.
+   */
+  description: string | null;
+
+  /**
+   * The new value of the customer's balance prior to the transaction, in the
+   * customer's currency.
+   */
+  ending_balance: string;
+
+  invoice: Shared.InvoiceTiny | null;
+
+  /**
+   * The original value of the customer's balance prior to the transaction, in the
+   * customer's currency.
+   */
+  starting_balance: string;
+
+  type: 'increment' | 'decrement';
+}
+
+export interface BalanceTransactionCreateParams {
+  amount: string;
+
+  type: 'increment' | 'decrement';
+
+  /**
+   * An optional description that can be specified around this entry.
+   */
+  description?: string | null;
+}
+
+export interface BalanceTransactionListParams extends PageParams {
+  'operation_time[gt]'?: string | null;
+
+  'operation_time[gte]'?: string | null;
+
+  'operation_time[lt]'?: string | null;
+
+  'operation_time[lte]'?: string | null;
+}
+
+export declare namespace BalanceTransactions {
+  export {
+    type BalanceTransactionCreateResponse as BalanceTransactionCreateResponse,
+    type BalanceTransactionListResponse as BalanceTransactionListResponse,
+    type BalanceTransactionListResponsesPage as BalanceTransactionListResponsesPage,
+    type BalanceTransactionCreateParams as BalanceTransactionCreateParams,
+    type BalanceTransactionListParams as BalanceTransactionListParams,
+  };
+}

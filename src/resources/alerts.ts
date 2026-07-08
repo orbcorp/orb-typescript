@@ -1,0 +1,570 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { APIResource } from '../core/resource';
+import * as AlertsAPI from './alerts';
+import * as Shared from './shared';
+import { APIPromise } from '../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../core/pagination';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
+
+/**
+ * [Alerts within Orb](/product-catalog/configuring-alerts) monitor spending,
+ * usage, or credit balance and trigger webhooks when a threshold is exceeded.
+ *
+ * Alerts created through the API can be scoped to either customers or subscriptions.
+ */
+export class Alerts extends APIResource {
+  /**
+   * This endpoint retrieves an alert by its ID.
+   */
+  retrieve(alertID: string, options?: RequestOptions): APIPromise<Alert> {
+    return this._client.get(path`/alerts/${alertID}`, options);
+  }
+
+  /**
+   * This endpoint updates the thresholds of an alert.
+   */
+  update(alertConfigurationID: string, body: AlertUpdateParams, options?: RequestOptions): APIPromise<Alert> {
+    return this._client.put(path`/alerts/${alertConfigurationID}`, { body, ...options });
+  }
+
+  /**
+   * This endpoint returns a list of alerts within Orb.
+   *
+   * The request must specify one of `customer_id`, `external_customer_id`, or
+   * `subscription_id`.
+   *
+   * If querying by subscription_id, the endpoint will return the subscription level
+   * alerts as well as the plan level alerts associated with the subscription.
+   *
+   * The list of alerts is ordered starting from the most recently created alert.
+   * This endpoint follows Orb's
+   * [standardized pagination format](/api-reference/pagination).
+   */
+  list(
+    query: AlertListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<AlertsPage, Alert> {
+    return this._client.getAPIList('/alerts', Page<Alert>, { query, ...options });
+  }
+
+  /**
+   * This endpoint creates a new alert to monitor a customer's credit balance. There
+   * are three types of alerts that can be scoped to customers:
+   * `credit_balance_depleted`, `credit_balance_dropped`, and
+   * `credit_balance_recovered`. Customers can have a maximum of one of each type of
+   * alert per [credit balance currency](/product-catalog/prepurchase).
+   * `credit_balance_dropped` alerts require a list of thresholds to be provided
+   * while `credit_balance_depleted` and `credit_balance_recovered` alerts do not
+   * require thresholds.
+   */
+  createForCustomer(
+    customerID: string,
+    body: AlertCreateForCustomerParams,
+    options?: RequestOptions,
+  ): APIPromise<Alert> {
+    return this._client.post(path`/alerts/customer_id/${customerID}`, { body, ...options });
+  }
+
+  /**
+   * This endpoint creates a new alert to monitor a customer's credit balance. There
+   * are three types of alerts that can be scoped to customers:
+   * `credit_balance_depleted`, `credit_balance_dropped`, and
+   * `credit_balance_recovered`. Customers can have a maximum of one of each type of
+   * alert per [credit balance currency](/product-catalog/prepurchase).
+   * `credit_balance_dropped` alerts require a list of thresholds to be provided
+   * while `credit_balance_depleted` and `credit_balance_recovered` alerts do not
+   * require thresholds.
+   */
+  createForExternalCustomer(
+    externalCustomerID: string,
+    body: AlertCreateForExternalCustomerParams,
+    options?: RequestOptions,
+  ): APIPromise<Alert> {
+    return this._client.post(path`/alerts/external_customer_id/${externalCustomerID}`, { body, ...options });
+  }
+
+  /**
+   * This endpoint is used to create alerts at the subscription level.
+   *
+   * Subscription level alerts can be one of two types: `usage_exceeded` or
+   * `cost_exceeded`. A `usage_exceeded` alert is scoped to a particular metric and
+   * is triggered when the usage of that metric exceeds predefined thresholds during
+   * the current billing cycle. A `cost_exceeded` alert is triggered when the total
+   * amount due during the current billing cycle surpasses predefined thresholds.
+   * `cost_exceeded` alerts do not include burndown of pre-purchase credits. Each
+   * subscription can have one `cost_exceeded` alert and one `usage_exceeded` alert
+   * per metric that is a part of the subscription. Alerts are triggered based on
+   * usage or cost conditions met during the current billing cycle.
+   */
+  createForSubscription(
+    subscriptionID: string,
+    body: AlertCreateForSubscriptionParams,
+    options?: RequestOptions,
+  ): APIPromise<Alert> {
+    return this._client.post(path`/alerts/subscription_id/${subscriptionID}`, { body, ...options });
+  }
+
+  /**
+   * This endpoint allows you to disable an alert. To disable a plan-level alert for
+   * a specific subscription, you must include the `subscription_id`. The
+   * `subscription_id` is not required for customer or subscription level alerts.
+   */
+  disable(
+    alertConfigurationID: string,
+    params: AlertDisableParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Alert> {
+    const { subscription_id } = params ?? {};
+    return this._client.post(path`/alerts/${alertConfigurationID}/disable`, {
+      query: { subscription_id },
+      ...options,
+    });
+  }
+
+  /**
+   * This endpoint allows you to enable an alert. To enable a plan-level alert for a
+   * specific subscription, you must include the `subscription_id`. The
+   * `subscription_id` is not required for customer or subscription level alerts.
+   */
+  enable(
+    alertConfigurationID: string,
+    params: AlertEnableParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Alert> {
+    const { subscription_id } = params ?? {};
+    return this._client.post(path`/alerts/${alertConfigurationID}/enable`, {
+      query: { subscription_id },
+      ...options,
+    });
+  }
+}
+
+export type AlertsPage = Page<Alert>;
+
+/**
+ * [Alerts within Orb](/product-catalog/configuring-alerts) monitor spending,
+ * usage, or credit balance and trigger webhooks when a threshold is exceeded.
+ *
+ * Alerts created through the API can be scoped to either customers or
+ * subscriptions.
+ */
+export interface Alert {
+  /**
+   * Also referred to as alert_id in this documentation.
+   */
+  id: string;
+
+  /**
+   * The creation time of the resource in Orb.
+   */
+  created_at: string;
+
+  /**
+   * The name of the currency the credit balance or invoice cost is denominated in.
+   */
+  currency: string | null;
+
+  /**
+   * The customer the alert applies to.
+   */
+  customer: Shared.CustomerMinified | null;
+
+  /**
+   * Whether the alert is enabled or disabled.
+   */
+  enabled: boolean;
+
+  /**
+   * The metric the alert applies to.
+   */
+  metric: Alert.Metric | null;
+
+  /**
+   * The plan the alert applies to.
+   */
+  plan: Alert.Plan | null;
+
+  /**
+   * The subscription the alert applies to.
+   */
+  subscription: Shared.SubscriptionMinified | null;
+
+  /**
+   * The thresholds that define the conditions under which the alert will be
+   * triggered.
+   */
+  thresholds: Array<Threshold> | null;
+
+  /**
+   * The type of alert. This must be a valid alert type.
+   */
+  type:
+    | 'credit_balance_depleted'
+    | 'credit_balance_dropped'
+    | 'credit_balance_recovered'
+    | 'usage_exceeded'
+    | 'cost_exceeded'
+    | 'license_balance_threshold_reached';
+
+  /**
+   * The current status of the alert. This field is only present for credit balance
+   * alerts.
+   */
+  balance_alert_status?: Array<Alert.BalanceAlertStatus> | null;
+
+  /**
+   * The property keys to group cost alerts by. Only present for cost alerts with
+   * grouping enabled.
+   */
+  grouping_keys?: Array<string> | null;
+
+  /**
+   * Minified license type for alert serialization.
+   */
+  license_type?: Alert.LicenseType | null;
+
+  /**
+   * Filters scoping which prices are included in grouped cost alert evaluation.
+   */
+  price_filters?: Array<Alert.PriceFilter> | null;
+
+  /**
+   * Per-group threshold overrides. Each override maps a specific combination of
+   * grouping_keys values to a replacement threshold list. Only present for grouped
+   * cost alerts that have at least one override.
+   */
+  threshold_overrides?: Array<Alert.ThresholdOverride> | null;
+}
+
+export namespace Alert {
+  /**
+   * The metric the alert applies to.
+   */
+  export interface Metric {
+    id: string;
+  }
+
+  /**
+   * The plan the alert applies to.
+   */
+  export interface Plan {
+    id: string | null;
+
+    /**
+     * An optional user-defined ID for this plan resource, used throughout the system
+     * as an alias for this Plan. Use this field to identify a plan by an existing
+     * identifier in your system.
+     */
+    external_plan_id: string | null;
+
+    name: string | null;
+
+    plan_version: string;
+  }
+
+  /**
+   * Alert status is used to determine if an alert is currently in-alert or not.
+   */
+  export interface BalanceAlertStatus {
+    /**
+     * Whether the alert is currently in-alert or not.
+     */
+    in_alert: boolean;
+
+    /**
+     * The value of the threshold that defines the alert status.
+     */
+    threshold_value: number;
+  }
+
+  /**
+   * Minified license type for alert serialization.
+   */
+  export interface LicenseType {
+    id: string;
+  }
+
+  export interface PriceFilter {
+    /**
+     * The property of the price to filter on.
+     */
+    field: 'price_id' | 'item_id' | 'price_type' | 'currency' | 'pricing_unit_id';
+
+    /**
+     * Should prices that match the filter be included or excluded.
+     */
+    operator: 'includes' | 'excludes';
+
+    /**
+     * The IDs or values that match this filter.
+     */
+    values: Array<string>;
+  }
+
+  /**
+   * A per-group threshold override on a grouped cost alert.
+   *
+   * An empty `thresholds` list means the group is silenced (never fires). A
+   * non-empty list fully replaces the default thresholds for that group.
+   */
+  export interface ThresholdOverride {
+    /**
+     * The values of the grouping keys that identify this group. The list length
+     * matches the alert's grouping_keys.
+     */
+    group_values: Array<string>;
+
+    /**
+     * The thresholds applied to this group. An empty list means the group is silenced.
+     */
+    thresholds: Array<AlertsAPI.Threshold>;
+  }
+}
+
+/**
+ * Thresholds are used to define the conditions under which an alert will be
+ * triggered.
+ */
+export interface Threshold {
+  /**
+   * The value at which an alert will fire. For credit balance alerts, the alert will
+   * fire at or below this value. For usage and cost alerts, the alert will fire at
+   * or above this value.
+   */
+  value: number;
+}
+
+export interface AlertUpdateParams {
+  /**
+   * The thresholds that define the values at which the alert will be triggered.
+   */
+  thresholds: Array<Threshold>;
+
+  /**
+   * Replaces the price filters on a grouped cost alert; an empty list clears them.
+   * Only applicable to cost alerts with grouping_keys. Omit to leave unchanged.
+   */
+  price_filters?: Array<AlertUpdateParams.PriceFilter> | null;
+
+  /**
+   * Replaces the per-group threshold overrides on a grouped cost alert; an empty
+   * list clears them. Only applicable to cost alerts with grouping_keys. Omit to
+   * leave unchanged.
+   */
+  threshold_overrides?: Array<AlertUpdateParams.ThresholdOverride> | null;
+}
+
+export namespace AlertUpdateParams {
+  export interface PriceFilter {
+    /**
+     * The property of the price to filter on.
+     */
+    field: 'price_id' | 'item_id' | 'price_type' | 'currency' | 'pricing_unit_id';
+
+    /**
+     * Should prices that match the filter be included or excluded.
+     */
+    operator: 'includes' | 'excludes';
+
+    /**
+     * The IDs or values that match this filter.
+     */
+    values: Array<string>;
+  }
+
+  /**
+   * Per-group threshold override on a grouped cost alert.
+   *
+   * - An empty `thresholds` list silences alerts for this group (never fires).
+   * - A non-empty list fully replaces the default thresholds for this group.
+   */
+  export interface ThresholdOverride {
+    /**
+     * The values of the grouping keys that identify this group. The list length must
+     * match the alert's grouping_keys, and values appear in the same order as
+     * grouping_keys.
+     */
+    group_values: Array<string>;
+
+    /**
+     * The thresholds to apply to this group. An empty list silences alerts for this
+     * group. A non-empty list fully replaces the default thresholds for this group.
+     */
+    thresholds: Array<AlertsAPI.Threshold>;
+  }
+}
+
+export interface AlertListParams extends PageParams {
+  'created_at[gt]'?: string | null;
+
+  'created_at[gte]'?: string | null;
+
+  'created_at[lt]'?: string | null;
+
+  'created_at[lte]'?: string | null;
+
+  /**
+   * Fetch alerts scoped to this customer_id
+   */
+  customer_id?: string | null;
+
+  /**
+   * Fetch alerts scoped to this external_customer_id
+   */
+  external_customer_id?: string | null;
+
+  /**
+   * Fetch alerts scoped to this subscription_id
+   */
+  subscription_id?: string | null;
+}
+
+export interface AlertCreateForCustomerParams {
+  /**
+   * The case sensitive currency or custom pricing unit to use for this alert.
+   */
+  currency: string;
+
+  /**
+   * The type of alert to create. This must be a valid alert type.
+   */
+  type: 'credit_balance_depleted' | 'credit_balance_dropped' | 'credit_balance_recovered';
+
+  /**
+   * The thresholds that define the values at which the alert will be triggered.
+   */
+  thresholds?: Array<Threshold> | null;
+}
+
+export interface AlertCreateForExternalCustomerParams {
+  /**
+   * The case sensitive currency or custom pricing unit to use for this alert.
+   */
+  currency: string;
+
+  /**
+   * The type of alert to create. This must be a valid alert type.
+   */
+  type: 'credit_balance_depleted' | 'credit_balance_dropped' | 'credit_balance_recovered';
+
+  /**
+   * The thresholds that define the values at which the alert will be triggered.
+   */
+  thresholds?: Array<Threshold> | null;
+}
+
+export interface AlertCreateForSubscriptionParams {
+  /**
+   * The thresholds that define the values at which the alert will be triggered.
+   */
+  thresholds: Array<Threshold>;
+
+  /**
+   * The type of alert to create. This must be a valid alert type.
+   */
+  type: 'usage_exceeded' | 'cost_exceeded';
+
+  /**
+   * The case sensitive currency or custom pricing unit to use for grouped cost
+   * alerts. Required when grouping_keys is set.
+   */
+  currency?: string | null;
+
+  /**
+   * The property keys to group cost alerts by. Only applicable for cost_exceeded
+   * alerts.
+   */
+  grouping_keys?: Array<string> | null;
+
+  /**
+   * The metric to track usage for.
+   */
+  metric_id?: string | null;
+
+  /**
+   * Filters to scope which prices are included in grouped cost alert evaluation.
+   * Supports filtering by price_id, item_id, or price_type with includes/excludes
+   * operators. Only applicable when grouping_keys is set.
+   */
+  price_filters?: Array<AlertCreateForSubscriptionParams.PriceFilter> | null;
+
+  /**
+   * Per-group threshold overrides. Each override maps a specific combination of
+   * grouping_keys values to a list of thresholds that fully replaces the default
+   * thresholds for that group. An empty thresholds list silences the group. Groups
+   * without an override use the default thresholds. Only applicable when
+   * grouping_keys is set.
+   */
+  threshold_overrides?: Array<AlertCreateForSubscriptionParams.ThresholdOverride> | null;
+}
+
+export namespace AlertCreateForSubscriptionParams {
+  export interface PriceFilter {
+    /**
+     * The property of the price to filter on.
+     */
+    field: 'price_id' | 'item_id' | 'price_type' | 'currency' | 'pricing_unit_id';
+
+    /**
+     * Should prices that match the filter be included or excluded.
+     */
+    operator: 'includes' | 'excludes';
+
+    /**
+     * The IDs or values that match this filter.
+     */
+    values: Array<string>;
+  }
+
+  /**
+   * Per-group threshold override on a grouped cost alert.
+   *
+   * - An empty `thresholds` list silences alerts for this group (never fires).
+   * - A non-empty list fully replaces the default thresholds for this group.
+   */
+  export interface ThresholdOverride {
+    /**
+     * The values of the grouping keys that identify this group. The list length must
+     * match the alert's grouping_keys, and values appear in the same order as
+     * grouping_keys.
+     */
+    group_values: Array<string>;
+
+    /**
+     * The thresholds to apply to this group. An empty list silences alerts for this
+     * group. A non-empty list fully replaces the default thresholds for this group.
+     */
+    thresholds: Array<AlertsAPI.Threshold>;
+  }
+}
+
+export interface AlertDisableParams {
+  /**
+   * Used to update the status of a plan alert scoped to this subscription_id
+   */
+  subscription_id?: string | null;
+}
+
+export interface AlertEnableParams {
+  /**
+   * Used to update the status of a plan alert scoped to this subscription_id
+   */
+  subscription_id?: string | null;
+}
+
+export declare namespace Alerts {
+  export {
+    type Alert as Alert,
+    type Threshold as Threshold,
+    type AlertsPage as AlertsPage,
+    type AlertUpdateParams as AlertUpdateParams,
+    type AlertListParams as AlertListParams,
+    type AlertCreateForCustomerParams as AlertCreateForCustomerParams,
+    type AlertCreateForExternalCustomerParams as AlertCreateForExternalCustomerParams,
+    type AlertCreateForSubscriptionParams as AlertCreateForSubscriptionParams,
+    type AlertDisableParams as AlertDisableParams,
+    type AlertEnableParams as AlertEnableParams,
+  };
+}

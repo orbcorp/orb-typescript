@@ -1,0 +1,75 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { APIResource } from '../../core/resource';
+import * as PlansAPI from './plans';
+import { APIPromise } from '../../core/api-promise';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
+
+/**
+ * The [Plan](/core-concepts#plan-and-price) resource represents a plan that can be subscribed to by a
+ * customer. Plans define the billing behavior of the subscription. You can see more about how to configure prices
+ * in the [Price resource](/reference/price).
+ */
+export class ExternalPlanID extends APIResource {
+  /**
+   * This endpoint can be used to update the `external_plan_id`, `description`, and
+   * `metadata` of an existing plan.
+   *
+   * Other fields on a plan are currently immutable.
+   */
+  update(
+    otherExternalPlanID: string,
+    body: ExternalPlanIDUpdateParams,
+    options?: RequestOptions,
+  ): APIPromise<PlansAPI.Plan> {
+    return this._client.put(path`/plans/external_plan_id/${otherExternalPlanID}`, { body, ...options });
+  }
+
+  /**
+   * This endpoint is used to fetch [plan](/core-concepts##plan-and-price) details
+   * given an external_plan_id identifier. It returns information about the prices
+   * included in the plan and their configuration, as well as the product that the
+   * plan is attached to.
+   *
+   * If multiple plans are found to contain the specified external_plan_id, the
+   * active plans will take priority over archived ones, and among those, the
+   * endpoint will return the most recently created plan.
+   *
+   * ## Serialized prices
+   *
+   * Orb supports a few different pricing models out of the box. Each of these models
+   * is serialized differently in a given [Price](/core-concepts#plan-and-price)
+   * object. The `model_type` field determines the key for the configuration object
+   * that is present. A detailed explanation of price types can be found in the
+   * [Price schema](/core-concepts#plan-and-price). "
+   */
+  fetch(externalPlanID: string, options?: RequestOptions): APIPromise<PlansAPI.Plan> {
+    return this._client.get(path`/plans/external_plan_id/${externalPlanID}`, options);
+  }
+}
+
+export interface ExternalPlanIDUpdateParams {
+  /**
+   * An optional user-defined description of the plan.
+   */
+  description?: string | null;
+
+  /**
+   * An optional user-defined ID for this plan resource, used throughout the system
+   * as an alias for this Plan. Use this field to identify a plan by an existing
+   * identifier in your system.
+   */
+  external_plan_id?: string | null;
+
+  /**
+   * User-specified key/value pairs for the resource. Individual keys can be removed
+   * by setting the value to `null`, and the entire metadata mapping can be cleared
+   * by setting `metadata` to `null`.
+   */
+  metadata?: { [key: string]: string | null } | null;
+}
+
+export declare namespace ExternalPlanID {
+  export { type ExternalPlanIDUpdateParams as ExternalPlanIDUpdateParams };
+}

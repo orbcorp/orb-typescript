@@ -1,0 +1,2099 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { APIResource } from '../../core/resource';
+import * as Shared from '../shared';
+import * as ExternalPlanIDAPI from './external-plan-id';
+import { ExternalPlanID, ExternalPlanIDUpdateParams } from './external-plan-id';
+import * as MigrationsAPI from './migrations';
+import {
+  MigrationCancelParams,
+  MigrationCancelResponse,
+  MigrationListParams,
+  MigrationListResponse,
+  MigrationListResponsesPage,
+  MigrationRetrieveParams,
+  MigrationRetrieveResponse,
+  Migrations,
+} from './migrations';
+import { APIPromise } from '../../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../../core/pagination';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
+
+/**
+ * The [Plan](/core-concepts#plan-and-price) resource represents a plan that can be subscribed to by a
+ * customer. Plans define the billing behavior of the subscription. You can see more about how to configure prices
+ * in the [Price resource](/reference/price).
+ */
+export class Plans extends APIResource {
+  externalPlanID: ExternalPlanIDAPI.ExternalPlanID = new ExternalPlanIDAPI.ExternalPlanID(this._client);
+  migrations: MigrationsAPI.Migrations = new MigrationsAPI.Migrations(this._client);
+
+  /**
+   * This endpoint allows creation of plans including their prices.
+   */
+  create(body: PlanCreateParams, options?: RequestOptions): APIPromise<Plan> {
+    return this._client.post('/plans', { body, ...options });
+  }
+
+  /**
+   * This endpoint can be used to update the `external_plan_id`, `description`, and
+   * `metadata` of an existing plan.
+   *
+   * Other fields on a plan are currently immutable.
+   */
+  update(planID: string, body: PlanUpdateParams, options?: RequestOptions): APIPromise<Plan> {
+    return this._client.put(path`/plans/${planID}`, { body, ...options });
+  }
+
+  /**
+   * This endpoint returns a list of all [plans](/core-concepts#plan-and-price) for
+   * an account in a list format. The list of plans is ordered starting from the most
+   * recently created plan. The response also includes
+   * [`pagination_metadata`](/api-reference/pagination) which lets the caller
+   * retrieve the next page of results if they exist.
+   */
+  list(
+    query: PlanListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<PlansPage, Plan> {
+    return this._client.getAPIList('/plans', Page<Plan>, { query, ...options });
+  }
+
+  /**
+   * This endpoint is used to fetch [plan](/core-concepts#plan-and-price) details
+   * given a plan identifier. It returns information about the prices included in the
+   * plan and their configuration, as well as the product that the plan is attached
+   * to.
+   *
+   * ## Serialized prices
+   *
+   * Orb supports a few different pricing models out of the box. Each of these models
+   * is serialized differently in a given [Price](/core-concepts#plan-and-price)
+   * object. The `model_type` field determines the key for the configuration object
+   * that is present. A detailed explanation of price types can be found in the
+   * [Price schema](/core-concepts#plan-and-price).
+   *
+   * ## Phases
+   *
+   * Orb supports plan phases, also known as contract ramps. For plans with phases,
+   * the serialized prices refer to all prices across all phases.
+   */
+  fetch(planID: string, options?: RequestOptions): APIPromise<Plan> {
+    return this._client.get(path`/plans/${planID}`, options);
+  }
+}
+
+export type PlansPage = Page<Plan>;
+
+/**
+ * The [Plan](/core-concepts#plan-and-price) resource represents a plan that can be
+ * subscribed to by a customer. Plans define the billing behavior of the
+ * subscription. You can see more about how to configure prices in the
+ * [Price resource](/reference/price).
+ */
+export interface Plan {
+  id: string;
+
+  /**
+   * Adjustments for this plan. If the plan has phases, this includes adjustments
+   * across all phases of the plan.
+   */
+  adjustments: Array<
+    | Shared.PlanPhaseUsageDiscountAdjustment
+    | Shared.PlanPhaseAmountDiscountAdjustment
+    | Shared.PlanPhasePercentageDiscountAdjustment
+    | Plan.PlanPhaseTieredPercentageDiscountAdjustment
+    | Shared.PlanPhaseMinimumAdjustment
+    | Shared.PlanPhaseMaximumAdjustment
+  >;
+
+  /**
+   * @deprecated Legacy field representing the parent plan if the current plan is a
+   * 'child plan', overriding prices from the parent.
+   */
+  base_plan: Plan.BasePlan | null;
+
+  /**
+   * @deprecated Legacy field representing the parent plan ID if the current plan is
+   * a 'child plan', overriding prices from the parent.
+   */
+  base_plan_id: string | null;
+
+  created_at: string;
+
+  /**
+   * @deprecated An ISO 4217 currency string or custom pricing unit (`credits`) for
+   * this plan's prices.
+   */
+  currency: string;
+
+  /**
+   * The default memo text on the invoices corresponding to subscriptions on this
+   * plan. Note that each subscription may configure its own memo.
+   */
+  default_invoice_memo: string | null;
+
+  description: string;
+
+  /**
+   * @deprecated
+   */
+  discount: Shared.Discount | null;
+
+  /**
+   * An optional user-defined ID for this plan resource, used throughout the system
+   * as an alias for this Plan. Use this field to identify a plan by an existing
+   * identifier in your system.
+   */
+  external_plan_id: string | null;
+
+  /**
+   * An ISO 4217 currency string for which this plan is billed in. Matches `currency`
+   * unless `currency` is a custom pricing unit.
+   */
+  invoicing_currency: string;
+
+  /**
+   * @deprecated
+   */
+  maximum: Shared.Maximum | null;
+
+  /**
+   * @deprecated
+   */
+  maximum_amount: string | null;
+
+  /**
+   * User specified key-value pairs for the resource. If not present, this defaults
+   * to an empty dictionary. Individual keys can be removed by setting the value to
+   * `null`, and the entire metadata mapping can be cleared by setting `metadata` to
+   * `null`.
+   */
+  metadata: { [key: string]: string };
+
+  /**
+   * @deprecated
+   */
+  minimum: Shared.Minimum | null;
+
+  /**
+   * @deprecated
+   */
+  minimum_amount: string | null;
+
+  name: string;
+
+  /**
+   * Determines the difference between the invoice issue date and the due date. A
+   * value of "0" here signifies that invoices are due on issue, whereas a value of
+   * "30" means that the customer has a month to pay the invoice before its overdue.
+   * Note that individual subscriptions or invoices may set a different net terms
+   * configuration.
+   */
+  net_terms: number | null;
+
+  plan_phases: Array<Plan.PlanPhase> | null;
+
+  /**
+   * Prices for this plan. If the plan has phases, this includes prices across all
+   * phases of the plan.
+   */
+  prices: Array<Shared.Price>;
+
+  product: Plan.Product;
+
+  status: 'active' | 'archived' | 'draft';
+
+  trial_config: Plan.TrialConfig;
+
+  version: number;
+}
+
+export namespace Plan {
+  export interface PlanPhaseTieredPercentageDiscountAdjustment {
+    id: string;
+
+    adjustment_type: 'tiered_percentage_discount';
+
+    /**
+     * @deprecated The price IDs that this adjustment applies to.
+     */
+    applies_to_price_ids: Array<string>;
+
+    /**
+     * The filters that determine which prices to apply this adjustment to.
+     */
+    filters: Array<PlanPhaseTieredPercentageDiscountAdjustment.Filter>;
+
+    /**
+     * True for adjustments that apply to an entire invoice, false for adjustments that
+     * apply to only one price.
+     */
+    is_invoice_level: boolean;
+
+    /**
+     * The plan phase in which this adjustment is active.
+     */
+    plan_phase_order: number | null;
+
+    /**
+     * The reason for the adjustment.
+     */
+    reason: string | null;
+
+    /**
+     * The adjustment id this adjustment replaces. This adjustment will take the place
+     * of the replaced adjustment in plan version migrations.
+     */
+    replaces_adjustment_id: string | null;
+
+    /**
+     * The ordered, contiguous bands of cumulative eligible spend, each discounted at
+     * its own percentage (progressive fill-a-tier), applied to the prices this
+     * adjustment covers in a given billing period.
+     */
+    tiers: Array<PlanPhaseTieredPercentageDiscountAdjustment.Tier>;
+  }
+
+  export namespace PlanPhaseTieredPercentageDiscountAdjustment {
+    export interface Filter {
+      /**
+       * The property of the price to filter on.
+       */
+      field: 'price_id' | 'item_id' | 'price_type' | 'currency' | 'pricing_unit_id';
+
+      /**
+       * Should prices that match the filter be included or excluded.
+       */
+      operator: 'includes' | 'excludes';
+
+      /**
+       * The IDs or values that match this filter.
+       */
+      values: Array<string>;
+    }
+
+    /**
+     * One band of a tiered percentage discount. Bounds are denominated in the
+     * discount's currency. `lower_bound` is the exclusive start of the band and
+     * `upper_bound` is the inclusive end; `upper_bound` is null only for the
+     * open-ended final tier.
+     */
+    export interface Tier {
+      /**
+       * Exclusive lower bound of cumulative spend for this tier.
+       */
+      lower_bound: number;
+
+      /**
+       * The percentage (between 0 and 1) discounted from spend that falls within this
+       * tier.
+       */
+      percentage: number;
+
+      /**
+       * Inclusive upper bound of cumulative spend for this tier; null for the final
+       * open-ended tier.
+       */
+      upper_bound?: number | null;
+    }
+  }
+
+  /**
+   * @deprecated Legacy field representing the parent plan if the current plan is a
+   * 'child plan', overriding prices from the parent.
+   */
+  export interface BasePlan {
+    id: string | null;
+
+    /**
+     * An optional user-defined ID for this plan resource, used throughout the system
+     * as an alias for this Plan. Use this field to identify a plan by an existing
+     * identifier in your system.
+     */
+    external_plan_id: string | null;
+
+    name: string | null;
+  }
+
+  export interface PlanPhase {
+    id: string;
+
+    description: string | null;
+
+    discount: Shared.Discount | null;
+
+    /**
+     * How many terms of length `duration_unit` this phase is active for. If null, this
+     * phase is evergreen and active indefinitely
+     */
+    duration: number | null;
+
+    duration_unit: 'daily' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | null;
+
+    maximum: Shared.Maximum | null;
+
+    maximum_amount: string | null;
+
+    minimum: Shared.Minimum | null;
+
+    minimum_amount: string | null;
+
+    name: string;
+
+    /**
+     * Determines the ordering of the phase in a plan's lifecycle. 1 = first phase.
+     */
+    order: number;
+  }
+
+  export interface Product {
+    id: string;
+
+    created_at: string;
+
+    name: string;
+  }
+
+  export interface TrialConfig {
+    trial_period: number | null;
+
+    trial_period_unit: 'days';
+  }
+}
+
+export interface PlanCreateParams {
+  /**
+   * An ISO 4217 currency string for invoices generated by subscriptions on this
+   * plan.
+   */
+  currency: string;
+
+  name: string;
+
+  /**
+   * Prices for this plan. If the plan has phases, this includes prices across all
+   * phases of the plan.
+   */
+  prices: Array<PlanCreateParams.Price>;
+
+  /**
+   * Adjustments for this plan. If the plan has phases, this includes adjustments
+   * across all phases of the plan.
+   */
+  adjustments?: Array<PlanCreateParams.Adjustment> | null;
+
+  /**
+   * Free-form text which is available on the invoice PDF and the Orb invoice portal.
+   */
+  default_invoice_memo?: string | null;
+
+  /**
+   * An optional user-defined description of the plan.
+   */
+  description?: string | null;
+
+  external_plan_id?: string | null;
+
+  /**
+   * User-specified key/value pairs for the resource. Individual keys can be removed
+   * by setting the value to `null`, and the entire metadata mapping can be cleared
+   * by setting `metadata` to `null`.
+   */
+  metadata?: { [key: string]: string | null } | null;
+
+  /**
+   * The net terms determines the difference between the invoice date and the issue
+   * date for the invoice. If you intend the invoice to be due on issue, set this
+   * to 0.
+   */
+  net_terms?: number | null;
+
+  /**
+   * Configuration of pre-defined phases, each with their own prices and adjustments.
+   * Leave unspecified for plans with a single phase.
+   */
+  plan_phases?: Array<PlanCreateParams.PlanPhase> | null;
+
+  /**
+   * The status of the plan to create (either active or draft). If not specified,
+   * this defaults to active.
+   */
+  status?: 'active' | 'draft';
+}
+
+export namespace PlanCreateParams {
+  export interface Price {
+    /**
+     * The allocation price to add to the plan.
+     */
+    allocation_price?: Shared.NewAllocationPrice | null;
+
+    /**
+     * The license allocation price to add to the plan.
+     */
+    license_allocation_price?: Price.LicenseAllocationPrice | null;
+
+    /**
+     * The phase to add this price to.
+     */
+    plan_phase_order?: number | null;
+
+    /**
+     * New plan price request body params.
+     */
+    price?:
+      | Shared.NewPlanUnitPrice
+      | Shared.NewPlanTieredPrice
+      | Shared.NewPlanBulkPrice
+      | Price.NewPlanBulkWithFiltersPrice
+      | Shared.NewPlanPackagePrice
+      | Shared.NewPlanMatrixPrice
+      | Shared.NewPlanThresholdTotalAmountPrice
+      | Shared.NewPlanTieredPackagePrice
+      | Shared.NewPlanTieredWithMinimumPrice
+      | Shared.NewPlanGroupedTieredPrice
+      | Shared.NewPlanTieredPackageWithMinimumPrice
+      | Shared.NewPlanPackageWithAllocationPrice
+      | Shared.NewPlanUnitWithPercentPrice
+      | Shared.NewPlanMatrixWithAllocationPrice
+      | Price.NewPlanMatrixWithThresholdDiscountsPrice
+      | Price.NewPlanTieredWithProrationPrice
+      | Shared.NewPlanUnitWithProrationPrice
+      | Shared.NewPlanGroupedAllocationPrice
+      | Shared.NewPlanBulkWithProrationPrice
+      | Shared.NewPlanGroupedWithProratedMinimumPrice
+      | Shared.NewPlanGroupedWithMeteredMinimumPrice
+      | Price.NewPlanGroupedWithMinMaxThresholdsPrice
+      | Shared.NewPlanMatrixWithDisplayNamePrice
+      | Shared.NewPlanGroupedTieredPackagePrice
+      | Shared.NewPlanMaxGroupTieredPackagePrice
+      | Shared.NewPlanScalableMatrixWithUnitPricingPrice
+      | Shared.NewPlanScalableMatrixWithTieredPricingPrice
+      | Shared.NewPlanCumulativeGroupedBulkPrice
+      | Price.NewPlanCumulativeGroupedAllocationPrice
+      | Price.NewPlanDailyCreditAllowancePrice
+      | Price.NewPlanMeteredAllowancePrice
+      | Shared.NewPlanMinimumCompositePrice
+      | Price.NewPlanPercentCompositePrice
+      | Price.NewPlanEventOutputPrice
+      | null;
+  }
+
+  export namespace Price {
+    /**
+     * The license allocation price to add to the plan.
+     */
+    export interface LicenseAllocationPrice {
+      /**
+       * The cadence to bill for this price on.
+       */
+      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+
+      /**
+       * The id of the item the price will be associated with.
+       */
+      item_id: string;
+
+      /**
+       * License allocations to associate with this price. Each entry defines a
+       * per-license credit pool granted each cadence. Requires license_type_id or
+       * license_type_configuration to be set.
+       */
+      license_allocations: Array<LicenseAllocationPrice.LicenseAllocation>;
+
+      /**
+       * The pricing model type
+       */
+      model_type: 'unit';
+
+      /**
+       * The name of the price.
+       */
+      name: string;
+
+      /**
+       * Configuration for unit pricing
+       */
+      unit_config: Shared.UnitConfig;
+
+      /**
+       * The id of the billable metric for the price. Only needed if the price is
+       * usage-based.
+       */
+      billable_metric_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, the price will be billed in-advance if
+       * this is true, and in-arrears if this is false.
+       */
+      billed_in_advance?: boolean | null;
+
+      /**
+       * For custom cadence: specifies the duration of the billing period in days or
+       * months.
+       */
+      billing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The per unit conversion rate of the price currency to the invoicing currency.
+       */
+      conversion_rate?: number | null;
+
+      /**
+       * The configuration for the rate of the price currency to the invoicing currency.
+       */
+      conversion_rate_config?: Shared.UnitConversionRateConfig | Shared.TieredConversionRateConfig | null;
+
+      /**
+       * An ISO 4217 currency string, or custom pricing unit identifier, in which this
+       * price is billed.
+       */
+      currency?: string | null;
+
+      /**
+       * For dimensional price: specifies a price group and dimension values
+       */
+      dimensional_price_configuration?: Shared.NewDimensionalPriceConfiguration | null;
+
+      /**
+       * An alias for the price.
+       */
+      external_price_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, this represents the quantity of units
+       * applied.
+       */
+      fixed_price_quantity?: number | null;
+
+      /**
+       * The property used to group this price on an invoice
+       */
+      invoice_grouping_key?: string | null;
+
+      /**
+       * Within each billing cycle, specifies the cadence at which invoices are produced.
+       * If unspecified, a single invoice is produced per billing cycle.
+       */
+      invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The ID of the license type to associate with this price.
+       */
+      license_type_id?: string | null;
+
+      /**
+       * User-specified key/value pairs for the resource. Individual keys can be removed
+       * by setting the value to `null`, and the entire metadata mapping can be cleared
+       * by setting `metadata` to `null`.
+       */
+      metadata?: { [key: string]: string | null } | null;
+
+      /**
+       * A transient ID that can be used to reference this price when adding adjustments
+       * in the same API call.
+       */
+      reference_id?: string | null;
+    }
+
+    export namespace LicenseAllocationPrice {
+      export interface LicenseAllocation {
+        /**
+         * The amount of credits granted per active license per cadence.
+         */
+        amount: string;
+
+        /**
+         * The currency of the license allocation.
+         */
+        currency: string;
+
+        /**
+         * When True, overage beyond the allocation is written off.
+         */
+        write_off_overage?: boolean | null;
+      }
+    }
+
+    export interface NewPlanBulkWithFiltersPrice {
+      /**
+       * Configuration for bulk_with_filters pricing
+       */
+      bulk_with_filters_config: NewPlanBulkWithFiltersPrice.BulkWithFiltersConfig;
+
+      /**
+       * The cadence to bill for this price on.
+       */
+      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+
+      /**
+       * The id of the item the price will be associated with.
+       */
+      item_id: string;
+
+      /**
+       * The pricing model type
+       */
+      model_type: 'bulk_with_filters';
+
+      /**
+       * The name of the price.
+       */
+      name: string;
+
+      /**
+       * The id of the billable metric for the price. Only needed if the price is
+       * usage-based.
+       */
+      billable_metric_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, the price will be billed in-advance if
+       * this is true, and in-arrears if this is false.
+       */
+      billed_in_advance?: boolean | null;
+
+      /**
+       * For custom cadence: specifies the duration of the billing period in days or
+       * months.
+       */
+      billing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The per unit conversion rate of the price currency to the invoicing currency.
+       */
+      conversion_rate?: number | null;
+
+      /**
+       * The configuration for the rate of the price currency to the invoicing currency.
+       */
+      conversion_rate_config?: Shared.UnitConversionRateConfig | Shared.TieredConversionRateConfig | null;
+
+      /**
+       * An ISO 4217 currency string, or custom pricing unit identifier, in which this
+       * price is billed.
+       */
+      currency?: string | null;
+
+      /**
+       * For dimensional price: specifies a price group and dimension values
+       */
+      dimensional_price_configuration?: Shared.NewDimensionalPriceConfiguration | null;
+
+      /**
+       * An alias for the price.
+       */
+      external_price_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, this represents the quantity of units
+       * applied.
+       */
+      fixed_price_quantity?: number | null;
+
+      /**
+       * The property used to group this price on an invoice
+       */
+      invoice_grouping_key?: string | null;
+
+      /**
+       * Within each billing cycle, specifies the cadence at which invoices are produced.
+       * If unspecified, a single invoice is produced per billing cycle.
+       */
+      invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The ID of the license type to associate with this price.
+       */
+      license_type_id?: string | null;
+
+      /**
+       * User-specified key/value pairs for the resource. Individual keys can be removed
+       * by setting the value to `null`, and the entire metadata mapping can be cleared
+       * by setting `metadata` to `null`.
+       */
+      metadata?: { [key: string]: string | null } | null;
+
+      /**
+       * A transient ID that can be used to reference this price when adding adjustments
+       * in the same API call.
+       */
+      reference_id?: string | null;
+    }
+
+    export namespace NewPlanBulkWithFiltersPrice {
+      /**
+       * Configuration for bulk_with_filters pricing
+       */
+      export interface BulkWithFiltersConfig {
+        /**
+         * Property filters to apply (all must match)
+         */
+        filters: Array<BulkWithFiltersConfig.Filter>;
+
+        /**
+         * Bulk tiers for rating based on total usage volume
+         */
+        tiers: Array<BulkWithFiltersConfig.Tier>;
+      }
+
+      export namespace BulkWithFiltersConfig {
+        /**
+         * Configuration for a single property filter
+         */
+        export interface Filter {
+          /**
+           * Event property key to filter on
+           */
+          property_key: string;
+
+          /**
+           * Event property value to match
+           */
+          property_value: string;
+        }
+
+        /**
+         * Configuration for a single bulk pricing tier
+         */
+        export interface Tier {
+          /**
+           * Amount per unit
+           */
+          unit_amount: string;
+
+          /**
+           * The lower bound for this tier
+           */
+          tier_lower_bound?: string | null;
+        }
+      }
+    }
+
+    export interface NewPlanMatrixWithThresholdDiscountsPrice {
+      /**
+       * The cadence to bill for this price on.
+       */
+      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+
+      /**
+       * The id of the item the price will be associated with.
+       */
+      item_id: string;
+
+      /**
+       * Configuration for matrix_with_threshold_discounts pricing
+       */
+      matrix_with_threshold_discounts_config: NewPlanMatrixWithThresholdDiscountsPrice.MatrixWithThresholdDiscountsConfig;
+
+      /**
+       * The pricing model type
+       */
+      model_type: 'matrix_with_threshold_discounts';
+
+      /**
+       * The name of the price.
+       */
+      name: string;
+
+      /**
+       * The id of the billable metric for the price. Only needed if the price is
+       * usage-based.
+       */
+      billable_metric_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, the price will be billed in-advance if
+       * this is true, and in-arrears if this is false.
+       */
+      billed_in_advance?: boolean | null;
+
+      /**
+       * For custom cadence: specifies the duration of the billing period in days or
+       * months.
+       */
+      billing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The per unit conversion rate of the price currency to the invoicing currency.
+       */
+      conversion_rate?: number | null;
+
+      /**
+       * The configuration for the rate of the price currency to the invoicing currency.
+       */
+      conversion_rate_config?: Shared.UnitConversionRateConfig | Shared.TieredConversionRateConfig | null;
+
+      /**
+       * An ISO 4217 currency string, or custom pricing unit identifier, in which this
+       * price is billed.
+       */
+      currency?: string | null;
+
+      /**
+       * For dimensional price: specifies a price group and dimension values
+       */
+      dimensional_price_configuration?: Shared.NewDimensionalPriceConfiguration | null;
+
+      /**
+       * An alias for the price.
+       */
+      external_price_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, this represents the quantity of units
+       * applied.
+       */
+      fixed_price_quantity?: number | null;
+
+      /**
+       * The property used to group this price on an invoice
+       */
+      invoice_grouping_key?: string | null;
+
+      /**
+       * Within each billing cycle, specifies the cadence at which invoices are produced.
+       * If unspecified, a single invoice is produced per billing cycle.
+       */
+      invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The ID of the license type to associate with this price.
+       */
+      license_type_id?: string | null;
+
+      /**
+       * User-specified key/value pairs for the resource. Individual keys can be removed
+       * by setting the value to `null`, and the entire metadata mapping can be cleared
+       * by setting `metadata` to `null`.
+       */
+      metadata?: { [key: string]: string | null } | null;
+
+      /**
+       * A transient ID that can be used to reference this price when adding adjustments
+       * in the same API call.
+       */
+      reference_id?: string | null;
+    }
+
+    export namespace NewPlanMatrixWithThresholdDiscountsPrice {
+      /**
+       * Configuration for matrix_with_threshold_discounts pricing
+       */
+      export interface MatrixWithThresholdDiscountsConfig {
+        /**
+         * Unit price used for usage that does not match any defined matrix cell.
+         */
+        default_unit_amount: string;
+
+        /**
+         * First matrix dimension key.
+         */
+        first_dimension: string;
+
+        /**
+         * Per-cell unit prices.
+         */
+        matrix_values: Array<MatrixWithThresholdDiscountsConfig.MatrixValue>;
+
+        /**
+         * Optional second matrix dimension key.
+         */
+        second_dimension?: string | null;
+
+        threshold_discount_groups?: Array<MatrixWithThresholdDiscountsConfig.ThresholdDiscountGroup>;
+      }
+
+      export namespace MatrixWithThresholdDiscountsConfig {
+        export interface MatrixValue {
+          first_dimension_value: string;
+
+          unit_amount: string;
+
+          second_dimension_value?: string | null;
+        }
+
+        export interface ThresholdDiscountGroup {
+          /**
+           * Discount rate applied to spend above the threshold.
+           */
+          above_threshold_discount_percentage: string;
+
+          /**
+           * Discount rate applied to spend at or below the threshold. Set to 0 for no
+           * baseline discount.
+           */
+          below_threshold_discount_percentage: string;
+
+          /**
+           * Semicolon-separated list of matrix cell coordinates targeted by this group. Each
+           * coordinate is `first,second` when the matrix has two dimensions, or just `first`
+           * for a single-dimension matrix. Example: `blue,circle;green,triangle`.
+           */
+          cell_coordinates: string;
+
+          threshold_amount: string;
+
+          description?: string | null;
+        }
+      }
+    }
+
+    export interface NewPlanTieredWithProrationPrice {
+      /**
+       * The cadence to bill for this price on.
+       */
+      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+
+      /**
+       * The id of the item the price will be associated with.
+       */
+      item_id: string;
+
+      /**
+       * The pricing model type
+       */
+      model_type: 'tiered_with_proration';
+
+      /**
+       * The name of the price.
+       */
+      name: string;
+
+      /**
+       * Configuration for tiered_with_proration pricing
+       */
+      tiered_with_proration_config: NewPlanTieredWithProrationPrice.TieredWithProrationConfig;
+
+      /**
+       * The id of the billable metric for the price. Only needed if the price is
+       * usage-based.
+       */
+      billable_metric_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, the price will be billed in-advance if
+       * this is true, and in-arrears if this is false.
+       */
+      billed_in_advance?: boolean | null;
+
+      /**
+       * For custom cadence: specifies the duration of the billing period in days or
+       * months.
+       */
+      billing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The per unit conversion rate of the price currency to the invoicing currency.
+       */
+      conversion_rate?: number | null;
+
+      /**
+       * The configuration for the rate of the price currency to the invoicing currency.
+       */
+      conversion_rate_config?: Shared.UnitConversionRateConfig | Shared.TieredConversionRateConfig | null;
+
+      /**
+       * An ISO 4217 currency string, or custom pricing unit identifier, in which this
+       * price is billed.
+       */
+      currency?: string | null;
+
+      /**
+       * For dimensional price: specifies a price group and dimension values
+       */
+      dimensional_price_configuration?: Shared.NewDimensionalPriceConfiguration | null;
+
+      /**
+       * An alias for the price.
+       */
+      external_price_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, this represents the quantity of units
+       * applied.
+       */
+      fixed_price_quantity?: number | null;
+
+      /**
+       * The property used to group this price on an invoice
+       */
+      invoice_grouping_key?: string | null;
+
+      /**
+       * Within each billing cycle, specifies the cadence at which invoices are produced.
+       * If unspecified, a single invoice is produced per billing cycle.
+       */
+      invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The ID of the license type to associate with this price.
+       */
+      license_type_id?: string | null;
+
+      /**
+       * User-specified key/value pairs for the resource. Individual keys can be removed
+       * by setting the value to `null`, and the entire metadata mapping can be cleared
+       * by setting `metadata` to `null`.
+       */
+      metadata?: { [key: string]: string | null } | null;
+
+      /**
+       * A transient ID that can be used to reference this price when adding adjustments
+       * in the same API call.
+       */
+      reference_id?: string | null;
+    }
+
+    export namespace NewPlanTieredWithProrationPrice {
+      /**
+       * Configuration for tiered_with_proration pricing
+       */
+      export interface TieredWithProrationConfig {
+        /**
+         * Tiers for rating based on total usage quantities into the specified tier with
+         * proration
+         */
+        tiers: Array<TieredWithProrationConfig.Tier>;
+      }
+
+      export namespace TieredWithProrationConfig {
+        /**
+         * Configuration for a single tiered with proration tier
+         */
+        export interface Tier {
+          /**
+           * Inclusive tier starting value
+           */
+          tier_lower_bound: string;
+
+          /**
+           * Amount per unit
+           */
+          unit_amount: string;
+        }
+      }
+    }
+
+    export interface NewPlanGroupedWithMinMaxThresholdsPrice {
+      /**
+       * The cadence to bill for this price on.
+       */
+      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+
+      /**
+       * Configuration for grouped_with_min_max_thresholds pricing
+       */
+      grouped_with_min_max_thresholds_config: NewPlanGroupedWithMinMaxThresholdsPrice.GroupedWithMinMaxThresholdsConfig;
+
+      /**
+       * The id of the item the price will be associated with.
+       */
+      item_id: string;
+
+      /**
+       * The pricing model type
+       */
+      model_type: 'grouped_with_min_max_thresholds';
+
+      /**
+       * The name of the price.
+       */
+      name: string;
+
+      /**
+       * The id of the billable metric for the price. Only needed if the price is
+       * usage-based.
+       */
+      billable_metric_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, the price will be billed in-advance if
+       * this is true, and in-arrears if this is false.
+       */
+      billed_in_advance?: boolean | null;
+
+      /**
+       * For custom cadence: specifies the duration of the billing period in days or
+       * months.
+       */
+      billing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The per unit conversion rate of the price currency to the invoicing currency.
+       */
+      conversion_rate?: number | null;
+
+      /**
+       * The configuration for the rate of the price currency to the invoicing currency.
+       */
+      conversion_rate_config?: Shared.UnitConversionRateConfig | Shared.TieredConversionRateConfig | null;
+
+      /**
+       * An ISO 4217 currency string, or custom pricing unit identifier, in which this
+       * price is billed.
+       */
+      currency?: string | null;
+
+      /**
+       * For dimensional price: specifies a price group and dimension values
+       */
+      dimensional_price_configuration?: Shared.NewDimensionalPriceConfiguration | null;
+
+      /**
+       * An alias for the price.
+       */
+      external_price_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, this represents the quantity of units
+       * applied.
+       */
+      fixed_price_quantity?: number | null;
+
+      /**
+       * The property used to group this price on an invoice
+       */
+      invoice_grouping_key?: string | null;
+
+      /**
+       * Within each billing cycle, specifies the cadence at which invoices are produced.
+       * If unspecified, a single invoice is produced per billing cycle.
+       */
+      invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The ID of the license type to associate with this price.
+       */
+      license_type_id?: string | null;
+
+      /**
+       * User-specified key/value pairs for the resource. Individual keys can be removed
+       * by setting the value to `null`, and the entire metadata mapping can be cleared
+       * by setting `metadata` to `null`.
+       */
+      metadata?: { [key: string]: string | null } | null;
+
+      /**
+       * A transient ID that can be used to reference this price when adding adjustments
+       * in the same API call.
+       */
+      reference_id?: string | null;
+    }
+
+    export namespace NewPlanGroupedWithMinMaxThresholdsPrice {
+      /**
+       * Configuration for grouped_with_min_max_thresholds pricing
+       */
+      export interface GroupedWithMinMaxThresholdsConfig {
+        /**
+         * The event property used to group before applying thresholds
+         */
+        grouping_key: string;
+
+        /**
+         * The maximum amount to charge each group
+         */
+        maximum_charge: string;
+
+        /**
+         * The minimum amount to charge each group, regardless of usage
+         */
+        minimum_charge: string;
+
+        /**
+         * The base price charged per group
+         */
+        per_unit_rate: string;
+      }
+    }
+
+    export interface NewPlanCumulativeGroupedAllocationPrice {
+      /**
+       * The cadence to bill for this price on.
+       */
+      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+
+      /**
+       * Configuration for cumulative_grouped_allocation pricing
+       */
+      cumulative_grouped_allocation_config: NewPlanCumulativeGroupedAllocationPrice.CumulativeGroupedAllocationConfig;
+
+      /**
+       * The id of the item the price will be associated with.
+       */
+      item_id: string;
+
+      /**
+       * The pricing model type
+       */
+      model_type: 'cumulative_grouped_allocation';
+
+      /**
+       * The name of the price.
+       */
+      name: string;
+
+      /**
+       * The id of the billable metric for the price. Only needed if the price is
+       * usage-based.
+       */
+      billable_metric_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, the price will be billed in-advance if
+       * this is true, and in-arrears if this is false.
+       */
+      billed_in_advance?: boolean | null;
+
+      /**
+       * For custom cadence: specifies the duration of the billing period in days or
+       * months.
+       */
+      billing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The per unit conversion rate of the price currency to the invoicing currency.
+       */
+      conversion_rate?: number | null;
+
+      /**
+       * The configuration for the rate of the price currency to the invoicing currency.
+       */
+      conversion_rate_config?: Shared.UnitConversionRateConfig | Shared.TieredConversionRateConfig | null;
+
+      /**
+       * An ISO 4217 currency string, or custom pricing unit identifier, in which this
+       * price is billed.
+       */
+      currency?: string | null;
+
+      /**
+       * For dimensional price: specifies a price group and dimension values
+       */
+      dimensional_price_configuration?: Shared.NewDimensionalPriceConfiguration | null;
+
+      /**
+       * An alias for the price.
+       */
+      external_price_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, this represents the quantity of units
+       * applied.
+       */
+      fixed_price_quantity?: number | null;
+
+      /**
+       * The property used to group this price on an invoice
+       */
+      invoice_grouping_key?: string | null;
+
+      /**
+       * Within each billing cycle, specifies the cadence at which invoices are produced.
+       * If unspecified, a single invoice is produced per billing cycle.
+       */
+      invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The ID of the license type to associate with this price.
+       */
+      license_type_id?: string | null;
+
+      /**
+       * User-specified key/value pairs for the resource. Individual keys can be removed
+       * by setting the value to `null`, and the entire metadata mapping can be cleared
+       * by setting `metadata` to `null`.
+       */
+      metadata?: { [key: string]: string | null } | null;
+
+      /**
+       * A transient ID that can be used to reference this price when adding adjustments
+       * in the same API call.
+       */
+      reference_id?: string | null;
+    }
+
+    export namespace NewPlanCumulativeGroupedAllocationPrice {
+      /**
+       * Configuration for cumulative_grouped_allocation pricing
+       */
+      export interface CumulativeGroupedAllocationConfig {
+        /**
+         * The overall allocation across all groups
+         */
+        cumulative_allocation: string;
+
+        /**
+         * The allocation per individual group
+         */
+        group_allocation: string;
+
+        /**
+         * The event property used to group usage before applying allocations
+         */
+        grouping_key: string;
+
+        /**
+         * The amount to charge for each unit outside of the allocation
+         */
+        unit_amount: string;
+      }
+    }
+
+    export interface NewPlanDailyCreditAllowancePrice {
+      /**
+       * The cadence to bill for this price on.
+       */
+      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+
+      /**
+       * Configuration for daily_credit_allowance pricing
+       */
+      daily_credit_allowance_config: NewPlanDailyCreditAllowancePrice.DailyCreditAllowanceConfig;
+
+      /**
+       * The id of the item the price will be associated with.
+       */
+      item_id: string;
+
+      /**
+       * The pricing model type
+       */
+      model_type: 'daily_credit_allowance';
+
+      /**
+       * The name of the price.
+       */
+      name: string;
+
+      /**
+       * The id of the billable metric for the price. Only needed if the price is
+       * usage-based.
+       */
+      billable_metric_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, the price will be billed in-advance if
+       * this is true, and in-arrears if this is false.
+       */
+      billed_in_advance?: boolean | null;
+
+      /**
+       * For custom cadence: specifies the duration of the billing period in days or
+       * months.
+       */
+      billing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The per unit conversion rate of the price currency to the invoicing currency.
+       */
+      conversion_rate?: number | null;
+
+      /**
+       * The configuration for the rate of the price currency to the invoicing currency.
+       */
+      conversion_rate_config?: Shared.UnitConversionRateConfig | Shared.TieredConversionRateConfig | null;
+
+      /**
+       * An ISO 4217 currency string, or custom pricing unit identifier, in which this
+       * price is billed.
+       */
+      currency?: string | null;
+
+      /**
+       * For dimensional price: specifies a price group and dimension values
+       */
+      dimensional_price_configuration?: Shared.NewDimensionalPriceConfiguration | null;
+
+      /**
+       * An alias for the price.
+       */
+      external_price_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, this represents the quantity of units
+       * applied.
+       */
+      fixed_price_quantity?: number | null;
+
+      /**
+       * The property used to group this price on an invoice
+       */
+      invoice_grouping_key?: string | null;
+
+      /**
+       * Within each billing cycle, specifies the cadence at which invoices are produced.
+       * If unspecified, a single invoice is produced per billing cycle.
+       */
+      invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The ID of the license type to associate with this price.
+       */
+      license_type_id?: string | null;
+
+      /**
+       * User-specified key/value pairs for the resource. Individual keys can be removed
+       * by setting the value to `null`, and the entire metadata mapping can be cleared
+       * by setting `metadata` to `null`.
+       */
+      metadata?: { [key: string]: string | null } | null;
+
+      /**
+       * A transient ID that can be used to reference this price when adding adjustments
+       * in the same API call.
+       */
+      reference_id?: string | null;
+    }
+
+    export namespace NewPlanDailyCreditAllowancePrice {
+      /**
+       * Configuration for daily_credit_allowance pricing
+       */
+      export interface DailyCreditAllowanceConfig {
+        /**
+         * Credits granted per day. Lose-it-or-use-it; does not roll over.
+         */
+        daily_allowance: string;
+
+        /**
+         * Default per-unit credit rate for any usage not bucketed into a specified
+         * matrix_value
+         */
+        default_unit_amount: string;
+
+        /**
+         * One or two event property values to evaluate matrix groups by
+         */
+        dimensions: Array<string | null>;
+
+        /**
+         * Event property whose value identifies the day bucket the event belongs to (e.g.
+         * 'event_day' set to an ISO date string in the customer's timezone). The allowance
+         * resets per distinct value of this property.
+         */
+        event_day_property: string;
+
+        /**
+         * Per-dimension credit rates
+         */
+        matrix_values: Array<DailyCreditAllowanceConfig.MatrixValue>;
+      }
+
+      export namespace DailyCreditAllowanceConfig {
+        /**
+         * Per-dimension credit price for the daily credit allowance model.
+         */
+        export interface MatrixValue {
+          /**
+           * One or two matrix keys to filter usage to this value by. For example, ["model"]
+           * could be used to apply a different credit rate to each AI model.
+           */
+          dimension_values: Array<string | null>;
+
+          /**
+           * Credits charged per unit of usage matching the specified dimension_values
+           */
+          unit_amount: string;
+        }
+      }
+    }
+
+    export interface NewPlanMeteredAllowancePrice {
+      /**
+       * The cadence to bill for this price on.
+       */
+      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+
+      /**
+       * The id of the item the price will be associated with.
+       */
+      item_id: string;
+
+      /**
+       * Configuration for metered_allowance pricing
+       */
+      metered_allowance_config: NewPlanMeteredAllowancePrice.MeteredAllowanceConfig;
+
+      /**
+       * The pricing model type
+       */
+      model_type: 'metered_allowance';
+
+      /**
+       * The name of the price.
+       */
+      name: string;
+
+      /**
+       * The id of the billable metric for the price. Only needed if the price is
+       * usage-based.
+       */
+      billable_metric_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, the price will be billed in-advance if
+       * this is true, and in-arrears if this is false.
+       */
+      billed_in_advance?: boolean | null;
+
+      /**
+       * For custom cadence: specifies the duration of the billing period in days or
+       * months.
+       */
+      billing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The per unit conversion rate of the price currency to the invoicing currency.
+       */
+      conversion_rate?: number | null;
+
+      /**
+       * The configuration for the rate of the price currency to the invoicing currency.
+       */
+      conversion_rate_config?: Shared.UnitConversionRateConfig | Shared.TieredConversionRateConfig | null;
+
+      /**
+       * An ISO 4217 currency string, or custom pricing unit identifier, in which this
+       * price is billed.
+       */
+      currency?: string | null;
+
+      /**
+       * For dimensional price: specifies a price group and dimension values
+       */
+      dimensional_price_configuration?: Shared.NewDimensionalPriceConfiguration | null;
+
+      /**
+       * An alias for the price.
+       */
+      external_price_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, this represents the quantity of units
+       * applied.
+       */
+      fixed_price_quantity?: number | null;
+
+      /**
+       * The property used to group this price on an invoice
+       */
+      invoice_grouping_key?: string | null;
+
+      /**
+       * Within each billing cycle, specifies the cadence at which invoices are produced.
+       * If unspecified, a single invoice is produced per billing cycle.
+       */
+      invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The ID of the license type to associate with this price.
+       */
+      license_type_id?: string | null;
+
+      /**
+       * User-specified key/value pairs for the resource. Individual keys can be removed
+       * by setting the value to `null`, and the entire metadata mapping can be cleared
+       * by setting `metadata` to `null`.
+       */
+      metadata?: { [key: string]: string | null } | null;
+
+      /**
+       * A transient ID that can be used to reference this price when adding adjustments
+       * in the same API call.
+       */
+      reference_id?: string | null;
+    }
+
+    export namespace NewPlanMeteredAllowancePrice {
+      /**
+       * Configuration for metered_allowance pricing
+       */
+      export interface MeteredAllowanceConfig {
+        /**
+         * The grouping_key value whose summed quantity represents the allowance for this
+         * period (e.g. 'storage_snapshot' emitting 3 × avg storage). Capped at consumption
+         * — credit can never exceed actual usage.
+         */
+        allowance_grouping_value: string;
+
+        /**
+         * The grouping_key value whose summed quantity represents consumption (e.g.
+         * 'download'). Charged at unit_amount.
+         */
+        consumption_grouping_value: string;
+
+        /**
+         * Event property used to partition the metric into consumption and allowance
+         * quantities (e.g. 'event_name'). The metric is queried with this key and the two
+         * values below select which partition is which.
+         */
+        grouping_key: string;
+
+        /**
+         * Per-unit price applied to gross consumption and to the allowance credit.
+         */
+        unit_amount: string;
+
+        /**
+         * Sub-line label for the credit row (e.g. 'Up to 3x free egress').
+         */
+        allowance_display_name?: string;
+
+        /**
+         * Sub-line label for the gross consumption row (e.g. 'bytes gotten').
+         */
+        consumption_display_name?: string;
+      }
+    }
+
+    export interface NewPlanPercentCompositePrice {
+      /**
+       * The cadence to bill for this price on.
+       */
+      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+
+      /**
+       * The id of the item the price will be associated with.
+       */
+      item_id: string;
+
+      /**
+       * The pricing model type
+       */
+      model_type: 'percent';
+
+      /**
+       * The name of the price.
+       */
+      name: string;
+
+      /**
+       * Configuration for percent pricing
+       */
+      percent_config: NewPlanPercentCompositePrice.PercentConfig;
+
+      /**
+       * The id of the billable metric for the price. Only needed if the price is
+       * usage-based.
+       */
+      billable_metric_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, the price will be billed in-advance if
+       * this is true, and in-arrears if this is false.
+       */
+      billed_in_advance?: boolean | null;
+
+      /**
+       * For custom cadence: specifies the duration of the billing period in days or
+       * months.
+       */
+      billing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The per unit conversion rate of the price currency to the invoicing currency.
+       */
+      conversion_rate?: number | null;
+
+      /**
+       * The configuration for the rate of the price currency to the invoicing currency.
+       */
+      conversion_rate_config?: Shared.UnitConversionRateConfig | Shared.TieredConversionRateConfig | null;
+
+      /**
+       * An ISO 4217 currency string, or custom pricing unit identifier, in which this
+       * price is billed.
+       */
+      currency?: string | null;
+
+      /**
+       * For dimensional price: specifies a price group and dimension values
+       */
+      dimensional_price_configuration?: Shared.NewDimensionalPriceConfiguration | null;
+
+      /**
+       * An alias for the price.
+       */
+      external_price_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, this represents the quantity of units
+       * applied.
+       */
+      fixed_price_quantity?: number | null;
+
+      /**
+       * The property used to group this price on an invoice
+       */
+      invoice_grouping_key?: string | null;
+
+      /**
+       * Within each billing cycle, specifies the cadence at which invoices are produced.
+       * If unspecified, a single invoice is produced per billing cycle.
+       */
+      invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The ID of the license type to associate with this price.
+       */
+      license_type_id?: string | null;
+
+      /**
+       * User-specified key/value pairs for the resource. Individual keys can be removed
+       * by setting the value to `null`, and the entire metadata mapping can be cleared
+       * by setting `metadata` to `null`.
+       */
+      metadata?: { [key: string]: string | null } | null;
+
+      /**
+       * A transient ID that can be used to reference this price when adding adjustments
+       * in the same API call.
+       */
+      reference_id?: string | null;
+    }
+
+    export namespace NewPlanPercentCompositePrice {
+      /**
+       * Configuration for percent pricing
+       */
+      export interface PercentConfig {
+        /**
+         * Fraction of the component subtotals to charge (0 < percent <= 1).
+         */
+        percent: number;
+
+        /**
+         * Maximum amount to charge. If unset, the fee has no upper bound.
+         */
+        maximum_amount?: string | null;
+
+        /**
+         * Minimum amount to charge. If unset, the fee is bounded below by 0.
+         */
+        minimum_amount?: string | null;
+
+        /**
+         * If true, the minimum_amount is prorated based on the service period. The
+         * maximum_amount is an absolute cap (never prorated), and the percent applied to
+         * upstream subtotals is never prorated either.
+         */
+        prorated?: boolean;
+      }
+    }
+
+    export interface NewPlanEventOutputPrice {
+      /**
+       * The cadence to bill for this price on.
+       */
+      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+
+      /**
+       * Configuration for event_output pricing
+       */
+      event_output_config: NewPlanEventOutputPrice.EventOutputConfig;
+
+      /**
+       * The id of the item the price will be associated with.
+       */
+      item_id: string;
+
+      /**
+       * The pricing model type
+       */
+      model_type: 'event_output';
+
+      /**
+       * The name of the price.
+       */
+      name: string;
+
+      /**
+       * The id of the billable metric for the price. Only needed if the price is
+       * usage-based.
+       */
+      billable_metric_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, the price will be billed in-advance if
+       * this is true, and in-arrears if this is false.
+       */
+      billed_in_advance?: boolean | null;
+
+      /**
+       * For custom cadence: specifies the duration of the billing period in days or
+       * months.
+       */
+      billing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The per unit conversion rate of the price currency to the invoicing currency.
+       */
+      conversion_rate?: number | null;
+
+      /**
+       * The configuration for the rate of the price currency to the invoicing currency.
+       */
+      conversion_rate_config?: Shared.UnitConversionRateConfig | Shared.TieredConversionRateConfig | null;
+
+      /**
+       * An ISO 4217 currency string, or custom pricing unit identifier, in which this
+       * price is billed.
+       */
+      currency?: string | null;
+
+      /**
+       * For dimensional price: specifies a price group and dimension values
+       */
+      dimensional_price_configuration?: Shared.NewDimensionalPriceConfiguration | null;
+
+      /**
+       * An alias for the price.
+       */
+      external_price_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, this represents the quantity of units
+       * applied.
+       */
+      fixed_price_quantity?: number | null;
+
+      /**
+       * The property used to group this price on an invoice
+       */
+      invoice_grouping_key?: string | null;
+
+      /**
+       * Within each billing cycle, specifies the cadence at which invoices are produced.
+       * If unspecified, a single invoice is produced per billing cycle.
+       */
+      invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The ID of the license type to associate with this price.
+       */
+      license_type_id?: string | null;
+
+      /**
+       * User-specified key/value pairs for the resource. Individual keys can be removed
+       * by setting the value to `null`, and the entire metadata mapping can be cleared
+       * by setting `metadata` to `null`.
+       */
+      metadata?: { [key: string]: string | null } | null;
+
+      /**
+       * A transient ID that can be used to reference this price when adding adjustments
+       * in the same API call.
+       */
+      reference_id?: string | null;
+    }
+
+    export namespace NewPlanEventOutputPrice {
+      /**
+       * Configuration for event_output pricing
+       */
+      export interface EventOutputConfig {
+        /**
+         * The key in the event data to extract the unit rate from.
+         */
+        unit_rating_key: string;
+
+        /**
+         * If provided, this amount will be used as the unit rate when an event does not
+         * have a value for the `unit_rating_key`. If not provided, events missing a unit
+         * rate will be ignored.
+         */
+        default_unit_rate?: string | null;
+
+        /**
+         * An optional key in the event data to group by (e.g., event ID). All events will
+         * also be grouped by their unit rate.
+         */
+        grouping_key?: string | null;
+      }
+    }
+  }
+
+  export interface Adjustment {
+    /**
+     * The definition of a new adjustment to create and add to the plan.
+     */
+    adjustment:
+      | Shared.NewPercentageDiscount
+      | Shared.NewUsageDiscount
+      | Shared.NewAmountDiscount
+      | Shared.NewMinimum
+      | Shared.NewMaximum
+      | Adjustment.NewTieredPercentageDiscount;
+
+    /**
+     * The phase to add this adjustment to.
+     */
+    plan_phase_order?: number | null;
+  }
+
+  export namespace Adjustment {
+    export interface NewTieredPercentageDiscount {
+      adjustment_type: 'tiered_percentage_discount';
+
+      tiers: Array<NewTieredPercentageDiscount.Tier>;
+
+      /**
+       * If set, the adjustment will apply to every price on the subscription.
+       */
+      applies_to_all?: true | null;
+
+      /**
+       * The set of item IDs to which this adjustment applies.
+       */
+      applies_to_item_ids?: Array<string> | null;
+
+      /**
+       * The set of price IDs to which this adjustment applies.
+       */
+      applies_to_price_ids?: Array<string> | null;
+
+      /**
+       * If set, only prices in the specified currency will have the adjustment applied.
+       */
+      currency?: string | null;
+
+      /**
+       * A list of filters that determine which prices this adjustment will apply to.
+       */
+      filters?: Array<NewTieredPercentageDiscount.Filter> | null;
+
+      /**
+       * When false, this adjustment will be applied to a single price. Otherwise, it
+       * will be applied at the invoice level, possibly to multiple prices.
+       */
+      is_invoice_level?: boolean;
+
+      /**
+       * If set, only prices of the specified type will have the adjustment applied.
+       */
+      price_type?: 'usage' | 'fixed_in_advance' | 'fixed_in_arrears' | 'fixed' | 'in_arrears' | null;
+    }
+
+    export namespace NewTieredPercentageDiscount {
+      export interface Tier {
+        /**
+         * Exclusive lower bound of cumulative spend for this tier.
+         */
+        lower_bound: number;
+
+        /**
+         * The percentage (0-1) discounted from spend in this tier.
+         */
+        percentage: number;
+
+        /**
+         * Inclusive upper bound of cumulative spend; null for the final open-ended tier.
+         */
+        upper_bound?: number | null;
+      }
+
+      export interface Filter {
+        /**
+         * The property of the price to filter on.
+         */
+        field: 'price_id' | 'item_id' | 'price_type' | 'currency' | 'pricing_unit_id';
+
+        /**
+         * Should prices that match the filter be included or excluded.
+         */
+        operator: 'includes' | 'excludes';
+
+        /**
+         * The IDs or values that match this filter.
+         */
+        values: Array<string>;
+      }
+    }
+  }
+
+  export interface PlanPhase {
+    /**
+     * Determines the ordering of the phase in a plan's lifecycle. 1 = first phase.
+     */
+    order: number;
+
+    /**
+     * Align billing cycle day with phase start date.
+     */
+    align_billing_with_phase_start_date?: boolean | null;
+
+    /**
+     * How many terms of length `duration_unit` this phase is active for. If null, this
+     * phase is evergreen and active indefinitely
+     */
+    duration?: number | null;
+
+    duration_unit?: 'daily' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | null;
+  }
+}
+
+export interface PlanUpdateParams {
+  /**
+   * An optional user-defined description of the plan.
+   */
+  description?: string | null;
+
+  /**
+   * An optional user-defined ID for this plan resource, used throughout the system
+   * as an alias for this Plan. Use this field to identify a plan by an existing
+   * identifier in your system.
+   */
+  external_plan_id?: string | null;
+
+  /**
+   * User-specified key/value pairs for the resource. Individual keys can be removed
+   * by setting the value to `null`, and the entire metadata mapping can be cleared
+   * by setting `metadata` to `null`.
+   */
+  metadata?: { [key: string]: string | null } | null;
+}
+
+export interface PlanListParams extends PageParams {
+  'created_at[gt]'?: string | null;
+
+  'created_at[gte]'?: string | null;
+
+  'created_at[lt]'?: string | null;
+
+  'created_at[lte]'?: string | null;
+
+  /**
+   * The plan status to filter to ('active', 'archived', or 'draft').
+   */
+  status?: 'active' | 'archived' | 'draft';
+}
+
+Plans.ExternalPlanID = ExternalPlanID;
+Plans.Migrations = Migrations;
+
+export declare namespace Plans {
+  export {
+    type Plan as Plan,
+    type PlansPage as PlansPage,
+    type PlanCreateParams as PlanCreateParams,
+    type PlanUpdateParams as PlanUpdateParams,
+    type PlanListParams as PlanListParams,
+  };
+
+  export { ExternalPlanID as ExternalPlanID, type ExternalPlanIDUpdateParams as ExternalPlanIDUpdateParams };
+
+  export {
+    Migrations as Migrations,
+    type MigrationRetrieveResponse as MigrationRetrieveResponse,
+    type MigrationListResponse as MigrationListResponse,
+    type MigrationCancelResponse as MigrationCancelResponse,
+    type MigrationListResponsesPage as MigrationListResponsesPage,
+    type MigrationRetrieveParams as MigrationRetrieveParams,
+    type MigrationListParams as MigrationListParams,
+    type MigrationCancelParams as MigrationCancelParams,
+  };
+}

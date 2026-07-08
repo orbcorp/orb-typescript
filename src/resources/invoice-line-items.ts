@@ -1,0 +1,302 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { APIResource } from '../core/resource';
+import * as Shared from './shared';
+import { APIPromise } from '../core/api-promise';
+import { RequestOptions } from '../internal/request-options';
+
+/**
+ * An [`Invoice`](/core-concepts#invoice) is a fundamental billing entity, representing the request for payment for
+ * a single subscription. This includes a set of line items, which correspond to prices in the subscription's plan and
+ * can represent fixed recurring fees or usage-based fees. They are generated at the end of a billing period, or as
+ * the result of an action, such as a cancellation.
+ */
+export class InvoiceLineItems extends APIResource {
+  /**
+   * This creates a one-off fixed fee invoice line item on an Invoice. This can only
+   * be done for invoices that are in a `draft` status.
+   *
+   * The behavior depends on which parameters are provided:
+   *
+   * - If `item_id` is provided without `name`: The item is looked up by ID, and the
+   *   item's name is used for the line item.
+   * - If `name` is provided without `item_id`: An item with the given name is
+   *   searched for in the account. If found, that item is used. If not found, a new
+   *   item is created with that name. The new item's name is used for the line item.
+   * - If both `item_id` and `name` are provided: The item is looked up by ID for
+   *   association, but the provided `name` is used for the line item (not the item's
+   *   name).
+   *
+   * @example
+   * ```ts
+   * const invoiceLineItem =
+   *   await client.invoiceLineItems.create({
+   *     amount: '12.00',
+   *     end_date: '2023-09-22',
+   *     invoice_id: '4khy3nwzktxv7',
+   *     quantity: 1,
+   *     start_date: '2023-09-22',
+   *   });
+   * ```
+   */
+  create(
+    body: InvoiceLineItemCreateParams,
+    options?: RequestOptions,
+  ): APIPromise<InvoiceLineItemCreateResponse> {
+    return this._client.post('/invoice_line_items', { body, ...options });
+  }
+}
+
+export interface InvoiceLineItemCreateResponse {
+  /**
+   * A unique ID for this line item.
+   */
+  id: string;
+
+  /**
+   * The line amount after any adjustments and before overage conversion, credits and
+   * partial invoicing.
+   */
+  adjusted_subtotal: string;
+
+  /**
+   * All adjustments applied to the line item in the order they were applied based on
+   * invoice calculations (ie. usage discounts -> amount discounts -> percentage
+   * discounts -> minimums -> maximums).
+   */
+  adjustments: Array<
+    | Shared.MonetaryUsageDiscountAdjustment
+    | Shared.MonetaryAmountDiscountAdjustment
+    | Shared.MonetaryPercentageDiscountAdjustment
+    | InvoiceLineItemCreateResponse.MonetaryTieredPercentageDiscountAdjustment
+    | Shared.MonetaryMinimumAdjustment
+    | Shared.MonetaryMaximumAdjustment
+  >;
+
+  /**
+   * The final amount for a line item after all adjustments and pre paid credits have
+   * been applied.
+   */
+  amount: string;
+
+  /**
+   * The number of prepaid credits applied.
+   */
+  credits_applied: string;
+
+  /**
+   * The end date of the range of time applied for this line item's price.
+   */
+  end_date: string;
+
+  /**
+   * An additional filter that was used to calculate the usage for this line item.
+   */
+  filter: string | null;
+
+  /**
+   * [DEPRECATED] For configured prices that are split by a grouping key, this will
+   * be populated with the key and a value. The `amount` and `subtotal` will be the
+   * values for this particular grouping.
+   */
+  grouping: string | null;
+
+  /**
+   * The name of the price associated with this line item.
+   */
+  name: string;
+
+  /**
+   * Any amount applied from a partial invoice
+   */
+  partially_invoiced_amount: string;
+
+  /**
+   * The Price resource represents a price that can be billed on a subscription,
+   * resulting in a charge on an invoice in the form of an invoice line item. Prices
+   * take a quantity and determine an amount to bill.
+   *
+   * Orb supports a few different pricing models out of the box. Each of these models
+   * is serialized differently in a given Price object. The model_type field
+   * determines the key for the configuration object that is present.
+   *
+   * For more on the types of prices, see
+   * [the core concepts documentation](/core-concepts#plan-and-price)
+   */
+  price: Shared.Price;
+
+  /**
+   * Either the fixed fee quantity or the usage during the service period.
+   */
+  quantity: number;
+
+  /**
+   * The start date of the range of time applied for this line item's price.
+   */
+  start_date: string;
+
+  /**
+   * For complex pricing structures, the line item can be broken down further in
+   * `sub_line_items`.
+   */
+  sub_line_items: Array<Shared.MatrixSubLineItem | Shared.TierSubLineItem | Shared.OtherSubLineItem>;
+
+  /**
+   * The line amount before any adjustments.
+   */
+  subtotal: string;
+
+  /**
+   * An array of tax rates and their incurred tax amounts. Empty if no tax
+   * integration is configured.
+   */
+  tax_amounts: Array<Shared.TaxAmount>;
+
+  /**
+   * A list of customer ids that were used to calculate the usage for this line item.
+   */
+  usage_customer_ids: Array<string> | null;
+}
+
+export namespace InvoiceLineItemCreateResponse {
+  export interface MonetaryTieredPercentageDiscountAdjustment {
+    id: string;
+
+    adjustment_type: 'tiered_percentage_discount';
+
+    /**
+     * The value applied by an adjustment.
+     */
+    amount: string;
+
+    /**
+     * @deprecated The price IDs that this adjustment applies to.
+     */
+    applies_to_price_ids: Array<string>;
+
+    /**
+     * The filters that determine which prices to apply this adjustment to.
+     */
+    filters: Array<MonetaryTieredPercentageDiscountAdjustment.Filter>;
+
+    /**
+     * True for adjustments that apply to an entire invoice, false for adjustments that
+     * apply to only one price.
+     */
+    is_invoice_level: boolean;
+
+    /**
+     * The reason for the adjustment.
+     */
+    reason: string | null;
+
+    /**
+     * The adjustment id this adjustment replaces. This adjustment will take the place
+     * of the replaced adjustment in plan version migrations.
+     */
+    replaces_adjustment_id: string | null;
+
+    /**
+     * The ordered, contiguous bands of cumulative eligible spend, each discounted at
+     * its own percentage (progressive fill-a-tier), applied to the prices this
+     * adjustment covers in a given billing period.
+     */
+    tiers: Array<MonetaryTieredPercentageDiscountAdjustment.Tier>;
+  }
+
+  export namespace MonetaryTieredPercentageDiscountAdjustment {
+    export interface Filter {
+      /**
+       * The property of the price to filter on.
+       */
+      field: 'price_id' | 'item_id' | 'price_type' | 'currency' | 'pricing_unit_id';
+
+      /**
+       * Should prices that match the filter be included or excluded.
+       */
+      operator: 'includes' | 'excludes';
+
+      /**
+       * The IDs or values that match this filter.
+       */
+      values: Array<string>;
+    }
+
+    /**
+     * One band of a tiered percentage discount. Bounds are denominated in the
+     * discount's currency. `lower_bound` is the exclusive start of the band and
+     * `upper_bound` is the inclusive end; `upper_bound` is null only for the
+     * open-ended final tier.
+     */
+    export interface Tier {
+      /**
+       * Exclusive lower bound of cumulative spend for this tier.
+       */
+      lower_bound: number;
+
+      /**
+       * The percentage (between 0 and 1) discounted from spend that falls within this
+       * tier.
+       */
+      percentage: number;
+
+      /**
+       * Inclusive upper bound of cumulative spend for this tier; null for the final
+       * open-ended tier.
+       */
+      upper_bound?: number | null;
+    }
+  }
+}
+
+export interface InvoiceLineItemCreateParams {
+  /**
+   * The total amount in the invoice's currency to add to the line item.
+   */
+  amount: string;
+
+  /**
+   * A date string to specify the line item's end date in the customer's timezone.
+   */
+  end_date: string;
+
+  /**
+   * The id of the Invoice to add this line item.
+   */
+  invoice_id: string;
+
+  /**
+   * The number of units on the line item
+   */
+  quantity: number;
+
+  /**
+   * A date string to specify the line item's start date in the customer's timezone.
+   */
+  start_date: string;
+
+  /**
+   * The id of the item to associate with this line item. If provided without `name`,
+   * the item's name will be used for the price/line item. If provided with `name`,
+   * the item will be associated but `name` will be used for the line item. At least
+   * one of `name` or `item_id` must be provided.
+   */
+  item_id?: string | null;
+
+  /**
+   * The name to use for the line item. If `item_id` is not provided, Orb will search
+   * for an item with this name. If found, that item will be associated with the line
+   * item. If not found, a new item will be created with this name. If `item_id` is
+   * provided, this name will be used for the line item, but the item association
+   * will be based on `item_id`. At least one of `name` or `item_id` must be
+   * provided.
+   */
+  name?: string | null;
+}
+
+export declare namespace InvoiceLineItems {
+  export {
+    type InvoiceLineItemCreateResponse as InvoiceLineItemCreateResponse,
+    type InvoiceLineItemCreateParams as InvoiceLineItemCreateParams,
+  };
+}

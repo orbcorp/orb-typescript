@@ -1,0 +1,299 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { APIResource } from '../../../core/resource';
+import * as LedgerAPI from './ledger';
+import {
+  AffectedBlock,
+  AmendmentLedgerEntry,
+  CreditBlockExpiryLedgerEntry,
+  DecrementLedgerEntry,
+  ExpirationChangeLedgerEntry,
+  IncrementLedgerEntry,
+  Ledger,
+  LedgerCreateEntryByExternalIDParams,
+  LedgerCreateEntryByExternalIDResponse,
+  LedgerCreateEntryParams,
+  LedgerCreateEntryResponse,
+  LedgerListByExternalIDParams,
+  LedgerListByExternalIDResponse,
+  LedgerListByExternalIDResponsesPage,
+  LedgerListParams,
+  LedgerListResponse,
+  LedgerListResponsesPage,
+  VoidInitiatedLedgerEntry,
+  VoidLedgerEntry,
+} from './ledger';
+import * as TopUpsAPI from './top-ups';
+import {
+  TopUpCreateByExternalIDParams,
+  TopUpCreateByExternalIDResponse,
+  TopUpCreateParams,
+  TopUpCreateResponse,
+  TopUpDeleteByExternalIDParams,
+  TopUpDeleteParams,
+  TopUpInvoiceSettings,
+  TopUpListByExternalIDParams,
+  TopUpListByExternalIDResponse,
+  TopUpListByExternalIDResponsesPage,
+  TopUpListParams,
+  TopUpListResponse,
+  TopUpListResponsesPage,
+  TopUps,
+} from './top-ups';
+import { Page, type PageParams, PagePromise } from '../../../core/pagination';
+import { RequestOptions } from '../../../internal/request-options';
+import { path } from '../../../internal/utils/path';
+
+/**
+ * The [Credit Ledger Entry resource](/product-catalog/prepurchase) models prepaid credits within Orb.
+ */
+export class Credits extends APIResource {
+  ledger: LedgerAPI.Ledger = new LedgerAPI.Ledger(this._client);
+  topUps: TopUpsAPI.TopUps = new TopUpsAPI.TopUps(this._client);
+
+  /**
+   * Returns a paginated list of unexpired, non-zero credit blocks for a customer.
+   *
+   * If `include_all_blocks` is set to `true`, all credit blocks (including expired
+   * and depleted blocks) will be included in the response.
+   *
+   * Note that `currency` defaults to credits if not specified. To use a real world
+   * currency, set `currency` to an ISO 4217 string.
+   *
+   * Results can be filtered by the block's `effective_date` using the
+   * `effective_date[gte]`, `effective_date[gt]`, `effective_date[lt]`, and
+   * `effective_date[lte]` query parameters. This filters on when the credit block
+   * becomes effective, which may differ from creation time for backdated credits.
+   */
+  list(
+    customerID: string,
+    query: CreditListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<CreditListResponsesPage, CreditListResponse> {
+    return this._client.getAPIList(path`/customers/${customerID}/credits`, Page<CreditListResponse>, {
+      query,
+      ...options,
+    });
+  }
+
+  /**
+   * Returns a paginated list of unexpired, non-zero credit blocks for a customer.
+   *
+   * If `include_all_blocks` is set to `true`, all credit blocks (including expired
+   * and depleted blocks) will be included in the response.
+   *
+   * Note that `currency` defaults to credits if not specified. To use a real world
+   * currency, set `currency` to an ISO 4217 string.
+   *
+   * Results can be filtered by the block's `effective_date` using the
+   * `effective_date[gte]`, `effective_date[gt]`, `effective_date[lt]`, and
+   * `effective_date[lte]` query parameters. This filters on when the credit block
+   * becomes effective, which may differ from creation time for backdated credits.
+   */
+  listByExternalID(
+    externalCustomerID: string,
+    query: CreditListByExternalIDParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<CreditListByExternalIDResponsesPage, CreditListByExternalIDResponse> {
+    return this._client.getAPIList(
+      path`/customers/external_customer_id/${externalCustomerID}/credits`,
+      Page<CreditListByExternalIDResponse>,
+      { query, ...options },
+    );
+  }
+}
+
+export type CreditListResponsesPage = Page<CreditListResponse>;
+
+export type CreditListByExternalIDResponsesPage = Page<CreditListByExternalIDResponse>;
+
+export interface CreditListResponse {
+  id: string;
+
+  balance: number;
+
+  effective_date: string | null;
+
+  expiry_date: string | null;
+
+  filters: Array<CreditListResponse.Filter>;
+
+  maximum_initial_balance: number | null;
+
+  /**
+   * User specified key-value pairs for the resource. If not present, this defaults
+   * to an empty dictionary. Individual keys can be removed by setting the value to
+   * `null`, and the entire metadata mapping can be cleared by setting `metadata` to
+   * `null`.
+   */
+  metadata: { [key: string]: string };
+
+  per_unit_cost_basis: string | null;
+
+  status: 'active' | 'pending_payment';
+}
+
+export namespace CreditListResponse {
+  /**
+   * A PriceFilter that only allows item_id field for block filters.
+   */
+  export interface Filter {
+    /**
+     * The property of the price the block applies to. Only item_id is supported.
+     */
+    field: 'item_id';
+
+    /**
+     * Should prices that match the filter be included or excluded.
+     */
+    operator: 'includes' | 'excludes';
+
+    /**
+     * The IDs or values that match this filter.
+     */
+    values: Array<string>;
+  }
+}
+
+export interface CreditListByExternalIDResponse {
+  id: string;
+
+  balance: number;
+
+  effective_date: string | null;
+
+  expiry_date: string | null;
+
+  filters: Array<CreditListByExternalIDResponse.Filter>;
+
+  maximum_initial_balance: number | null;
+
+  /**
+   * User specified key-value pairs for the resource. If not present, this defaults
+   * to an empty dictionary. Individual keys can be removed by setting the value to
+   * `null`, and the entire metadata mapping can be cleared by setting `metadata` to
+   * `null`.
+   */
+  metadata: { [key: string]: string };
+
+  per_unit_cost_basis: string | null;
+
+  status: 'active' | 'pending_payment';
+}
+
+export namespace CreditListByExternalIDResponse {
+  /**
+   * A PriceFilter that only allows item_id field for block filters.
+   */
+  export interface Filter {
+    /**
+     * The property of the price the block applies to. Only item_id is supported.
+     */
+    field: 'item_id';
+
+    /**
+     * Should prices that match the filter be included or excluded.
+     */
+    operator: 'includes' | 'excludes';
+
+    /**
+     * The IDs or values that match this filter.
+     */
+    values: Array<string>;
+  }
+}
+
+export interface CreditListParams extends PageParams {
+  /**
+   * The ledger currency or custom pricing unit to use.
+   */
+  currency?: string | null;
+
+  'effective_date[gt]'?: string | null;
+
+  'effective_date[gte]'?: string | null;
+
+  'effective_date[lt]'?: string | null;
+
+  'effective_date[lte]'?: string | null;
+
+  /**
+   * If set to True, all expired and depleted blocks, as well as active block will be
+   * returned.
+   */
+  include_all_blocks?: boolean;
+}
+
+export interface CreditListByExternalIDParams extends PageParams {
+  /**
+   * The ledger currency or custom pricing unit to use.
+   */
+  currency?: string | null;
+
+  'effective_date[gt]'?: string | null;
+
+  'effective_date[gte]'?: string | null;
+
+  'effective_date[lt]'?: string | null;
+
+  'effective_date[lte]'?: string | null;
+
+  /**
+   * If set to True, all expired and depleted blocks, as well as active block will be
+   * returned.
+   */
+  include_all_blocks?: boolean;
+}
+
+Credits.Ledger = Ledger;
+Credits.TopUps = TopUps;
+
+export declare namespace Credits {
+  export {
+    type CreditListResponse as CreditListResponse,
+    type CreditListByExternalIDResponse as CreditListByExternalIDResponse,
+    type CreditListResponsesPage as CreditListResponsesPage,
+    type CreditListByExternalIDResponsesPage as CreditListByExternalIDResponsesPage,
+    type CreditListParams as CreditListParams,
+    type CreditListByExternalIDParams as CreditListByExternalIDParams,
+  };
+
+  export {
+    Ledger as Ledger,
+    type AffectedBlock as AffectedBlock,
+    type AmendmentLedgerEntry as AmendmentLedgerEntry,
+    type CreditBlockExpiryLedgerEntry as CreditBlockExpiryLedgerEntry,
+    type DecrementLedgerEntry as DecrementLedgerEntry,
+    type ExpirationChangeLedgerEntry as ExpirationChangeLedgerEntry,
+    type IncrementLedgerEntry as IncrementLedgerEntry,
+    type VoidInitiatedLedgerEntry as VoidInitiatedLedgerEntry,
+    type VoidLedgerEntry as VoidLedgerEntry,
+    type LedgerListResponse as LedgerListResponse,
+    type LedgerCreateEntryResponse as LedgerCreateEntryResponse,
+    type LedgerCreateEntryByExternalIDResponse as LedgerCreateEntryByExternalIDResponse,
+    type LedgerListByExternalIDResponse as LedgerListByExternalIDResponse,
+    type LedgerListResponsesPage as LedgerListResponsesPage,
+    type LedgerListByExternalIDResponsesPage as LedgerListByExternalIDResponsesPage,
+    type LedgerListParams as LedgerListParams,
+    type LedgerCreateEntryParams as LedgerCreateEntryParams,
+    type LedgerCreateEntryByExternalIDParams as LedgerCreateEntryByExternalIDParams,
+    type LedgerListByExternalIDParams as LedgerListByExternalIDParams,
+  };
+
+  export {
+    TopUps as TopUps,
+    type TopUpInvoiceSettings as TopUpInvoiceSettings,
+    type TopUpCreateResponse as TopUpCreateResponse,
+    type TopUpListResponse as TopUpListResponse,
+    type TopUpCreateByExternalIDResponse as TopUpCreateByExternalIDResponse,
+    type TopUpListByExternalIDResponse as TopUpListByExternalIDResponse,
+    type TopUpListResponsesPage as TopUpListResponsesPage,
+    type TopUpListByExternalIDResponsesPage as TopUpListByExternalIDResponsesPage,
+    type TopUpCreateParams as TopUpCreateParams,
+    type TopUpListParams as TopUpListParams,
+    type TopUpDeleteParams as TopUpDeleteParams,
+    type TopUpCreateByExternalIDParams as TopUpCreateByExternalIDParams,
+    type TopUpDeleteByExternalIDParams as TopUpDeleteByExternalIDParams,
+    type TopUpListByExternalIDParams as TopUpListByExternalIDParams,
+  };
+}

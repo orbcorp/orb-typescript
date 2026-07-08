@@ -1,0 +1,176 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { APIResource } from '../core/resource';
+import * as ItemsAPI from './items';
+import { APIPromise } from '../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../core/pagination';
+import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
+
+/**
+ * The Metric resource represents a calculation of a quantity based on events.
+ * Metrics are defined by the query that transforms raw usage events into meaningful values for your customers.
+ */
+export class Metrics extends APIResource {
+  /**
+   * This endpoint is used to create a [metric](/core-concepts###metric) using a SQL
+   * string. See [SQL support](/extensibility/advanced-metrics#sql-support) for a
+   * description of constructing SQL queries with examples.
+   *
+   * @example
+   * ```ts
+   * const billableMetric = await client.metrics.create({
+   *   description: 'Sum of bytes downloaded in fast mode',
+   *   item_id: 'item_id',
+   *   name: 'Bytes downloaded',
+   *   sql: "SELECT sum(bytes_downloaded) FROM events WHERE download_speed = 'fast'",
+   * });
+   * ```
+   */
+  create(body: MetricCreateParams, options?: RequestOptions): APIPromise<BillableMetric> {
+    return this._client.post('/metrics', { body, ...options });
+  }
+
+  /**
+   * This endpoint allows you to update the `metadata` property on a metric. If you
+   * pass `null` for the metadata value, it will clear any existing metadata for that
+   * invoice.
+   *
+   * @example
+   * ```ts
+   * const billableMetric = await client.metrics.update(
+   *   'metric_id',
+   * );
+   * ```
+   */
+  update(metricID: string, body: MetricUpdateParams, options?: RequestOptions): APIPromise<BillableMetric> {
+    return this._client.put(path`/metrics/${metricID}`, { body, ...options });
+  }
+
+  /**
+   * This endpoint is used to list [metrics](/core-concepts#metric). It returns
+   * information about the metrics including its name, description, and item.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const billableMetric of client.metrics.list()) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    query: MetricListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<BillableMetricsPage, BillableMetric> {
+    return this._client.getAPIList('/metrics', Page<BillableMetric>, { query, ...options });
+  }
+
+  /**
+   * This endpoint is used to fetch [metric](/core-concepts#metric) details given a
+   * metric identifier. It returns information about the metrics including its name,
+   * description, and item.
+   *
+   * @example
+   * ```ts
+   * const billableMetric = await client.metrics.fetch(
+   *   'metric_id',
+   * );
+   * ```
+   */
+  fetch(metricID: string, options?: RequestOptions): APIPromise<BillableMetric> {
+    return this._client.get(path`/metrics/${metricID}`, options);
+  }
+}
+
+export type BillableMetricsPage = Page<BillableMetric>;
+
+/**
+ * The Metric resource represents a calculation of a quantity based on events.
+ * Metrics are defined by the query that transforms raw usage events into
+ * meaningful values for your customers.
+ */
+export interface BillableMetric {
+  id: string;
+
+  description: string | null;
+
+  /**
+   * The Item resource represents a sellable product or good. Items are associated
+   * with all line items, billable metrics, and prices and are used for defining
+   * external sync behavior for invoices and tax calculation purposes.
+   */
+  item: ItemsAPI.Item;
+
+  /**
+   * User specified key-value pairs for the resource. If not present, this defaults
+   * to an empty dictionary. Individual keys can be removed by setting the value to
+   * `null`, and the entire metadata mapping can be cleared by setting `metadata` to
+   * `null`.
+   */
+  metadata: { [key: string]: string };
+
+  name: string;
+
+  status: 'active' | 'draft' | 'archived';
+
+  parameter_definitions?: Array<{ [key: string]: unknown }> | null;
+}
+
+export interface MetricCreateParams {
+  /**
+   * A description of the metric.
+   */
+  description: string | null;
+
+  /**
+   * The id of the item
+   */
+  item_id: string;
+
+  /**
+   * The name of the metric.
+   */
+  name: string;
+
+  /**
+   * A sql string defining the metric.
+   */
+  sql: string;
+
+  /**
+   * User-specified key/value pairs for the resource. Individual keys can be removed
+   * by setting the value to `null`, and the entire metadata mapping can be cleared
+   * by setting `metadata` to `null`.
+   */
+  metadata?: { [key: string]: string | null } | null;
+}
+
+export interface MetricUpdateParams {
+  /**
+   * User-specified key/value pairs for the resource. Individual keys can be removed
+   * by setting the value to `null`, and the entire metadata mapping can be cleared
+   * by setting `metadata` to `null`.
+   */
+  metadata?: { [key: string]: string | null } | null;
+}
+
+export interface MetricListParams extends PageParams {
+  'created_at[gt]'?: string | null;
+
+  'created_at[gte]'?: string | null;
+
+  'created_at[lt]'?: string | null;
+
+  'created_at[lte]'?: string | null;
+}
+
+export declare namespace Metrics {
+  export {
+    type BillableMetric as BillableMetric,
+    type BillableMetricsPage as BillableMetricsPage,
+    type MetricCreateParams as MetricCreateParams,
+    type MetricUpdateParams as MetricUpdateParams,
+    type MetricListParams as MetricListParams,
+  };
+}

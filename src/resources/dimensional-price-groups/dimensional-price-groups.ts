@@ -1,0 +1,206 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { APIResource } from '../../core/resource';
+import * as Shared from '../shared';
+import * as ExternalDimensionalPriceGroupIDAPI from './external-dimensional-price-group-id';
+import {
+  ExternalDimensionalPriceGroupID,
+  ExternalDimensionalPriceGroupIDUpdateParams,
+} from './external-dimensional-price-group-id';
+import { APIPromise } from '../../core/api-promise';
+import { Page, type PageParams, PagePromise } from '../../core/pagination';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
+
+export class DimensionalPriceGroups extends APIResource {
+  externalDimensionalPriceGroupID: ExternalDimensionalPriceGroupIDAPI.ExternalDimensionalPriceGroupID =
+    new ExternalDimensionalPriceGroupIDAPI.ExternalDimensionalPriceGroupID(this._client);
+
+  /**
+   * A dimensional price group is used to partition the result of a billable metric
+   * by a set of dimensions. Prices in a price group must specify the partition used
+   * to derive their usage.
+   *
+   * For example, suppose we have a billable metric that measures the number of
+   * widgets used and we want to charge differently depending on the color of the
+   * widget. We can create a price group with a dimension "color" and two prices: one
+   * that charges \$10 per red widget and one that charges \$20 per blue widget.
+   *
+   * @example
+   * ```ts
+   * const dimensionalPriceGroup =
+   *   await client.dimensionalPriceGroups.create({
+   *     billable_metric_id: 'billable_metric_id',
+   *     dimensions: ['region', 'instance_type'],
+   *     name: 'name',
+   *   });
+   * ```
+   */
+  create(
+    body: DimensionalPriceGroupCreateParams,
+    options?: RequestOptions,
+  ): APIPromise<DimensionalPriceGroup> {
+    return this._client.post('/dimensional_price_groups', { body, ...options });
+  }
+
+  /**
+   * Fetch dimensional price group
+   *
+   * @example
+   * ```ts
+   * const dimensionalPriceGroup =
+   *   await client.dimensionalPriceGroups.retrieve(
+   *     'dimensional_price_group_id',
+   *   );
+   * ```
+   */
+  retrieve(dimensionalPriceGroupID: string, options?: RequestOptions): APIPromise<DimensionalPriceGroup> {
+    return this._client.get(path`/dimensional_price_groups/${dimensionalPriceGroupID}`, options);
+  }
+
+  /**
+   * This endpoint can be used to update the `external_dimensional_price_group_id`
+   * and `metadata` of an existing dimensional price group. Other fields on a
+   * dimensional price group are currently immutable.
+   *
+   * @example
+   * ```ts
+   * const dimensionalPriceGroup =
+   *   await client.dimensionalPriceGroups.update(
+   *     'dimensional_price_group_id',
+   *   );
+   * ```
+   */
+  update(
+    dimensionalPriceGroupID: string,
+    body: DimensionalPriceGroupUpdateParams,
+    options?: RequestOptions,
+  ): APIPromise<DimensionalPriceGroup> {
+    return this._client.put(path`/dimensional_price_groups/${dimensionalPriceGroupID}`, { body, ...options });
+  }
+
+  /**
+   * List dimensional price groups
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const dimensionalPriceGroup of client.dimensionalPriceGroups.list()) {
+   *   // ...
+   * }
+   * ```
+   */
+  list(
+    query: DimensionalPriceGroupListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<DimensionalPriceGroupsPage, DimensionalPriceGroup> {
+    return this._client.getAPIList('/dimensional_price_groups', Page<DimensionalPriceGroup>, {
+      query,
+      ...options,
+    });
+  }
+}
+
+export type DimensionalPriceGroupsPage = Page<DimensionalPriceGroup>;
+
+/**
+ * A dimensional price group is used to partition the result of a billable metric
+ * by a set of dimensions. Prices in a price group must specify the partition used
+ * to derive their usage.
+ */
+export interface DimensionalPriceGroup {
+  id: string;
+
+  /**
+   * The billable metric associated with this dimensional price group. All prices
+   * associated with this dimensional price group will be computed using this
+   * billable metric.
+   */
+  billable_metric_id: string;
+
+  /**
+   * The dimensions that this dimensional price group is defined over
+   */
+  dimensions: Array<string>;
+
+  /**
+   * An alias for the dimensional price group
+   */
+  external_dimensional_price_group_id: string | null;
+
+  /**
+   * User specified key-value pairs for the resource. If not present, this defaults
+   * to an empty dictionary. Individual keys can be removed by setting the value to
+   * `null`, and the entire metadata mapping can be cleared by setting `metadata` to
+   * `null`.
+   */
+  metadata: { [key: string]: string };
+
+  /**
+   * The name of the dimensional price group
+   */
+  name: string;
+}
+
+export interface DimensionalPriceGroups {
+  data: Array<DimensionalPriceGroup>;
+
+  pagination_metadata: Shared.PaginationMetadata;
+}
+
+export interface DimensionalPriceGroupCreateParams {
+  billable_metric_id: string;
+
+  /**
+   * The set of keys (in order) used to disambiguate prices in the group.
+   */
+  dimensions: Array<string>;
+
+  name: string;
+
+  external_dimensional_price_group_id?: string | null;
+
+  /**
+   * User-specified key/value pairs for the resource. Individual keys can be removed
+   * by setting the value to `null`, and the entire metadata mapping can be cleared
+   * by setting `metadata` to `null`.
+   */
+  metadata?: { [key: string]: string | null } | null;
+}
+
+export interface DimensionalPriceGroupUpdateParams {
+  /**
+   * An optional user-defined ID for this dimensional price group resource, used
+   * throughout the system as an alias for this dimensional price group. Use this
+   * field to identify a dimensional price group by an existing identifier in your
+   * system.
+   */
+  external_dimensional_price_group_id?: string | null;
+
+  /**
+   * User-specified key/value pairs for the resource. Individual keys can be removed
+   * by setting the value to `null`, and the entire metadata mapping can be cleared
+   * by setting `metadata` to `null`.
+   */
+  metadata?: { [key: string]: string | null } | null;
+}
+
+export interface DimensionalPriceGroupListParams extends PageParams {}
+
+DimensionalPriceGroups.ExternalDimensionalPriceGroupID = ExternalDimensionalPriceGroupID;
+
+export declare namespace DimensionalPriceGroups {
+  export {
+    type DimensionalPriceGroup as DimensionalPriceGroup,
+    type DimensionalPriceGroups as DimensionalPriceGroups,
+    type DimensionalPriceGroupsPage as DimensionalPriceGroupsPage,
+    type DimensionalPriceGroupCreateParams as DimensionalPriceGroupCreateParams,
+    type DimensionalPriceGroupUpdateParams as DimensionalPriceGroupUpdateParams,
+    type DimensionalPriceGroupListParams as DimensionalPriceGroupListParams,
+  };
+
+  export {
+    ExternalDimensionalPriceGroupID as ExternalDimensionalPriceGroupID,
+    type ExternalDimensionalPriceGroupIDUpdateParams as ExternalDimensionalPriceGroupIDUpdateParams,
+  };
+}
