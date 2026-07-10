@@ -146,6 +146,7 @@ import {
   SubscriptionsPage,
 } from './resources/subscriptions';
 import { TopLevel, TopLevelPingResponse } from './resources/top-level';
+import { Webhooks } from './resources/webhooks';
 import {
   Beta,
   BetaCreatePlanVersionParams,
@@ -1094,6 +1095,7 @@ export class Orb {
    */
   licenseTypes: API.LicenseTypes = new API.LicenseTypes(this);
   licenses: API.Licenses = new API.Licenses(this);
+  webhooks: API.Webhooks = new API.Webhooks(this);
 }
 
 Orb.TopLevel = TopLevel;
@@ -1113,6 +1115,7 @@ Orb.SubscriptionChanges = SubscriptionChanges;
 Orb.CreditBlocks = CreditBlocks;
 Orb.LicenseTypes = LicenseTypes;
 Orb.Licenses = Licenses;
+Orb.Webhooks = Webhooks;
 
 export declare namespace Orb {
   export type RequestOptions = Opts.RequestOptions;
@@ -1353,6 +1356,8 @@ export declare namespace Orb {
     type LicenseDeactivateParams as LicenseDeactivateParams,
     type LicenseRetrieveByExternalIDParams as LicenseRetrieveByExternalIDParams,
   };
+
+  export { Webhooks as Webhooks };
 
   export type Address = API.Address;
   export type AdjustmentInterval = API.AdjustmentInterval;

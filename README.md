@@ -9,7 +9,7 @@ The REST API documentation can be found on [docs.withorb.com](https://docs.witho
 ## Installation
 
 ```sh
-npm install git+ssh://git@github.com:orbcorp/orb-typescript-staging.git
+npm install git+ssh://git@github.com:orbcorp/orb-typescript.git
 ```
 
 > [!NOTE]
@@ -160,6 +160,35 @@ for (const coupon of page.data) {
 while (page.hasNextPage()) {
   page = await page.getNextPage();
   // ...
+}
+```
+
+## Webhook Verification
+
+We provide helper methods for verifying that a webhook request came from Orb, and not a malicious third party.
+
+You can use `orb.webhooks.verifySignature(body: string, headers, secret?) -> void` or `orb.webhooks.unwrap(body: string, headers, secret?) -> Payload`,
+both of which will raise an error if the signature is invalid.
+
+Note that the "body" parameter must be the raw JSON string sent from the server (do not parse and re-stringify it).
+The `.unwrap()` method will automatically parse this JSON for you into a typed `Payload`.
+
+For example:
+
+```ts
+// with Express:
+app.use('/webhooks/orb', bodyParser.text({ type: '*/*' }), function (req, res) {
+  const payload = orb.webhooks.unwrap(req.body, req.headers, process.env['ORB_WEBHOOK_SECRET']); // env var or client arg used by default; explicit here.
+  console.log(payload);
+  res.json({ ok: true });
+});
+
+// with Next.js (app router):
+export default async function POST(req) {
+  const body = await req.text(); // if you're using the pages router, you will need this trick: https://vancelucas.com/blog/how-to-access-raw-body-data-with-next-js/
+  const payload = orb.webhooks.unwrap(body, req.headers, process.env['ORB_WEBHOOK_SECRET']); // env var or client arg used by default; explicit here.
+  console.log(payload);
+  return NextResponse.json({ ok: true });
 }
 ```
 
@@ -377,7 +406,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/orbcorp/orb-typescript-staging/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/orbcorp/orb-typescript/issues) with questions, bugs, or suggestions.
 
 ## Requirements
 

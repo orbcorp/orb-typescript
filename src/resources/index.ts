@@ -212,3 +212,4 @@ export {
   type SubscriptionFetchScheduleResponsesPage,
 } from './subscriptions';
 export { TopLevel, type TopLevelPingResponse } from './top-level';
+export { Webhooks } from './webhooks';

@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../../core/resource';
+import * as Shared from '../../shared';
 import * as LedgerAPI from './ledger';
 import {
   AffectedBlock,
@@ -112,6 +113,14 @@ export interface CreditListResponse {
 
   balance: number;
 
+  /**
+   * How this credit block was created: `allocation` (a subscription's recurring
+   * credit allocation), `top_up` (an automatic balance-threshold top-up), or
+   * `manual` (a manual credit ledger increment, including credits voided or expired
+   * off another block).
+   */
+  credit_block_source: 'allocation' | 'top_up' | 'manual';
+
   effective_date: string | null;
 
   expiry_date: string | null;
@@ -131,6 +140,12 @@ export interface CreditListResponse {
   per_unit_cost_basis: string | null;
 
   status: 'active' | 'pending_payment';
+
+  /**
+   * The credit allocation that funded a block. Extends the allocation resource
+   * serialized on prices with the catalog-item attribution of the funding price.
+   */
+  credit_allocation?: CreditListResponse.CreditAllocation | null;
 }
 
 export namespace CreditListResponse {
@@ -153,12 +168,61 @@ export namespace CreditListResponse {
      */
     values: Array<string>;
   }
+
+  /**
+   * The credit allocation that funded a block. Extends the allocation resource
+   * serialized on prices with the catalog-item attribution of the funding price.
+   */
+  export interface CreditAllocation {
+    allows_rollover: boolean;
+
+    currency: string;
+
+    custom_expiration: Shared.CustomExpiration | null;
+
+    /**
+     * The ID of the catalog item this block was allocated from, derived from the
+     * allocation's price.
+     */
+    item_id: string;
+
+    filters?: Array<CreditAllocation.Filter>;
+
+    license_type_id?: string | null;
+  }
+
+  export namespace CreditAllocation {
+    export interface Filter {
+      /**
+       * The property of the price to filter on.
+       */
+      field: 'price_id' | 'item_id' | 'price_type' | 'currency' | 'pricing_unit_id';
+
+      /**
+       * Should prices that match the filter be included or excluded.
+       */
+      operator: 'includes' | 'excludes';
+
+      /**
+       * The IDs or values that match this filter.
+       */
+      values: Array<string>;
+    }
+  }
 }
 
 export interface CreditListByExternalIDResponse {
   id: string;
 
   balance: number;
+
+  /**
+   * How this credit block was created: `allocation` (a subscription's recurring
+   * credit allocation), `top_up` (an automatic balance-threshold top-up), or
+   * `manual` (a manual credit ledger increment, including credits voided or expired
+   * off another block).
+   */
+  credit_block_source: 'allocation' | 'top_up' | 'manual';
 
   effective_date: string | null;
 
@@ -179,6 +243,12 @@ export interface CreditListByExternalIDResponse {
   per_unit_cost_basis: string | null;
 
   status: 'active' | 'pending_payment';
+
+  /**
+   * The credit allocation that funded a block. Extends the allocation resource
+   * serialized on prices with the catalog-item attribution of the funding price.
+   */
+  credit_allocation?: CreditListByExternalIDResponse.CreditAllocation | null;
 }
 
 export namespace CreditListByExternalIDResponse {
@@ -200,6 +270,47 @@ export namespace CreditListByExternalIDResponse {
      * The IDs or values that match this filter.
      */
     values: Array<string>;
+  }
+
+  /**
+   * The credit allocation that funded a block. Extends the allocation resource
+   * serialized on prices with the catalog-item attribution of the funding price.
+   */
+  export interface CreditAllocation {
+    allows_rollover: boolean;
+
+    currency: string;
+
+    custom_expiration: Shared.CustomExpiration | null;
+
+    /**
+     * The ID of the catalog item this block was allocated from, derived from the
+     * allocation's price.
+     */
+    item_id: string;
+
+    filters?: Array<CreditAllocation.Filter>;
+
+    license_type_id?: string | null;
+  }
+
+  export namespace CreditAllocation {
+    export interface Filter {
+      /**
+       * The property of the price to filter on.
+       */
+      field: 'price_id' | 'item_id' | 'price_type' | 'currency' | 'pricing_unit_id';
+
+      /**
+       * Should prices that match the filter be included or excluded.
+       */
+      operator: 'includes' | 'excludes';
+
+      /**
+       * The IDs or values that match this filter.
+       */
+      values: Array<string>;
+    }
   }
 }
 

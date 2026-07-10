@@ -42,15 +42,15 @@ If you’d like to use the repository from source, you can either install from g
 To install via git:
 
 ```sh
-$ npm install git+ssh://git@github.com:orbcorp/orb-typescript-staging.git
+$ npm install git+ssh://git@github.com:orbcorp/orb-typescript.git
 ```
 
 Alternatively, to link a local copy of the repo:
 
 ```sh
 # Clone
-$ git clone https://www.github.com/orbcorp/orb-typescript-staging
-$ cd orb-typescript-staging
+$ git clone https://www.github.com/orbcorp/orb-typescript
+$ cd orb-typescript
 
 # With yarn
 $ yarn link

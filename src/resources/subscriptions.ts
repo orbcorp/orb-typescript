@@ -4493,6 +4493,14 @@ export interface Subscription {
    */
   auto_collection: boolean | null;
 
+  /**
+   * Determines whether invoices for this subscription will be automatically issued.
+   * This resolves the effective setting for the subscription: a subscription-level
+   * override if set, otherwise the customer-level setting, otherwise the
+   * account-level default.
+   */
+  auto_issuance: boolean | null;
+
   billing_cycle_anchor_configuration: Shared.BillingCycleAnchorConfiguration;
 
   /**
@@ -4838,6 +4846,14 @@ export interface SubscriptionCreateParams {
    * defaults to the behavior configured for this customer.
    */
   auto_collection?: boolean | null;
+
+  /**
+   * Used to determine if invoices for this subscription will be automatically
+   * issued. If true, invoices will be automatically issued. If false, invoices will
+   * require manual approval. If `null` is specified, this defaults to the behavior
+   * configured for this customer.
+   */
+  auto_issuance?: boolean | null;
 
   /**
    * @deprecated
@@ -8031,6 +8047,14 @@ export interface SubscriptionUpdateParams {
   auto_collection?: boolean | null;
 
   /**
+   * Used to determine if invoices for this subscription will be automatically
+   * issued. If true, invoices will be automatically issued. If false, invoices will
+   * require manual approval. If `null` is specified, this defaults to the behavior
+   * configured for this customer.
+   */
+  auto_issuance?: boolean | null;
+
+  /**
    * Determines the default memo on this subscription's invoices. Note that if this
    * is not provided, it is determined by the plan configuration.
    */
@@ -9760,6 +9784,14 @@ export interface SubscriptionSchedulePlanChangeParams {
    * defaults to the behavior configured for this customer.
    */
   auto_collection?: boolean | null;
+
+  /**
+   * Used to determine if invoices for this subscription will be automatically
+   * issued. If true, invoices will be automatically issued. If false, invoices will
+   * require manual approval. If `null` is specified, this defaults to the behavior
+   * configured for this customer.
+   */
+  auto_issuance?: boolean | null;
 
   /**
    * Reset billing periods to be aligned with the plan change's effective date or
