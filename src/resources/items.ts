@@ -33,8 +33,8 @@ export class Items extends APIResource {
    * const item = await client.items.update('item_id');
    * ```
    */
-  update(itemID: string, body: ItemUpdateParams, options?: RequestOptions): APIPromise<Item> {
-    return this._client.put(path`/items/${itemID}`, { body, ...options });
+  update(itemId: string, body: ItemUpdateParams, options?: RequestOptions): APIPromise<Item> {
+    return this._client.put(path`/items/${itemId}`, { body, ...options });
   }
 
   /**
@@ -64,8 +64,8 @@ export class Items extends APIResource {
    * const item = await client.items.archive('item_id');
    * ```
    */
-  archive(itemID: string, options?: RequestOptions): APIPromise<Item> {
-    return this._client.post(path`/items/${itemID}/archive`, options);
+  archive(itemId: string, options?: RequestOptions): APIPromise<Item> {
+    return this._client.post(path`/items/${itemId}/archive`, options);
   }
 
   /**
@@ -76,8 +76,8 @@ export class Items extends APIResource {
    * const item = await client.items.fetch('item_id');
    * ```
    */
-  fetch(itemID: string, options?: RequestOptions): APIPromise<Item> {
-    return this._client.get(path`/items/${itemID}`, options);
+  fetch(itemId: string, options?: RequestOptions): APIPromise<Item> {
+    return this._client.get(path`/items/${itemId}`, options);
   }
 }
 

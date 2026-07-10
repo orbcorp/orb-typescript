@@ -102,8 +102,8 @@ export class Backfills extends APIResource {
    * );
    * ```
    */
-  close(backfillID: string, options?: RequestOptions): APIPromise<BackfillCloseResponse> {
-    return this._client.post(path`/events/backfills/${backfillID}/close`, options);
+  close(backfillId: string, options?: RequestOptions): APIPromise<BackfillCloseResponse> {
+    return this._client.post(path`/events/backfills/${backfillId}/close`, options);
   }
 
   /**
@@ -116,8 +116,8 @@ export class Backfills extends APIResource {
    * );
    * ```
    */
-  fetch(backfillID: string, options?: RequestOptions): APIPromise<BackfillFetchResponse> {
-    return this._client.get(path`/events/backfills/${backfillID}`, options);
+  fetch(backfillId: string, options?: RequestOptions): APIPromise<BackfillFetchResponse> {
+    return this._client.get(path`/events/backfills/${backfillId}`, options);
   }
 
   /**
@@ -136,8 +136,8 @@ export class Backfills extends APIResource {
    * );
    * ```
    */
-  revert(backfillID: string, options?: RequestOptions): APIPromise<BackfillRevertResponse> {
-    return this._client.post(path`/events/backfills/${backfillID}/revert`, options);
+  revert(backfillId: string, options?: RequestOptions): APIPromise<BackfillRevertResponse> {
+    return this._client.post(path`/events/backfills/${backfillId}/revert`, options);
   }
 }
 

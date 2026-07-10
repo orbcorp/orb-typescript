@@ -56,8 +56,8 @@ export class Licenses extends APIResource {
    * );
    * ```
    */
-  retrieve(licenseID: string, options?: RequestOptions): APIPromise<LicenseRetrieveResponse> {
-    return this._client.get(path`/licenses/${licenseID}`, options);
+  retrieve(licenseId: string, options?: RequestOptions): APIPromise<LicenseRetrieveResponse> {
+    return this._client.get(path`/licenses/${licenseId}`, options);
   }
 
   /**
@@ -95,11 +95,11 @@ export class Licenses extends APIResource {
    * ```
    */
   deactivate(
-    licenseID: string,
+    licenseId: string,
     body: LicenseDeactivateParams,
     options?: RequestOptions,
   ): APIPromise<LicenseDeactivateResponse> {
-    return this._client.post(path`/licenses/${licenseID}/deactivate`, { body, ...options });
+    return this._client.post(path`/licenses/${licenseId}/deactivate`, { body, ...options });
   }
 
   /**
@@ -117,11 +117,11 @@ export class Licenses extends APIResource {
    * ```
    */
   retrieveByExternalID(
-    externalLicenseID: string,
+    externalLicenseId: string,
     query: LicenseRetrieveByExternalIDParams,
     options?: RequestOptions,
   ): APIPromise<LicenseRetrieveByExternalIDResponse> {
-    return this._client.get(path`/licenses/external_license_id/${externalLicenseID}`, { query, ...options });
+    return this._client.get(path`/licenses/external_license_id/${externalLicenseId}`, { query, ...options });
   }
 }
 

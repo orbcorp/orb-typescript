@@ -57,8 +57,8 @@ export class Invoices extends APIResource {
    * const invoice = await client.invoices.update('invoice_id');
    * ```
    */
-  update(invoiceID: string, body: InvoiceUpdateParams, options?: RequestOptions): APIPromise<Shared.Invoice> {
-    return this._client.put(path`/invoices/${invoiceID}`, { body, ...options });
+  update(invoiceId: string, body: InvoiceUpdateParams, options?: RequestOptions): APIPromise<Shared.Invoice> {
+    return this._client.put(path`/invoices/${invoiceId}`, { body, ...options });
   }
 
   /**
@@ -110,12 +110,12 @@ export class Invoices extends APIResource {
    * ```
    */
   deleteLineItem(
-    lineItemID: string,
+    lineItemId: string,
     params: InvoiceDeleteLineItemParams,
     options?: RequestOptions,
   ): APIPromise<void> {
-    const { invoice_id } = params;
-    return this._client.delete(path`/invoices/${invoice_id}/invoice_line_items/${lineItemID}`, {
+    const { invoice_id: invoiceId } = params;
+    return this._client.delete(path`/invoices/${invoiceId}/invoice_line_items/${lineItemId}`, {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
@@ -130,8 +130,8 @@ export class Invoices extends APIResource {
    * const invoice = await client.invoices.fetch('invoice_id');
    * ```
    */
-  fetch(invoiceID: string, options?: RequestOptions): APIPromise<Shared.Invoice> {
-    return this._client.get(path`/invoices/${invoiceID}`, options);
+  fetch(invoiceId: string, options?: RequestOptions): APIPromise<Shared.Invoice> {
+    return this._client.get(path`/invoices/${invoiceId}`, options);
   }
 
   /**
@@ -167,11 +167,11 @@ export class Invoices extends APIResource {
    * ```
    */
   issue(
-    invoiceID: string,
+    invoiceId: string,
     body: InvoiceIssueParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<Shared.Invoice> {
-    return this._client.post(path`/invoices/${invoiceID}/issue`, { body, ...options });
+    return this._client.post(path`/invoices/${invoiceId}/issue`, { body, ...options });
   }
 
   /**
@@ -193,11 +193,11 @@ export class Invoices extends APIResource {
    * ```
    */
   issueSummary(
-    invoiceID: string,
+    invoiceId: string,
     body: InvoiceIssueSummaryParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<InvoiceIssueSummaryResponse> {
-    return this._client.post(path`/invoices/summary/${invoiceID}/issue`, { body, ...options });
+    return this._client.post(path`/invoices/summary/${invoiceId}/issue`, { body, ...options });
   }
 
   /**
@@ -249,11 +249,11 @@ export class Invoices extends APIResource {
    * ```
    */
   markPaid(
-    invoiceID: string,
+    invoiceId: string,
     body: InvoiceMarkPaidParams,
     options?: RequestOptions,
   ): APIPromise<Shared.Invoice> {
-    return this._client.post(path`/invoices/${invoiceID}/mark_paid`, { body, ...options });
+    return this._client.post(path`/invoices/${invoiceId}/mark_paid`, { body, ...options });
   }
 
   /**
@@ -269,8 +269,8 @@ export class Invoices extends APIResource {
    * });
    * ```
    */
-  pay(invoiceID: string, body: InvoicePayParams, options?: RequestOptions): APIPromise<Shared.Invoice> {
-    return this._client.post(path`/invoices/${invoiceID}/pay`, { body, ...options });
+  pay(invoiceId: string, body: InvoicePayParams, options?: RequestOptions): APIPromise<Shared.Invoice> {
+    return this._client.post(path`/invoices/${invoiceId}/pay`, { body, ...options });
   }
 
   /**
@@ -291,8 +291,8 @@ export class Invoices extends APIResource {
    * const invoice = await client.invoices.void('invoice_id');
    * ```
    */
-  void(invoiceID: string, options?: RequestOptions): APIPromise<Shared.Invoice> {
-    return this._client.post(path`/invoices/${invoiceID}/void`, options);
+  void(invoiceId: string, options?: RequestOptions): APIPromise<Shared.Invoice> {
+    return this._client.post(path`/invoices/${invoiceId}/void`, options);
   }
 }
 

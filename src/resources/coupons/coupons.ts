@@ -66,8 +66,8 @@ export class Coupons extends APIResource {
    * const coupon = await client.coupons.archive('coupon_id');
    * ```
    */
-  archive(couponID: string, options?: RequestOptions): APIPromise<Coupon> {
-    return this._client.post(path`/coupons/${couponID}/archive`, options);
+  archive(couponId: string, options?: RequestOptions): APIPromise<Coupon> {
+    return this._client.post(path`/coupons/${couponId}/archive`, options);
   }
 
   /**
@@ -80,8 +80,8 @@ export class Coupons extends APIResource {
    * const coupon = await client.coupons.fetch('coupon_id');
    * ```
    */
-  fetch(couponID: string, options?: RequestOptions): APIPromise<Coupon> {
-    return this._client.get(path`/coupons/${couponID}`, options);
+  fetch(couponId: string, options?: RequestOptions): APIPromise<Coupon> {
+    return this._client.get(path`/coupons/${couponId}`, options);
   }
 }
 

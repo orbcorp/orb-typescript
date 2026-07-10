@@ -28,12 +28,12 @@ export class Subscriptions extends APIResource {
    * ```
    */
   list(
-    couponID: string,
+    couponId: string,
     query: SubscriptionListParams | null | undefined = {},
     options?: RequestOptions,
   ): PagePromise<SubscriptionsPage, SubscriptionsAPI.Subscription> {
     return this._client.getAPIList(
-      path`/coupons/${couponID}/subscriptions`,
+      path`/coupons/${couponId}/subscriptions`,
       Page<SubscriptionsAPI.Subscription>,
       { query, ...options },
     );

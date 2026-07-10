@@ -3,7 +3,7 @@
 import { OrbError } from './error';
 import { FinalRequestOptions } from '../internal/request-options';
 import { defaultParseResponse } from '../internal/parse';
-import { type Orb } from '../client';
+import { type BaseOrb } from '../client';
 import { APIPromise } from './api-promise';
 import { type APIResponseProps } from '../internal/parse';
 import { maybeObj } from '../internal/utils/values';
@@ -11,13 +11,13 @@ import { maybeObj } from '../internal/utils/values';
 export type PageRequestOptions = Pick<FinalRequestOptions, 'query' | 'headers' | 'body' | 'path' | 'method'>;
 
 export abstract class AbstractPage<Item> implements AsyncIterable<Item> {
-  #client: Orb;
+  #client: BaseOrb;
   protected options: FinalRequestOptions;
 
   protected response: Response;
   protected body: unknown;
 
-  constructor(client: Orb, response: Response, body: unknown, options: FinalRequestOptions) {
+  constructor(client: BaseOrb, response: Response, body: unknown, options: FinalRequestOptions) {
     this.#client = client;
     this.options = options;
     this.response = response;
@@ -80,7 +80,7 @@ export class PagePromise<
   implements AsyncIterable<Item>
 {
   constructor(
-    client: Orb,
+    client: BaseOrb,
     request: Promise<APIResponseProps>,
     Page: new (...args: ConstructorParameters<typeof AbstractPage>) => PageClass,
   ) {
@@ -139,7 +139,7 @@ export class Page<Item> extends AbstractPage<Item> implements PageResponse<Item>
 
   pagination_metadata: PageResponse.PaginationMetadata;
 
-  constructor(client: Orb, response: Response, body: PageResponse<Item>, options: FinalRequestOptions) {
+  constructor(client: BaseOrb, response: Response, body: PageResponse<Item>, options: FinalRequestOptions) {
     super(client, response, body, options);
 
     this.data = body.data || [];

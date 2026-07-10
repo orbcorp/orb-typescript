@@ -85,11 +85,11 @@ export class Events extends APIResource {
    * ```
    */
   update(
-    eventID: string,
+    eventId: string,
     body: EventUpdateParams,
     options?: RequestOptions,
   ): APIPromise<EventUpdateResponse> {
-    return this._client.put(path`/events/${eventID}`, { body, ...options });
+    return this._client.put(path`/events/${eventId}`, { body, ...options });
   }
 
   /**
@@ -139,8 +139,8 @@ export class Events extends APIResource {
    * const response = await client.events.deprecate('event_id');
    * ```
    */
-  deprecate(eventID: string, options?: RequestOptions): APIPromise<EventDeprecateResponse> {
-    return this._client.put(path`/events/${eventID}/deprecate`, options);
+  deprecate(eventId: string, options?: RequestOptions): APIPromise<EventDeprecateResponse> {
+    return this._client.put(path`/events/${eventId}/deprecate`, options);
   }
 
   /**

@@ -38,11 +38,11 @@ export class Usage extends APIResource {
    * ```
    */
   getUsage(
-    licenseID: string,
+    licenseId: string,
     query: UsageGetUsageParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<UsageGetUsageResponse> {
-    return this._client.get(path`/licenses/${licenseID}/usage`, { query, ...options });
+    return this._client.get(path`/licenses/${licenseId}/usage`, { query, ...options });
   }
 }
 
