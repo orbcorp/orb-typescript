@@ -16,12 +16,12 @@ export class Migrations extends APIResource {
    * Fetch migration
    */
   retrieve(
-    migrationId: string,
+    migrationID: string,
     params: MigrationRetrieveParams,
     options?: RequestOptions,
   ): APIPromise<MigrationRetrieveResponse> {
-    const { plan_id: planId } = params;
-    return this._client.get(path`/plans/${planId}/migrations/${migrationId}`, options);
+    const { plan_id } = params;
+    return this._client.get(path`/plans/${plan_id}/migrations/${migrationID}`, options);
   }
 
   /**
@@ -31,11 +31,11 @@ export class Migrations extends APIResource {
    * next page of results if they exist.
    */
   list(
-    planId: string,
+    planID: string,
     query: MigrationListParams | null | undefined = {},
     options?: RequestOptions,
   ): PagePromise<MigrationListResponsesPage, MigrationListResponse> {
-    return this._client.getAPIList(path`/plans/${planId}/migrations`, Page<MigrationListResponse>, {
+    return this._client.getAPIList(path`/plans/${planID}/migrations`, Page<MigrationListResponse>, {
       query,
       ...options,
     });
@@ -45,12 +45,12 @@ export class Migrations extends APIResource {
    * This endpoint cancels a migration.
    */
   cancel(
-    migrationId: string,
+    migrationID: string,
     params: MigrationCancelParams,
     options?: RequestOptions,
   ): APIPromise<MigrationCancelResponse> {
-    const { plan_id: planId } = params;
-    return this._client.post(path`/plans/${planId}/migrations/${migrationId}/cancel`, options);
+    const { plan_id } = params;
+    return this._client.post(path`/plans/${plan_id}/migrations/${migrationID}/cancel`, options);
   }
 }
 

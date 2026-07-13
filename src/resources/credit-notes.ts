@@ -90,8 +90,8 @@ export class CreditNotes extends APIResource {
    * );
    * ```
    */
-  fetch(creditNoteId: string, options?: RequestOptions): APIPromise<Shared.CreditNote> {
-    return this._client.get(path`/credit_notes/${creditNoteId}`, options);
+  fetch(creditNoteID: string, options?: RequestOptions): APIPromise<Shared.CreditNote> {
+    return this._client.get(path`/credit_notes/${creditNoteID}`, options);
   }
 }
 

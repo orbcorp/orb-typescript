@@ -300,11 +300,11 @@ export class Subscriptions extends APIResource {
    * ```
    */
   update(
-    subscriptionId: string,
+    subscriptionID: string,
     body: SubscriptionUpdateParams,
     options?: RequestOptions,
   ): APIPromise<Subscription> {
-    return this._client.put(path`/subscriptions/${subscriptionId}`, { body, ...options });
+    return this._client.put(path`/subscriptions/${subscriptionID}`, { body, ...options });
   }
 
   /**
@@ -410,11 +410,11 @@ export class Subscriptions extends APIResource {
    * ```
    */
   cancel(
-    subscriptionId: string,
+    subscriptionID: string,
     body: SubscriptionCancelParams,
     options?: RequestOptions,
   ): APIPromise<SubscriptionChangesAPI.MutatedSubscription> {
-    return this._client.post(path`/subscriptions/${subscriptionId}/cancel`, { body, ...options });
+    return this._client.post(path`/subscriptions/${subscriptionID}/cancel`, { body, ...options });
   }
 
   /**
@@ -428,8 +428,8 @@ export class Subscriptions extends APIResource {
    * );
    * ```
    */
-  fetch(subscriptionId: string, options?: RequestOptions): APIPromise<Subscription> {
-    return this._client.get(path`/subscriptions/${subscriptionId}`, options);
+  fetch(subscriptionID: string, options?: RequestOptions): APIPromise<Subscription> {
+    return this._client.get(path`/subscriptions/${subscriptionID}`, options);
   }
 
   /**
@@ -452,11 +452,11 @@ export class Subscriptions extends APIResource {
    * ```
    */
   fetchCosts(
-    subscriptionId: string,
+    subscriptionID: string,
     query: SubscriptionFetchCostsParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<SubscriptionFetchCostsResponse> {
-    return this._client.get(path`/subscriptions/${subscriptionId}/costs`, { query, ...options });
+    return this._client.get(path`/subscriptions/${subscriptionID}/costs`, { query, ...options });
   }
 
   /**
@@ -476,12 +476,12 @@ export class Subscriptions extends APIResource {
    * ```
    */
   fetchSchedule(
-    subscriptionId: string,
+    subscriptionID: string,
     query: SubscriptionFetchScheduleParams | null | undefined = {},
     options?: RequestOptions,
   ): PagePromise<SubscriptionFetchScheduleResponsesPage, SubscriptionFetchScheduleResponse> {
     return this._client.getAPIList(
-      path`/subscriptions/${subscriptionId}/schedule`,
+      path`/subscriptions/${subscriptionID}/schedule`,
       Page<SubscriptionFetchScheduleResponse>,
       { query, ...options },
     );
@@ -690,11 +690,11 @@ export class Subscriptions extends APIResource {
    * ```
    */
   fetchUsage(
-    subscriptionId: string,
+    subscriptionID: string,
     query: SubscriptionFetchUsageParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<SubscriptionUsage> {
-    return this._client.get(path`/subscriptions/${subscriptionId}/usage`, { query, ...options });
+    return this._client.get(path`/subscriptions/${subscriptionID}/usage`, { query, ...options });
   }
 
   /**
@@ -780,11 +780,11 @@ export class Subscriptions extends APIResource {
    * ```
    */
   priceIntervals(
-    subscriptionId: string,
+    subscriptionID: string,
     body: SubscriptionPriceIntervalsParams,
     options?: RequestOptions,
   ): APIPromise<SubscriptionChangesAPI.MutatedSubscription> {
-    return this._client.post(path`/subscriptions/${subscriptionId}/price_intervals`, { body, ...options });
+    return this._client.post(path`/subscriptions/${subscriptionID}/price_intervals`, { body, ...options });
   }
 
   /**
@@ -800,11 +800,11 @@ export class Subscriptions extends APIResource {
    * ```
    */
   redeemCoupon(
-    subscriptionId: string,
+    subscriptionID: string,
     body: SubscriptionRedeemCouponParams,
     options?: RequestOptions,
   ): APIPromise<SubscriptionChangesAPI.MutatedSubscription> {
-    return this._client.post(path`/subscriptions/${subscriptionId}/redeem_coupon`, { body, ...options });
+    return this._client.post(path`/subscriptions/${subscriptionID}/redeem_coupon`, { body, ...options });
   }
 
   /**
@@ -1002,11 +1002,11 @@ export class Subscriptions extends APIResource {
    * ```
    */
   schedulePlanChange(
-    subscriptionId: string,
+    subscriptionID: string,
     body: SubscriptionSchedulePlanChangeParams,
     options?: RequestOptions,
   ): APIPromise<SubscriptionChangesAPI.MutatedSubscription> {
-    return this._client.post(path`/subscriptions/${subscriptionId}/schedule_plan_change`, {
+    return this._client.post(path`/subscriptions/${subscriptionID}/schedule_plan_change`, {
       body,
       ...options,
     });
@@ -1025,11 +1025,11 @@ export class Subscriptions extends APIResource {
    * ```
    */
   triggerPhase(
-    subscriptionId: string,
+    subscriptionID: string,
     body: SubscriptionTriggerPhaseParams,
     options?: RequestOptions,
   ): APIPromise<SubscriptionChangesAPI.MutatedSubscription> {
-    return this._client.post(path`/subscriptions/${subscriptionId}/trigger_phase`, { body, ...options });
+    return this._client.post(path`/subscriptions/${subscriptionID}/trigger_phase`, { body, ...options });
   }
 
   /**
@@ -1055,10 +1055,10 @@ export class Subscriptions extends APIResource {
    * ```
    */
   unscheduleCancellation(
-    subscriptionId: string,
+    subscriptionID: string,
     options?: RequestOptions,
   ): APIPromise<SubscriptionChangesAPI.MutatedSubscription> {
-    return this._client.post(path`/subscriptions/${subscriptionId}/unschedule_cancellation`, options);
+    return this._client.post(path`/subscriptions/${subscriptionID}/unschedule_cancellation`, options);
   }
 
   /**
@@ -1078,11 +1078,11 @@ export class Subscriptions extends APIResource {
    * ```
    */
   unscheduleFixedFeeQuantityUpdates(
-    subscriptionId: string,
+    subscriptionID: string,
     body: SubscriptionUnscheduleFixedFeeQuantityUpdatesParams,
     options?: RequestOptions,
   ): APIPromise<SubscriptionChangesAPI.MutatedSubscription> {
-    return this._client.post(path`/subscriptions/${subscriptionId}/unschedule_fixed_fee_quantity_updates`, {
+    return this._client.post(path`/subscriptions/${subscriptionID}/unschedule_fixed_fee_quantity_updates`, {
       body,
       ...options,
     });
@@ -1101,10 +1101,10 @@ export class Subscriptions extends APIResource {
    * ```
    */
   unschedulePendingPlanChanges(
-    subscriptionId: string,
+    subscriptionID: string,
     options?: RequestOptions,
   ): APIPromise<SubscriptionChangesAPI.MutatedSubscription> {
-    return this._client.post(path`/subscriptions/${subscriptionId}/unschedule_pending_plan_changes`, options);
+    return this._client.post(path`/subscriptions/${subscriptionID}/unschedule_pending_plan_changes`, options);
   }
 
   /**
@@ -1133,11 +1133,11 @@ export class Subscriptions extends APIResource {
    * ```
    */
   updateFixedFeeQuantity(
-    subscriptionId: string,
+    subscriptionID: string,
     body: SubscriptionUpdateFixedFeeQuantityParams,
     options?: RequestOptions,
   ): APIPromise<SubscriptionChangesAPI.MutatedSubscription> {
-    return this._client.post(path`/subscriptions/${subscriptionId}/update_fixed_fee_quantity`, {
+    return this._client.post(path`/subscriptions/${subscriptionID}/update_fixed_fee_quantity`, {
       body,
       ...options,
     });
@@ -1173,11 +1173,11 @@ export class Subscriptions extends APIResource {
    * ```
    */
   updateTrial(
-    subscriptionId: string,
+    subscriptionID: string,
     body: SubscriptionUpdateTrialParams,
     options?: RequestOptions,
   ): APIPromise<SubscriptionChangesAPI.MutatedSubscription> {
-    return this._client.post(path`/subscriptions/${subscriptionId}/update_trial`, { body, ...options });
+    return this._client.post(path`/subscriptions/${subscriptionID}/update_trial`, { body, ...options });
   }
 }
 

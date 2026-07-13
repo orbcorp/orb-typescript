@@ -22,10 +22,10 @@ export class SubscriptionChanges extends APIResource {
    * `pending_subscription_change` field in the response.
    */
   retrieve(
-    subscriptionChangeId: string,
+    subscriptionChangeID: string,
     options?: RequestOptions,
   ): APIPromise<SubscriptionChangeRetrieveResponse> {
-    return this._client.get(path`/subscription_changes/${subscriptionChangeId}`, options);
+    return this._client.get(path`/subscription_changes/${subscriptionChangeID}`, options);
   }
 
   /**
@@ -49,11 +49,11 @@ export class SubscriptionChanges extends APIResource {
    * created will be issued immediately if they only contain in-advance fees.
    */
   apply(
-    subscriptionChangeId: string,
+    subscriptionChangeID: string,
     body: SubscriptionChangeApplyParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<SubscriptionChangeApplyResponse> {
-    return this._client.post(path`/subscription_changes/${subscriptionChangeId}/apply`, { body, ...options });
+    return this._client.post(path`/subscription_changes/${subscriptionChangeID}/apply`, { body, ...options });
   }
 
   /**
@@ -62,10 +62,10 @@ export class SubscriptionChanges extends APIResource {
    * cancel an existing change before creating a new one.
    */
   cancel(
-    subscriptionChangeId: string,
+    subscriptionChangeID: string,
     options?: RequestOptions,
   ): APIPromise<SubscriptionChangeCancelResponse> {
-    return this._client.post(path`/subscription_changes/${subscriptionChangeId}/cancel`, options);
+    return this._client.post(path`/subscription_changes/${subscriptionChangeID}/cancel`, options);
   }
 }
 

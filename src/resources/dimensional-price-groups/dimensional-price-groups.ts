@@ -54,8 +54,8 @@ export class DimensionalPriceGroups extends APIResource {
    *   );
    * ```
    */
-  retrieve(dimensionalPriceGroupId: string, options?: RequestOptions): APIPromise<DimensionalPriceGroup> {
-    return this._client.get(path`/dimensional_price_groups/${dimensionalPriceGroupId}`, options);
+  retrieve(dimensionalPriceGroupID: string, options?: RequestOptions): APIPromise<DimensionalPriceGroup> {
+    return this._client.get(path`/dimensional_price_groups/${dimensionalPriceGroupID}`, options);
   }
 
   /**
@@ -72,11 +72,11 @@ export class DimensionalPriceGroups extends APIResource {
    * ```
    */
   update(
-    dimensionalPriceGroupId: string,
+    dimensionalPriceGroupID: string,
     body: DimensionalPriceGroupUpdateParams,
     options?: RequestOptions,
   ): APIPromise<DimensionalPriceGroup> {
-    return this._client.put(path`/dimensional_price_groups/${dimensionalPriceGroupId}`, { body, ...options });
+    return this._client.put(path`/dimensional_price_groups/${dimensionalPriceGroupID}`, { body, ...options });
   }
 
   /**

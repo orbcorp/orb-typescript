@@ -29,11 +29,11 @@ export class BalanceTransactions extends APIResource {
    * returns back the newly created transaction.
    */
   create(
-    customerId: string,
+    customerID: string,
     body: BalanceTransactionCreateParams,
     options?: RequestOptions,
   ): APIPromise<BalanceTransactionCreateResponse> {
-    return this._client.post(path`/customers/${customerId}/balance_transactions`, { body, ...options });
+    return this._client.post(path`/customers/${customerID}/balance_transactions`, { body, ...options });
   }
 
   /**
@@ -60,12 +60,12 @@ export class BalanceTransactions extends APIResource {
    * all adjustments and invoice applications.
    */
   list(
-    customerId: string,
+    customerID: string,
     query: BalanceTransactionListParams | null | undefined = {},
     options?: RequestOptions,
   ): PagePromise<BalanceTransactionListResponsesPage, BalanceTransactionListResponse> {
     return this._client.getAPIList(
-      path`/customers/${customerId}/balance_transactions`,
+      path`/customers/${customerID}/balance_transactions`,
       Page<BalanceTransactionListResponse>,
       { query, ...options },
     );

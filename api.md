@@ -152,17 +152,17 @@ Types:
 
 Methods:
 
-- <code title="post /plans/{plan_id}/versions">client.beta.<a href="./src/resources/beta/beta.ts">createPlanVersion</a>(planId, { ...params }) -> PlanVersion</code>
+- <code title="post /plans/{plan_id}/versions">client.beta.<a href="./src/resources/beta/beta.ts">createPlanVersion</a>(planID, { ...params }) -> PlanVersion</code>
 - <code title="get /plans/{plan_id}/versions/{version}">client.beta.<a href="./src/resources/beta/beta.ts">fetchPlanVersion</a>(version, { ...params }) -> PlanVersion</code>
-- <code title="post /plans/{plan_id}/set_default_version">client.beta.<a href="./src/resources/beta/beta.ts">setDefaultPlanVersion</a>(planId, { ...params }) -> Plan</code>
+- <code title="post /plans/{plan_id}/set_default_version">client.beta.<a href="./src/resources/beta/beta.ts">setDefaultPlanVersion</a>(planID, { ...params }) -> Plan</code>
 
 ## ExternalPlanID
 
 Methods:
 
-- <code title="post /plans/external_plan_id/{external_plan_id}/versions">client.beta.externalPlanID.<a href="./src/resources/beta/external-plan-id.ts">createPlanVersion</a>(externalPlanId, { ...params }) -> PlanVersion</code>
+- <code title="post /plans/external_plan_id/{external_plan_id}/versions">client.beta.externalPlanID.<a href="./src/resources/beta/external-plan-id.ts">createPlanVersion</a>(externalPlanID, { ...params }) -> PlanVersion</code>
 - <code title="get /plans/external_plan_id/{external_plan_id}/versions/{version}">client.beta.externalPlanID.<a href="./src/resources/beta/external-plan-id.ts">fetchPlanVersion</a>(version, { ...params }) -> PlanVersion</code>
-- <code title="post /plans/external_plan_id/{external_plan_id}/set_default_version">client.beta.externalPlanID.<a href="./src/resources/beta/external-plan-id.ts">setDefaultPlanVersion</a>(externalPlanId, { ...params }) -> Plan</code>
+- <code title="post /plans/external_plan_id/{external_plan_id}/set_default_version">client.beta.externalPlanID.<a href="./src/resources/beta/external-plan-id.ts">setDefaultPlanVersion</a>(externalPlanID, { ...params }) -> Plan</code>
 
 # Coupons
 
@@ -174,14 +174,14 @@ Methods:
 
 - <code title="post /coupons">client.coupons.<a href="./src/resources/coupons/coupons.ts">create</a>({ ...params }) -> Coupon</code>
 - <code title="get /coupons">client.coupons.<a href="./src/resources/coupons/coupons.ts">list</a>({ ...params }) -> CouponsPage</code>
-- <code title="post /coupons/{coupon_id}/archive">client.coupons.<a href="./src/resources/coupons/coupons.ts">archive</a>(couponId) -> Coupon</code>
-- <code title="get /coupons/{coupon_id}">client.coupons.<a href="./src/resources/coupons/coupons.ts">fetch</a>(couponId) -> Coupon</code>
+- <code title="post /coupons/{coupon_id}/archive">client.coupons.<a href="./src/resources/coupons/coupons.ts">archive</a>(couponID) -> Coupon</code>
+- <code title="get /coupons/{coupon_id}">client.coupons.<a href="./src/resources/coupons/coupons.ts">fetch</a>(couponID) -> Coupon</code>
 
 ## Subscriptions
 
 Methods:
 
-- <code title="get /coupons/{coupon_id}/subscriptions">client.coupons.subscriptions.<a href="./src/resources/coupons/subscriptions.ts">list</a>(couponId, { ...params }) -> SubscriptionsPage</code>
+- <code title="get /coupons/{coupon_id}/subscriptions">client.coupons.subscriptions.<a href="./src/resources/coupons/subscriptions.ts">list</a>(couponID, { ...params }) -> SubscriptionsPage</code>
 
 # CreditNotes
 
@@ -189,7 +189,7 @@ Methods:
 
 - <code title="post /credit_notes">client.creditNotes.<a href="./src/resources/credit-notes.ts">create</a>({ ...params }) -> CreditNote</code>
 - <code title="get /credit_notes">client.creditNotes.<a href="./src/resources/credit-notes.ts">list</a>({ ...params }) -> CreditNotesPage</code>
-- <code title="get /credit_notes/{credit_note_id}">client.creditNotes.<a href="./src/resources/credit-notes.ts">fetch</a>(creditNoteId) -> CreditNote</code>
+- <code title="get /credit_notes/{credit_note_id}">client.creditNotes.<a href="./src/resources/credit-notes.ts">fetch</a>(creditNoteID) -> CreditNote</code>
 
 # Customers
 
@@ -208,13 +208,13 @@ Types:
 Methods:
 
 - <code title="post /customers">client.customers.<a href="./src/resources/customers/customers.ts">create</a>({ ...params }) -> Customer</code>
-- <code title="put /customers/{customer_id}">client.customers.<a href="./src/resources/customers/customers.ts">update</a>(customerId, { ...params }) -> Customer</code>
+- <code title="put /customers/{customer_id}">client.customers.<a href="./src/resources/customers/customers.ts">update</a>(customerID, { ...params }) -> Customer</code>
 - <code title="get /customers">client.customers.<a href="./src/resources/customers/customers.ts">list</a>({ ...params }) -> CustomersPage</code>
-- <code title="delete /customers/{customer_id}">client.customers.<a href="./src/resources/customers/customers.ts">delete</a>(customerId) -> void</code>
-- <code title="get /customers/{customer_id}">client.customers.<a href="./src/resources/customers/customers.ts">fetch</a>(customerId) -> Customer</code>
-- <code title="get /customers/external_customer_id/{external_customer_id}">client.customers.<a href="./src/resources/customers/customers.ts">fetchByExternalID</a>(externalCustomerId) -> Customer</code>
-- <code title="post /customers/{customer_id}/sync_payment_methods_from_gateway">client.customers.<a href="./src/resources/customers/customers.ts">syncPaymentMethodsFromGateway</a>(customerId) -> void</code>
-- <code title="post /customers/external_customer_id/{external_customer_id}/sync_payment_methods_from_gateway">client.customers.<a href="./src/resources/customers/customers.ts">syncPaymentMethodsFromGatewayByExternalCustomerID</a>(externalCustomerId) -> void</code>
+- <code title="delete /customers/{customer_id}">client.customers.<a href="./src/resources/customers/customers.ts">delete</a>(customerID) -> void</code>
+- <code title="get /customers/{customer_id}">client.customers.<a href="./src/resources/customers/customers.ts">fetch</a>(customerID) -> Customer</code>
+- <code title="get /customers/external_customer_id/{external_customer_id}">client.customers.<a href="./src/resources/customers/customers.ts">fetchByExternalID</a>(externalCustomerID) -> Customer</code>
+- <code title="post /customers/{customer_id}/sync_payment_methods_from_gateway">client.customers.<a href="./src/resources/customers/customers.ts">syncPaymentMethodsFromGateway</a>(customerID) -> void</code>
+- <code title="post /customers/external_customer_id/{external_customer_id}/sync_payment_methods_from_gateway">client.customers.<a href="./src/resources/customers/customers.ts">syncPaymentMethodsFromGatewayByExternalCustomerID</a>(externalCustomerID) -> void</code>
 - <code title="put /customers/external_customer_id/{external_customer_id}">client.customers.<a href="./src/resources/customers/customers.ts">updateByExternalID</a>(id, { ...params }) -> Customer</code>
 
 ## Costs
@@ -226,8 +226,8 @@ Types:
 
 Methods:
 
-- <code title="get /customers/{customer_id}/costs">client.customers.costs.<a href="./src/resources/customers/costs.ts">list</a>(customerId, { ...params }) -> CostListResponse</code>
-- <code title="get /customers/external_customer_id/{external_customer_id}/costs">client.customers.costs.<a href="./src/resources/customers/costs.ts">listByExternalID</a>(externalCustomerId, { ...params }) -> CostListByExternalIDResponse</code>
+- <code title="get /customers/{customer_id}/costs">client.customers.costs.<a href="./src/resources/customers/costs.ts">list</a>(customerID, { ...params }) -> CostListResponse</code>
+- <code title="get /customers/external_customer_id/{external_customer_id}/costs">client.customers.costs.<a href="./src/resources/customers/costs.ts">listByExternalID</a>(externalCustomerID, { ...params }) -> CostListByExternalIDResponse</code>
 
 ## Credits
 
@@ -238,8 +238,8 @@ Types:
 
 Methods:
 
-- <code title="get /customers/{customer_id}/credits">client.customers.credits.<a href="./src/resources/customers/credits/credits.ts">list</a>(customerId, { ...params }) -> CreditListResponsesPage</code>
-- <code title="get /customers/external_customer_id/{external_customer_id}/credits">client.customers.credits.<a href="./src/resources/customers/credits/credits.ts">listByExternalID</a>(externalCustomerId, { ...params }) -> CreditListByExternalIDResponsesPage</code>
+- <code title="get /customers/{customer_id}/credits">client.customers.credits.<a href="./src/resources/customers/credits/credits.ts">list</a>(customerID, { ...params }) -> CreditListResponsesPage</code>
+- <code title="get /customers/external_customer_id/{external_customer_id}/credits">client.customers.credits.<a href="./src/resources/customers/credits/credits.ts">listByExternalID</a>(externalCustomerID, { ...params }) -> CreditListByExternalIDResponsesPage</code>
 
 ### Ledger
 
@@ -260,10 +260,10 @@ Types:
 
 Methods:
 
-- <code title="get /customers/{customer_id}/credits/ledger">client.customers.credits.ledger.<a href="./src/resources/customers/credits/ledger.ts">list</a>(customerId, { ...params }) -> LedgerListResponsesPage</code>
-- <code title="post /customers/{customer_id}/credits/ledger_entry">client.customers.credits.ledger.<a href="./src/resources/customers/credits/ledger.ts">createEntry</a>(customerId, { ...params }) -> LedgerCreateEntryResponse</code>
-- <code title="post /customers/external_customer_id/{external_customer_id}/credits/ledger_entry">client.customers.credits.ledger.<a href="./src/resources/customers/credits/ledger.ts">createEntryByExternalID</a>(externalCustomerId, { ...params }) -> LedgerCreateEntryByExternalIDResponse</code>
-- <code title="get /customers/external_customer_id/{external_customer_id}/credits/ledger">client.customers.credits.ledger.<a href="./src/resources/customers/credits/ledger.ts">listByExternalID</a>(externalCustomerId, { ...params }) -> LedgerListByExternalIDResponsesPage</code>
+- <code title="get /customers/{customer_id}/credits/ledger">client.customers.credits.ledger.<a href="./src/resources/customers/credits/ledger.ts">list</a>(customerID, { ...params }) -> LedgerListResponsesPage</code>
+- <code title="post /customers/{customer_id}/credits/ledger_entry">client.customers.credits.ledger.<a href="./src/resources/customers/credits/ledger.ts">createEntry</a>(customerID, { ...params }) -> LedgerCreateEntryResponse</code>
+- <code title="post /customers/external_customer_id/{external_customer_id}/credits/ledger_entry">client.customers.credits.ledger.<a href="./src/resources/customers/credits/ledger.ts">createEntryByExternalID</a>(externalCustomerID, { ...params }) -> LedgerCreateEntryByExternalIDResponse</code>
+- <code title="get /customers/external_customer_id/{external_customer_id}/credits/ledger">client.customers.credits.ledger.<a href="./src/resources/customers/credits/ledger.ts">listByExternalID</a>(externalCustomerID, { ...params }) -> LedgerListByExternalIDResponsesPage</code>
 
 ### TopUps
 
@@ -277,12 +277,12 @@ Types:
 
 Methods:
 
-- <code title="post /customers/{customer_id}/credits/top_ups">client.customers.credits.topUps.<a href="./src/resources/customers/credits/top-ups.ts">create</a>(customerId, { ...params }) -> TopUpCreateResponse</code>
-- <code title="get /customers/{customer_id}/credits/top_ups">client.customers.credits.topUps.<a href="./src/resources/customers/credits/top-ups.ts">list</a>(customerId, { ...params }) -> TopUpListResponsesPage</code>
-- <code title="delete /customers/{customer_id}/credits/top_ups/{top_up_id}">client.customers.credits.topUps.<a href="./src/resources/customers/credits/top-ups.ts">delete</a>(topUpId, { ...params }) -> void</code>
-- <code title="post /customers/external_customer_id/{external_customer_id}/credits/top_ups">client.customers.credits.topUps.<a href="./src/resources/customers/credits/top-ups.ts">createByExternalID</a>(externalCustomerId, { ...params }) -> TopUpCreateByExternalIDResponse</code>
-- <code title="delete /customers/external_customer_id/{external_customer_id}/credits/top_ups/{top_up_id}">client.customers.credits.topUps.<a href="./src/resources/customers/credits/top-ups.ts">deleteByExternalID</a>(topUpId, { ...params }) -> void</code>
-- <code title="get /customers/external_customer_id/{external_customer_id}/credits/top_ups">client.customers.credits.topUps.<a href="./src/resources/customers/credits/top-ups.ts">listByExternalID</a>(externalCustomerId, { ...params }) -> TopUpListByExternalIDResponsesPage</code>
+- <code title="post /customers/{customer_id}/credits/top_ups">client.customers.credits.topUps.<a href="./src/resources/customers/credits/top-ups.ts">create</a>(customerID, { ...params }) -> TopUpCreateResponse</code>
+- <code title="get /customers/{customer_id}/credits/top_ups">client.customers.credits.topUps.<a href="./src/resources/customers/credits/top-ups.ts">list</a>(customerID, { ...params }) -> TopUpListResponsesPage</code>
+- <code title="delete /customers/{customer_id}/credits/top_ups/{top_up_id}">client.customers.credits.topUps.<a href="./src/resources/customers/credits/top-ups.ts">delete</a>(topUpID, { ...params }) -> void</code>
+- <code title="post /customers/external_customer_id/{external_customer_id}/credits/top_ups">client.customers.credits.topUps.<a href="./src/resources/customers/credits/top-ups.ts">createByExternalID</a>(externalCustomerID, { ...params }) -> TopUpCreateByExternalIDResponse</code>
+- <code title="delete /customers/external_customer_id/{external_customer_id}/credits/top_ups/{top_up_id}">client.customers.credits.topUps.<a href="./src/resources/customers/credits/top-ups.ts">deleteByExternalID</a>(topUpID, { ...params }) -> void</code>
+- <code title="get /customers/external_customer_id/{external_customer_id}/credits/top_ups">client.customers.credits.topUps.<a href="./src/resources/customers/credits/top-ups.ts">listByExternalID</a>(externalCustomerID, { ...params }) -> TopUpListByExternalIDResponsesPage</code>
 
 ## BalanceTransactions
 
@@ -293,8 +293,8 @@ Types:
 
 Methods:
 
-- <code title="post /customers/{customer_id}/balance_transactions">client.customers.balanceTransactions.<a href="./src/resources/customers/balance-transactions.ts">create</a>(customerId, { ...params }) -> BalanceTransactionCreateResponse</code>
-- <code title="get /customers/{customer_id}/balance_transactions">client.customers.balanceTransactions.<a href="./src/resources/customers/balance-transactions.ts">list</a>(customerId, { ...params }) -> BalanceTransactionListResponsesPage</code>
+- <code title="post /customers/{customer_id}/balance_transactions">client.customers.balanceTransactions.<a href="./src/resources/customers/balance-transactions.ts">create</a>(customerID, { ...params }) -> BalanceTransactionCreateResponse</code>
+- <code title="get /customers/{customer_id}/balance_transactions">client.customers.balanceTransactions.<a href="./src/resources/customers/balance-transactions.ts">list</a>(customerID, { ...params }) -> BalanceTransactionListResponsesPage</code>
 
 # Events
 
@@ -307,8 +307,8 @@ Types:
 
 Methods:
 
-- <code title="put /events/{event_id}">client.events.<a href="./src/resources/events/events.ts">update</a>(eventId, { ...params }) -> EventUpdateResponse</code>
-- <code title="put /events/{event_id}/deprecate">client.events.<a href="./src/resources/events/events.ts">deprecate</a>(eventId) -> EventDeprecateResponse</code>
+- <code title="put /events/{event_id}">client.events.<a href="./src/resources/events/events.ts">update</a>(eventID, { ...params }) -> EventUpdateResponse</code>
+- <code title="put /events/{event_id}/deprecate">client.events.<a href="./src/resources/events/events.ts">deprecate</a>(eventID) -> EventDeprecateResponse</code>
 - <code title="post /ingest">client.events.<a href="./src/resources/events/events.ts">ingest</a>({ ...params }) -> EventIngestResponse</code>
 - <code title="post /events/search">client.events.<a href="./src/resources/events/events.ts">search</a>({ ...params }) -> EventSearchResponse</code>
 
@@ -326,9 +326,9 @@ Methods:
 
 - <code title="post /events/backfills">client.events.backfills.<a href="./src/resources/events/backfills.ts">create</a>({ ...params }) -> BackfillCreateResponse</code>
 - <code title="get /events/backfills">client.events.backfills.<a href="./src/resources/events/backfills.ts">list</a>({ ...params }) -> BackfillListResponsesPage</code>
-- <code title="post /events/backfills/{backfill_id}/close">client.events.backfills.<a href="./src/resources/events/backfills.ts">close</a>(backfillId) -> BackfillCloseResponse</code>
-- <code title="get /events/backfills/{backfill_id}">client.events.backfills.<a href="./src/resources/events/backfills.ts">fetch</a>(backfillId) -> BackfillFetchResponse</code>
-- <code title="post /events/backfills/{backfill_id}/revert">client.events.backfills.<a href="./src/resources/events/backfills.ts">revert</a>(backfillId) -> BackfillRevertResponse</code>
+- <code title="post /events/backfills/{backfill_id}/close">client.events.backfills.<a href="./src/resources/events/backfills.ts">close</a>(backfillID) -> BackfillCloseResponse</code>
+- <code title="get /events/backfills/{backfill_id}">client.events.backfills.<a href="./src/resources/events/backfills.ts">fetch</a>(backfillID) -> BackfillFetchResponse</code>
+- <code title="post /events/backfills/{backfill_id}/revert">client.events.backfills.<a href="./src/resources/events/backfills.ts">revert</a>(backfillID) -> BackfillRevertResponse</code>
 
 ## Volume
 
@@ -361,17 +361,17 @@ Types:
 Methods:
 
 - <code title="post /invoices">client.invoices.<a href="./src/resources/invoices.ts">create</a>({ ...params }) -> Invoice</code>
-- <code title="put /invoices/{invoice_id}">client.invoices.<a href="./src/resources/invoices.ts">update</a>(invoiceId, { ...params }) -> Invoice</code>
+- <code title="put /invoices/{invoice_id}">client.invoices.<a href="./src/resources/invoices.ts">update</a>(invoiceID, { ...params }) -> Invoice</code>
 - <code title="get /invoices">client.invoices.<a href="./src/resources/invoices.ts">list</a>({ ...params }) -> InvoicesPage</code>
-- <code title="delete /invoices/{invoice_id}/invoice_line_items/{line_item_id}">client.invoices.<a href="./src/resources/invoices.ts">deleteLineItem</a>(lineItemId, { ...params }) -> void</code>
-- <code title="get /invoices/{invoice_id}">client.invoices.<a href="./src/resources/invoices.ts">fetch</a>(invoiceId) -> Invoice</code>
+- <code title="delete /invoices/{invoice_id}/invoice_line_items/{line_item_id}">client.invoices.<a href="./src/resources/invoices.ts">deleteLineItem</a>(lineItemID, { ...params }) -> void</code>
+- <code title="get /invoices/{invoice_id}">client.invoices.<a href="./src/resources/invoices.ts">fetch</a>(invoiceID) -> Invoice</code>
 - <code title="get /invoices/upcoming">client.invoices.<a href="./src/resources/invoices.ts">fetchUpcoming</a>({ ...params }) -> InvoiceFetchUpcomingResponse</code>
-- <code title="post /invoices/{invoice_id}/issue">client.invoices.<a href="./src/resources/invoices.ts">issue</a>(invoiceId, { ...params }) -> Invoice</code>
-- <code title="post /invoices/summary/{invoice_id}/issue">client.invoices.<a href="./src/resources/invoices.ts">issueSummary</a>(invoiceId, { ...params }) -> InvoiceIssueSummaryResponse</code>
+- <code title="post /invoices/{invoice_id}/issue">client.invoices.<a href="./src/resources/invoices.ts">issue</a>(invoiceID, { ...params }) -> Invoice</code>
+- <code title="post /invoices/summary/{invoice_id}/issue">client.invoices.<a href="./src/resources/invoices.ts">issueSummary</a>(invoiceID, { ...params }) -> InvoiceIssueSummaryResponse</code>
 - <code title="get /invoices/summary">client.invoices.<a href="./src/resources/invoices.ts">listSummary</a>({ ...params }) -> InvoiceListSummaryResponsesPage</code>
-- <code title="post /invoices/{invoice_id}/mark_paid">client.invoices.<a href="./src/resources/invoices.ts">markPaid</a>(invoiceId, { ...params }) -> Invoice</code>
-- <code title="post /invoices/{invoice_id}/pay">client.invoices.<a href="./src/resources/invoices.ts">pay</a>(invoiceId, { ...params }) -> Invoice</code>
-- <code title="post /invoices/{invoice_id}/void">client.invoices.<a href="./src/resources/invoices.ts">void</a>(invoiceId) -> Invoice</code>
+- <code title="post /invoices/{invoice_id}/mark_paid">client.invoices.<a href="./src/resources/invoices.ts">markPaid</a>(invoiceID, { ...params }) -> Invoice</code>
+- <code title="post /invoices/{invoice_id}/pay">client.invoices.<a href="./src/resources/invoices.ts">pay</a>(invoiceID, { ...params }) -> Invoice</code>
+- <code title="post /invoices/{invoice_id}/void">client.invoices.<a href="./src/resources/invoices.ts">void</a>(invoiceID) -> Invoice</code>
 
 # Items
 
@@ -382,10 +382,10 @@ Types:
 Methods:
 
 - <code title="post /items">client.items.<a href="./src/resources/items.ts">create</a>({ ...params }) -> Item</code>
-- <code title="put /items/{item_id}">client.items.<a href="./src/resources/items.ts">update</a>(itemId, { ...params }) -> Item</code>
+- <code title="put /items/{item_id}">client.items.<a href="./src/resources/items.ts">update</a>(itemID, { ...params }) -> Item</code>
 - <code title="get /items">client.items.<a href="./src/resources/items.ts">list</a>({ ...params }) -> ItemsPage</code>
-- <code title="post /items/{item_id}/archive">client.items.<a href="./src/resources/items.ts">archive</a>(itemId) -> Item</code>
-- <code title="get /items/{item_id}">client.items.<a href="./src/resources/items.ts">fetch</a>(itemId) -> Item</code>
+- <code title="post /items/{item_id}/archive">client.items.<a href="./src/resources/items.ts">archive</a>(itemID) -> Item</code>
+- <code title="get /items/{item_id}">client.items.<a href="./src/resources/items.ts">fetch</a>(itemID) -> Item</code>
 
 # Metrics
 
@@ -396,9 +396,9 @@ Types:
 Methods:
 
 - <code title="post /metrics">client.metrics.<a href="./src/resources/metrics.ts">create</a>({ ...params }) -> BillableMetric</code>
-- <code title="put /metrics/{metric_id}">client.metrics.<a href="./src/resources/metrics.ts">update</a>(metricId, { ...params }) -> BillableMetric</code>
+- <code title="put /metrics/{metric_id}">client.metrics.<a href="./src/resources/metrics.ts">update</a>(metricID, { ...params }) -> BillableMetric</code>
 - <code title="get /metrics">client.metrics.<a href="./src/resources/metrics.ts">list</a>({ ...params }) -> BillableMetricsPage</code>
-- <code title="get /metrics/{metric_id}">client.metrics.<a href="./src/resources/metrics.ts">fetch</a>(metricId) -> BillableMetric</code>
+- <code title="get /metrics/{metric_id}">client.metrics.<a href="./src/resources/metrics.ts">fetch</a>(metricID) -> BillableMetric</code>
 
 # Plans
 
@@ -409,16 +409,16 @@ Types:
 Methods:
 
 - <code title="post /plans">client.plans.<a href="./src/resources/plans/plans.ts">create</a>({ ...params }) -> Plan</code>
-- <code title="put /plans/{plan_id}">client.plans.<a href="./src/resources/plans/plans.ts">update</a>(planId, { ...params }) -> Plan</code>
+- <code title="put /plans/{plan_id}">client.plans.<a href="./src/resources/plans/plans.ts">update</a>(planID, { ...params }) -> Plan</code>
 - <code title="get /plans">client.plans.<a href="./src/resources/plans/plans.ts">list</a>({ ...params }) -> PlansPage</code>
-- <code title="get /plans/{plan_id}">client.plans.<a href="./src/resources/plans/plans.ts">fetch</a>(planId) -> Plan</code>
+- <code title="get /plans/{plan_id}">client.plans.<a href="./src/resources/plans/plans.ts">fetch</a>(planID) -> Plan</code>
 
 ## ExternalPlanID
 
 Methods:
 
-- <code title="put /plans/external_plan_id/{external_plan_id}">client.plans.externalPlanID.<a href="./src/resources/plans/external-plan-id.ts">update</a>(otherExternalPlanId, { ...params }) -> Plan</code>
-- <code title="get /plans/external_plan_id/{external_plan_id}">client.plans.externalPlanID.<a href="./src/resources/plans/external-plan-id.ts">fetch</a>(externalPlanId) -> Plan</code>
+- <code title="put /plans/external_plan_id/{external_plan_id}">client.plans.externalPlanID.<a href="./src/resources/plans/external-plan-id.ts">update</a>(otherExternalPlanID, { ...params }) -> Plan</code>
+- <code title="get /plans/external_plan_id/{external_plan_id}">client.plans.externalPlanID.<a href="./src/resources/plans/external-plan-id.ts">fetch</a>(externalPlanID) -> Plan</code>
 
 ## Migrations
 
@@ -430,9 +430,9 @@ Types:
 
 Methods:
 
-- <code title="get /plans/{plan_id}/migrations/{migration_id}">client.plans.migrations.<a href="./src/resources/plans/migrations.ts">retrieve</a>(migrationId, { ...params }) -> MigrationRetrieveResponse</code>
-- <code title="get /plans/{plan_id}/migrations">client.plans.migrations.<a href="./src/resources/plans/migrations.ts">list</a>(planId, { ...params }) -> MigrationListResponsesPage</code>
-- <code title="post /plans/{plan_id}/migrations/{migration_id}/cancel">client.plans.migrations.<a href="./src/resources/plans/migrations.ts">cancel</a>(migrationId, { ...params }) -> MigrationCancelResponse</code>
+- <code title="get /plans/{plan_id}/migrations/{migration_id}">client.plans.migrations.<a href="./src/resources/plans/migrations.ts">retrieve</a>(migrationID, { ...params }) -> MigrationRetrieveResponse</code>
+- <code title="get /plans/{plan_id}/migrations">client.plans.migrations.<a href="./src/resources/plans/migrations.ts">list</a>(planID, { ...params }) -> MigrationListResponsesPage</code>
+- <code title="post /plans/{plan_id}/migrations/{migration_id}/cancel">client.plans.migrations.<a href="./src/resources/plans/migrations.ts">cancel</a>(migrationID, { ...params }) -> MigrationCancelResponse</code>
 
 # Prices
 
@@ -446,19 +446,19 @@ Types:
 Methods:
 
 - <code title="post /prices">client.prices.<a href="./src/resources/prices/prices.ts">create</a>({ ...params }) -> Price</code>
-- <code title="put /prices/{price_id}">client.prices.<a href="./src/resources/prices/prices.ts">update</a>(priceId, { ...params }) -> Price</code>
+- <code title="put /prices/{price_id}">client.prices.<a href="./src/resources/prices/prices.ts">update</a>(priceID, { ...params }) -> Price</code>
 - <code title="get /prices">client.prices.<a href="./src/resources/prices/prices.ts">list</a>({ ...params }) -> PricesPage</code>
-- <code title="post /prices/{price_id}/evaluate">client.prices.<a href="./src/resources/prices/prices.ts">evaluate</a>(priceId, { ...params }) -> PriceEvaluateResponse</code>
+- <code title="post /prices/{price_id}/evaluate">client.prices.<a href="./src/resources/prices/prices.ts">evaluate</a>(priceID, { ...params }) -> PriceEvaluateResponse</code>
 - <code title="post /prices/evaluate">client.prices.<a href="./src/resources/prices/prices.ts">evaluateMultiple</a>({ ...params }) -> PriceEvaluateMultipleResponse</code>
 - <code title="post /prices/evaluate_preview_events">client.prices.<a href="./src/resources/prices/prices.ts">evaluatePreviewEvents</a>({ ...params }) -> PriceEvaluatePreviewEventsResponse</code>
-- <code title="get /prices/{price_id}">client.prices.<a href="./src/resources/prices/prices.ts">fetch</a>(priceId) -> Price</code>
+- <code title="get /prices/{price_id}">client.prices.<a href="./src/resources/prices/prices.ts">fetch</a>(priceID) -> Price</code>
 
 ## ExternalPriceID
 
 Methods:
 
-- <code title="put /prices/external_price_id/{external_price_id}">client.prices.externalPriceID.<a href="./src/resources/prices/external-price-id.ts">update</a>(externalPriceId, { ...params }) -> Price</code>
-- <code title="get /prices/external_price_id/{external_price_id}">client.prices.externalPriceID.<a href="./src/resources/prices/external-price-id.ts">fetch</a>(externalPriceId) -> Price</code>
+- <code title="put /prices/external_price_id/{external_price_id}">client.prices.externalPriceID.<a href="./src/resources/prices/external-price-id.ts">update</a>(externalPriceID, { ...params }) -> Price</code>
+- <code title="get /prices/external_price_id/{external_price_id}">client.prices.externalPriceID.<a href="./src/resources/prices/external-price-id.ts">fetch</a>(externalPriceID) -> Price</code>
 
 # Subscriptions
 
@@ -499,22 +499,22 @@ Types:
 Methods:
 
 - <code title="post /subscriptions">client.subscriptions.<a href="./src/resources/subscriptions.ts">create</a>({ ...params }) -> MutatedSubscription</code>
-- <code title="put /subscriptions/{subscription_id}">client.subscriptions.<a href="./src/resources/subscriptions.ts">update</a>(subscriptionId, { ...params }) -> Subscription</code>
+- <code title="put /subscriptions/{subscription_id}">client.subscriptions.<a href="./src/resources/subscriptions.ts">update</a>(subscriptionID, { ...params }) -> Subscription</code>
 - <code title="get /subscriptions">client.subscriptions.<a href="./src/resources/subscriptions.ts">list</a>({ ...params }) -> SubscriptionsPage</code>
-- <code title="post /subscriptions/{subscription_id}/cancel">client.subscriptions.<a href="./src/resources/subscriptions.ts">cancel</a>(subscriptionId, { ...params }) -> MutatedSubscription</code>
-- <code title="get /subscriptions/{subscription_id}">client.subscriptions.<a href="./src/resources/subscriptions.ts">fetch</a>(subscriptionId) -> Subscription</code>
-- <code title="get /subscriptions/{subscription_id}/costs">client.subscriptions.<a href="./src/resources/subscriptions.ts">fetchCosts</a>(subscriptionId, { ...params }) -> SubscriptionFetchCostsResponse</code>
-- <code title="get /subscriptions/{subscription_id}/schedule">client.subscriptions.<a href="./src/resources/subscriptions.ts">fetchSchedule</a>(subscriptionId, { ...params }) -> SubscriptionFetchScheduleResponsesPage</code>
-- <code title="get /subscriptions/{subscription_id}/usage">client.subscriptions.<a href="./src/resources/subscriptions.ts">fetchUsage</a>(subscriptionId, { ...params }) -> SubscriptionUsage</code>
-- <code title="post /subscriptions/{subscription_id}/price_intervals">client.subscriptions.<a href="./src/resources/subscriptions.ts">priceIntervals</a>(subscriptionId, { ...params }) -> MutatedSubscription</code>
-- <code title="post /subscriptions/{subscription_id}/redeem_coupon">client.subscriptions.<a href="./src/resources/subscriptions.ts">redeemCoupon</a>(subscriptionId, { ...params }) -> MutatedSubscription</code>
-- <code title="post /subscriptions/{subscription_id}/schedule_plan_change">client.subscriptions.<a href="./src/resources/subscriptions.ts">schedulePlanChange</a>(subscriptionId, { ...params }) -> MutatedSubscription</code>
-- <code title="post /subscriptions/{subscription_id}/trigger_phase">client.subscriptions.<a href="./src/resources/subscriptions.ts">triggerPhase</a>(subscriptionId, { ...params }) -> MutatedSubscription</code>
-- <code title="post /subscriptions/{subscription_id}/unschedule_cancellation">client.subscriptions.<a href="./src/resources/subscriptions.ts">unscheduleCancellation</a>(subscriptionId) -> MutatedSubscription</code>
-- <code title="post /subscriptions/{subscription_id}/unschedule_fixed_fee_quantity_updates">client.subscriptions.<a href="./src/resources/subscriptions.ts">unscheduleFixedFeeQuantityUpdates</a>(subscriptionId, { ...params }) -> MutatedSubscription</code>
-- <code title="post /subscriptions/{subscription_id}/unschedule_pending_plan_changes">client.subscriptions.<a href="./src/resources/subscriptions.ts">unschedulePendingPlanChanges</a>(subscriptionId) -> MutatedSubscription</code>
-- <code title="post /subscriptions/{subscription_id}/update_fixed_fee_quantity">client.subscriptions.<a href="./src/resources/subscriptions.ts">updateFixedFeeQuantity</a>(subscriptionId, { ...params }) -> MutatedSubscription</code>
-- <code title="post /subscriptions/{subscription_id}/update_trial">client.subscriptions.<a href="./src/resources/subscriptions.ts">updateTrial</a>(subscriptionId, { ...params }) -> MutatedSubscription</code>
+- <code title="post /subscriptions/{subscription_id}/cancel">client.subscriptions.<a href="./src/resources/subscriptions.ts">cancel</a>(subscriptionID, { ...params }) -> MutatedSubscription</code>
+- <code title="get /subscriptions/{subscription_id}">client.subscriptions.<a href="./src/resources/subscriptions.ts">fetch</a>(subscriptionID) -> Subscription</code>
+- <code title="get /subscriptions/{subscription_id}/costs">client.subscriptions.<a href="./src/resources/subscriptions.ts">fetchCosts</a>(subscriptionID, { ...params }) -> SubscriptionFetchCostsResponse</code>
+- <code title="get /subscriptions/{subscription_id}/schedule">client.subscriptions.<a href="./src/resources/subscriptions.ts">fetchSchedule</a>(subscriptionID, { ...params }) -> SubscriptionFetchScheduleResponsesPage</code>
+- <code title="get /subscriptions/{subscription_id}/usage">client.subscriptions.<a href="./src/resources/subscriptions.ts">fetchUsage</a>(subscriptionID, { ...params }) -> SubscriptionUsage</code>
+- <code title="post /subscriptions/{subscription_id}/price_intervals">client.subscriptions.<a href="./src/resources/subscriptions.ts">priceIntervals</a>(subscriptionID, { ...params }) -> MutatedSubscription</code>
+- <code title="post /subscriptions/{subscription_id}/redeem_coupon">client.subscriptions.<a href="./src/resources/subscriptions.ts">redeemCoupon</a>(subscriptionID, { ...params }) -> MutatedSubscription</code>
+- <code title="post /subscriptions/{subscription_id}/schedule_plan_change">client.subscriptions.<a href="./src/resources/subscriptions.ts">schedulePlanChange</a>(subscriptionID, { ...params }) -> MutatedSubscription</code>
+- <code title="post /subscriptions/{subscription_id}/trigger_phase">client.subscriptions.<a href="./src/resources/subscriptions.ts">triggerPhase</a>(subscriptionID, { ...params }) -> MutatedSubscription</code>
+- <code title="post /subscriptions/{subscription_id}/unschedule_cancellation">client.subscriptions.<a href="./src/resources/subscriptions.ts">unscheduleCancellation</a>(subscriptionID) -> MutatedSubscription</code>
+- <code title="post /subscriptions/{subscription_id}/unschedule_fixed_fee_quantity_updates">client.subscriptions.<a href="./src/resources/subscriptions.ts">unscheduleFixedFeeQuantityUpdates</a>(subscriptionID, { ...params }) -> MutatedSubscription</code>
+- <code title="post /subscriptions/{subscription_id}/unschedule_pending_plan_changes">client.subscriptions.<a href="./src/resources/subscriptions.ts">unschedulePendingPlanChanges</a>(subscriptionID) -> MutatedSubscription</code>
+- <code title="post /subscriptions/{subscription_id}/update_fixed_fee_quantity">client.subscriptions.<a href="./src/resources/subscriptions.ts">updateFixedFeeQuantity</a>(subscriptionID, { ...params }) -> MutatedSubscription</code>
+- <code title="post /subscriptions/{subscription_id}/update_trial">client.subscriptions.<a href="./src/resources/subscriptions.ts">updateTrial</a>(subscriptionID, { ...params }) -> MutatedSubscription</code>
 
 # Alerts
 
@@ -525,14 +525,14 @@ Types:
 
 Methods:
 
-- <code title="get /alerts/{alert_id}">client.alerts.<a href="./src/resources/alerts.ts">retrieve</a>(alertId) -> Alert</code>
-- <code title="put /alerts/{alert_configuration_id}">client.alerts.<a href="./src/resources/alerts.ts">update</a>(alertConfigurationId, { ...params }) -> Alert</code>
+- <code title="get /alerts/{alert_id}">client.alerts.<a href="./src/resources/alerts.ts">retrieve</a>(alertID) -> Alert</code>
+- <code title="put /alerts/{alert_configuration_id}">client.alerts.<a href="./src/resources/alerts.ts">update</a>(alertConfigurationID, { ...params }) -> Alert</code>
 - <code title="get /alerts">client.alerts.<a href="./src/resources/alerts.ts">list</a>({ ...params }) -> AlertsPage</code>
-- <code title="post /alerts/customer_id/{customer_id}">client.alerts.<a href="./src/resources/alerts.ts">createForCustomer</a>(customerId, { ...params }) -> Alert</code>
-- <code title="post /alerts/external_customer_id/{external_customer_id}">client.alerts.<a href="./src/resources/alerts.ts">createForExternalCustomer</a>(externalCustomerId, { ...params }) -> Alert</code>
-- <code title="post /alerts/subscription_id/{subscription_id}">client.alerts.<a href="./src/resources/alerts.ts">createForSubscription</a>(subscriptionId, { ...params }) -> Alert</code>
-- <code title="post /alerts/{alert_configuration_id}/disable">client.alerts.<a href="./src/resources/alerts.ts">disable</a>(alertConfigurationId, { ...params }) -> Alert</code>
-- <code title="post /alerts/{alert_configuration_id}/enable">client.alerts.<a href="./src/resources/alerts.ts">enable</a>(alertConfigurationId, { ...params }) -> Alert</code>
+- <code title="post /alerts/customer_id/{customer_id}">client.alerts.<a href="./src/resources/alerts.ts">createForCustomer</a>(customerID, { ...params }) -> Alert</code>
+- <code title="post /alerts/external_customer_id/{external_customer_id}">client.alerts.<a href="./src/resources/alerts.ts">createForExternalCustomer</a>(externalCustomerID, { ...params }) -> Alert</code>
+- <code title="post /alerts/subscription_id/{subscription_id}">client.alerts.<a href="./src/resources/alerts.ts">createForSubscription</a>(subscriptionID, { ...params }) -> Alert</code>
+- <code title="post /alerts/{alert_configuration_id}/disable">client.alerts.<a href="./src/resources/alerts.ts">disable</a>(alertConfigurationID, { ...params }) -> Alert</code>
+- <code title="post /alerts/{alert_configuration_id}/enable">client.alerts.<a href="./src/resources/alerts.ts">enable</a>(alertConfigurationID, { ...params }) -> Alert</code>
 
 # DimensionalPriceGroups
 
@@ -544,16 +544,16 @@ Types:
 Methods:
 
 - <code title="post /dimensional_price_groups">client.dimensionalPriceGroups.<a href="./src/resources/dimensional-price-groups/dimensional-price-groups.ts">create</a>({ ...params }) -> DimensionalPriceGroup</code>
-- <code title="get /dimensional_price_groups/{dimensional_price_group_id}">client.dimensionalPriceGroups.<a href="./src/resources/dimensional-price-groups/dimensional-price-groups.ts">retrieve</a>(dimensionalPriceGroupId) -> DimensionalPriceGroup</code>
-- <code title="put /dimensional_price_groups/{dimensional_price_group_id}">client.dimensionalPriceGroups.<a href="./src/resources/dimensional-price-groups/dimensional-price-groups.ts">update</a>(dimensionalPriceGroupId, { ...params }) -> DimensionalPriceGroup</code>
+- <code title="get /dimensional_price_groups/{dimensional_price_group_id}">client.dimensionalPriceGroups.<a href="./src/resources/dimensional-price-groups/dimensional-price-groups.ts">retrieve</a>(dimensionalPriceGroupID) -> DimensionalPriceGroup</code>
+- <code title="put /dimensional_price_groups/{dimensional_price_group_id}">client.dimensionalPriceGroups.<a href="./src/resources/dimensional-price-groups/dimensional-price-groups.ts">update</a>(dimensionalPriceGroupID, { ...params }) -> DimensionalPriceGroup</code>
 - <code title="get /dimensional_price_groups">client.dimensionalPriceGroups.<a href="./src/resources/dimensional-price-groups/dimensional-price-groups.ts">list</a>({ ...params }) -> DimensionalPriceGroupsPage</code>
 
 ## ExternalDimensionalPriceGroupID
 
 Methods:
 
-- <code title="get /dimensional_price_groups/external_dimensional_price_group_id/{external_dimensional_price_group_id}">client.dimensionalPriceGroups.externalDimensionalPriceGroupID.<a href="./src/resources/dimensional-price-groups/external-dimensional-price-group-id.ts">retrieve</a>(externalDimensionalPriceGroupId) -> DimensionalPriceGroup</code>
-- <code title="put /dimensional_price_groups/external_dimensional_price_group_id/{external_dimensional_price_group_id}">client.dimensionalPriceGroups.externalDimensionalPriceGroupID.<a href="./src/resources/dimensional-price-groups/external-dimensional-price-group-id.ts">update</a>(externalDimensionalPriceGroupId, { ...params }) -> DimensionalPriceGroup</code>
+- <code title="get /dimensional_price_groups/external_dimensional_price_group_id/{external_dimensional_price_group_id}">client.dimensionalPriceGroups.externalDimensionalPriceGroupID.<a href="./src/resources/dimensional-price-groups/external-dimensional-price-group-id.ts">retrieve</a>(externalDimensionalPriceGroupID) -> DimensionalPriceGroup</code>
+- <code title="put /dimensional_price_groups/external_dimensional_price_group_id/{external_dimensional_price_group_id}">client.dimensionalPriceGroups.externalDimensionalPriceGroupID.<a href="./src/resources/dimensional-price-groups/external-dimensional-price-group-id.ts">update</a>(externalDimensionalPriceGroupID, { ...params }) -> DimensionalPriceGroup</code>
 
 # SubscriptionChanges
 
@@ -567,10 +567,10 @@ Types:
 
 Methods:
 
-- <code title="get /subscription_changes/{subscription_change_id}">client.subscriptionChanges.<a href="./src/resources/subscription-changes.ts">retrieve</a>(subscriptionChangeId) -> SubscriptionChangeRetrieveResponse</code>
+- <code title="get /subscription_changes/{subscription_change_id}">client.subscriptionChanges.<a href="./src/resources/subscription-changes.ts">retrieve</a>(subscriptionChangeID) -> SubscriptionChangeRetrieveResponse</code>
 - <code title="get /subscription_changes">client.subscriptionChanges.<a href="./src/resources/subscription-changes.ts">list</a>({ ...params }) -> SubscriptionChangeListResponsesPage</code>
-- <code title="post /subscription_changes/{subscription_change_id}/apply">client.subscriptionChanges.<a href="./src/resources/subscription-changes.ts">apply</a>(subscriptionChangeId, { ...params }) -> SubscriptionChangeApplyResponse</code>
-- <code title="post /subscription_changes/{subscription_change_id}/cancel">client.subscriptionChanges.<a href="./src/resources/subscription-changes.ts">cancel</a>(subscriptionChangeId) -> SubscriptionChangeCancelResponse</code>
+- <code title="post /subscription_changes/{subscription_change_id}/apply">client.subscriptionChanges.<a href="./src/resources/subscription-changes.ts">apply</a>(subscriptionChangeID, { ...params }) -> SubscriptionChangeApplyResponse</code>
+- <code title="post /subscription_changes/{subscription_change_id}/cancel">client.subscriptionChanges.<a href="./src/resources/subscription-changes.ts">cancel</a>(subscriptionChangeID) -> SubscriptionChangeCancelResponse</code>
 
 # CreditBlocks
 
@@ -581,9 +581,9 @@ Types:
 
 Methods:
 
-- <code title="get /credit_blocks/{block_id}">client.creditBlocks.<a href="./src/resources/credit-blocks.ts">retrieve</a>(blockId) -> CreditBlockRetrieveResponse</code>
-- <code title="delete /credit_blocks/{block_id}">client.creditBlocks.<a href="./src/resources/credit-blocks.ts">delete</a>(blockId) -> void</code>
-- <code title="get /credit_blocks/{block_id}/invoices">client.creditBlocks.<a href="./src/resources/credit-blocks.ts">listInvoices</a>(blockId) -> CreditBlockListInvoicesResponse</code>
+- <code title="get /credit_blocks/{block_id}">client.creditBlocks.<a href="./src/resources/credit-blocks.ts">retrieve</a>(blockID) -> CreditBlockRetrieveResponse</code>
+- <code title="delete /credit_blocks/{block_id}">client.creditBlocks.<a href="./src/resources/credit-blocks.ts">delete</a>(blockID) -> void</code>
+- <code title="get /credit_blocks/{block_id}/invoices">client.creditBlocks.<a href="./src/resources/credit-blocks.ts">listInvoices</a>(blockID) -> CreditBlockListInvoicesResponse</code>
 
 # LicenseTypes
 
@@ -596,7 +596,7 @@ Types:
 Methods:
 
 - <code title="post /license_types">client.licenseTypes.<a href="./src/resources/license-types.ts">create</a>({ ...params }) -> LicenseTypeCreateResponse</code>
-- <code title="get /license_types/{license_type_id}">client.licenseTypes.<a href="./src/resources/license-types.ts">retrieve</a>(licenseTypeId) -> LicenseTypeRetrieveResponse</code>
+- <code title="get /license_types/{license_type_id}">client.licenseTypes.<a href="./src/resources/license-types.ts">retrieve</a>(licenseTypeID) -> LicenseTypeRetrieveResponse</code>
 - <code title="get /license_types">client.licenseTypes.<a href="./src/resources/license-types.ts">list</a>({ ...params }) -> LicenseTypeListResponsesPage</code>
 
 # Licenses
@@ -612,10 +612,10 @@ Types:
 Methods:
 
 - <code title="post /licenses">client.licenses.<a href="./src/resources/licenses/licenses.ts">create</a>({ ...params }) -> LicenseCreateResponse</code>
-- <code title="get /licenses/{license_id}">client.licenses.<a href="./src/resources/licenses/licenses.ts">retrieve</a>(licenseId) -> LicenseRetrieveResponse</code>
+- <code title="get /licenses/{license_id}">client.licenses.<a href="./src/resources/licenses/licenses.ts">retrieve</a>(licenseID) -> LicenseRetrieveResponse</code>
 - <code title="get /licenses">client.licenses.<a href="./src/resources/licenses/licenses.ts">list</a>({ ...params }) -> LicenseListResponsesPage</code>
-- <code title="post /licenses/{license_id}/deactivate">client.licenses.<a href="./src/resources/licenses/licenses.ts">deactivate</a>(licenseId, { ...params }) -> LicenseDeactivateResponse</code>
-- <code title="get /licenses/external_license_id/{external_license_id}">client.licenses.<a href="./src/resources/licenses/licenses.ts">retrieveByExternalID</a>(externalLicenseId, { ...params }) -> LicenseRetrieveByExternalIDResponse</code>
+- <code title="post /licenses/{license_id}/deactivate">client.licenses.<a href="./src/resources/licenses/licenses.ts">deactivate</a>(licenseID, { ...params }) -> LicenseDeactivateResponse</code>
+- <code title="get /licenses/external_license_id/{external_license_id}">client.licenses.<a href="./src/resources/licenses/licenses.ts">retrieveByExternalID</a>(externalLicenseID, { ...params }) -> LicenseRetrieveByExternalIDResponse</code>
 
 ## ExternalLicenses
 
@@ -625,7 +625,7 @@ Types:
 
 Methods:
 
-- <code title="get /licenses/external_licenses/{external_license_id}/usage">client.licenses.externalLicenses.<a href="./src/resources/licenses/external-licenses.ts">getUsage</a>(externalLicenseId, { ...params }) -> ExternalLicenseGetUsageResponse</code>
+- <code title="get /licenses/external_licenses/{external_license_id}/usage">client.licenses.externalLicenses.<a href="./src/resources/licenses/external-licenses.ts">getUsage</a>(externalLicenseID, { ...params }) -> ExternalLicenseGetUsageResponse</code>
 
 ## Usage
 
@@ -637,4 +637,4 @@ Types:
 Methods:
 
 - <code title="get /licenses/usage">client.licenses.usage.<a href="./src/resources/licenses/usage.ts">getAllUsage</a>({ ...params }) -> UsageGetAllUsageResponse</code>
-- <code title="get /licenses/{license_id}/usage">client.licenses.usage.<a href="./src/resources/licenses/usage.ts">getUsage</a>(licenseId, { ...params }) -> UsageGetUsageResponse</code>
+- <code title="get /licenses/{license_id}/usage">client.licenses.usage.<a href="./src/resources/licenses/usage.ts">getUsage</a>(licenseID, { ...params }) -> UsageGetUsageResponse</code>

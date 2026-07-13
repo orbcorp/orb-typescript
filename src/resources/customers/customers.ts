@@ -83,8 +83,8 @@ export class Customers extends APIResource {
    * be set if it has not already been set on the customer. Other fields on a
    * customer are currently immutable.
    */
-  update(customerId: string, body: CustomerUpdateParams, options?: RequestOptions): APIPromise<Customer> {
-    return this._client.put(path`/customers/${customerId}`, { body, ...options });
+  update(customerID: string, body: CustomerUpdateParams, options?: RequestOptions): APIPromise<Customer> {
+    return this._client.put(path`/customers/${customerID}`, { body, ...options });
   }
 
   /**
@@ -116,8 +116,8 @@ export class Customers extends APIResource {
    * customer on subsequent GET requests while deletion is in process will reflect
    * its deletion.
    */
-  delete(customerId: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/customers/${customerId}`, {
+  delete(customerID: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/customers/${customerID}`, {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
@@ -131,8 +131,8 @@ export class Customers extends APIResource {
    * See the [Customer resource](/core-concepts#customer) for a full discussion of
    * the Customer model.
    */
-  fetch(customerId: string, options?: RequestOptions): APIPromise<Customer> {
-    return this._client.get(path`/customers/${customerId}`, options);
+  fetch(customerID: string, options?: RequestOptions): APIPromise<Customer> {
+    return this._client.get(path`/customers/${customerID}`, options);
   }
 
   /**
@@ -142,8 +142,8 @@ export class Customers extends APIResource {
    * Note that the resource and semantics of this endpoint exactly mirror
    * [Get Customer](fetch-customer).
    */
-  fetchByExternalID(externalCustomerId: string, options?: RequestOptions): APIPromise<Customer> {
-    return this._client.get(path`/customers/external_customer_id/${externalCustomerId}`, options);
+  fetchByExternalID(externalCustomerID: string, options?: RequestOptions): APIPromise<Customer> {
+    return this._client.get(path`/customers/external_customer_id/${externalCustomerID}`, options);
   }
 
   /**
@@ -154,8 +154,8 @@ export class Customers extends APIResource {
    *
    * **Note**: This functionality is currently only available for Stripe.
    */
-  syncPaymentMethodsFromGateway(customerId: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.post(path`/customers/${customerId}/sync_payment_methods_from_gateway`, {
+  syncPaymentMethodsFromGateway(customerID: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.post(path`/customers/${customerID}/sync_payment_methods_from_gateway`, {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
@@ -170,11 +170,11 @@ export class Customers extends APIResource {
    * **Note**: This functionality is currently only available for Stripe.
    */
   syncPaymentMethodsFromGatewayByExternalCustomerID(
-    externalCustomerId: string,
+    externalCustomerID: string,
     options?: RequestOptions,
   ): APIPromise<void> {
     return this._client.post(
-      path`/customers/external_customer_id/${externalCustomerId}/sync_payment_methods_from_gateway`,
+      path`/customers/external_customer_id/${externalCustomerID}/sync_payment_methods_from_gateway`,
       { ...options, headers: buildHeaders([{ Accept: '*/*' }, options?.headers]) },
     );
   }

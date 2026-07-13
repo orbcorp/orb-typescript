@@ -14,8 +14,8 @@ export class CreditBlocks extends APIResource {
   /**
    * This endpoint returns a credit block identified by its block_id.
    */
-  retrieve(blockId: string, options?: RequestOptions): APIPromise<CreditBlockRetrieveResponse> {
-    return this._client.get(path`/credit_blocks/${blockId}`, options);
+  retrieve(blockID: string, options?: RequestOptions): APIPromise<CreditBlockRetrieveResponse> {
+    return this._client.get(path`/credit_blocks/${blockID}`, options);
   }
 
   /**
@@ -35,8 +35,8 @@ export class CreditBlocks extends APIResource {
    * reflect the state as if credits from the deleted block were never applied.
    * </Note>
    */
-  delete(blockId: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/credit_blocks/${blockId}`, {
+  delete(blockID: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/credit_blocks/${blockID}`, {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
@@ -61,8 +61,8 @@ export class CreditBlocks extends APIResource {
    * future releases. Please contact support before building production integrations
    * against this endpoint.**
    */
-  listInvoices(blockId: string, options?: RequestOptions): APIPromise<CreditBlockListInvoicesResponse> {
-    return this._client.get(path`/credit_blocks/${blockId}/invoices`, options);
+  listInvoices(blockID: string, options?: RequestOptions): APIPromise<CreditBlockListInvoicesResponse> {
+    return this._client.get(path`/credit_blocks/${blockID}/invoices`, options);
   }
 }
 

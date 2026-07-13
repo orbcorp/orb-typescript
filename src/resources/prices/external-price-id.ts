@@ -29,11 +29,11 @@ export class ExternalPriceID extends APIResource {
    * ```
    */
   update(
-    externalPriceId: string,
+    externalPriceID: string,
     body: ExternalPriceIDUpdateParams,
     options?: RequestOptions,
   ): APIPromise<Shared.Price> {
-    return this._client.put(path`/prices/external_price_id/${externalPriceId}`, { body, ...options });
+    return this._client.put(path`/prices/external_price_id/${externalPriceID}`, { body, ...options });
   }
 
   /**
@@ -48,8 +48,8 @@ export class ExternalPriceID extends APIResource {
    * );
    * ```
    */
-  fetch(externalPriceId: string, options?: RequestOptions): APIPromise<Shared.Price> {
-    return this._client.get(path`/prices/external_price_id/${externalPriceId}`, options);
+  fetch(externalPriceID: string, options?: RequestOptions): APIPromise<Shared.Price> {
+    return this._client.get(path`/prices/external_price_id/${externalPriceID}`, options);
   }
 }
 

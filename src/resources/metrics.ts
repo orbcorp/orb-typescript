@@ -43,8 +43,8 @@ export class Metrics extends APIResource {
    * );
    * ```
    */
-  update(metricId: string, body: MetricUpdateParams, options?: RequestOptions): APIPromise<BillableMetric> {
-    return this._client.put(path`/metrics/${metricId}`, { body, ...options });
+  update(metricID: string, body: MetricUpdateParams, options?: RequestOptions): APIPromise<BillableMetric> {
+    return this._client.put(path`/metrics/${metricID}`, { body, ...options });
   }
 
   /**
@@ -78,8 +78,8 @@ export class Metrics extends APIResource {
    * );
    * ```
    */
-  fetch(metricId: string, options?: RequestOptions): APIPromise<BillableMetric> {
-    return this._client.get(path`/metrics/${metricId}`, options);
+  fetch(metricID: string, options?: RequestOptions): APIPromise<BillableMetric> {
+    return this._client.get(path`/metrics/${metricID}`, options);
   }
 }
 
