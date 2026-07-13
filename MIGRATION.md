@@ -1,0 +1,398 @@
+# Migration guide
+
+This guide outlines the changes and steps needed to migrate your codebase to the latest version of the Orb TypeScript SDK.
+
+The main changes are that the SDK now relies on the [builtin Web fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) instead of `node-fetch` and has zero dependencies.
+
+## Migration CLI
+
+Most programs will only need minimal changes, but to assist there is a migration tool that will automatically update your code for the new version.
+To use it, upgrade the `orb-billing` package, then run `./node_modules/.bin/orb-billing migrate ./your/src/folders` to update your code.
+To preview the changes without writing them to disk, run the tool with `--dry`.
+
+## Environment requirements
+
+The minimum supported runtime and tooling versions are now:
+
+- Node.js 20 LTS (Most recent non-EOL Node version)
+- TypeScript 4.9
+- Jest 28
+
+## Breaking changes
+
+### Web types for `withResponse`, `asResponse`, and `APIError.headers`
+
+Because we now use the builtin Web fetch API on all platforms, if you wrote code that used `withResponse` or `asResponse` and then accessed `node-fetch`-specific properties on the result, you will need to switch to standardized alternatives.
+For example, `body` is now a [Web `ReadableStream`](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream) rather than a [node `Readable`](https://nodejs.org/api/stream.html#readable-streams).
+
+```ts
+// Before:
+const res = await client.example.retrieve('string/with/slash').asResponse();
+res.body.pipe(process.stdout);
+
+// After:
+import { Readable } from 'node:stream';
+const res = await client.example.retrieve('string/with/slash').asResponse();
+Readable.fromWeb(res.body).pipe(process.stdout);
+```
+
+Additionally, the `headers` property on `APIError` objects is now an instance of the Web [Headers](https://developer.mozilla.org/en-US/docs/Web/API/Headers) class. It was previously defined as `Record<string, string | null | undefined>`.
+
+### Named path parameters
+
+Methods that take multiple path parameters typically now use named instead of positional arguments for better clarity and to prevent a footgun where it was easy to accidentally pass arguments in the incorrect order.
+
+For example, for a method that would call an endpoint at `/v1/parents/{parent_id}/children/{child_id}`, only the _last_ path parameter is positional and the rest must be passed as named arguments.
+
+```ts
+// Before
+client.parents.children.retrieve('p_123', 'c_456');
+
+// After
+client.parents.children.retrieve('c_456', { parent_id: 'p_123' });
+```
+
+This affects the following methods:
+
+- `client.beta.fetchPlanVersion()`
+- `client.beta.externalPlanID.fetchPlanVersion()`
+- `client.customers.credits.topUps.delete()`
+- `client.customers.credits.topUps.deleteByExternalID()`
+- `client.invoices.deleteLineItem()`
+- `client.plans.migrations.retrieve()`
+- `client.plans.migrations.cancel()`
+
+### URI encoded path parameters
+
+Path params are now properly encoded by default. If you were manually encoding path parameters before giving them to the SDK, you must now stop doing that and pass the
+param without any encoding applied.
+
+For example:
+
+```diff
+- client.example.retrieve(encodeURIComponent('string/with/slash'))
++ client.example.retrieve('string/with/slash') // retrieves /example/string%2Fwith%2Fslash
+```
+
+Previously without the `encodeURIComponent()` call we would have used the path `/example/string/with/slash`; now we'll use `/example/string%2Fwith%2Fslash`.
+
+### Removed request options overloads
+
+When making requests with no required body, query or header parameters, you must now explicitly pass `null`, `undefined` or an empty object `{}` to the params argument in order to customise request options.
+
+```diff
+client.example.list();
+client.example.list({}, { headers: { ... } });
+client.example.list(null, { headers: { ... } });
+client.example.list(undefined, { headers: { ... } });
+- client.example.list({ headers: { ... } });
++ client.example.list({}, { headers: { ... } });
+```
+
+<details>
+
+<summary>This affects the following methods</summary>
+
+- `client.coupons.list()`
+- `client.coupons.subscriptions.list()`
+- `client.creditNotes.list()`
+- `client.customers.list()`
+- `client.customers.costs.list()`
+- `client.customers.costs.listByExternalID()`
+- `client.customers.credits.list()`
+- `client.customers.credits.listByExternalID()`
+- `client.customers.credits.ledger.list()`
+- `client.customers.credits.ledger.listByExternalID()`
+- `client.customers.credits.topUps.list()`
+- `client.customers.credits.topUps.listByExternalID()`
+- `client.customers.balanceTransactions.list()`
+- `client.events.backfills.list()`
+- `client.invoices.list()`
+- `client.invoices.issue()`
+- `client.invoices.issueSummary()`
+- `client.invoices.listSummary()`
+- `client.items.list()`
+- `client.metrics.list()`
+- `client.plans.list()`
+- `client.plans.migrations.list()`
+- `client.prices.list()`
+- `client.subscriptions.list()`
+- `client.subscriptions.fetchCosts()`
+- `client.subscriptions.fetchSchedule()`
+- `client.subscriptions.fetchUsage()`
+- `client.alerts.list()`
+- `client.alerts.disable()`
+- `client.alerts.enable()`
+- `client.dimensionalPriceGroups.list()`
+- `client.subscriptionChanges.list()`
+- `client.subscriptionChanges.apply()`
+- `client.licenseTypes.list()`
+- `client.licenses.usage.getUsage()`
+
+</details>
+
+### Removed `httpAgent` in favor of `fetchOptions`
+
+The `httpAgent` client option has been removed in favor of a [platform-specific `fetchOptions` property](https://github.com/stainless-sdks/orb-typescript#fetch-options).
+This change was made as `httpAgent` relied on `node:http` agents which are not supported by any runtime's builtin fetch implementation.
+
+If you were using `httpAgent` for proxy support, check out the [new proxy documentation](https://github.com/stainless-sdks/orb-typescript#configuring-proxies).
+
+Before:
+
+```ts
+import Orb from 'orb-billing';
+import http from 'http';
+import { HttpsProxyAgent } from 'https-proxy-agent';
+
+// Configure the default for all requests:
+const client = new Orb({
+  httpAgent: new HttpsProxyAgent(process.env.PROXY_URL),
+});
+```
+
+After:
+
+```ts
+import Orb from 'orb-billing';
+import * as undici from 'undici';
+
+const proxyAgent = new undici.ProxyAgent(process.env.PROXY_URL);
+const client = new Orb({
+  fetchOptions: {
+    dispatcher: proxyAgent,
+  },
+});
+```
+
+### Changed exports
+
+#### Refactor of `orb-billing/core`, `error`, `pagination`, `resource` and `uploads`
+
+Much of the `orb-billing/core` file was intended to be internal-only but it was publicly accessible, as such it has been refactored and split up into internal and public files, with public-facing code moved to a new `core` folder and internal code moving to the private `internal` folder.
+
+At the same time, we moved some public-facing files which were previously at the top level into `core` to make the file structure cleaner and more clear:
+
+```typescript
+// Before
+import 'orb-billing/error';
+import 'orb-billing/pagination';
+import 'orb-billing/resource';
+import 'orb-billing/uploads';
+
+// After
+import 'orb-billing/core/error';
+import 'orb-billing/core/pagination';
+import 'orb-billing/core/resource';
+import 'orb-billing/core/uploads';
+```
+
+If you were relying on anything that was only exported from `orb-billing/core` and is also not accessible anywhere else, please open an issue and we'll consider adding it to the public API.
+
+#### Resource classes
+
+Previously under certain circumstances it was possible to import resource classes like `TopLevel` directly from the root of the package. This was never valid at the type level and only worked in CommonJS files.
+Now you must always either reference them as static class properties or import them directly from the files in which they are defined.
+
+```typescript
+// Before
+const { TopLevel } = require('orb-billing');
+
+// After
+const { Orb } = require('orb-billing');
+Orb.TopLevel; // or import directly from orb-billing/resources/top-level
+```
+
+#### Cleaned up `uploads` exports
+
+As part of the `core` refactor, `orb-billing/uploads` was moved to `orb-billing/core/uploads`
+and the following exports were removed, as they were not intended to be a part of the public API:
+
+- `fileFromPath`
+- `BlobPart`
+- `BlobLike`
+- `FileLike`
+- `ResponseLike`
+- `isResponseLike`
+- `isBlobLike`
+- `isFileLike`
+- `isUploadable`
+- `isMultipartBody`
+- `maybeMultipartFormRequestOptions`
+- `multipartFormRequestOptions`
+- `createForm`
+
+Note that `Uploadable` & `toFile` **are** still exported:
+
+```typescript
+import { type Uploadable, toFile } from 'orb-billing/core/uploads';
+```
+
+#### `APIClient`
+
+The `APIClient` base client class has been removed as it is no longer needed. If you were importing this class then you must now import the main client class:
+
+```typescript
+// Before
+import { APIClient } from 'orb-billing/core';
+
+// After
+import { Orb } from 'orb-billing';
+```
+
+### File handling
+
+The deprecated `fileFromPath` helper has been removed in favor of native Node.js streams:
+
+```ts
+// Before
+Orb.fileFromPath('path/to/file');
+
+// After
+import fs from 'fs';
+fs.createReadStream('path/to/file');
+```
+
+Note that this function previously only worked on Node.js. If you're using Bun, you can use [`Bun.file`](https://bun.sh/docs/api/file-io) instead.
+
+### Shims removal
+
+Previously you could configure the types that the SDK used like this:
+
+```ts
+// Tell TypeScript and the package to use the global Web fetch instead of node-fetch.
+import 'orb-billing/shims/web';
+import Orb from 'orb-billing';
+```
+
+The `orb-billing/shims` imports have been removed. Your global types must now be [correctly configured](#minimum-types-requirements).
+
+### Pagination changes
+
+The `for await` syntax **is not affected**. This still works as-is:
+
+```ts
+// Automatically fetches more pages as needed.
+for await (const coupon of client.coupons.list()) {
+  console.log(coupon);
+}
+```
+
+The interface for manually paginating through list results has been simplified:
+
+```ts
+// Before
+page.nextPageParams();
+page.nextPageInfo();
+// Required manually handling { url } | { params } type
+
+// After
+page.nextPageRequestOptions();
+```
+
+#### Removed unnecessary classes
+
+Page classes for individual methods are now type aliases:
+
+```ts
+// Before
+export class CouponsPage extends Page<Coupon> {}
+
+// After
+export type CouponsPage = Page<Coupon>;
+```
+
+If you were importing these classes at runtime, you'll need to switch to importing the base class or only import them at the type-level.
+
+### `orb-billing/src` directory removed
+
+Previously IDEs may have auto-completed imports from the `orb-billing/src` directory, however this
+directory was only included for an improved go-to-definition experience and should not have been used at runtime.
+
+If you have any `orb-billing/src/*` imports, you will need to replace them with `orb-billing/*`.
+
+```ts
+// Before
+import Orb from 'orb-billing/src';
+
+// After
+import Orb from 'orb-billing';
+```
+
+## TypeScript troubleshooting
+
+When referencing the library after updating, you may encounter new type errors related to JS features like private properties or fetch classes like Request, Response, and Headers.
+To resolve these issues, configure your tsconfig.json and install the appropriate `@types` packages for your runtime environment using the guidelines below:
+
+### Browsers
+
+`tsconfig.json`
+
+```jsonc
+{
+  "target": "ES2018", // note: we recommend ES2020 or higher
+  "lib": ["DOM", "DOM.Iterable", "ES2018"]
+}
+```
+
+### Node.js
+
+`tsconfig.json`
+
+```jsonc
+{
+  "target": "ES2018" // note: we recommend ES2020 or higher
+}
+```
+
+`package.json`
+
+```json
+{
+  "devDependencies": {
+    "@types/node": ">= 20"
+  }
+}
+```
+
+### Cloudflare Workers
+
+`tsconfig.json`
+
+```jsonc
+{
+  "target": "ES2018", // note: we recommend ES2020 or higher
+  "lib": ["ES2020"], // <- needed by @cloudflare/workers-types
+  "types": ["@cloudflare/workers-types"]
+}
+```
+
+`package.json`
+
+```json
+{
+  "devDependencies": {
+    "@cloudflare/workers-types": ">= 0.20221111.0"
+  }
+}
+```
+
+### Bun
+
+`tsconfig.json`
+
+```jsonc
+{
+  "target": "ES2018" // note: we recommend ES2020 or higher
+}
+```
+
+`package.json`
+
+```json
+{
+  "devDependencies": {
+    "@types/bun": ">= 1.2.0"
+  }
+}
+```

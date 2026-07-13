@@ -1,0 +1,238 @@
+{
+  "pkg": "orb-billing",
+  "githubRepo": "https://github.com/orbcorp/orb-typescript",
+  "clientClass": "Orb",
+  "methods": [
+    {
+      "base": "beta",
+      "name": "fetchPlanVersion",
+      "params": [
+        {
+          "type": "param",
+          "key": "version",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "plan_id",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "version",
+          "location": "path"
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "beta.externalPlanID",
+      "name": "fetchPlanVersion",
+      "params": [
+        {
+          "type": "param",
+          "key": "version",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "external_plan_id",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "version",
+          "location": "path"
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "customers.credits.topUps",
+      "name": "delete",
+      "params": [
+        {
+          "type": "param",
+          "key": "top_up_id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "customer_id",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "top_up_id",
+          "location": "path"
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "customers.credits.topUps",
+      "name": "deleteByExternalID",
+      "params": [
+        {
+          "type": "param",
+          "key": "top_up_id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "external_customer_id",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "top_up_id",
+          "location": "path"
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "invoices",
+      "name": "deleteLineItem",
+      "params": [
+        {
+          "type": "param",
+          "key": "line_item_id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "invoice_id",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "line_item_id",
+          "location": "path"
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "plans.migrations",
+      "name": "retrieve",
+      "params": [
+        {
+          "type": "param",
+          "key": "migration_id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "plan_id",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "migration_id",
+          "location": "path"
+        },
+        {
+          "type": "options"
+        }
+      ]
+    },
+    {
+      "base": "plans.migrations",
+      "name": "cancel",
+      "params": [
+        {
+          "type": "param",
+          "key": "migration_id",
+          "location": "path"
+        },
+        {
+          "type": "params",
+          "maybeOverload": false
+        },
+        {
+          "type": "options"
+        }
+      ],
+      "oldParams": [
+        {
+          "type": "param",
+          "key": "plan_id",
+          "location": "path"
+        },
+        {
+          "type": "param",
+          "key": "migration_id",
+          "location": "path"
+        },
+        {
+          "type": "options"
+        }
+      ]
+    }
+  ]
+}
