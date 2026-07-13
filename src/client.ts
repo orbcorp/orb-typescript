@@ -325,9 +325,9 @@ export interface ClientOptions {
 }
 
 /**
- * API Client for interfacing with the Orb API.
+ * Base class for Orb API clients.
  */
-export class Orb {
+export class BaseOrb {
   apiKey: string;
   webhookSecret: string | null;
 
@@ -376,7 +376,7 @@ export class Orb {
     };
 
     this.baseURL = options.baseURL!;
-    this.timeout = options.timeout ?? Orb.DEFAULT_TIMEOUT /* 1 minute */;
+    this.timeout = options.timeout ?? BaseOrb.DEFAULT_TIMEOUT /* 1 minute */;
     this.logger = options.logger ?? console;
     const defaultLogLevel = 'warn';
     // Set default logLevel early so that we can log a warning in parseLogLevel.
@@ -995,7 +995,12 @@ export class Orb {
   static DuplicateResourceCreation = Errors.DuplicateResourceCreation;
 
   static toFile = Uploads.toFile;
+}
 
+/**
+ * API Client for interfacing with the Orb API.
+ */
+export class Orb extends BaseOrb {
   topLevel: API.TopLevel = new API.TopLevel(this);
   /**
    * The [Plan](/core-concepts#plan-and-price) resource represents a plan that can be subscribed to by a

@@ -26,11 +26,11 @@ export class ExternalLicenses extends APIResource {
    * ```
    */
   getUsage(
-    externalLicenseID: string,
+    externalLicenseId: string,
     query: ExternalLicenseGetUsageParams,
     options?: RequestOptions,
   ): APIPromise<ExternalLicenseGetUsageResponse> {
-    return this._client.get(path`/licenses/external_licenses/${externalLicenseID}/usage`, {
+    return this._client.get(path`/licenses/external_licenses/${externalLicenseId}/usage`, {
       query,
       ...options,
     });

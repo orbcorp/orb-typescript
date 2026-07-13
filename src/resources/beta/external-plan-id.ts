@@ -18,11 +18,11 @@ export class ExternalPlanID extends APIResource {
    * This endpoint allows the creation of a new plan version for an existing plan.
    */
   createPlanVersion(
-    externalPlanID: string,
+    externalPlanId: string,
     body: ExternalPlanIDCreatePlanVersionParams,
     options?: RequestOptions,
   ): APIPromise<BetaAPI.PlanVersion> {
-    return this._client.post(path`/plans/external_plan_id/${externalPlanID}/versions`, { body, ...options });
+    return this._client.post(path`/plans/external_plan_id/${externalPlanId}/versions`, { body, ...options });
   }
 
   /**
@@ -34,19 +34,19 @@ export class ExternalPlanID extends APIResource {
     params: ExternalPlanIDFetchPlanVersionParams,
     options?: RequestOptions,
   ): APIPromise<BetaAPI.PlanVersion> {
-    const { external_plan_id } = params;
-    return this._client.get(path`/plans/external_plan_id/${external_plan_id}/versions/${version}`, options);
+    const { external_plan_id: externalPlanId } = params;
+    return this._client.get(path`/plans/external_plan_id/${externalPlanId}/versions/${version}`, options);
   }
 
   /**
    * This endpoint allows setting the default version of a plan.
    */
   setDefaultPlanVersion(
-    externalPlanID: string,
+    externalPlanId: string,
     body: ExternalPlanIDSetDefaultPlanVersionParams,
     options?: RequestOptions,
   ): APIPromise<PlansAPI.Plan> {
-    return this._client.post(path`/plans/external_plan_id/${externalPlanID}/set_default_version`, {
+    return this._client.post(path`/plans/external_plan_id/${externalPlanId}/set_default_version`, {
       body,
       ...options,
     });

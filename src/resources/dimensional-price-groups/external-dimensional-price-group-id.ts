@@ -19,11 +19,11 @@ export class ExternalDimensionalPriceGroupID extends APIResource {
    * ```
    */
   retrieve(
-    externalDimensionalPriceGroupID: string,
+    externalDimensionalPriceGroupId: string,
     options?: RequestOptions,
   ): APIPromise<DimensionalPriceGroupsAPI.DimensionalPriceGroup> {
     return this._client.get(
-      path`/dimensional_price_groups/external_dimensional_price_group_id/${externalDimensionalPriceGroupID}`,
+      path`/dimensional_price_groups/external_dimensional_price_group_id/${externalDimensionalPriceGroupId}`,
       options,
     );
   }
@@ -42,12 +42,12 @@ export class ExternalDimensionalPriceGroupID extends APIResource {
    * ```
    */
   update(
-    externalDimensionalPriceGroupID: string,
+    externalDimensionalPriceGroupId: string,
     body: ExternalDimensionalPriceGroupIDUpdateParams,
     options?: RequestOptions,
   ): APIPromise<DimensionalPriceGroupsAPI.DimensionalPriceGroup> {
     return this._client.put(
-      path`/dimensional_price_groups/external_dimensional_price_group_id/${externalDimensionalPriceGroupID}`,
+      path`/dimensional_price_groups/external_dimensional_price_group_id/${externalDimensionalPriceGroupId}`,
       { body, ...options },
     );
   }

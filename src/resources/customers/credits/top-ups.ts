@@ -21,22 +21,22 @@ export class TopUps extends APIResource {
    * top-up will be replaced.
    */
   create(
-    customerID: string,
+    customerId: string,
     body: TopUpCreateParams,
     options?: RequestOptions,
   ): APIPromise<TopUpCreateResponse> {
-    return this._client.post(path`/customers/${customerID}/credits/top_ups`, { body, ...options });
+    return this._client.post(path`/customers/${customerId}/credits/top_ups`, { body, ...options });
   }
 
   /**
    * List top-ups
    */
   list(
-    customerID: string,
+    customerId: string,
     query: TopUpListParams | null | undefined = {},
     options?: RequestOptions,
   ): PagePromise<TopUpListResponsesPage, TopUpListResponse> {
-    return this._client.getAPIList(path`/customers/${customerID}/credits/top_ups`, Page<TopUpListResponse>, {
+    return this._client.getAPIList(path`/customers/${customerId}/credits/top_ups`, Page<TopUpListResponse>, {
       query,
       ...options,
     });
@@ -46,9 +46,9 @@ export class TopUps extends APIResource {
    * This deactivates the top-up and voids any invoices associated with pending
    * credit blocks purchased through the top-up.
    */
-  delete(topUpID: string, params: TopUpDeleteParams, options?: RequestOptions): APIPromise<void> {
-    const { customer_id } = params;
-    return this._client.delete(path`/customers/${customer_id}/credits/top_ups/${topUpID}`, {
+  delete(topUpId: string, params: TopUpDeleteParams, options?: RequestOptions): APIPromise<void> {
+    const { customer_id: customerId } = params;
+    return this._client.delete(path`/customers/${customerId}/credits/top_ups/${topUpId}`, {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
@@ -64,11 +64,11 @@ export class TopUps extends APIResource {
    * top-up will be replaced.
    */
   createByExternalID(
-    externalCustomerID: string,
+    externalCustomerId: string,
     body: TopUpCreateByExternalIDParams,
     options?: RequestOptions,
   ): APIPromise<TopUpCreateByExternalIDResponse> {
-    return this._client.post(path`/customers/external_customer_id/${externalCustomerID}/credits/top_ups`, {
+    return this._client.post(path`/customers/external_customer_id/${externalCustomerId}/credits/top_ups`, {
       body,
       ...options,
     });
@@ -79,13 +79,13 @@ export class TopUps extends APIResource {
    * credit blocks purchased through the top-up.
    */
   deleteByExternalID(
-    topUpID: string,
+    topUpId: string,
     params: TopUpDeleteByExternalIDParams,
     options?: RequestOptions,
   ): APIPromise<void> {
-    const { external_customer_id } = params;
+    const { external_customer_id: externalCustomerId } = params;
     return this._client.delete(
-      path`/customers/external_customer_id/${external_customer_id}/credits/top_ups/${topUpID}`,
+      path`/customers/external_customer_id/${externalCustomerId}/credits/top_ups/${topUpId}`,
       { ...options, headers: buildHeaders([{ Accept: '*/*' }, options?.headers]) },
     );
   }
@@ -94,12 +94,12 @@ export class TopUps extends APIResource {
    * List top-ups by external ID
    */
   listByExternalID(
-    externalCustomerID: string,
+    externalCustomerId: string,
     query: TopUpListByExternalIDParams | null | undefined = {},
     options?: RequestOptions,
   ): PagePromise<TopUpListByExternalIDResponsesPage, TopUpListByExternalIDResponse> {
     return this._client.getAPIList(
-      path`/customers/external_customer_id/${externalCustomerID}/credits/top_ups`,
+      path`/customers/external_customer_id/${externalCustomerId}/credits/top_ups`,
       Page<TopUpListByExternalIDResponse>,
       { query, ...options },
     );

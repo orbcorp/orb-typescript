@@ -18,15 +18,15 @@ export class Alerts extends APIResource {
   /**
    * This endpoint retrieves an alert by its ID.
    */
-  retrieve(alertID: string, options?: RequestOptions): APIPromise<Alert> {
-    return this._client.get(path`/alerts/${alertID}`, options);
+  retrieve(alertId: string, options?: RequestOptions): APIPromise<Alert> {
+    return this._client.get(path`/alerts/${alertId}`, options);
   }
 
   /**
    * This endpoint updates the thresholds of an alert.
    */
-  update(alertConfigurationID: string, body: AlertUpdateParams, options?: RequestOptions): APIPromise<Alert> {
-    return this._client.put(path`/alerts/${alertConfigurationID}`, { body, ...options });
+  update(alertConfigurationId: string, body: AlertUpdateParams, options?: RequestOptions): APIPromise<Alert> {
+    return this._client.put(path`/alerts/${alertConfigurationId}`, { body, ...options });
   }
 
   /**
@@ -60,11 +60,11 @@ export class Alerts extends APIResource {
    * require thresholds.
    */
   createForCustomer(
-    customerID: string,
+    customerId: string,
     body: AlertCreateForCustomerParams,
     options?: RequestOptions,
   ): APIPromise<Alert> {
-    return this._client.post(path`/alerts/customer_id/${customerID}`, { body, ...options });
+    return this._client.post(path`/alerts/customer_id/${customerId}`, { body, ...options });
   }
 
   /**
@@ -78,11 +78,11 @@ export class Alerts extends APIResource {
    * require thresholds.
    */
   createForExternalCustomer(
-    externalCustomerID: string,
+    externalCustomerId: string,
     body: AlertCreateForExternalCustomerParams,
     options?: RequestOptions,
   ): APIPromise<Alert> {
-    return this._client.post(path`/alerts/external_customer_id/${externalCustomerID}`, { body, ...options });
+    return this._client.post(path`/alerts/external_customer_id/${externalCustomerId}`, { body, ...options });
   }
 
   /**
@@ -99,11 +99,11 @@ export class Alerts extends APIResource {
    * usage or cost conditions met during the current billing cycle.
    */
   createForSubscription(
-    subscriptionID: string,
+    subscriptionId: string,
     body: AlertCreateForSubscriptionParams,
     options?: RequestOptions,
   ): APIPromise<Alert> {
-    return this._client.post(path`/alerts/subscription_id/${subscriptionID}`, { body, ...options });
+    return this._client.post(path`/alerts/subscription_id/${subscriptionId}`, { body, ...options });
   }
 
   /**
@@ -112,12 +112,12 @@ export class Alerts extends APIResource {
    * `subscription_id` is not required for customer or subscription level alerts.
    */
   disable(
-    alertConfigurationID: string,
+    alertConfigurationId: string,
     params: AlertDisableParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<Alert> {
     const { subscription_id } = params ?? {};
-    return this._client.post(path`/alerts/${alertConfigurationID}/disable`, {
+    return this._client.post(path`/alerts/${alertConfigurationId}/disable`, {
       query: { subscription_id },
       ...options,
     });
@@ -129,12 +129,12 @@ export class Alerts extends APIResource {
    * `subscription_id` is not required for customer or subscription level alerts.
    */
   enable(
-    alertConfigurationID: string,
+    alertConfigurationId: string,
     params: AlertEnableParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<Alert> {
     const { subscription_id } = params ?? {};
-    return this._client.post(path`/alerts/${alertConfigurationID}/enable`, {
+    return this._client.post(path`/alerts/${alertConfigurationId}/enable`, {
       query: { subscription_id },
       ...options,
     });

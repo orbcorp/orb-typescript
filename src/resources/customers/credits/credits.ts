@@ -67,11 +67,11 @@ export class Credits extends APIResource {
    * becomes effective, which may differ from creation time for backdated credits.
    */
   list(
-    customerID: string,
+    customerId: string,
     query: CreditListParams | null | undefined = {},
     options?: RequestOptions,
   ): PagePromise<CreditListResponsesPage, CreditListResponse> {
-    return this._client.getAPIList(path`/customers/${customerID}/credits`, Page<CreditListResponse>, {
+    return this._client.getAPIList(path`/customers/${customerId}/credits`, Page<CreditListResponse>, {
       query,
       ...options,
     });
@@ -92,12 +92,12 @@ export class Credits extends APIResource {
    * becomes effective, which may differ from creation time for backdated credits.
    */
   listByExternalID(
-    externalCustomerID: string,
+    externalCustomerId: string,
     query: CreditListByExternalIDParams | null | undefined = {},
     options?: RequestOptions,
   ): PagePromise<CreditListByExternalIDResponsesPage, CreditListByExternalIDResponse> {
     return this._client.getAPIList(
-      path`/customers/external_customer_id/${externalCustomerID}/credits`,
+      path`/customers/external_customer_id/${externalCustomerId}/credits`,
       Page<CreditListByExternalIDResponse>,
       { query, ...options },
     );

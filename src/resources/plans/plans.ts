@@ -42,8 +42,8 @@ export class Plans extends APIResource {
    *
    * Other fields on a plan are currently immutable.
    */
-  update(planID: string, body: PlanUpdateParams, options?: RequestOptions): APIPromise<Plan> {
-    return this._client.put(path`/plans/${planID}`, { body, ...options });
+  update(planId: string, body: PlanUpdateParams, options?: RequestOptions): APIPromise<Plan> {
+    return this._client.put(path`/plans/${planId}`, { body, ...options });
   }
 
   /**
@@ -79,8 +79,8 @@ export class Plans extends APIResource {
    * Orb supports plan phases, also known as contract ramps. For plans with phases,
    * the serialized prices refer to all prices across all phases.
    */
-  fetch(planID: string, options?: RequestOptions): APIPromise<Plan> {
-    return this._client.get(path`/plans/${planID}`, options);
+  fetch(planId: string, options?: RequestOptions): APIPromise<Plan> {
+    return this._client.get(path`/plans/${planId}`, options);
   }
 }
 

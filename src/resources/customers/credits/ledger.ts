@@ -93,11 +93,11 @@ export class Ledger extends APIResource {
    * entry will be added to the ledger to indicate the adjustment of credits.
    */
   list(
-    customerID: string,
+    customerId: string,
     query: LedgerListParams | null | undefined = {},
     options?: RequestOptions,
   ): PagePromise<LedgerListResponsesPage, LedgerListResponse> {
-    return this._client.getAPIList(path`/customers/${customerID}/credits/ledger`, Page<LedgerListResponse>, {
+    return this._client.getAPIList(path`/customers/${customerId}/credits/ledger`, Page<LedgerListResponse>, {
       query,
       ...options,
     });
@@ -230,11 +230,11 @@ export class Ledger extends APIResource {
    * return to the customer, up to the block's initial balance.
    */
   createEntry(
-    customerID: string,
+    customerId: string,
     body: LedgerCreateEntryParams,
     options?: RequestOptions,
   ): APIPromise<LedgerCreateEntryResponse> {
-    return this._client.post(path`/customers/${customerID}/credits/ledger_entry`, { body, ...options });
+    return this._client.post(path`/customers/${customerId}/credits/ledger_entry`, { body, ...options });
   }
 
   /**
@@ -364,12 +364,12 @@ export class Ledger extends APIResource {
    * return to the customer, up to the block's initial balance.
    */
   createEntryByExternalID(
-    externalCustomerID: string,
+    externalCustomerId: string,
     body: LedgerCreateEntryByExternalIDParams,
     options?: RequestOptions,
   ): APIPromise<LedgerCreateEntryByExternalIDResponse> {
     return this._client.post(
-      path`/customers/external_customer_id/${externalCustomerID}/credits/ledger_entry`,
+      path`/customers/external_customer_id/${externalCustomerId}/credits/ledger_entry`,
       { body, ...options },
     );
   }
@@ -456,12 +456,12 @@ export class Ledger extends APIResource {
    * entry will be added to the ledger to indicate the adjustment of credits.
    */
   listByExternalID(
-    externalCustomerID: string,
+    externalCustomerId: string,
     query: LedgerListByExternalIDParams | null | undefined = {},
     options?: RequestOptions,
   ): PagePromise<LedgerListByExternalIDResponsesPage, LedgerListByExternalIDResponse> {
     return this._client.getAPIList(
-      path`/customers/external_customer_id/${externalCustomerID}/credits/ledger`,
+      path`/customers/external_customer_id/${externalCustomerId}/credits/ledger`,
       Page<LedgerListByExternalIDResponse>,
       { query, ...options },
     );

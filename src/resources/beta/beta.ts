@@ -26,11 +26,11 @@ export class Beta extends APIResource {
    * This endpoint allows the creation of a new plan version for an existing plan.
    */
   createPlanVersion(
-    planID: string,
+    planId: string,
     body: BetaCreatePlanVersionParams,
     options?: RequestOptions,
   ): APIPromise<PlanVersion> {
-    return this._client.post(path`/plans/${planID}/versions`, { body, ...options });
+    return this._client.post(path`/plans/${planId}/versions`, { body, ...options });
   }
 
   /**
@@ -42,19 +42,19 @@ export class Beta extends APIResource {
     params: BetaFetchPlanVersionParams,
     options?: RequestOptions,
   ): APIPromise<PlanVersion> {
-    const { plan_id } = params;
-    return this._client.get(path`/plans/${plan_id}/versions/${version}`, options);
+    const { plan_id: planId } = params;
+    return this._client.get(path`/plans/${planId}/versions/${version}`, options);
   }
 
   /**
    * This endpoint allows setting the default version of a plan.
    */
   setDefaultPlanVersion(
-    planID: string,
+    planId: string,
     body: BetaSetDefaultPlanVersionParams,
     options?: RequestOptions,
   ): APIPromise<PlansAPI.Plan> {
-    return this._client.post(path`/plans/${planID}/set_default_version`, { body, ...options });
+    return this._client.post(path`/plans/${planId}/set_default_version`, { body, ...options });
   }
 }
 

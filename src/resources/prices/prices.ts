@@ -61,8 +61,8 @@ export class Prices extends APIResource {
    * const price = await client.prices.update('price_id');
    * ```
    */
-  update(priceID: string, body: PriceUpdateParams, options?: RequestOptions): APIPromise<Shared.Price> {
-    return this._client.put(path`/prices/${priceID}`, { body, ...options });
+  update(priceId: string, body: PriceUpdateParams, options?: RequestOptions): APIPromise<Shared.Price> {
+    return this._client.put(path`/prices/${priceId}`, { body, ...options });
   }
 
   /**
@@ -120,11 +120,11 @@ export class Prices extends APIResource {
    * ```
    */
   evaluate(
-    priceID: string,
+    priceId: string,
     body: PriceEvaluateParams,
     options?: RequestOptions,
   ): APIPromise<PriceEvaluateResponse> {
-    return this._client.post(path`/prices/${priceID}/evaluate`, { body, ...options });
+    return this._client.post(path`/prices/${priceId}/evaluate`, { body, ...options });
   }
 
   /**
@@ -216,8 +216,8 @@ export class Prices extends APIResource {
    * const price = await client.prices.fetch('price_id');
    * ```
    */
-  fetch(priceID: string, options?: RequestOptions): APIPromise<Shared.Price> {
-    return this._client.get(path`/prices/${priceID}`, options);
+  fetch(priceId: string, options?: RequestOptions): APIPromise<Shared.Price> {
+    return this._client.get(path`/prices/${priceId}`, options);
   }
 }
 
