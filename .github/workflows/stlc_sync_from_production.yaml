@@ -28,8 +28,7 @@ jobs:
     runs-on: runs-on=${{ github.run_id }}/image=ubuntu24-full-x64/runner=2cpu-linux-x64/spot=false/tag=sdk-back-sync
     if: >-
       endsWith(github.repository, '-staging') &&
-      github.repository != 'orbcorp/orb-csharp-staging' &&
-      github.repository != 'orbcorp/orb-typescript-staging'
+      github.repository != 'orbcorp/orb-csharp-staging'
     steps:
       - name: Derive repo names
         id: repos
