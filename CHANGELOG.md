@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.2](https://github.com/orbcorp/orb-typescript/compare/v6.0.1...v6.0.2) (2026-07-14)
+
+
+### Bug Fixes
+
+* ship the v1 migration codemod and correct the npm install instructions ([13c9039](https://github.com/orbcorp/orb-typescript/commit/13c90394af4dafb67edfab5f0431a92168adf01b))
+
 ## [6.0.1](https://github.com/orbcorp/orb-typescript/compare/v6.0.0...v6.0.1) (2026-07-14)
 
 
