@@ -1,5 +1,28 @@
 # Changelog
 
+## [6.0.0](https://github.com/orbcorp/orb-typescript/compare/v0.0.1...v6.0.0) (2026-07-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* migrate to the Stainless v2 TypeScript SDK architecture
+
+### Features
+
+* **api:** add `commitment` credit block source and `credit_commitment` field ([d1f8312](https://github.com/orbcorp/orb-typescript/commit/d1f8312062f5b9e9516fb417e29402300aa6aadc))
+* **api:** api update ([6b4bd4e](https://github.com/orbcorp/orb-typescript/commit/6b4bd4ed03ac1b5ecc574d1313e540f21e940572))
+* **api:** deprecate debug mode ingestion response field ([18c531f](https://github.com/orbcorp/orb-typescript/commit/18c531faf3f7d420eac8e8653a61a094625d2734))
+* migrate to the Stainless v2 TypeScript SDK architecture ([f32a385](https://github.com/orbcorp/orb-typescript/commit/f32a3852b64420184e17b5330221749db9358600))
+* **webhooks:** add webhook signature verification helpers ([582880e](https://github.com/orbcorp/orb-typescript/commit/582880e92cfaa9a9bbf66b1ab813936f62b4f81f))
+
+
+### Chores
+
+* import the orb-billing v5 changelog for release continuity ([12c761b](https://github.com/orbcorp/orb-typescript/commit/12c761b9927417e95cbe1fe33d9ad3ea46b13963))
+* **internal:** format ported workflows ([928c2b0](https://github.com/orbcorp/orb-typescript/commit/928c2b0f2f8122c1ec2c1e2a727b48d858b7d89f))
+* **internal:** format trunk sync lock workflow ([9e39337](https://github.com/orbcorp/orb-typescript/commit/9e39337be39becc1c1b7e02f9074367d4bdda167))
+* **internal:** stage release wiring and v1 migration tooling ([189d378](https://github.com/orbcorp/orb-typescript/commit/189d37846a0075d1f22dba564f20f35c88f0c620))
+
 ## [5.76.0](https://github.com/orbcorp/orb-node/compare/v5.75.1...v5.76.0) (2026-07-14)
 
 
