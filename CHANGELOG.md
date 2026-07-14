@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.1](https://github.com/orbcorp/orb-typescript/compare/v6.0.0...v6.0.1) (2026-07-14)
+
+
+### Bug Fixes
+
+* **internal:** restore tokenless publish script (OIDC) ([eeb743a](https://github.com/orbcorp/orb-typescript/commit/eeb743af8ae1c1dbc559e396b1bc84277b5fcd38))
+
 ## [6.0.0](https://github.com/orbcorp/orb-typescript/compare/v0.0.1...v6.0.0) (2026-07-14)
 
 
