@@ -9,11 +9,8 @@ The REST API documentation can be found on [docs.withorb.com](https://docs.witho
 ## Installation
 
 ```sh
-npm install git+ssh://git@github.com:orbcorp/orb-typescript.git
+npm install orb-billing
 ```
-
-> [!NOTE]
-> Once this package is [published to npm](https://www.stainless.com/docs/guides/publish), this will become: `npm install orb-billing`
 
 ## Usage
 
