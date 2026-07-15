@@ -5,6 +5,7 @@ import * as AlertsAPI from './alerts';
 import * as Shared from './shared';
 import { APIPromise } from '../core/api-promise';
 import { Page, type PageParams, PagePromise } from '../core/pagination';
+import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
@@ -18,15 +19,15 @@ export class Alerts extends APIResource {
   /**
    * This endpoint retrieves an alert by its ID.
    */
-  retrieve(alertId: string, options?: RequestOptions): APIPromise<Alert> {
-    return this._client.get(path`/alerts/${alertId}`, options);
+  retrieve(alertID: string, options?: RequestOptions): APIPromise<Alert> {
+    return this._client.get(path`/alerts/${alertID}`, options);
   }
 
   /**
    * This endpoint updates the thresholds of an alert.
    */
-  update(alertConfigurationId: string, body: AlertUpdateParams, options?: RequestOptions): APIPromise<Alert> {
-    return this._client.put(path`/alerts/${alertConfigurationId}`, { body, ...options });
+  update(alertConfigurationID: string, body: AlertUpdateParams, options?: RequestOptions): APIPromise<Alert> {
+    return this._client.put(path`/alerts/${alertConfigurationID}`, { body, ...options });
   }
 
   /**
@@ -50,6 +51,23 @@ export class Alerts extends APIResource {
   }
 
   /**
+   * This endpoint trashes a subscription- or customer-scoped alert. The alert is
+   * soft-deleted: it stops firing immediately and no longer appears in fetch or list
+   * responses, while the underlying record is retained internally for audit.
+   *
+   * Plan-level alerts cannot be trashed via the API — disable them instead
+   * (`POST /v1/alerts/{alert_configuration_id}/disable`). Their removal would need
+   * to be unwound from every subscription the alert was propagated to, which isn't
+   * supported yet.
+   */
+  delete(alertConfigurationID: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/alerts/${alertConfigurationID}`, {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
+  }
+
+  /**
    * This endpoint creates a new alert to monitor a customer's credit balance. There
    * are three types of alerts that can be scoped to customers:
    * `credit_balance_depleted`, `credit_balance_dropped`, and
@@ -60,11 +78,11 @@ export class Alerts extends APIResource {
    * require thresholds.
    */
   createForCustomer(
-    customerId: string,
+    customerID: string,
     body: AlertCreateForCustomerParams,
     options?: RequestOptions,
   ): APIPromise<Alert> {
-    return this._client.post(path`/alerts/customer_id/${customerId}`, { body, ...options });
+    return this._client.post(path`/alerts/customer_id/${customerID}`, { body, ...options });
   }
 
   /**
@@ -78,11 +96,11 @@ export class Alerts extends APIResource {
    * require thresholds.
    */
   createForExternalCustomer(
-    externalCustomerId: string,
+    externalCustomerID: string,
     body: AlertCreateForExternalCustomerParams,
     options?: RequestOptions,
   ): APIPromise<Alert> {
-    return this._client.post(path`/alerts/external_customer_id/${externalCustomerId}`, { body, ...options });
+    return this._client.post(path`/alerts/external_customer_id/${externalCustomerID}`, { body, ...options });
   }
 
   /**
@@ -99,11 +117,11 @@ export class Alerts extends APIResource {
    * usage or cost conditions met during the current billing cycle.
    */
   createForSubscription(
-    subscriptionId: string,
+    subscriptionID: string,
     body: AlertCreateForSubscriptionParams,
     options?: RequestOptions,
   ): APIPromise<Alert> {
-    return this._client.post(path`/alerts/subscription_id/${subscriptionId}`, { body, ...options });
+    return this._client.post(path`/alerts/subscription_id/${subscriptionID}`, { body, ...options });
   }
 
   /**
@@ -112,12 +130,12 @@ export class Alerts extends APIResource {
    * `subscription_id` is not required for customer or subscription level alerts.
    */
   disable(
-    alertConfigurationId: string,
+    alertConfigurationID: string,
     params: AlertDisableParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<Alert> {
     const { subscription_id } = params ?? {};
-    return this._client.post(path`/alerts/${alertConfigurationId}/disable`, {
+    return this._client.post(path`/alerts/${alertConfigurationID}/disable`, {
       query: { subscription_id },
       ...options,
     });
@@ -129,12 +147,12 @@ export class Alerts extends APIResource {
    * `subscription_id` is not required for customer or subscription level alerts.
    */
   enable(
-    alertConfigurationId: string,
+    alertConfigurationID: string,
     params: AlertEnableParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<Alert> {
     const { subscription_id } = params ?? {};
-    return this._client.post(path`/alerts/${alertConfigurationId}/enable`, {
+    return this._client.post(path`/alerts/${alertConfigurationID}/enable`, {
       query: { subscription_id },
       ...options,
     });

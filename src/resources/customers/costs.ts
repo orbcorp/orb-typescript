@@ -143,11 +143,11 @@ export class Costs extends APIResource {
    * `grouping_value` and `secondary_grouping_value` available.
    */
   list(
-    customerId: string,
+    customerID: string,
     query: CostListParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<CostListResponse> {
-    return this._client.get(path`/customers/${customerId}/costs`, { query, ...options });
+    return this._client.get(path`/customers/${customerID}/costs`, { query, ...options });
   }
 
   /**
@@ -270,11 +270,11 @@ export class Costs extends APIResource {
    * `grouping_value` and `secondary_grouping_value` available.
    */
   listByExternalID(
-    externalCustomerId: string,
+    externalCustomerID: string,
     query: CostListByExternalIDParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<CostListByExternalIDResponse> {
-    return this._client.get(path`/customers/external_customer_id/${externalCustomerId}/costs`, {
+    return this._client.get(path`/customers/external_customer_id/${externalCustomerID}/costs`, {
       query,
       ...options,
     });

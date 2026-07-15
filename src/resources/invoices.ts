@@ -57,8 +57,8 @@ export class Invoices extends APIResource {
    * const invoice = await client.invoices.update('invoice_id');
    * ```
    */
-  update(invoiceId: string, body: InvoiceUpdateParams, options?: RequestOptions): APIPromise<Shared.Invoice> {
-    return this._client.put(path`/invoices/${invoiceId}`, { body, ...options });
+  update(invoiceID: string, body: InvoiceUpdateParams, options?: RequestOptions): APIPromise<Shared.Invoice> {
+    return this._client.put(path`/invoices/${invoiceID}`, { body, ...options });
   }
 
   /**
@@ -110,12 +110,12 @@ export class Invoices extends APIResource {
    * ```
    */
   deleteLineItem(
-    lineItemId: string,
+    lineItemID: string,
     params: InvoiceDeleteLineItemParams,
     options?: RequestOptions,
   ): APIPromise<void> {
-    const { invoice_id: invoiceId } = params;
-    return this._client.delete(path`/invoices/${invoiceId}/invoice_line_items/${lineItemId}`, {
+    const { invoice_id } = params;
+    return this._client.delete(path`/invoices/${invoice_id}/invoice_line_items/${lineItemID}`, {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
@@ -130,8 +130,8 @@ export class Invoices extends APIResource {
    * const invoice = await client.invoices.fetch('invoice_id');
    * ```
    */
-  fetch(invoiceId: string, options?: RequestOptions): APIPromise<Shared.Invoice> {
-    return this._client.get(path`/invoices/${invoiceId}`, options);
+  fetch(invoiceID: string, options?: RequestOptions): APIPromise<Shared.Invoice> {
+    return this._client.get(path`/invoices/${invoiceID}`, options);
   }
 
   /**
@@ -167,11 +167,11 @@ export class Invoices extends APIResource {
    * ```
    */
   issue(
-    invoiceId: string,
+    invoiceID: string,
     body: InvoiceIssueParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<Shared.Invoice> {
-    return this._client.post(path`/invoices/${invoiceId}/issue`, { body, ...options });
+    return this._client.post(path`/invoices/${invoiceID}/issue`, { body, ...options });
   }
 
   /**
@@ -193,11 +193,11 @@ export class Invoices extends APIResource {
    * ```
    */
   issueSummary(
-    invoiceId: string,
+    invoiceID: string,
     body: InvoiceIssueSummaryParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<InvoiceIssueSummaryResponse> {
-    return this._client.post(path`/invoices/summary/${invoiceId}/issue`, { body, ...options });
+    return this._client.post(path`/invoices/summary/${invoiceID}/issue`, { body, ...options });
   }
 
   /**
@@ -249,11 +249,11 @@ export class Invoices extends APIResource {
    * ```
    */
   markPaid(
-    invoiceId: string,
+    invoiceID: string,
     body: InvoiceMarkPaidParams,
     options?: RequestOptions,
   ): APIPromise<Shared.Invoice> {
-    return this._client.post(path`/invoices/${invoiceId}/mark_paid`, { body, ...options });
+    return this._client.post(path`/invoices/${invoiceID}/mark_paid`, { body, ...options });
   }
 
   /**
@@ -269,8 +269,80 @@ export class Invoices extends APIResource {
    * });
    * ```
    */
-  pay(invoiceId: string, body: InvoicePayParams, options?: RequestOptions): APIPromise<Shared.Invoice> {
-    return this._client.post(path`/invoices/${invoiceId}/pay`, { body, ...options });
+  pay(invoiceID: string, body: InvoicePayParams, options?: RequestOptions): APIPromise<Shared.Invoice> {
+    return this._client.post(path`/invoices/${invoiceID}/pay`, { body, ...options });
+  }
+
+  /**
+   * This endpoint triggers a regeneration of the PDF for a finalized invoice.
+   *
+   * The invoice must be finalized (`issued`, `paid`, `synced`, or `void`) and must
+   * already have an existing PDF. The original PDF is archived (not permanently
+   * deleted) to maintain an audit trail.
+   *
+   * **Important Legal Considerations:**
+   *
+   * Regenerating invoice PDFs may not be permitted in all jurisdictions. Many tax
+   * authorities require that issued invoices remain unmodified. Before using this
+   * endpoint, ensure that:
+   *
+   * - Your local tax regulations permit modification of issued billing documents
+   * - You have a legitimate business reason (e.g., fixing template errors, updating
+   *   branding)
+   * - You maintain proper records of the original PDF (archived automatically by
+   *   Orb)
+   *
+   * Recommended use cases:
+   *
+   * - Correcting template rendering issues
+   * - Applying updated company branding
+   * - Updating customer data that was incorrect at issuance
+   *
+   * @example
+   * ```ts
+   * const invoice = await client.invoices.regenerateInvoicePdf(
+   *   'invoice_id',
+   * );
+   * ```
+   */
+  regenerateInvoicePdf(invoiceID: string, options?: RequestOptions): APIPromise<Shared.Invoice> {
+    return this._client.post(path`/invoices/${invoiceID}/regenerate_invoice_pdf`, options);
+  }
+
+  /**
+   * This endpoint triggers a regeneration of the receipt PDF for a paid invoice.
+   *
+   * The invoice must be in `paid` status and must already have an existing receipt
+   * PDF. The original PDF is archived (not permanently deleted) to maintain an audit
+   * trail.
+   *
+   * **Important Legal Considerations:**
+   *
+   * Regenerating receipt PDFs may not be permitted in all jurisdictions. Many tax
+   * authorities require that issued receipts remain unmodified. Before using this
+   * endpoint, ensure that:
+   *
+   * - Your local tax regulations permit modification of issued billing documents
+   * - You have a legitimate business reason (e.g., fixing template errors, updating
+   *   branding)
+   * - You maintain proper records of the original PDF (archived automatically by
+   *   Orb)
+   *
+   * Recommended use cases:
+   *
+   * - Correcting template rendering issues
+   * - Applying updated company branding
+   * - Updating customer data that was incorrect at issuance
+   *
+   * @example
+   * ```ts
+   * const invoice = await client.invoices.regenerateReceiptPdf(
+   *   'invoice_id',
+   * );
+   * ```
+   */
+  regenerateReceiptPdf(invoiceID: string, options?: RequestOptions): APIPromise<Shared.Invoice> {
+    return this._client.post(path`/invoices/${invoiceID}/regenerate_receipt_pdf`, options);
   }
 
   /**
@@ -291,8 +363,8 @@ export class Invoices extends APIResource {
    * const invoice = await client.invoices.void('invoice_id');
    * ```
    */
-  void(invoiceId: string, options?: RequestOptions): APIPromise<Shared.Invoice> {
-    return this._client.post(path`/invoices/${invoiceId}/void`, options);
+  void(invoiceID: string, options?: RequestOptions): APIPromise<Shared.Invoice> {
+    return this._client.post(path`/invoices/${invoiceID}/void`, options);
   }
 }
 

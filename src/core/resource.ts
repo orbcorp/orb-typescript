@@ -1,11 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { BaseOrb } from '../client';
+import type { Orb } from '../client';
 
 export abstract class APIResource {
-  protected _client: BaseOrb;
+  protected _client: Orb;
 
-  constructor(client: BaseOrb) {
+  constructor(client: Orb) {
     this._client = client;
   }
 }

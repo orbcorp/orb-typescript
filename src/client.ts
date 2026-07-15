@@ -167,6 +167,10 @@ import {
   AddressInput,
   Customer,
   CustomerCreateParams,
+  CustomerCreatePortalSessionByExternalIDParams,
+  CustomerCreatePortalSessionByExternalIDResponse,
+  CustomerCreatePortalSessionParams,
+  CustomerCreatePortalSessionResponse,
   CustomerHierarchyConfig,
   CustomerListParams,
   CustomerUpdateByExternalIDParams,
@@ -325,9 +329,9 @@ export interface ClientOptions {
 }
 
 /**
- * Base class for Orb API clients.
+ * API Client for interfacing with the Orb API.
  */
-export class BaseOrb {
+export class Orb {
   apiKey: string;
   webhookSecret: string | null;
 
@@ -376,7 +380,7 @@ export class BaseOrb {
     };
 
     this.baseURL = options.baseURL!;
-    this.timeout = options.timeout ?? BaseOrb.DEFAULT_TIMEOUT /* 1 minute */;
+    this.timeout = options.timeout ?? Orb.DEFAULT_TIMEOUT /* 1 minute */;
     this.logger = options.logger ?? console;
     const defaultLogLevel = 'warn';
     // Set default logLevel early so that we can log a warning in parseLogLevel.
@@ -995,12 +999,7 @@ export class BaseOrb {
   static DuplicateResourceCreation = Errors.DuplicateResourceCreation;
 
   static toFile = Uploads.toFile;
-}
 
-/**
- * API Client for interfacing with the Orb API.
- */
-export class Orb extends BaseOrb {
   topLevel: API.TopLevel = new API.TopLevel(this);
   /**
    * The [Plan](/core-concepts#plan-and-price) resource represents a plan that can be subscribed to by a
@@ -1164,10 +1163,14 @@ export declare namespace Orb {
     type NewReportingConfiguration as NewReportingConfiguration,
     type NewSphereConfiguration as NewSphereConfiguration,
     type NewTaxJarConfiguration as NewTaxJarConfiguration,
+    type CustomerCreatePortalSessionResponse as CustomerCreatePortalSessionResponse,
+    type CustomerCreatePortalSessionByExternalIDResponse as CustomerCreatePortalSessionByExternalIDResponse,
     type CustomersPage as CustomersPage,
     type CustomerCreateParams as CustomerCreateParams,
     type CustomerUpdateParams as CustomerUpdateParams,
     type CustomerListParams as CustomerListParams,
+    type CustomerCreatePortalSessionParams as CustomerCreatePortalSessionParams,
+    type CustomerCreatePortalSessionByExternalIDParams as CustomerCreatePortalSessionByExternalIDParams,
     type CustomerUpdateByExternalIDParams as CustomerUpdateByExternalIDParams,
   };
 

@@ -35,9 +35,13 @@ export {
   type NewReportingConfiguration,
   type NewSphereConfiguration,
   type NewTaxJarConfiguration,
+  type CustomerCreatePortalSessionResponse,
+  type CustomerCreatePortalSessionByExternalIDResponse,
   type CustomerCreateParams,
   type CustomerUpdateParams,
   type CustomerListParams,
+  type CustomerCreatePortalSessionParams,
+  type CustomerCreatePortalSessionByExternalIDParams,
   type CustomerUpdateByExternalIDParams,
   type CustomersPage,
 } from './customers';

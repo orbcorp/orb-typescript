@@ -83,8 +83,8 @@ export class Customers extends APIResource {
    * be set if it has not already been set on the customer. Other fields on a
    * customer are currently immutable.
    */
-  update(customerId: string, body: CustomerUpdateParams, options?: RequestOptions): APIPromise<Customer> {
-    return this._client.put(path`/customers/${customerId}`, { body, ...options });
+  update(customerID: string, body: CustomerUpdateParams, options?: RequestOptions): APIPromise<Customer> {
+    return this._client.put(path`/customers/${customerID}`, { body, ...options });
   }
 
   /**
@@ -116,10 +116,43 @@ export class Customers extends APIResource {
    * customer on subsequent GET requests while deletion is in process will reflect
    * its deletion.
    */
-  delete(customerId: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/customers/${customerId}`, {
+  delete(customerID: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/customers/${customerID}`, {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
+  }
+
+  /**
+   * Creates a portal session for the customer, returning a short-lived URL that
+   * provides authenticated access to the customer's billing portal. The session
+   * expires after `expires_in_minutes` (default 60, max 180). By default, creating a
+   * new session invalidates any other active portal sessions for the customer; pass
+   * `invalidate_existing=false` to allow concurrent sessions.
+   */
+  createPortalSession(
+    customerID: string,
+    body: CustomerCreatePortalSessionParams,
+    options?: RequestOptions,
+  ): APIPromise<CustomerCreatePortalSessionResponse> {
+    return this._client.post(path`/customers/${customerID}/portal_sessions`, { body, ...options });
+  }
+
+  /**
+   * Creates a portal session for the customer, returning a short-lived URL that
+   * provides authenticated access to the customer's billing portal. The session
+   * expires after `expires_in_minutes` (default 60, max 180). By default, creating a
+   * new session invalidates any other active portal sessions for the customer; pass
+   * `invalidate_existing=false` to allow concurrent sessions.
+   */
+  createPortalSessionByExternalID(
+    externalCustomerID: string,
+    body: CustomerCreatePortalSessionByExternalIDParams,
+    options?: RequestOptions,
+  ): APIPromise<CustomerCreatePortalSessionByExternalIDResponse> {
+    return this._client.post(path`/customers/external_customer_id/${externalCustomerID}/portal_sessions`, {
+      body,
+      ...options,
     });
   }
 
@@ -131,8 +164,8 @@ export class Customers extends APIResource {
    * See the [Customer resource](/core-concepts#customer) for a full discussion of
    * the Customer model.
    */
-  fetch(customerId: string, options?: RequestOptions): APIPromise<Customer> {
-    return this._client.get(path`/customers/${customerId}`, options);
+  fetch(customerID: string, options?: RequestOptions): APIPromise<Customer> {
+    return this._client.get(path`/customers/${customerID}`, options);
   }
 
   /**
@@ -142,8 +175,8 @@ export class Customers extends APIResource {
    * Note that the resource and semantics of this endpoint exactly mirror
    * [Get Customer](fetch-customer).
    */
-  fetchByExternalID(externalCustomerId: string, options?: RequestOptions): APIPromise<Customer> {
-    return this._client.get(path`/customers/external_customer_id/${externalCustomerId}`, options);
+  fetchByExternalID(externalCustomerID: string, options?: RequestOptions): APIPromise<Customer> {
+    return this._client.get(path`/customers/external_customer_id/${externalCustomerID}`, options);
   }
 
   /**
@@ -154,8 +187,8 @@ export class Customers extends APIResource {
    *
    * **Note**: This functionality is currently only available for Stripe.
    */
-  syncPaymentMethodsFromGateway(customerId: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.post(path`/customers/${customerId}/sync_payment_methods_from_gateway`, {
+  syncPaymentMethodsFromGateway(customerID: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.post(path`/customers/${customerID}/sync_payment_methods_from_gateway`, {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
@@ -170,11 +203,11 @@ export class Customers extends APIResource {
    * **Note**: This functionality is currently only available for Stripe.
    */
   syncPaymentMethodsFromGatewayByExternalCustomerID(
-    externalCustomerId: string,
+    externalCustomerID: string,
     options?: RequestOptions,
   ): APIPromise<void> {
     return this._client.post(
-      path`/customers/external_customer_id/${externalCustomerId}/sync_payment_methods_from_gateway`,
+      path`/customers/external_customer_id/${externalCustomerID}/sync_payment_methods_from_gateway`,
       { ...options, headers: buildHeaders([{ Accept: '*/*' }, options?.headers]) },
     );
   }
@@ -685,6 +718,30 @@ export interface NewTaxJarConfiguration {
    * from account-level setting. When true or false, overrides the account setting.
    */
   automatic_tax_enabled?: boolean | null;
+}
+
+export interface CustomerCreatePortalSessionResponse {
+  id: string;
+
+  created_at: string;
+
+  customer_id: string;
+
+  expires_at: string | null;
+
+  url: string;
+}
+
+export interface CustomerCreatePortalSessionByExternalIDResponse {
+  id: string;
+
+  created_at: string;
+
+  customer_id: string;
+
+  expires_at: string | null;
+
+  url: string;
 }
 
 export interface CustomerCreateParams {
@@ -1384,6 +1441,38 @@ export interface CustomerListParams extends PageParams {
   'created_at[lte]'?: string | null;
 }
 
+export interface CustomerCreatePortalSessionParams {
+  /**
+   * Duration in minutes until the portal session expires. Defaults to 60.
+   * Maximum 180.
+   */
+  expires_in_minutes?: number;
+
+  /**
+   * When true (default), creating this session soft-deletes any other active portal
+   * sessions for the customer. Set to false to allow concurrent sessions — useful
+   * when minting portal links for multiple authenticated end-users at once. The
+   * customer's permanent portal link (if any) is never invalidated by this.
+   */
+  invalidate_existing?: boolean;
+}
+
+export interface CustomerCreatePortalSessionByExternalIDParams {
+  /**
+   * Duration in minutes until the portal session expires. Defaults to 60.
+   * Maximum 180.
+   */
+  expires_in_minutes?: number;
+
+  /**
+   * When true (default), creating this session soft-deletes any other active portal
+   * sessions for the customer. Set to false to allow concurrent sessions — useful
+   * when minting portal links for multiple authenticated end-users at once. The
+   * customer's permanent portal link (if any) is never invalidated by this.
+   */
+  invalidate_existing?: boolean;
+}
+
 export interface CustomerUpdateByExternalIDParams {
   accounting_sync_configuration?: NewAccountingSyncConfiguration | null;
 
@@ -1745,10 +1834,14 @@ export declare namespace Customers {
     type NewReportingConfiguration as NewReportingConfiguration,
     type NewSphereConfiguration as NewSphereConfiguration,
     type NewTaxJarConfiguration as NewTaxJarConfiguration,
+    type CustomerCreatePortalSessionResponse as CustomerCreatePortalSessionResponse,
+    type CustomerCreatePortalSessionByExternalIDResponse as CustomerCreatePortalSessionByExternalIDResponse,
     type CustomersPage as CustomersPage,
     type CustomerCreateParams as CustomerCreateParams,
     type CustomerUpdateParams as CustomerUpdateParams,
     type CustomerListParams as CustomerListParams,
+    type CustomerCreatePortalSessionParams as CustomerCreatePortalSessionParams,
+    type CustomerCreatePortalSessionByExternalIDParams as CustomerCreatePortalSessionByExternalIDParams,
     type CustomerUpdateByExternalIDParams as CustomerUpdateByExternalIDParams,
   };
 

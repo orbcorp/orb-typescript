@@ -19,11 +19,11 @@ export class ExternalPlanID extends APIResource {
    * Other fields on a plan are currently immutable.
    */
   update(
-    otherExternalPlanId: string,
+    otherExternalPlanID: string,
     body: ExternalPlanIDUpdateParams,
     options?: RequestOptions,
   ): APIPromise<PlansAPI.Plan> {
-    return this._client.put(path`/plans/external_plan_id/${otherExternalPlanId}`, { body, ...options });
+    return this._client.put(path`/plans/external_plan_id/${otherExternalPlanID}`, { body, ...options });
   }
 
   /**
@@ -44,8 +44,8 @@ export class ExternalPlanID extends APIResource {
    * that is present. A detailed explanation of price types can be found in the
    * [Price schema](/core-concepts#plan-and-price). "
    */
-  fetch(externalPlanId: string, options?: RequestOptions): APIPromise<PlansAPI.Plan> {
-    return this._client.get(path`/plans/external_plan_id/${externalPlanId}`, options);
+  fetch(externalPlanID: string, options?: RequestOptions): APIPromise<PlansAPI.Plan> {
+    return this._client.get(path`/plans/external_plan_id/${externalPlanID}`, options);
   }
 }
 

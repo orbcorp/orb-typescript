@@ -280,6 +280,28 @@ describe('resource invoices', () => {
     });
   });
 
+  test('regenerateInvoicePdf', async () => {
+    const responsePromise = client.invoices.regenerateInvoicePdf('invoice_id');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('regenerateReceiptPdf', async () => {
+    const responsePromise = client.invoices.regenerateReceiptPdf('invoice_id');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
   test('void', async () => {
     const responsePromise = client.invoices.void('invoice_id');
     const rawResponse = await responsePromise.asResponse();

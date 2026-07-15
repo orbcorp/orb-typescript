@@ -28,8 +28,8 @@ export class LicenseTypes extends APIResource {
    * Use this endpoint to retrieve details about a specific license type, including
    * its name and grouping key.
    */
-  retrieve(licenseTypeId: string, options?: RequestOptions): APIPromise<LicenseTypeRetrieveResponse> {
-    return this._client.get(path`/license_types/${licenseTypeId}`, options);
+  retrieve(licenseTypeID: string, options?: RequestOptions): APIPromise<LicenseTypeRetrieveResponse> {
+    return this._client.get(path`/license_types/${licenseTypeID}`, options);
   }
 
   /**
