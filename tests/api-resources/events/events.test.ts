@@ -77,7 +77,6 @@ describe('resource events', () => {
         },
       ],
       backfill_id: 'backfill_id',
-      debug: true,
     });
   });
 

@@ -337,8 +337,8 @@ export class Events extends APIResource {
    * ```
    */
   ingest(params: EventIngestParams, options?: RequestOptions): APIPromise<EventIngestResponse> {
-    const { backfill_id, debug, ...body } = params;
-    return this._client.post('/ingest', { query: { backfill_id, debug }, body, ...options });
+    const { backfill_id, ...body } = params;
+    return this._client.post('/ingest', { query: { backfill_id }, body, ...options });
   }
 
   /**
@@ -390,11 +390,6 @@ export interface EventIngestResponse {
    * always be empty. This field will always be present.
    */
   validation_failed: Array<EventIngestResponse.ValidationFailed>;
-
-  /**
-   * @deprecated
-   */
-  debug?: EventIngestResponse.Debug | null;
 }
 
 export namespace EventIngestResponse {
@@ -409,15 +404,6 @@ export namespace EventIngestResponse {
      * idempotency_key.
      */
     validation_errors: Array<string>;
-  }
-
-  /**
-   * @deprecated
-   */
-  export interface Debug {
-    duplicate: Array<string>;
-
-    ingested: Array<string>;
   }
 }
 
@@ -517,12 +503,6 @@ export interface EventIngestParams {
    * ties the ingested events to the backfill
    */
   backfill_id?: string | null;
-
-  /**
-   * @deprecated Query param: Pending Deprecation: Flag to enable additional debug
-   * information in the endpoint response
-   */
-  debug?: boolean;
 }
 
 export namespace EventIngestParams {
