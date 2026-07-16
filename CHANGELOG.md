@@ -1,5 +1,20 @@
 # Changelog
 
+## [6.1.0](https://github.com/orbcorp/orb-typescript/compare/v6.0.2...v6.1.0) (2026-07-16)
+
+
+### Features
+
+* **api:** add alert deletion, customer portal session, and invoice PDF regeneration endpoints ([cfc491a](https://github.com/orbcorp/orb-typescript/commit/cfc491a37179ff04887b66d94a3185d5246fcc44))
+* **api:** remove deprecated debug field from events backfill endpoints ([a73bd13](https://github.com/orbcorp/orb-typescript/commit/a73bd1383a4233d2dc2512c8865982aa2b84b99f))
+* **api:** remove deprecated debug parameter and field from backfill endpoints ([a73bd13](https://github.com/orbcorp/orb-typescript/commit/a73bd1383a4233d2dc2512c8865982aa2b84b99f))
+* **api:** remove deprecated debug query parameter and field from events API ([a73bd13](https://github.com/orbcorp/orb-typescript/commit/a73bd1383a4233d2dc2512c8865982aa2b84b99f))
+
+
+### Chores
+
+* keep the bin field clear of the release-bumped version line ([6b0e14a](https://github.com/orbcorp/orb-typescript/commit/6b0e14a74c71429c0e58e2d724edcd3f506e2160))
+
 ## [6.0.2](https://github.com/orbcorp/orb-typescript/compare/v6.0.1...v6.0.2) (2026-07-14)
 
 
