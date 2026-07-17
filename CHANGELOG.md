@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.2.0](https://github.com/orbcorp/orb-typescript/compare/v6.1.0...v6.2.0) (2026-07-17)
+
+
+### Features
+
+* **api:** allow future invoice dates (up to one year) for one-off invoice creation ([c3d716e](https://github.com/orbcorp/orb-typescript/commit/c3d716e732d37f92f4991752b38ba19d8732cd68))
+
 ## [6.1.0](https://github.com/orbcorp/orb-typescript/compare/v6.0.2...v6.1.0) (2026-07-16)
 
 
