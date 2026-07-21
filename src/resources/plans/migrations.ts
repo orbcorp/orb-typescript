@@ -63,10 +63,11 @@ export interface MigrationRetrieveResponse {
   id: string;
 
   /**
-   * When the migration takes effect. Can be a specific date/time, or 'end_of_term'
-   * when scheduled to be at the end of the current billing period.
+   * When the migration takes effect. Can be a specific date/time, 'end_of_term' when
+   * scheduled to be at the end of the current billing period, or 'end_of_invoice'
+   * when scheduled to be at the start of the next invoice.
    */
-  effective_time: (string & {}) | (string & {}) | 'end_of_term' | null;
+  effective_time: (string & {}) | (string & {}) | 'end_of_term' | 'end_of_invoice' | null;
 
   /**
    * The ID of the plan being migrated.
@@ -87,10 +88,11 @@ export interface MigrationListResponse {
   id: string;
 
   /**
-   * When the migration takes effect. Can be a specific date/time, or 'end_of_term'
-   * when scheduled to be at the end of the current billing period.
+   * When the migration takes effect. Can be a specific date/time, 'end_of_term' when
+   * scheduled to be at the end of the current billing period, or 'end_of_invoice'
+   * when scheduled to be at the start of the next invoice.
    */
-  effective_time: (string & {}) | (string & {}) | 'end_of_term' | null;
+  effective_time: (string & {}) | (string & {}) | 'end_of_term' | 'end_of_invoice' | null;
 
   /**
    * The ID of the plan being migrated.
@@ -111,10 +113,11 @@ export interface MigrationCancelResponse {
   id: string;
 
   /**
-   * When the migration takes effect. Can be a specific date/time, or 'end_of_term'
-   * when scheduled to be at the end of the current billing period.
+   * When the migration takes effect. Can be a specific date/time, 'end_of_term' when
+   * scheduled to be at the end of the current billing period, or 'end_of_invoice'
+   * when scheduled to be at the start of the next invoice.
    */
-  effective_time: (string & {}) | (string & {}) | 'end_of_term' | null;
+  effective_time: (string & {}) | (string & {}) | 'end_of_term' | 'end_of_invoice' | null;
 
   /**
    * The ID of the plan being migrated.
