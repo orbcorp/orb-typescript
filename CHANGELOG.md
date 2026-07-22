@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.3.0](https://github.com/orbcorp/orb-typescript/compare/v6.2.0...v6.3.0) (2026-07-22)
+
+
+### Features
+
+* **api:** support `end_of_invoice` effective time for plan version migrations ([c264efe](https://github.com/orbcorp/orb-typescript/commit/c264efec840c323a84c88ff81986406a798725f5))
+
 ## [6.2.0](https://github.com/orbcorp/orb-typescript/compare/v6.1.0...v6.2.0) (2026-07-17)
 
 
