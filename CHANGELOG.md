@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.4.0](https://github.com/orbcorp/orb-typescript/compare/v6.3.0...v6.4.0) (2026-07-24)
+
+
+### Features
+
+* **api:** increase max page limit for credit ledger endpoints from 500 to 1000 ([e195560](https://github.com/orbcorp/orb-typescript/commit/e195560a0f1a9f186d075074a220381fc0f4f77e))
+* **api:** support decimal quantities for fixed fee quantity transitions ([c3f3968](https://github.com/orbcorp/orb-typescript/commit/c3f3968eceda319ef8c4379e4f7877152e41cd9f))
+
 ## [6.3.0](https://github.com/orbcorp/orb-typescript/compare/v6.2.0...v6.3.0) (2026-07-22)
 
 
