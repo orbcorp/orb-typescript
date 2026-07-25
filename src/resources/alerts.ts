@@ -106,15 +106,18 @@ export class Alerts extends APIResource {
   /**
    * This endpoint is used to create alerts at the subscription level.
    *
-   * Subscription level alerts can be one of two types: `usage_exceeded` or
-   * `cost_exceeded`. A `usage_exceeded` alert is scoped to a particular metric and
-   * is triggered when the usage of that metric exceeds predefined thresholds during
-   * the current billing cycle. A `cost_exceeded` alert is triggered when the total
-   * amount due during the current billing cycle surpasses predefined thresholds.
-   * `cost_exceeded` alerts do not include burndown of pre-purchase credits. Each
+   * Subscription level alerts can be one of three types: `usage_exceeded`,
+   * `cost_exceeded`, or `spend_exceeded`. A `usage_exceeded` alert is scoped to a
+   * particular metric and is triggered when the usage of that metric exceeds
+   * predefined thresholds during the current billing cycle. A `cost_exceeded` alert
+   * is triggered when the total amount due during the current billing cycle
+   * surpasses predefined thresholds. `cost_exceeded` alerts do not include burndown
+   * of pre-purchase credits. A `spend_exceeded` alert is triggered when the rated
+   * spend (the pricing subtotal, before invoice-level adjustments and credits)
+   * denominated in the alert's currency exceeds predefined thresholds during the
+   * current billing cycle; `price_filters` can scope which prices contribute. Each
    * subscription can have one `cost_exceeded` alert and one `usage_exceeded` alert
-   * per metric that is a part of the subscription. Alerts are triggered based on
-   * usage or cost conditions met during the current billing cycle.
+   * per metric that is a part of the subscription.
    */
   createForSubscription(
     subscriptionID: string,
@@ -224,6 +227,7 @@ export interface Alert {
     | 'credit_balance_recovered'
     | 'usage_exceeded'
     | 'cost_exceeded'
+    | 'spend_exceeded'
     | 'license_balance_threshold_reached';
 
   /**
@@ -482,11 +486,11 @@ export interface AlertCreateForSubscriptionParams {
   /**
    * The type of alert to create. This must be a valid alert type.
    */
-  type: 'usage_exceeded' | 'cost_exceeded';
+  type: 'usage_exceeded' | 'cost_exceeded' | 'spend_exceeded';
 
   /**
-   * The case sensitive currency or custom pricing unit to use for grouped cost
-   * alerts. Required when grouping_keys is set.
+   * The case sensitive currency or custom pricing unit the alert is denominated in.
+   * Required for spend_exceeded alerts and when grouping_keys is set.
    */
   currency?: string | null;
 
@@ -502,9 +506,10 @@ export interface AlertCreateForSubscriptionParams {
   metric_id?: string | null;
 
   /**
-   * Filters to scope which prices are included in grouped cost alert evaluation.
-   * Supports filtering by price_id, item_id, or price_type with includes/excludes
-   * operators. Only applicable when grouping_keys is set.
+   * Filters to scope which prices are included in alert evaluation. Supports
+   * filtering by price_id, item_id, or price_type with includes/excludes operators.
+   * Only applicable to spend_exceeded alerts and to cost_exceeded alerts with
+   * grouping_keys set.
    */
   price_filters?: Array<AlertCreateForSubscriptionParams.PriceFilter> | null;
 
