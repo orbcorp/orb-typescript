@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.5.0](https://github.com/orbcorp/orb-typescript/compare/v6.4.0...v6.5.0) (2026-07-25)
+
+
+### Features
+
+* **api:** rename "trash alert" endpoint to "delete alert" ([7e3b50d](https://github.com/orbcorp/orb-typescript/commit/7e3b50dde544bee33285de67a6a715f1d1a52b60))
+
+
+### Bug Fixes
+
+* **api:** rename "trash alert" endpoint to "delete alert" ([7e3b50d](https://github.com/orbcorp/orb-typescript/commit/7e3b50dde544bee33285de67a6a715f1d1a52b60))
+
 ## [6.4.0](https://github.com/orbcorp/orb-typescript/compare/v6.3.0...v6.4.0) (2026-07-24)
 
 
