@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.6.0](https://github.com/orbcorp/orb-typescript/compare/v6.5.0...v6.6.0) (2026-07-26)
+
+
+### Features
+
+* **api:** add `spend_exceeded` alert type for subscription-level alerts ([d7c2508](https://github.com/orbcorp/orb-typescript/commit/d7c2508a509f2ee6d7990d963b7d3d51c82e0813))
+
 ## [6.5.0](https://github.com/orbcorp/orb-typescript/compare/v6.4.0...v6.5.0) (2026-07-25)
 
 
