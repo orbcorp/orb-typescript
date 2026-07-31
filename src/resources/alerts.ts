@@ -24,7 +24,10 @@ export class Alerts extends APIResource {
   }
 
   /**
-   * This endpoint updates the thresholds of an alert.
+   * This endpoint updates the thresholds of an alert. On cost alerts it also updates
+   * `price_filters`, and on subscription-scoped grouped cost alerts
+   * `threshold_overrides`; omitting either leaves it unchanged, and an empty list
+   * clears it.
    */
   update(alertConfigurationID: string, body: AlertUpdateParams, options?: RequestOptions): APIPromise<Alert> {
     return this._client.put(path`/alerts/${alertConfigurationID}`, { body, ...options });
@@ -248,7 +251,9 @@ export interface Alert {
   license_type?: Alert.LicenseType | null;
 
   /**
-   * Filters scoping which prices are included in grouped cost alert evaluation.
+   * Filters scoping which prices are included in spend and grouped cost alert
+   * evaluation. Alerts use the price_id, item_id, and price_type fields only; the
+   * alert's pricing unit is reported by currency.
    */
   price_filters?: Array<Alert.PriceFilter> | null;
 
@@ -365,8 +370,10 @@ export interface AlertUpdateParams {
   thresholds: Array<Threshold>;
 
   /**
-   * Replaces the price filters on a grouped cost alert; an empty list clears them.
-   * Only applicable to cost alerts with grouping_keys. Omit to leave unchanged.
+   * Replaces the price filters on the alert; an empty list clears them. Only
+   * applicable to spend_exceeded alerts and to cost_exceeded alerts with
+   * grouping_keys set. Alerts accept the price_id, item_id, and price_type fields
+   * only. Omit to leave unchanged.
    */
   price_filters?: Array<AlertUpdateParams.PriceFilter> | null;
 
