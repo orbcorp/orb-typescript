@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.7.0](https://github.com/orbcorp/orb-typescript/compare/v6.6.0...v6.7.0) (2026-07-31)
+
+
+### Features
+
+* **api:** add endpoint to create plan-level alerts ([a1797ee](https://github.com/orbcorp/orb-typescript/commit/a1797ee2b014d89e3c18a6002a9a76cabd2f421d))
+* **api:** add endpoint to create plan-level alerts and allow PUT updates for plan usage alert thresholds ([a1797ee](https://github.com/orbcorp/orb-typescript/commit/a1797ee2b014d89e3c18a6002a9a76cabd2f421d))
+
 ## [6.6.0](https://github.com/orbcorp/orb-typescript/compare/v6.5.0...v6.6.0) (2026-07-26)
 
 
