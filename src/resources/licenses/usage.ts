@@ -28,6 +28,9 @@ export class Usage extends APIResource {
   /**
    * Returns usage and remaining credits for a specific license over a date range.
    *
+   * Resolves the license by ID regardless of whether it is currently active, unlike
+   * the external-license-ID variant, which only resolves a currently active license.
+   *
    * Date range defaults to the current billing period if not specified.
    *
    * @example
