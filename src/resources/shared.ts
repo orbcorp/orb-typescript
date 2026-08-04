@@ -10528,6 +10528,7 @@ export type Price =
   | Price.TieredPackagePrice
   | Price.TieredWithMinimumPrice
   | Price.GroupedTieredPrice
+  | Price.GroupedTieredMatrixPrice
   | Price.TieredPackageWithMinimumPrice
   | Price.PackageWithAllocationPrice
   | Price.UnitWithPercentPrice
@@ -12134,6 +12135,190 @@ export namespace Price {
        * Configuration for a single tier
        */
       export interface Tier {
+        tier_lower_bound: string;
+
+        /**
+         * Per unit amount
+         */
+        unit_amount: string;
+      }
+    }
+
+    /**
+     * The LicenseType resource represents a type of license that can be assigned to
+     * users. License types are used during billing by grouping metrics on the
+     * configured grouping key.
+     */
+    export interface LicenseType {
+      /**
+       * The Orb-assigned unique identifier for the license type.
+       */
+      id: string;
+
+      /**
+       * The key used for grouping licenses of this type. This is typically a user
+       * identifier field.
+       */
+      grouping_key: string;
+
+      /**
+       * The name of the license type.
+       */
+      name: string;
+    }
+  }
+
+  export interface GroupedTieredMatrixPrice {
+    id: string;
+
+    billable_metric: Shared.BillableMetricTiny | null;
+
+    billing_cycle_configuration: Shared.BillingCycleConfiguration;
+
+    billing_mode: 'in_advance' | 'in_arrear';
+
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
+
+    composite_price_filters: Array<GroupedTieredMatrixPrice.CompositePriceFilter> | null;
+
+    conversion_rate: number | null;
+
+    conversion_rate_config: Shared.UnitConversionRateConfig | Shared.TieredConversionRateConfig | null;
+
+    created_at: string;
+
+    credit_allocation: Shared.Allocation | null;
+
+    currency: string;
+
+    /**
+     * @deprecated
+     */
+    discount: Shared.Discount | null;
+
+    external_price_id: string | null;
+
+    fixed_price_quantity: number | null;
+
+    /**
+     * Configuration for grouped_tiered_matrix pricing
+     */
+    grouped_tiered_matrix_config: GroupedTieredMatrixPrice.GroupedTieredMatrixConfig;
+
+    invoice_grouping_key: string | null;
+
+    invoicing_cycle_configuration: Shared.BillingCycleConfiguration | null;
+
+    /**
+     * A minimal representation of an Item containing only the essential identifying
+     * information.
+     */
+    item: Shared.ItemSlim;
+
+    /**
+     * @deprecated
+     */
+    maximum: Shared.Maximum | null;
+
+    /**
+     * @deprecated
+     */
+    maximum_amount: string | null;
+
+    /**
+     * User specified key-value pairs for the resource. If not present, this defaults
+     * to an empty dictionary. Individual keys can be removed by setting the value to
+     * `null`, and the entire metadata mapping can be cleared by setting `metadata` to
+     * `null`.
+     */
+    metadata: { [key: string]: string };
+
+    /**
+     * @deprecated
+     */
+    minimum: Shared.Minimum | null;
+
+    /**
+     * @deprecated
+     */
+    minimum_amount: string | null;
+
+    /**
+     * The pricing model type
+     */
+    model_type: 'grouped_tiered_matrix';
+
+    name: string;
+
+    plan_phase_order: number | null;
+
+    price_type: 'usage_price' | 'fixed_price' | 'composite_price';
+
+    /**
+     * The price id this price replaces. This price will take the place of the replaced
+     * price in plan version migrations.
+     */
+    replaces_price_id: string | null;
+
+    dimensional_price_configuration?: Shared.DimensionalPriceConfiguration | null;
+
+    /**
+     * The LicenseType resource represents a type of license that can be assigned to
+     * users. License types are used during billing by grouping metrics on the
+     * configured grouping key.
+     */
+    license_type?: GroupedTieredMatrixPrice.LicenseType | null;
+  }
+
+  export namespace GroupedTieredMatrixPrice {
+    export interface CompositePriceFilter {
+      /**
+       * The property of the price to filter on.
+       */
+      field: 'price_id' | 'item_id' | 'price_type' | 'currency' | 'pricing_unit_id';
+
+      /**
+       * Should prices that match the filter be included or excluded.
+       */
+      operator: 'includes' | 'excludes';
+
+      /**
+       * The IDs or values that match this filter.
+       */
+      values: Array<string>;
+    }
+
+    /**
+     * Configuration for grouped_tiered_matrix pricing
+     */
+    export interface GroupedTieredMatrixConfig {
+      /**
+       * Per unit rate for usage whose dimension value has no configured tiers
+       */
+      default_unit_amount: string;
+
+      /**
+       * The billable metric property used to group usage before tiering
+       */
+      dimension: string;
+
+      /**
+       * Graduated tiers keyed by dimension value; usage for a value is tiered only
+       * against its own rows
+       */
+      tiers: Array<GroupedTieredMatrixConfig.Tier>;
+    }
+
+    export namespace GroupedTieredMatrixConfig {
+      /**
+       * Configuration for a single tier scoped to a dimension value
+       */
+      export interface Tier {
+        /**
+         * The dimension value this tier applies to
+         */
+        dimension_value: string;
+
         tier_lower_bound: string;
 
         /**
