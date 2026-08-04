@@ -1,5 +1,19 @@
 # Changelog
 
+## [6.9.0](https://github.com/orbcorp/orb-typescript/compare/v6.8.0...v6.9.0) (2026-08-04)
+
+
+### Features
+
+* **api:** api update ([5db204a](https://github.com/orbcorp/orb-typescript/commit/5db204a08d97ba6755774a8bc0f814ac664a154b))
+* **api:** api update ([5db204a](https://github.com/orbcorp/orb-typescript/commit/5db204a08d97ba6755774a8bc0f814ac664a154b))
+* **api:** api update ([5db204a](https://github.com/orbcorp/orb-typescript/commit/5db204a08d97ba6755774a8bc0f814ac664a154b))
+
+
+### Bug Fixes
+
+* **api:** correct next_attempt_at accuracy in invoice auto-collection response ([5db204a](https://github.com/orbcorp/orb-typescript/commit/5db204a08d97ba6755774a8bc0f814ac664a154b))
+
 ## [6.8.0](https://github.com/orbcorp/orb-typescript/compare/v6.7.0...v6.8.0) (2026-08-01)
 
 
