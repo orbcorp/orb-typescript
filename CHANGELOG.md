@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.10.0](https://github.com/orbcorp/orb-typescript/compare/v6.9.0...v6.10.0) (2026-08-05)
+
+
+### Features
+
+* **api:** add `grouped_tiered_matrix` price model for per-dimension tiered rates ([c9fbcfe](https://github.com/orbcorp/orb-typescript/commit/c9fbcfe1ce9400a9b643e3627fb01077bee3a438))
+
 ## [6.9.0](https://github.com/orbcorp/orb-typescript/compare/v6.8.0...v6.9.0) (2026-08-04)
 
 
