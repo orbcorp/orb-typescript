@@ -1327,7 +1327,11 @@ export interface NewSubscriptionBulkPrice {
   invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
   /**
-   * The ID of the license type to associate with this price.
+   * The ID of the license type to associate with this price. On a usage price this
+   * also marks the price as eligible to draw down from that license type's
+   * allocation; a usage price created without it is billed normally. Usage prices
+   * with a license type must use the `unit` model, and only draw down when their
+   * currency matches the allocation's.
    */
   license_type_id?: string | null;
 
@@ -1433,7 +1437,11 @@ export interface NewSubscriptionBulkWithProrationPrice {
   invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
   /**
-   * The ID of the license type to associate with this price.
+   * The ID of the license type to associate with this price. On a usage price this
+   * also marks the price as eligible to draw down from that license type's
+   * allocation; a usage price created without it is billed normally. Usage prices
+   * with a license type must use the `unit` model, and only draw down when their
+   * currency matches the allocation's.
    */
   license_type_id?: string | null;
 
@@ -1568,7 +1576,11 @@ export interface NewSubscriptionCumulativeGroupedBulkPrice {
   invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
   /**
-   * The ID of the license type to associate with this price.
+   * The ID of the license type to associate with this price. On a usage price this
+   * also marks the price as eligible to draw down from that license type's
+   * allocation; a usage price created without it is billed normally. Usage prices
+   * with a license type must use the `unit` model, and only draw down when their
+   * currency matches the allocation's.
    */
   license_type_id?: string | null;
 
@@ -1710,7 +1722,11 @@ export interface NewSubscriptionGroupedAllocationPrice {
   invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
   /**
-   * The ID of the license type to associate with this price.
+   * The ID of the license type to associate with this price. On a usage price this
+   * also marks the price as eligible to draw down from that license type's
+   * allocation; a usage price created without it is billed normally. Usage prices
+   * with a license type must use the `unit` model, and only draw down when their
+   * currency matches the allocation's.
    */
   license_type_id?: string | null;
 
@@ -1838,7 +1854,11 @@ export interface NewSubscriptionGroupedTieredPackagePrice {
   invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
   /**
-   * The ID of the license type to associate with this price.
+   * The ID of the license type to associate with this price. On a usage price this
+   * also marks the price as eligible to draw down from that license type's
+   * allocation; a usage price created without it is billed normally. Usage prices
+   * with a license type must use the `unit` model, and only draw down when their
+   * currency matches the allocation's.
    */
   license_type_id?: string | null;
 
@@ -1978,7 +1998,11 @@ export interface NewSubscriptionGroupedTieredPrice {
   invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
   /**
-   * The ID of the license type to associate with this price.
+   * The ID of the license type to associate with this price. On a usage price this
+   * also marks the price as eligible to draw down from that license type's
+   * allocation; a usage price created without it is billed normally. Usage prices
+   * with a license type must use the `unit` model, and only draw down when their
+   * currency matches the allocation's.
    */
   license_type_id?: string | null;
 
@@ -2116,7 +2140,11 @@ export interface NewSubscriptionGroupedWithMeteredMinimumPrice {
   invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
   /**
-   * The ID of the license type to associate with this price.
+   * The ID of the license type to associate with this price. On a usage price this
+   * also marks the price as eligible to draw down from that license type's
+   * allocation; a usage price created without it is billed normally. Usage prices
+   * with a license type must use the `unit` model, and only draw down when their
+   * currency matches the allocation's.
    */
   license_type_id?: string | null;
 
@@ -2284,7 +2312,11 @@ export interface NewSubscriptionGroupedWithProratedMinimumPrice {
   invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
   /**
-   * The ID of the license type to associate with this price.
+   * The ID of the license type to associate with this price. On a usage price this
+   * also marks the price as eligible to draw down from that license type's
+   * allocation; a usage price created without it is billed normally. Usage prices
+   * with a license type must use the `unit` model, and only draw down when their
+   * currency matches the allocation's.
    */
   license_type_id?: string | null;
 
@@ -2412,7 +2444,11 @@ export interface NewSubscriptionMatrixPrice {
   invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
   /**
-   * The ID of the license type to associate with this price.
+   * The ID of the license type to associate with this price. On a usage price this
+   * also marks the price as eligible to draw down from that license type's
+   * allocation; a usage price created without it is billed normally. Usage prices
+   * with a license type must use the `unit` model, and only draw down when their
+   * currency matches the allocation's.
    */
   license_type_id?: string | null;
 
@@ -2518,7 +2554,11 @@ export interface NewSubscriptionMatrixWithAllocationPrice {
   invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
   /**
-   * The ID of the license type to associate with this price.
+   * The ID of the license type to associate with this price. On a usage price this
+   * also marks the price as eligible to draw down from that license type's
+   * allocation; a usage price created without it is billed normally. Usage prices
+   * with a license type must use the `unit` model, and only draw down when their
+   * currency matches the allocation's.
    */
   license_type_id?: string | null;
 
@@ -2624,7 +2664,11 @@ export interface NewSubscriptionMatrixWithDisplayNamePrice {
   invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
   /**
-   * The ID of the license type to associate with this price.
+   * The ID of the license type to associate with this price. On a usage price this
+   * also marks the price as eligible to draw down from that license type's
+   * allocation; a usage price created without it is billed normally. Usage prices
+   * with a license type must use the `unit` model, and only draw down when their
+   * currency matches the allocation's.
    */
   license_type_id?: string | null;
 
@@ -2769,7 +2813,11 @@ export interface NewSubscriptionMaxGroupTieredPackagePrice {
   invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
   /**
-   * The ID of the license type to associate with this price.
+   * The ID of the license type to associate with this price. On a usage price this
+   * also marks the price as eligible to draw down from that license type's
+   * allocation; a usage price created without it is billed normally. Usage prices
+   * with a license type must use the `unit` model, and only draw down when their
+   * currency matches the allocation's.
    */
   license_type_id?: string | null;
 
@@ -2908,7 +2956,11 @@ export interface NewSubscriptionMinimumCompositePrice {
   invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
   /**
-   * The ID of the license type to associate with this price.
+   * The ID of the license type to associate with this price. On a usage price this
+   * also marks the price as eligible to draw down from that license type's
+   * allocation; a usage price created without it is billed normally. Usage prices
+   * with a license type must use the `unit` model, and only draw down when their
+   * currency matches the allocation's.
    */
   license_type_id?: string | null;
 
@@ -3031,7 +3083,11 @@ export interface NewSubscriptionPackagePrice {
   invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
   /**
-   * The ID of the license type to associate with this price.
+   * The ID of the license type to associate with this price. On a usage price this
+   * also marks the price as eligible to draw down from that license type's
+   * allocation; a usage price created without it is billed normally. Usage prices
+   * with a license type must use the `unit` model, and only draw down when their
+   * currency matches the allocation's.
    */
   license_type_id?: string | null;
 
@@ -3137,7 +3193,11 @@ export interface NewSubscriptionPackageWithAllocationPrice {
   invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
   /**
-   * The ID of the license type to associate with this price.
+   * The ID of the license type to associate with this price. On a usage price this
+   * also marks the price as eligible to draw down from that license type's
+   * allocation; a usage price created without it is billed normally. Usage prices
+   * with a license type must use the `unit` model, and only draw down when their
+   * currency matches the allocation's.
    */
   license_type_id?: string | null;
 
@@ -3256,7 +3316,11 @@ export interface NewSubscriptionScalableMatrixWithTieredPricingPrice {
   invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
   /**
-   * The ID of the license type to associate with this price.
+   * The ID of the license type to associate with this price. On a usage price this
+   * also marks the price as eligible to draw down from that license type's
+   * allocation; a usage price created without it is billed normally. Usage prices
+   * with a license type must use the `unit` model, and only draw down when their
+   * currency matches the allocation's.
    */
   license_type_id?: string | null;
 
@@ -3408,7 +3472,11 @@ export interface NewSubscriptionScalableMatrixWithUnitPricingPrice {
   invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
   /**
-   * The ID of the license type to associate with this price.
+   * The ID of the license type to associate with this price. On a usage price this
+   * also marks the price as eligible to draw down from that license type's
+   * allocation; a usage price created without it is billed normally. Usage prices
+   * with a license type must use the `unit` model, and only draw down when their
+   * currency matches the allocation's.
    */
   license_type_id?: string | null;
 
@@ -3564,7 +3632,11 @@ export interface NewSubscriptionThresholdTotalAmountPrice {
   invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
   /**
-   * The ID of the license type to associate with this price.
+   * The ID of the license type to associate with this price. On a usage price this
+   * also marks the price as eligible to draw down from that license type's
+   * allocation; a usage price created without it is billed normally. Usage prices
+   * with a license type must use the `unit` model, and only draw down when their
+   * currency matches the allocation's.
    */
   license_type_id?: string | null;
 
@@ -3702,7 +3774,11 @@ export interface NewSubscriptionTieredPackagePrice {
   invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
   /**
-   * The ID of the license type to associate with this price.
+   * The ID of the license type to associate with this price. On a usage price this
+   * also marks the price as eligible to draw down from that license type's
+   * allocation; a usage price created without it is billed normally. Usage prices
+   * with a license type must use the `unit` model, and only draw down when their
+   * currency matches the allocation's.
    */
   license_type_id?: string | null;
 
@@ -3839,7 +3915,11 @@ export interface NewSubscriptionTieredPackageWithMinimumPrice {
   invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
   /**
-   * The ID of the license type to associate with this price.
+   * The ID of the license type to associate with this price. On a usage price this
+   * also marks the price as eligible to draw down from that license type's
+   * allocation; a usage price created without it is billed normally. Usage prices
+   * with a license type must use the `unit` model, and only draw down when their
+   * currency matches the allocation's.
    */
   license_type_id?: string | null;
 
@@ -3973,7 +4053,11 @@ export interface NewSubscriptionTieredPrice {
   invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
   /**
-   * The ID of the license type to associate with this price.
+   * The ID of the license type to associate with this price. On a usage price this
+   * also marks the price as eligible to draw down from that license type's
+   * allocation; a usage price created without it is billed normally. Usage prices
+   * with a license type must use the `unit` model, and only draw down when their
+   * currency matches the allocation's.
    */
   license_type_id?: string | null;
 
@@ -4079,7 +4163,11 @@ export interface NewSubscriptionTieredWithMinimumPrice {
   invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
   /**
-   * The ID of the license type to associate with this price.
+   * The ID of the license type to associate with this price. On a usage price this
+   * also marks the price as eligible to draw down from that license type's
+   * allocation; a usage price created without it is billed normally. Usage prices
+   * with a license type must use the `unit` model, and only draw down when their
+   * currency matches the allocation's.
    */
   license_type_id?: string | null;
 
@@ -4224,7 +4312,11 @@ export interface NewSubscriptionUnitPrice {
   invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
   /**
-   * The ID of the license type to associate with this price.
+   * The ID of the license type to associate with this price. On a usage price this
+   * also marks the price as eligible to draw down from that license type's
+   * allocation; a usage price created without it is billed normally. Usage prices
+   * with a license type must use the `unit` model, and only draw down when their
+   * currency matches the allocation's.
    */
   license_type_id?: string | null;
 
@@ -4330,7 +4422,11 @@ export interface NewSubscriptionUnitWithPercentPrice {
   invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
   /**
-   * The ID of the license type to associate with this price.
+   * The ID of the license type to associate with this price. On a usage price this
+   * also marks the price as eligible to draw down from that license type's
+   * allocation; a usage price created without it is billed normally. Usage prices
+   * with a license type must use the `unit` model, and only draw down when their
+   * currency matches the allocation's.
    */
   license_type_id?: string | null;
 
@@ -4453,7 +4549,11 @@ export interface NewSubscriptionUnitWithProrationPrice {
   invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
   /**
-   * The ID of the license type to associate with this price.
+   * The ID of the license type to associate with this price. On a usage price this
+   * also marks the price as eligible to draw down from that license type's
+   * allocation; a usage price created without it is billed normally. Usage prices
+   * with a license type must use the `unit` model, and only draw down when their
+   * currency matches the allocation's.
    */
   license_type_id?: string | null;
 
@@ -5350,7 +5450,11 @@ export namespace SubscriptionCreateParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -5505,7 +5609,11 @@ export namespace SubscriptionCreateParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -5653,7 +5761,11 @@ export namespace SubscriptionCreateParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -5822,7 +5934,11 @@ export namespace SubscriptionCreateParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -5958,7 +6074,11 @@ export namespace SubscriptionCreateParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -6091,7 +6211,11 @@ export namespace SubscriptionCreateParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -6224,7 +6348,11 @@ export namespace SubscriptionCreateParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -6383,7 +6511,11 @@ export namespace SubscriptionCreateParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -6531,7 +6663,11 @@ export namespace SubscriptionCreateParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -6666,7 +6802,11 @@ export namespace SubscriptionCreateParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -7008,7 +7148,11 @@ export namespace SubscriptionCreateParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -7163,7 +7307,11 @@ export namespace SubscriptionCreateParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -7311,7 +7459,11 @@ export namespace SubscriptionCreateParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -7480,7 +7632,11 @@ export namespace SubscriptionCreateParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -7616,7 +7772,11 @@ export namespace SubscriptionCreateParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -7749,7 +7909,11 @@ export namespace SubscriptionCreateParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -7882,7 +8046,11 @@ export namespace SubscriptionCreateParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -8041,7 +8209,11 @@ export namespace SubscriptionCreateParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -8189,7 +8361,11 @@ export namespace SubscriptionCreateParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -8324,7 +8500,11 @@ export namespace SubscriptionCreateParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -8826,7 +9006,11 @@ export namespace SubscriptionPriceIntervalsParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -8974,7 +9158,11 @@ export namespace SubscriptionPriceIntervalsParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -9115,7 +9303,11 @@ export namespace SubscriptionPriceIntervalsParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -9277,7 +9469,11 @@ export namespace SubscriptionPriceIntervalsParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -9403,7 +9599,11 @@ export namespace SubscriptionPriceIntervalsParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -9529,7 +9729,11 @@ export namespace SubscriptionPriceIntervalsParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -9681,7 +9885,11 @@ export namespace SubscriptionPriceIntervalsParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -9822,7 +10030,11 @@ export namespace SubscriptionPriceIntervalsParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -9950,7 +10162,11 @@ export namespace SubscriptionPriceIntervalsParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -10700,7 +10916,11 @@ export namespace SubscriptionSchedulePlanChangeParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -10855,7 +11075,11 @@ export namespace SubscriptionSchedulePlanChangeParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -11003,7 +11227,11 @@ export namespace SubscriptionSchedulePlanChangeParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -11172,7 +11400,11 @@ export namespace SubscriptionSchedulePlanChangeParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -11308,7 +11540,11 @@ export namespace SubscriptionSchedulePlanChangeParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -11441,7 +11677,11 @@ export namespace SubscriptionSchedulePlanChangeParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -11574,7 +11814,11 @@ export namespace SubscriptionSchedulePlanChangeParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -11733,7 +11977,11 @@ export namespace SubscriptionSchedulePlanChangeParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -11881,7 +12129,11 @@ export namespace SubscriptionSchedulePlanChangeParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -12016,7 +12268,11 @@ export namespace SubscriptionSchedulePlanChangeParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -12358,7 +12614,11 @@ export namespace SubscriptionSchedulePlanChangeParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -12513,7 +12773,11 @@ export namespace SubscriptionSchedulePlanChangeParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -12661,7 +12925,11 @@ export namespace SubscriptionSchedulePlanChangeParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -12830,7 +13098,11 @@ export namespace SubscriptionSchedulePlanChangeParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -12966,7 +13238,11 @@ export namespace SubscriptionSchedulePlanChangeParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -13099,7 +13375,11 @@ export namespace SubscriptionSchedulePlanChangeParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -13232,7 +13512,11 @@ export namespace SubscriptionSchedulePlanChangeParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -13391,7 +13675,11 @@ export namespace SubscriptionSchedulePlanChangeParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -13539,7 +13827,11 @@ export namespace SubscriptionSchedulePlanChangeParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
@@ -13674,7 +13966,11 @@ export namespace SubscriptionSchedulePlanChangeParams {
       invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
 
       /**
-       * The ID of the license type to associate with this price.
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
        */
       license_type_id?: string | null;
 
