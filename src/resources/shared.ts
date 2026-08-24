@@ -2595,6 +2595,12 @@ export interface MatrixConfig {
    * Matrix values configuration
    */
   matrix_values: Array<MatrixValue>;
+
+  /**
+   * @deprecated Optional multiplier applied to default-bucket quantity before
+   * default_unit_amount.
+   */
+  scaling_factor?: number | null;
 }
 
 export interface MatrixSubLineItem {
@@ -2632,6 +2638,11 @@ export interface MatrixValue {
    * Unit price for the specified dimension_values
    */
   unit_amount: string;
+
+  /**
+   * @deprecated Optional multiplier applied to rated quantity before unit_amount.
+   */
+  scaling_factor?: number | null;
 }
 
 /**
@@ -2657,6 +2668,12 @@ export interface MatrixWithAllocationConfig {
    * Matrix values configuration
    */
   matrix_values: Array<MatrixWithAllocationConfig.MatrixValue>;
+
+  /**
+   * @deprecated Optional multiplier applied to default-bucket quantity before
+   * default_unit_amount.
+   */
+  scaling_factor?: string | null;
 }
 
 export namespace MatrixWithAllocationConfig {
@@ -2675,6 +2692,11 @@ export namespace MatrixWithAllocationConfig {
      * Unit price for the specified dimension_values
      */
     unit_amount: string;
+
+    /**
+     * @deprecated Optional multiplier applied to rated quantity before unit_amount.
+     */
+    scaling_factor?: string | null;
   }
 }
 
@@ -16980,6 +17002,11 @@ export interface UnitConfig {
    * If true, subtotals from this price are prorated based on the service period
    */
   prorated?: boolean;
+
+  /**
+   * @deprecated Optional multiplier applied to rated quantity before unit_amount.
+   */
+  scaling_factor?: number | null;
 }
 
 export interface UnitConversionRateConfig {

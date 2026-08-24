@@ -59,7 +59,11 @@ describe('resource plans', () => {
             ],
             model_type: 'unit',
             name: 'Annual fee',
-            unit_config: { unit_amount: 'unit_amount', prorated: true },
+            unit_config: {
+              unit_amount: 'unit_amount',
+              prorated: true,
+              scaling_factor: 0,
+            },
             billable_metric_id: 'billable_metric_id',
             billed_in_advance: true,
             billing_cycle_configuration: { duration: 0, duration_unit: 'day' },
@@ -70,7 +74,7 @@ describe('resource plans', () => {
             },
             currency: 'currency',
             dimensional_price_configuration: {
-              dimension_values: ['string'],
+              dimension_values: ['x'],
               dimensional_price_group_id: 'dimensional_price_group_id',
               external_dimensional_price_group_id: 'external_dimensional_price_group_id',
             },
@@ -88,7 +92,11 @@ describe('resource plans', () => {
             item_id: 'item_id',
             model_type: 'unit',
             name: 'Annual fee',
-            unit_config: { unit_amount: 'unit_amount', prorated: true },
+            unit_config: {
+              unit_amount: 'unit_amount',
+              prorated: true,
+              scaling_factor: 0,
+            },
             billable_metric_id: 'billable_metric_id',
             billed_in_advance: true,
             billing_cycle_configuration: { duration: 0, duration_unit: 'day' },
@@ -99,7 +107,7 @@ describe('resource plans', () => {
             },
             currency: 'currency',
             dimensional_price_configuration: {
-              dimension_values: ['string'],
+              dimension_values: ['x'],
               dimensional_price_group_id: 'dimensional_price_group_id',
               external_dimensional_price_group_id: 'external_dimensional_price_group_id',
             },
