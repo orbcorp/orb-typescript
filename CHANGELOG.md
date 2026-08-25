@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.13.0](https://github.com/orbcorp/orb-typescript/compare/v6.12.0...v6.13.0) (2026-08-25)
+
+
+### Features
+
+* **api:** restore deprecated `scaling_factor` field on unit and matrix price configs ([b013fea](https://github.com/orbcorp/orb-typescript/commit/b013fea291a3a9e05b44b01cac9793ef7b0b12bd))
+
+
+### Bug Fixes
+
+* **api:** reject empty or missing dimension values in dimensional price configuration ([b013fea](https://github.com/orbcorp/orb-typescript/commit/b013fea291a3a9e05b44b01cac9793ef7b0b12bd))
+
 ## [6.12.0](https://github.com/orbcorp/orb-typescript/compare/v6.11.0...v6.12.0) (2026-08-19)
 
 
