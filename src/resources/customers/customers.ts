@@ -236,9 +236,9 @@ export interface AccountingProviderConfig {
 }
 
 export interface AddressInput {
-  city?: string | null;
+  country: string;
 
-  country?: string | null;
+  city?: string | null;
 
   line1?: string | null;
 

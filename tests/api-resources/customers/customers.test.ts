@@ -31,8 +31,8 @@ describe('resource customers', () => {
       auto_collection: true,
       auto_issuance: true,
       billing_address: {
+        country: 'x',
         city: 'city',
-        country: 'country',
         line1: 'line1',
         line2: 'line2',
         postal_code: 'postal_code',
@@ -56,8 +56,8 @@ describe('resource customers', () => {
       payment_provider_id: 'payment_provider_id',
       reporting_configuration: { exempt: true },
       shipping_address: {
+        country: 'x',
         city: 'city',
-        country: 'country',
         line1: 'line1',
         line2: 'line2',
         postal_code: 'postal_code',
