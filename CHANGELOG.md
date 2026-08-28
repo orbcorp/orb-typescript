@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.13.1](https://github.com/orbcorp/orb-typescript/compare/v6.13.0...v6.13.1) (2026-08-28)
+
+
+### Bug Fixes
+
+* **api:** require non-empty `country` in customer address input ([e033503](https://github.com/orbcorp/orb-typescript/commit/e033503d97da0c32216a7a4d5e360e65e938c14a))
+
 ## [6.13.0](https://github.com/orbcorp/orb-typescript/compare/v6.12.0...v6.13.0) (2026-08-25)
 
 
