@@ -338,8 +338,8 @@ export namespace Alert {
    */
   export interface ThresholdOverride {
     /**
-     * The values of the grouping keys that identify this group. The list length
-     * matches the alert's grouping_keys.
+     * The values identifying this group, ordered to match group_keys when set and the
+     * alert's grouping_keys otherwise.
      */
     group_values: Array<string>;
 
@@ -347,6 +347,12 @@ export namespace Alert {
      * The thresholds applied to this group. An empty list means the group is silenced.
      */
     thresholds: Array<AlertsAPI.Threshold>;
+
+    /**
+     * The subset of the alert's grouping_keys this override binds. Null when the
+     * override targets one exact group across every grouping key.
+     */
+    group_keys?: Array<string> | null;
   }
 }
 
@@ -412,8 +418,8 @@ export namespace AlertUpdateParams {
   export interface ThresholdOverride {
     /**
      * The values of the grouping keys that identify this group. The list length must
-     * match the alert's grouping_keys, and values appear in the same order as
-     * grouping_keys.
+     * match group_keys when it is set, and the alert's grouping_keys otherwise, with
+     * values in the same order as whichever applies.
      */
     group_values: Array<string>;
 
@@ -422,6 +428,14 @@ export namespace AlertUpdateParams {
      * group. A non-empty list fully replaces the default thresholds for this group.
      */
     thresholds: Array<AlertsAPI.Threshold>;
+
+    /**
+     * The subset of the alert's grouping_keys that this override binds. Any grouping
+     * key not named is unconstrained, so the override applies to every group matching
+     * the named values. When omitted, group_values must cover every grouping key in
+     * order.
+     */
+    group_keys?: Array<string> | null;
   }
 }
 
@@ -557,8 +571,8 @@ export namespace AlertCreateForSubscriptionParams {
   export interface ThresholdOverride {
     /**
      * The values of the grouping keys that identify this group. The list length must
-     * match the alert's grouping_keys, and values appear in the same order as
-     * grouping_keys.
+     * match group_keys when it is set, and the alert's grouping_keys otherwise, with
+     * values in the same order as whichever applies.
      */
     group_values: Array<string>;
 
@@ -567,6 +581,14 @@ export namespace AlertCreateForSubscriptionParams {
      * group. A non-empty list fully replaces the default thresholds for this group.
      */
     thresholds: Array<AlertsAPI.Threshold>;
+
+    /**
+     * The subset of the alert's grouping_keys that this override binds. Any grouping
+     * key not named is unconstrained, so the override applies to every group matching
+     * the named values. When omitted, group_values must cover every grouping key in
+     * order.
+     */
+    group_keys?: Array<string> | null;
   }
 }
 

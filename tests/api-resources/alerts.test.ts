@@ -40,7 +40,13 @@ describe('resource alerts', () => {
           values: ['string'],
         },
       ],
-      threshold_overrides: [{ group_values: ['string'], thresholds: [{ value: 0 }] }],
+      threshold_overrides: [
+        {
+          group_values: ['string'],
+          thresholds: [{ value: 0 }],
+          group_keys: ['string'],
+        },
+      ],
     });
   });
 
@@ -160,7 +166,13 @@ describe('resource alerts', () => {
           values: ['string'],
         },
       ],
-      threshold_overrides: [{ group_values: ['string'], thresholds: [{ value: 0 }] }],
+      threshold_overrides: [
+        {
+          group_values: ['string'],
+          thresholds: [{ value: 0 }],
+          group_keys: ['string'],
+        },
+      ],
     });
   });
 
