@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.14.0](https://github.com/orbcorp/orb-typescript/compare/v6.13.1...v6.14.0) (2026-09-03)
+
+
+### Features
+
+* **api:** support partial grouping key targeting in alert threshold overrides ([49da766](https://github.com/orbcorp/orb-typescript/commit/49da766416f111868b65ffb20df0ddfc7eef1ab0))
+
 ## [6.13.1](https://github.com/orbcorp/orb-typescript/compare/v6.13.0...v6.13.1) (2026-08-28)
 
 
