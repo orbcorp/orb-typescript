@@ -44,7 +44,10 @@ export class DimensionalPriceGroups extends APIResource {
   }
 
   /**
-   * Fetch dimensional price group
+   * This endpoint returns a dimensional price group identified by its ID. A
+   * dimensional price group partitions the result of a billable metric by a set of
+   * dimensions, and the prices in the group specify which partition their usage is
+   * derived from.
    *
    * @example
    * ```ts
@@ -80,7 +83,13 @@ export class DimensionalPriceGroups extends APIResource {
   }
 
   /**
-   * List dimensional price groups
+   * This endpoint returns a list of all dimensional price groups for an account. A
+   * dimensional price group partitions the result of a billable metric by a set of
+   * dimensions, and the prices in the group specify which partition their usage is
+   * derived from.
+   *
+   * The response also includes pagination_metadata, which lets the caller retrieve
+   * the next page of results if they exist.
    *
    * @example
    * ```ts

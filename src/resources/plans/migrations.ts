@@ -13,7 +13,9 @@ import { path } from '../../internal/utils/path';
  */
 export class Migrations extends APIResource {
   /**
-   * Fetch migration
+   * This endpoint returns a migration for a plan, identified by its ID. A migration
+   * moves a plan's subscriptions onto a new version of that plan; the response
+   * reports the effective time it is scheduled for and its current status.
    */
   retrieve(
     migrationID: string,

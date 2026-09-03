@@ -29,7 +29,13 @@ export class TopUps extends APIResource {
   }
 
   /**
-   * List top-ups
+   * This endpoint returns a list of a customer's active top-ups; a top-up that has
+   * been deactivated is not included. While a top-up is active, the customer's
+   * balance is increased by the top-up amount whenever it falls to the top-up's
+   * threshold.
+   *
+   * The response also includes pagination_metadata, which lets the caller retrieve
+   * the next page of results if they exist.
    */
   list(
     customerID: string,
@@ -91,7 +97,13 @@ export class TopUps extends APIResource {
   }
 
   /**
-   * List top-ups by external ID
+   * This endpoint returns a list of a customer's active top-ups; a top-up that has
+   * been deactivated is not included. While a top-up is active, the customer's
+   * balance is increased by the top-up amount whenever it falls to the top-up's
+   * threshold.
+   *
+   * The response also includes pagination_metadata, which lets the caller retrieve
+   * the next page of results if they exist.
    */
   listByExternalID(
     externalCustomerID: string,
