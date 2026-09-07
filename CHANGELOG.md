@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.16.0](https://github.com/orbcorp/orb-typescript/compare/v6.15.0...v6.16.0) (2026-09-07)
+
+
+### Features
+
+* **api:** add `tiered_matrix_with_allocation` price model ([8cc1e3b](https://github.com/orbcorp/orb-typescript/commit/8cc1e3b74ee183c978d06100e9a2ac028cf04016))
+
 ## [6.15.0](https://github.com/orbcorp/orb-typescript/compare/v6.14.0...v6.15.0) (2026-09-04)
 
 
