@@ -10759,6 +10759,7 @@ export type Price =
   | Price.PackageWithAllocationPrice
   | Price.UnitWithPercentPrice
   | Price.MatrixWithAllocationPrice
+  | Price.TieredMatrixWithAllocationPrice
   | Price.MatrixWithThresholdDiscountsPrice
   | Price.TieredWithProrationPrice
   | Price.UnitWithProrationPrice
@@ -13180,6 +13181,199 @@ export namespace Price {
        * The IDs or values that match this filter.
        */
       values: Array<string>;
+    }
+
+    /**
+     * The LicenseType resource represents a type of license that can be assigned to
+     * users. License types are used during billing by grouping metrics on the
+     * configured grouping key.
+     */
+    export interface LicenseType {
+      /**
+       * The Orb-assigned unique identifier for the license type.
+       */
+      id: string;
+
+      /**
+       * The key used for grouping licenses of this type. This is typically a user
+       * identifier field.
+       */
+      grouping_key: string;
+
+      /**
+       * The name of the license type.
+       */
+      name: string;
+    }
+  }
+
+  export interface TieredMatrixWithAllocationPrice {
+    id: string;
+
+    billable_metric: Shared.BillableMetricTiny | null;
+
+    billing_cycle_configuration: Shared.BillingCycleConfiguration;
+
+    billing_mode: 'in_advance' | 'in_arrear';
+
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
+
+    composite_price_filters: Array<TieredMatrixWithAllocationPrice.CompositePriceFilter> | null;
+
+    conversion_rate: number | null;
+
+    conversion_rate_config: Shared.UnitConversionRateConfig | Shared.TieredConversionRateConfig | null;
+
+    created_at: string;
+
+    credit_allocation: Shared.Allocation | null;
+
+    currency: string;
+
+    /**
+     * @deprecated
+     */
+    discount: Shared.Discount | null;
+
+    external_price_id: string | null;
+
+    fixed_price_quantity: number | null;
+
+    invoice_grouping_key: string | null;
+
+    invoicing_cycle_configuration: Shared.BillingCycleConfiguration | null;
+
+    /**
+     * A minimal representation of an Item containing only the essential identifying
+     * information.
+     */
+    item: Shared.ItemSlim;
+
+    /**
+     * @deprecated
+     */
+    maximum: Shared.Maximum | null;
+
+    /**
+     * @deprecated
+     */
+    maximum_amount: string | null;
+
+    /**
+     * User specified key-value pairs for the resource. If not present, this defaults
+     * to an empty dictionary. Individual keys can be removed by setting the value to
+     * `null`, and the entire metadata mapping can be cleared by setting `metadata` to
+     * `null`.
+     */
+    metadata: { [key: string]: string };
+
+    /**
+     * @deprecated
+     */
+    minimum: Shared.Minimum | null;
+
+    /**
+     * @deprecated
+     */
+    minimum_amount: string | null;
+
+    /**
+     * The pricing model type
+     */
+    model_type: 'tiered_matrix_with_allocation';
+
+    name: string;
+
+    plan_phase_order: number | null;
+
+    price_type: 'usage_price' | 'fixed_price' | 'composite_price';
+
+    /**
+     * The price id this price replaces. This price will take the place of the replaced
+     * price in plan version migrations.
+     */
+    replaces_price_id: string | null;
+
+    /**
+     * Configuration for tiered_matrix_with_allocation pricing
+     */
+    tiered_matrix_with_allocation_config: TieredMatrixWithAllocationPrice.TieredMatrixWithAllocationConfig;
+
+    dimensional_price_configuration?: Shared.DimensionalPriceConfiguration | null;
+
+    /**
+     * The LicenseType resource represents a type of license that can be assigned to
+     * users. License types are used during billing by grouping metrics on the
+     * configured grouping key.
+     */
+    license_type?: TieredMatrixWithAllocationPrice.LicenseType | null;
+  }
+
+  export namespace TieredMatrixWithAllocationPrice {
+    export interface CompositePriceFilter {
+      /**
+       * The property of the price to filter on.
+       */
+      field: 'price_id' | 'item_id' | 'price_type' | 'currency' | 'pricing_unit_id';
+
+      /**
+       * Should prices that match the filter be included or excluded.
+       */
+      operator: 'includes' | 'excludes';
+
+      /**
+       * The IDs or values that match this filter.
+       */
+      values: Array<string>;
+    }
+
+    /**
+     * Configuration for tiered_matrix_with_allocation pricing
+     */
+    export interface TieredMatrixWithAllocationConfig {
+      /**
+       * Usage allocation, pooled across all matrix cells
+       */
+      allocation: string;
+
+      /**
+       * Per unit rate for usage whose matrix cell has no configured tiers
+       */
+      default_unit_amount: string;
+
+      /**
+       * One or two event property values to evaluate matrix cells by
+       */
+      dimensions: Array<string>;
+
+      /**
+       * Graduated tiers keyed by matrix cell; usage in a cell is tiered only against its
+       * own rows
+       */
+      tiers: Array<TieredMatrixWithAllocationConfig.Tier>;
+    }
+
+    export namespace TieredMatrixWithAllocationConfig {
+      /**
+       * Configuration for a single tier scoped to one matrix cell
+       */
+      export interface Tier {
+        /**
+         * The matrix cell this tier applies to, as one or two dimension values
+         */
+        dimension_values: Array<string>;
+
+        /**
+         * Exclusive tier starting value. The tier runs up to and including the next bound
+         * configured for the same matrix cell.
+         */
+        tier_lower_bound: string;
+
+        /**
+         * Per unit amount
+         */
+        unit_amount: string;
+      }
     }
 
     /**

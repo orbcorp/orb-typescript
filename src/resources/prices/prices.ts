@@ -324,6 +324,7 @@ export type PriceCreateParams =
   | PriceCreateParams.NewFloatingPackageWithAllocationPrice
   | PriceCreateParams.NewFloatingUnitWithPercentPrice
   | PriceCreateParams.NewFloatingMatrixWithAllocationPrice
+  | PriceCreateParams.NewFloatingTieredMatrixWithAllocationPrice
   | PriceCreateParams.NewFloatingMatrixWithThresholdDiscountsPrice
   | PriceCreateParams.NewFloatingTieredWithProrationPrice
   | PriceCreateParams.NewFloatingUnitWithProrationPrice
@@ -2172,6 +2173,160 @@ export declare namespace PriceCreateParams {
      * by setting `metadata` to `null`.
      */
     metadata?: { [key: string]: string | null } | null;
+  }
+
+  export interface NewFloatingTieredMatrixWithAllocationPrice {
+    /**
+     * The cadence to bill for this price on.
+     */
+    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+
+    /**
+     * An ISO 4217 currency string for which this price is billed in.
+     */
+    currency: string;
+
+    /**
+     * The id of the item the price will be associated with.
+     */
+    item_id: string;
+
+    /**
+     * The pricing model type
+     */
+    model_type: 'tiered_matrix_with_allocation';
+
+    /**
+     * The name of the price.
+     */
+    name: string;
+
+    /**
+     * Configuration for tiered_matrix_with_allocation pricing
+     */
+    tiered_matrix_with_allocation_config: NewFloatingTieredMatrixWithAllocationPrice.TieredMatrixWithAllocationConfig;
+
+    /**
+     * The id of the billable metric for the price. Only needed if the price is
+     * usage-based.
+     */
+    billable_metric_id?: string | null;
+
+    /**
+     * If the Price represents a fixed cost, the price will be billed in-advance if
+     * this is true, and in-arrears if this is false.
+     */
+    billed_in_advance?: boolean | null;
+
+    /**
+     * For custom cadence: specifies the duration of the billing period in days or
+     * months.
+     */
+    billing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+    /**
+     * The per unit conversion rate of the price currency to the invoicing currency.
+     */
+    conversion_rate?: number | null;
+
+    /**
+     * The configuration for the rate of the price currency to the invoicing currency.
+     */
+    conversion_rate_config?: Shared.UnitConversionRateConfig | Shared.TieredConversionRateConfig | null;
+
+    /**
+     * For dimensional price: specifies a price group and dimension values
+     */
+    dimensional_price_configuration?: Shared.NewDimensionalPriceConfiguration | null;
+
+    /**
+     * An alias for the price.
+     */
+    external_price_id?: string | null;
+
+    /**
+     * If the Price represents a fixed cost, this represents the quantity of units
+     * applied.
+     */
+    fixed_price_quantity?: number | null;
+
+    /**
+     * The property used to group this price on an invoice
+     */
+    invoice_grouping_key?: string | null;
+
+    /**
+     * Within each billing cycle, specifies the cadence at which invoices are produced.
+     * If unspecified, a single invoice is produced per billing cycle.
+     */
+    invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+    /**
+     * The ID of the license type to associate with this price. On a usage price this
+     * also marks the price as eligible to draw down from that license type's
+     * allocation; a usage price created without it is billed normally. Usage prices
+     * with a license type must use the `unit` model, and only draw down when their
+     * currency matches the allocation's.
+     */
+    license_type_id?: string | null;
+
+    /**
+     * User-specified key/value pairs for the resource. Individual keys can be removed
+     * by setting the value to `null`, and the entire metadata mapping can be cleared
+     * by setting `metadata` to `null`.
+     */
+    metadata?: { [key: string]: string | null } | null;
+  }
+
+  export namespace NewFloatingTieredMatrixWithAllocationPrice {
+    /**
+     * Configuration for tiered_matrix_with_allocation pricing
+     */
+    export interface TieredMatrixWithAllocationConfig {
+      /**
+       * Usage allocation, pooled across all matrix cells
+       */
+      allocation: string;
+
+      /**
+       * Per unit rate for usage whose matrix cell has no configured tiers
+       */
+      default_unit_amount: string;
+
+      /**
+       * One or two event property values to evaluate matrix cells by
+       */
+      dimensions: Array<string>;
+
+      /**
+       * Graduated tiers keyed by matrix cell; usage in a cell is tiered only against its
+       * own rows
+       */
+      tiers: Array<TieredMatrixWithAllocationConfig.Tier>;
+    }
+
+    export namespace TieredMatrixWithAllocationConfig {
+      /**
+       * Configuration for a single tier scoped to one matrix cell
+       */
+      export interface Tier {
+        /**
+         * The matrix cell this tier applies to, as one or two dimension values
+         */
+        dimension_values: Array<string>;
+
+        /**
+         * Exclusive tier starting value. The tier runs up to and including the next bound
+         * configured for the same matrix cell.
+         */
+        tier_lower_bound: string;
+
+        /**
+         * Per unit amount
+         */
+        unit_amount: string;
+      }
+    }
   }
 
   export interface NewFloatingMatrixWithThresholdDiscountsPrice {
@@ -5059,6 +5214,7 @@ export namespace PriceEvaluateMultipleParams {
       | Shared.NewFloatingPackageWithAllocationPrice
       | Shared.NewFloatingUnitWithPercentPrice
       | Shared.NewFloatingMatrixWithAllocationPrice
+      | PriceEvaluation.NewFloatingTieredMatrixWithAllocationPrice
       | PriceEvaluation.NewFloatingMatrixWithThresholdDiscountsPrice
       | Shared.NewFloatingTieredWithProrationPrice
       | Shared.NewFloatingUnitWithProrationPrice
@@ -5375,6 +5531,160 @@ export namespace PriceEvaluateMultipleParams {
            */
           dimension_value: string;
 
+          tier_lower_bound: string;
+
+          /**
+           * Per unit amount
+           */
+          unit_amount: string;
+        }
+      }
+    }
+
+    export interface NewFloatingTieredMatrixWithAllocationPrice {
+      /**
+       * The cadence to bill for this price on.
+       */
+      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+
+      /**
+       * An ISO 4217 currency string for which this price is billed in.
+       */
+      currency: string;
+
+      /**
+       * The id of the item the price will be associated with.
+       */
+      item_id: string;
+
+      /**
+       * The pricing model type
+       */
+      model_type: 'tiered_matrix_with_allocation';
+
+      /**
+       * The name of the price.
+       */
+      name: string;
+
+      /**
+       * Configuration for tiered_matrix_with_allocation pricing
+       */
+      tiered_matrix_with_allocation_config: NewFloatingTieredMatrixWithAllocationPrice.TieredMatrixWithAllocationConfig;
+
+      /**
+       * The id of the billable metric for the price. Only needed if the price is
+       * usage-based.
+       */
+      billable_metric_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, the price will be billed in-advance if
+       * this is true, and in-arrears if this is false.
+       */
+      billed_in_advance?: boolean | null;
+
+      /**
+       * For custom cadence: specifies the duration of the billing period in days or
+       * months.
+       */
+      billing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The per unit conversion rate of the price currency to the invoicing currency.
+       */
+      conversion_rate?: number | null;
+
+      /**
+       * The configuration for the rate of the price currency to the invoicing currency.
+       */
+      conversion_rate_config?: Shared.UnitConversionRateConfig | Shared.TieredConversionRateConfig | null;
+
+      /**
+       * For dimensional price: specifies a price group and dimension values
+       */
+      dimensional_price_configuration?: Shared.NewDimensionalPriceConfiguration | null;
+
+      /**
+       * An alias for the price.
+       */
+      external_price_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, this represents the quantity of units
+       * applied.
+       */
+      fixed_price_quantity?: number | null;
+
+      /**
+       * The property used to group this price on an invoice
+       */
+      invoice_grouping_key?: string | null;
+
+      /**
+       * Within each billing cycle, specifies the cadence at which invoices are produced.
+       * If unspecified, a single invoice is produced per billing cycle.
+       */
+      invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
+       */
+      license_type_id?: string | null;
+
+      /**
+       * User-specified key/value pairs for the resource. Individual keys can be removed
+       * by setting the value to `null`, and the entire metadata mapping can be cleared
+       * by setting `metadata` to `null`.
+       */
+      metadata?: { [key: string]: string | null } | null;
+    }
+
+    export namespace NewFloatingTieredMatrixWithAllocationPrice {
+      /**
+       * Configuration for tiered_matrix_with_allocation pricing
+       */
+      export interface TieredMatrixWithAllocationConfig {
+        /**
+         * Usage allocation, pooled across all matrix cells
+         */
+        allocation: string;
+
+        /**
+         * Per unit rate for usage whose matrix cell has no configured tiers
+         */
+        default_unit_amount: string;
+
+        /**
+         * One or two event property values to evaluate matrix cells by
+         */
+        dimensions: Array<string>;
+
+        /**
+         * Graduated tiers keyed by matrix cell; usage in a cell is tiered only against its
+         * own rows
+         */
+        tiers: Array<TieredMatrixWithAllocationConfig.Tier>;
+      }
+
+      export namespace TieredMatrixWithAllocationConfig {
+        /**
+         * Configuration for a single tier scoped to one matrix cell
+         */
+        export interface Tier {
+          /**
+           * The matrix cell this tier applies to, as one or two dimension values
+           */
+          dimension_values: Array<string>;
+
+          /**
+           * Exclusive tier starting value. The tier runs up to and including the next bound
+           * configured for the same matrix cell.
+           */
           tier_lower_bound: string;
 
           /**
@@ -6483,6 +6793,7 @@ export namespace PriceEvaluatePreviewEventsParams {
       | Shared.NewFloatingPackageWithAllocationPrice
       | Shared.NewFloatingUnitWithPercentPrice
       | Shared.NewFloatingMatrixWithAllocationPrice
+      | PriceEvaluation.NewFloatingTieredMatrixWithAllocationPrice
       | PriceEvaluation.NewFloatingMatrixWithThresholdDiscountsPrice
       | Shared.NewFloatingTieredWithProrationPrice
       | Shared.NewFloatingUnitWithProrationPrice
@@ -6799,6 +7110,160 @@ export namespace PriceEvaluatePreviewEventsParams {
            */
           dimension_value: string;
 
+          tier_lower_bound: string;
+
+          /**
+           * Per unit amount
+           */
+          unit_amount: string;
+        }
+      }
+    }
+
+    export interface NewFloatingTieredMatrixWithAllocationPrice {
+      /**
+       * The cadence to bill for this price on.
+       */
+      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+
+      /**
+       * An ISO 4217 currency string for which this price is billed in.
+       */
+      currency: string;
+
+      /**
+       * The id of the item the price will be associated with.
+       */
+      item_id: string;
+
+      /**
+       * The pricing model type
+       */
+      model_type: 'tiered_matrix_with_allocation';
+
+      /**
+       * The name of the price.
+       */
+      name: string;
+
+      /**
+       * Configuration for tiered_matrix_with_allocation pricing
+       */
+      tiered_matrix_with_allocation_config: NewFloatingTieredMatrixWithAllocationPrice.TieredMatrixWithAllocationConfig;
+
+      /**
+       * The id of the billable metric for the price. Only needed if the price is
+       * usage-based.
+       */
+      billable_metric_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, the price will be billed in-advance if
+       * this is true, and in-arrears if this is false.
+       */
+      billed_in_advance?: boolean | null;
+
+      /**
+       * For custom cadence: specifies the duration of the billing period in days or
+       * months.
+       */
+      billing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The per unit conversion rate of the price currency to the invoicing currency.
+       */
+      conversion_rate?: number | null;
+
+      /**
+       * The configuration for the rate of the price currency to the invoicing currency.
+       */
+      conversion_rate_config?: Shared.UnitConversionRateConfig | Shared.TieredConversionRateConfig | null;
+
+      /**
+       * For dimensional price: specifies a price group and dimension values
+       */
+      dimensional_price_configuration?: Shared.NewDimensionalPriceConfiguration | null;
+
+      /**
+       * An alias for the price.
+       */
+      external_price_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, this represents the quantity of units
+       * applied.
+       */
+      fixed_price_quantity?: number | null;
+
+      /**
+       * The property used to group this price on an invoice
+       */
+      invoice_grouping_key?: string | null;
+
+      /**
+       * Within each billing cycle, specifies the cadence at which invoices are produced.
+       * If unspecified, a single invoice is produced per billing cycle.
+       */
+      invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
+       */
+      license_type_id?: string | null;
+
+      /**
+       * User-specified key/value pairs for the resource. Individual keys can be removed
+       * by setting the value to `null`, and the entire metadata mapping can be cleared
+       * by setting `metadata` to `null`.
+       */
+      metadata?: { [key: string]: string | null } | null;
+    }
+
+    export namespace NewFloatingTieredMatrixWithAllocationPrice {
+      /**
+       * Configuration for tiered_matrix_with_allocation pricing
+       */
+      export interface TieredMatrixWithAllocationConfig {
+        /**
+         * Usage allocation, pooled across all matrix cells
+         */
+        allocation: string;
+
+        /**
+         * Per unit rate for usage whose matrix cell has no configured tiers
+         */
+        default_unit_amount: string;
+
+        /**
+         * One or two event property values to evaluate matrix cells by
+         */
+        dimensions: Array<string>;
+
+        /**
+         * Graduated tiers keyed by matrix cell; usage in a cell is tiered only against its
+         * own rows
+         */
+        tiers: Array<TieredMatrixWithAllocationConfig.Tier>;
+      }
+
+      export namespace TieredMatrixWithAllocationConfig {
+        /**
+         * Configuration for a single tier scoped to one matrix cell
+         */
+        export interface Tier {
+          /**
+           * The matrix cell this tier applies to, as one or two dimension values
+           */
+          dimension_values: Array<string>;
+
+          /**
+           * Exclusive tier starting value. The tier runs up to and including the next bound
+           * configured for the same matrix cell.
+           */
           tier_lower_bound: string;
 
           /**
