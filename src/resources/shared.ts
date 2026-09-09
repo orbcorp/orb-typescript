@@ -767,7 +767,8 @@ export namespace ChangedSubscriptionResources {
         | 'credit_note_voided'
         | 'overpayment_refund'
         | 'external_payment'
-        | 'small_invoice_carryover';
+        | 'small_invoice_carryover'
+        | 'prepaid_commit_cancel';
 
       /**
        * The value of the amount changed in the transaction.
@@ -2201,7 +2202,8 @@ export namespace Invoice {
       | 'credit_note_voided'
       | 'overpayment_refund'
       | 'external_payment'
-      | 'small_invoice_carryover';
+      | 'small_invoice_carryover'
+      | 'prepaid_commit_cancel';
 
     /**
      * The value of the amount changed in the transaction.
