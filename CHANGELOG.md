@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.18.0](https://github.com/orbcorp/orb-typescript/compare/v6.17.0...v6.18.0) (2026-09-12)
+
+
+### Features
+
+* **api:** remove deprecated debug parameter and response details from ingestion ([78c08b7](https://github.com/orbcorp/orb-typescript/commit/78c08b7b1f71bc2cafb9bdcffd06ebcb7b11074e))
+
 ## [6.17.0](https://github.com/orbcorp/orb-typescript/compare/v6.16.0...v6.17.0) (2026-09-10)
 
 
