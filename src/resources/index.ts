@@ -88,6 +88,7 @@ export {
   type InvoiceUpdateParams,
   type InvoiceListParams,
   type InvoiceDeleteLineItemParams,
+  type InvoiceFetchParams,
   type InvoiceFetchUpcomingParams,
   type InvoiceIssueParams,
   type InvoiceIssueSummaryParams,

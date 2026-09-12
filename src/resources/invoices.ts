@@ -130,8 +130,12 @@ export class Invoices extends APIResource {
    * const invoice = await client.invoices.fetch('invoice_id');
    * ```
    */
-  fetch(invoiceID: string, options?: RequestOptions): APIPromise<Shared.Invoice> {
-    return this._client.get(path`/invoices/${invoiceID}`, options);
+  fetch(
+    invoiceID: string,
+    query: InvoiceFetchParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.Invoice> {
+    return this._client.get(path`/invoices/${invoiceID}`, { query, ...options });
   }
 
   /**
@@ -577,6 +581,14 @@ export interface InvoiceFetchUpcomingResponse {
    * true, the invoice will automatically begin issuing at this time.
    */
   eligible_to_issue_at: string | null;
+
+  /**
+   * The number of line items omitted from `line_items` because they have zero
+   * quantity. Amounts such as `subtotal` and `total` are computed over every line
+   * item on the invoice, including the omitted ones. In rare circumstances, hidden
+   * line items may still contribute to these amounts.
+   */
+  hidden_line_item_count: number;
 
   /**
    * A URL for the customer-facing invoice portal. This URL expires 60 days after the
@@ -2143,6 +2155,13 @@ export interface InvoiceListParams extends PageParams {
 
   external_customer_id?: string | null;
 
+  /**
+   * Whether to return line items with a quantity of zero. When omitted, Orb returns
+   * every line item. A line item that is grouped as part of a line item minimum is
+   * always returned; an invoice-level minimum does not exempt it.
+   */
+  include_zero_quantity_line_items?: boolean | null;
+
   'invoice_date[gt]'?: string | null;
 
   'invoice_date[gte]'?: string | null;
@@ -2162,8 +2181,24 @@ export interface InvoiceDeleteLineItemParams {
   invoice_id: string;
 }
 
+export interface InvoiceFetchParams {
+  /**
+   * Whether to return line items with a quantity of zero. When omitted, Orb returns
+   * every line item. A line item that is grouped as part of a line item minimum is
+   * always returned; an invoice-level minimum does not exempt it.
+   */
+  include_zero_quantity_line_items?: boolean | null;
+}
+
 export interface InvoiceFetchUpcomingParams {
   subscription_id: string;
+
+  /**
+   * Whether to return line items with a quantity of zero. When omitted, Orb returns
+   * every line item. A line item that is grouped as part of a line item minimum is
+   * always returned; an invoice-level minimum does not exempt it.
+   */
+  include_zero_quantity_line_items?: boolean | null;
 }
 
 export interface InvoiceIssueParams {
@@ -2264,6 +2299,7 @@ export declare namespace Invoices {
     type InvoiceUpdateParams as InvoiceUpdateParams,
     type InvoiceListParams as InvoiceListParams,
     type InvoiceDeleteLineItemParams as InvoiceDeleteLineItemParams,
+    type InvoiceFetchParams as InvoiceFetchParams,
     type InvoiceFetchUpcomingParams as InvoiceFetchUpcomingParams,
     type InvoiceIssueParams as InvoiceIssueParams,
     type InvoiceIssueSummaryParams as InvoiceIssueSummaryParams,

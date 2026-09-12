@@ -114,6 +114,7 @@ describe('resource invoices', () => {
           'due_date[gt]': '2019-12-27',
           'due_date[lt]': '2019-12-27',
           external_customer_id: 'external_customer_id',
+          include_zero_quantity_line_items: true,
           'invoice_date[gt]': '2019-12-27T18:11:19.117Z',
           'invoice_date[gte]': '2019-12-27T18:11:19.117Z',
           'invoice_date[lt]': '2019-12-27T18:11:19.117Z',
@@ -154,6 +155,17 @@ describe('resource invoices', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
+  test('fetch: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.invoices.fetch(
+        'invoice_id',
+        { include_zero_quantity_line_items: true },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Orb.NotFoundError);
+  });
+
   test('fetchUpcoming: only required params', async () => {
     const responsePromise = client.invoices.fetchUpcoming({ subscription_id: 'subscription_id' });
     const rawResponse = await responsePromise.asResponse();
@@ -166,7 +178,10 @@ describe('resource invoices', () => {
   });
 
   test('fetchUpcoming: required and optional params', async () => {
-    const response = await client.invoices.fetchUpcoming({ subscription_id: 'subscription_id' });
+    const response = await client.invoices.fetchUpcoming({
+      subscription_id: 'subscription_id',
+      include_zero_quantity_line_items: true,
+    });
   });
 
   test('issue', async () => {

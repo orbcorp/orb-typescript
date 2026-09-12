@@ -46,6 +46,7 @@ import {
 import {
   InvoiceCreateParams,
   InvoiceDeleteLineItemParams,
+  InvoiceFetchParams,
   InvoiceFetchUpcomingParams,
   InvoiceFetchUpcomingResponse,
   InvoiceIssueParams,
@@ -1201,6 +1202,7 @@ export declare namespace Orb {
     type InvoiceUpdateParams as InvoiceUpdateParams,
     type InvoiceListParams as InvoiceListParams,
     type InvoiceDeleteLineItemParams as InvoiceDeleteLineItemParams,
+    type InvoiceFetchParams as InvoiceFetchParams,
     type InvoiceFetchUpcomingParams as InvoiceFetchUpcomingParams,
     type InvoiceIssueParams as InvoiceIssueParams,
     type InvoiceIssueSummaryParams as InvoiceIssueSummaryParams,

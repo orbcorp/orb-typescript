@@ -565,6 +565,14 @@ export namespace ChangedSubscriptionResources {
     eligible_to_issue_at: string | null;
 
     /**
+     * The number of line items omitted from `line_items` because they have zero
+     * quantity. Amounts such as `subtotal` and `total` are computed over every line
+     * item on the invoice, including the omitted ones. In rare circumstances, hidden
+     * line items may still contribute to these amounts.
+     */
+    hidden_line_item_count: number;
+
+    /**
      * A URL for the customer-facing invoice portal. This URL expires 60 days after the
      * link is generated, or 30 days after the invoice's due date — whichever is later.
      */
@@ -2003,6 +2011,14 @@ export interface Invoice {
    * true, the invoice will automatically begin issuing at this time.
    */
   eligible_to_issue_at: string | null;
+
+  /**
+   * The number of line items omitted from `line_items` because they have zero
+   * quantity. Amounts such as `subtotal` and `total` are computed over every line
+   * item on the invoice, including the omitted ones. In rare circumstances, hidden
+   * line items may still contribute to these amounts.
+   */
+  hidden_line_item_count: number;
 
   /**
    * A URL for the customer-facing invoice portal. This URL expires 60 days after the

@@ -368,7 +368,7 @@ Methods:
 - <code title="put /invoices/{invoice_id}">client.invoices.<a href="./src/resources/invoices.ts">update</a>(invoiceID, { ...params }) -> Invoice</code>
 - <code title="get /invoices">client.invoices.<a href="./src/resources/invoices.ts">list</a>({ ...params }) -> InvoicesPage</code>
 - <code title="delete /invoices/{invoice_id}/invoice_line_items/{line_item_id}">client.invoices.<a href="./src/resources/invoices.ts">deleteLineItem</a>(lineItemID, { ...params }) -> void</code>
-- <code title="get /invoices/{invoice_id}">client.invoices.<a href="./src/resources/invoices.ts">fetch</a>(invoiceID) -> Invoice</code>
+- <code title="get /invoices/{invoice_id}">client.invoices.<a href="./src/resources/invoices.ts">fetch</a>(invoiceID, { ...params }) -> Invoice</code>
 - <code title="get /invoices/upcoming">client.invoices.<a href="./src/resources/invoices.ts">fetchUpcoming</a>({ ...params }) -> InvoiceFetchUpcomingResponse</code>
 - <code title="post /invoices/{invoice_id}/issue">client.invoices.<a href="./src/resources/invoices.ts">issue</a>(invoiceID, { ...params }) -> Invoice</code>
 - <code title="post /invoices/summary/{invoice_id}/issue">client.invoices.<a href="./src/resources/invoices.ts">issueSummary</a>(invoiceID, { ...params }) -> InvoiceIssueSummaryResponse</code>
