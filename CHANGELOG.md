@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.19.0](https://github.com/orbcorp/orb-typescript/compare/v6.18.0...v6.19.0) (2026-09-13)
+
+
+### Features
+
+* **api:** add `include_zero_quantity_line_items` param and `hidden_line_item_count` to invoice endpoints ([b440fa8](https://github.com/orbcorp/orb-typescript/commit/b440fa815621b1bddcd8ff7d9ad3a18ef4865e17))
+
 ## [6.18.0](https://github.com/orbcorp/orb-typescript/compare/v6.17.0...v6.18.0) (2026-09-12)
 
 
