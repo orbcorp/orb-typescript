@@ -133,6 +133,95 @@ Types:
 - <code><a href="./src/resources/shared.ts">UsageDiscount</a></code>
 - <code><a href="./src/resources/shared.ts">UsageDiscountInterval</a></code>
 
+# Webhooks
+
+Types:
+
+- <code><a href="./src/resources/webhooks.ts">BackfillReflectedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">BackfillRevertedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">BillableMetricEditedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">CreditBlockAccountingSyncFailedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">CreditBlockAccountingSyncSucceededWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">CreditNoteAccountingSyncFailedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">CreditNoteAccountingSyncSucceededWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">CreditNoteIssuedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">CreditNoteMarkedAsVoidWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">CustomerAccountingSyncFailedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">CustomerAccountingSyncSucceededWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">CustomerBalanceTransactionCreatedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">CustomerCreatedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">CustomerCreditBalanceDepletedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">CustomerCreditBalanceDroppedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">CustomerCreditBalanceRecoveredWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">CustomerCreditLedgerIncrementedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">CustomerEditedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">DataExportsTransferErrorWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">DataExportsTransferSuccessWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">EventUnmatchedEventWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">IngestionUnmatchedCustomerIDsWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">InvoiceAccountingSyncFailedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">InvoiceAccountingSyncSucceededWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">InvoiceAutomationScheduleStepExecutedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">InvoiceCostDataExportedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">InvoiceDunningScheduleCreatedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">InvoiceDunningScheduleEndedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">InvoiceDunningScheduleResetWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">InvoiceDunningScheduleStepExecutedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">InvoiceEditedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">InvoiceInvoiceDateElapsedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">InvoiceIssueFailedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">InvoiceIssuedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">InvoiceIssuedSummaryWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">InvoiceManuallyMarkedAsPaidWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">InvoiceManuallyMarkedAsVoidWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">InvoicePaymentFailedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">InvoicePaymentProcessingWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">InvoicePaymentSucceededWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">InvoiceSyncFailedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">InvoiceSyncSucceededWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">InvoiceUndoMarkAsPaidWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">InvoiceDueDateRecalculationCanceledWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">InvoiceDueDateRecalculationCompletedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">InvoiceDueDateRecalculationStartedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">MetricEventsDroppedByWatermarkWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">PaymentMethodCreatedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">PaymentMethodDeletedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">PlanDefaultVersionSetWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">PlanVersionCreatedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">PriceEditedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">ResourceEventTestWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">SalesOrderAccountingSyncFailedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">SalesOrderAccountingSyncSucceededWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">SubscriptionAccountingSyncFailedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">SubscriptionAccountingSyncSucceededWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">SubscriptionAlertDisabledWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">SubscriptionCancellationScheduledWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">SubscriptionCancellationUnscheduledWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">SubscriptionCostExceededWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">SubscriptionCreatedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">SubscriptionEditedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">SubscriptionEndedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">SubscriptionFixedFeeQuantityUpdatedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">SubscriptionGroupedCostExceededWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">SubscriptionInvoicingThresholdExceededWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">SubscriptionLicenseAllocationResetWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">SubscriptionLicenseBalanceThresholdReachedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">SubscriptionPlanChangeScheduledWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">SubscriptionPlanChangedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">SubscriptionPlanVersionChangeScheduledWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">SubscriptionPlanVersionChangedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">SubscriptionSpendExceededWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">SubscriptionStartedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">SubscriptionTrialEndedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">SubscriptionUsageExceededWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">TransactionAccountingSyncFailedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">TransactionAccountingSyncSucceededWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">UnwrapWebhookEvent</a></code>
+
+Methods:
+
+- <code>client.webhooks.<a href="./src/resources/webhooks.ts">unwrap</a>(body) -> void</code>
+
 # TopLevel
 
 Types:
