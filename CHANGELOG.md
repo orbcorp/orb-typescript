@@ -1,5 +1,23 @@
 # Changelog
 
+## [6.21.0](https://github.com/orbcorp/orb-typescript/compare/v6.20.0...v6.21.0) (2026-09-23)
+
+
+### Features
+
+* **api:** api update ([0a57605](https://github.com/orbcorp/orb-typescript/commit/0a57605a27ffcd5994adf0bd9b3ddbc24da67351))
+* **api:** api update ([0a57605](https://github.com/orbcorp/orb-typescript/commit/0a57605a27ffcd5994adf0bd9b3ddbc24da67351))
+* **api:** api update ([0a57605](https://github.com/orbcorp/orb-typescript/commit/0a57605a27ffcd5994adf0bd9b3ddbc24da67351))
+* **api:** api update ([a39ce05](https://github.com/orbcorp/orb-typescript/commit/a39ce05e10b2d3a2f889201f66559f1e8e659e19))
+* **api:** api update ([a39ce05](https://github.com/orbcorp/orb-typescript/commit/a39ce05e10b2d3a2f889201f66559f1e8e659e19))
+* **api:** api update ([a39ce05](https://github.com/orbcorp/orb-typescript/commit/a39ce05e10b2d3a2f889201f66559f1e8e659e19))
+* **api:** api update ([a39ce05](https://github.com/orbcorp/orb-typescript/commit/a39ce05e10b2d3a2f889201f66559f1e8e659e19))
+
+
+### Bug Fixes
+
+* **api:** correctly apply plan name when updating a draft plan ([0a57605](https://github.com/orbcorp/orb-typescript/commit/0a57605a27ffcd5994adf0bd9b3ddbc24da67351))
+
 ## [6.20.0](https://github.com/orbcorp/orb-typescript/compare/v6.19.0...v6.20.0) (2026-09-21)
 
 
