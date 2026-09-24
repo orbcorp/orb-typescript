@@ -1533,7 +1533,6 @@ export declare namespace Orb {
     type LicenseRetrieveByExternalIDParams as LicenseRetrieveByExternalIDParams,
   };
 
-
   export type Address = API.Address;
   export type AdjustmentInterval = API.AdjustmentInterval;
   export type AggregatedCost = API.AggregatedCost;
