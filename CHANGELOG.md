@@ -1,5 +1,22 @@
 # Changelog
 
+## [6.22.0](https://github.com/orbcorp/orb-typescript/compare/v6.21.0...v6.22.0) (2026-09-24)
+
+
+### Features
+
+* **api:** api update ([e5330a7](https://github.com/orbcorp/orb-typescript/commit/e5330a72f27b2c43a1796a8eafc7ba69e2fdbc49))
+* **api:** api update ([e5330a7](https://github.com/orbcorp/orb-typescript/commit/e5330a72f27b2c43a1796a8eafc7ba69e2fdbc49))
+* **api:** api update ([e5330a7](https://github.com/orbcorp/orb-typescript/commit/e5330a72f27b2c43a1796a8eafc7ba69e2fdbc49))
+* **api:** hide internal webapp-api endpoints from public API reference ([ee46bf3](https://github.com/orbcorp/orb-typescript/commit/ee46bf381596fc034bc3d3e8d264f8e12af6fe3a))
+
+
+### Bug Fixes
+
+* **api:** allow exact one-year timeframes for subscription usage/costs endpoints ([ee46bf3](https://github.com/orbcorp/orb-typescript/commit/ee46bf381596fc034bc3d3e8d264f8e12af6fe3a))
+* **api:** fix Java SDK build error caused by empty webhook event properties marker ([ee46bf3](https://github.com/orbcorp/orb-typescript/commit/ee46bf381596fc034bc3d3e8d264f8e12af6fe3a))
+* **api:** no functional change, only schema ordering reshuffled ([ee46bf3](https://github.com/orbcorp/orb-typescript/commit/ee46bf381596fc034bc3d3e8d264f8e12af6fe3a))
+
 ## [6.21.0](https://github.com/orbcorp/orb-typescript/compare/v6.20.0...v6.21.0) (2026-09-23)
 
 
