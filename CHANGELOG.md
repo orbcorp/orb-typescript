@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.23.0](https://github.com/orbcorp/orb-typescript/compare/v6.22.0...v6.23.0) (2026-09-25)
+
+
+### Features
+
+* **api:** api update ([24e7a0a](https://github.com/orbcorp/orb-typescript/commit/24e7a0a935c6442f1745c1a368b73d8a3d3be884))
+* **api:** label webhook event operations by event name and category tag ([24e7a0a](https://github.com/orbcorp/orb-typescript/commit/24e7a0a935c6442f1745c1a368b73d8a3d3be884))
+
 ## [6.22.0](https://github.com/orbcorp/orb-typescript/compare/v6.21.0...v6.22.0) (2026-09-24)
 
 
