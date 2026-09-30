@@ -49,7 +49,10 @@ export class Backfills extends APIResource {
    * enables filtering using
    * [computed properties](/extensibility/advanced-metrics#computed-properties). The
    * expressiveness of computed properties allows you to deprecate existing events
-   * based on both a period of time and specific property values.
+   * based on both a period of time and specific property values. When
+   * `deprecation_filter` is provided, the timeframe may extend to `now` rather than
+   * the event reporting grace boundary. Matching events that arrive later with
+   * timestamps inside the timeframe will also be deprecated.
    *
    * You may not have multiple backfills in a pending or pending_revert state with
    * overlapping timeframes.
@@ -73,6 +76,8 @@ export class Backfills extends APIResource {
    * backfill. The response also includes
    * [`pagination_metadata`](/api-reference/pagination), which lets the caller
    * retrieve the next page of results if they exist.
+   *
+   * Use `customer_id` and `status` to filter the results.
    *
    * @example
    * ```ts
@@ -466,7 +471,14 @@ export interface BackfillCreateParams {
   replace_existing_events?: boolean;
 }
 
-export interface BackfillListParams extends PageParams {}
+export interface BackfillListParams extends PageParams {
+  customer_id?: string | null;
+
+  /**
+   * The status of the backfill.
+   */
+  status?: 'pending' | 'reflected' | 'pending_revert' | 'reverted' | null;
+}
 
 export declare namespace Backfills {
   export {
