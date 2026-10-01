@@ -1,5 +1,18 @@
 # Changelog
 
+## [6.24.0](https://github.com/orbcorp/orb-typescript/compare/v6.23.0...v6.24.0) (2026-10-01)
+
+
+### Features
+
+* **api:** add `customer_id` and `status` filters to list backfills endpoint ([0485bf0](https://github.com/orbcorp/orb-typescript/commit/0485bf06887ac2c0eb7acb4bbfda8a6cc5bdbd3a))
+* **api:** add `payment_received_at` field to invoice responses ([0f5ebc6](https://github.com/orbcorp/orb-typescript/commit/0f5ebc642e95eb13292dc6ab7fd05ba348707a4f))
+
+
+### Bug Fixes
+
+* **api:** correct webhook doc page titles and remove inapplicable auth section ([0f5ebc6](https://github.com/orbcorp/orb-typescript/commit/0f5ebc642e95eb13292dc6ab7fd05ba348707a4f))
+
 ## [6.23.0](https://github.com/orbcorp/orb-typescript/compare/v6.22.0...v6.23.0) (2026-09-25)
 
 
