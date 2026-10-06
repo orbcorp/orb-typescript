@@ -88,6 +88,9 @@ export class DimensionalPriceGroups extends APIResource {
    * dimensions, and the prices in the group specify which partition their usage is
    * derived from.
    *
+   * Filter with `billable_metric_id`. Each group includes `price_count`:
+   * non-archived prices in the group. Subscription overrides are not counted.
+   *
    * The response also includes pagination_metadata, which lets the caller retrieve
    * the next page of results if they exist.
    *
@@ -149,6 +152,12 @@ export interface DimensionalPriceGroup {
    * The name of the dimensional price group
    */
   name: string;
+
+  /**
+   * The number of prices in this group. Archived prices and subscription overrides
+   * are excluded.
+   */
+  price_count: number;
 }
 
 export interface DimensionalPriceGroups {
@@ -194,7 +203,12 @@ export interface DimensionalPriceGroupUpdateParams {
   metadata?: { [key: string]: string | null } | null;
 }
 
-export interface DimensionalPriceGroupListParams extends PageParams {}
+export interface DimensionalPriceGroupListParams extends PageParams {
+  /**
+   * Filter to groups that use this billable metric.
+   */
+  billable_metric_id?: string | null;
+}
 
 DimensionalPriceGroups.ExternalDimensionalPriceGroupID = ExternalDimensionalPriceGroupID;
 
