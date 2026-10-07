@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.25.0](https://github.com/orbcorp/orb-typescript/compare/v6.24.0...v6.25.0) (2026-10-07)
+
+
+### Features
+
+* **api:** add billable_metric_id filter, price_count, and prices list endpoint for dimensional price groups ([c6e8f01](https://github.com/orbcorp/orb-typescript/commit/c6e8f01ab32e646d6d8176ff315b5a63515890f9))
+
 ## [6.24.0](https://github.com/orbcorp/orb-typescript/compare/v6.23.0...v6.24.0) (2026-10-01)
 
 
