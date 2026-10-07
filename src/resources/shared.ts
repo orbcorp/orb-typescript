@@ -3408,7 +3408,7 @@ export interface NewFloatingBulkPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * An ISO 4217 currency string for which this price is billed in.
@@ -3511,7 +3511,7 @@ export interface NewFloatingBulkWithProrationPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * An ISO 4217 currency string for which this price is billed in.
@@ -3638,7 +3638,7 @@ export interface NewFloatingCumulativeGroupedBulkPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * Configuration for cumulative_grouped_bulk pricing
@@ -3777,7 +3777,7 @@ export interface NewFloatingGroupedAllocationPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * An ISO 4217 currency string for which this price is billed in.
@@ -3902,7 +3902,7 @@ export interface NewFloatingGroupedTieredPackagePrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * An ISO 4217 currency string for which this price is billed in.
@@ -4039,7 +4039,7 @@ export interface NewFloatingGroupedTieredPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * An ISO 4217 currency string for which this price is billed in.
@@ -4174,7 +4174,7 @@ export interface NewFloatingGroupedWithMeteredMinimumPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * An ISO 4217 currency string for which this price is billed in.
@@ -4339,7 +4339,7 @@ export interface NewFloatingGroupedWithProratedMinimumPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * An ISO 4217 currency string for which this price is billed in.
@@ -4464,7 +4464,7 @@ export interface NewFloatingMatrixPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * An ISO 4217 currency string for which this price is billed in.
@@ -4567,7 +4567,7 @@ export interface NewFloatingMatrixWithAllocationPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * An ISO 4217 currency string for which this price is billed in.
@@ -4670,7 +4670,7 @@ export interface NewFloatingMatrixWithDisplayNamePrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * An ISO 4217 currency string for which this price is billed in.
@@ -4812,7 +4812,7 @@ export interface NewFloatingMaxGroupTieredPackagePrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * An ISO 4217 currency string for which this price is billed in.
@@ -4948,7 +4948,7 @@ export interface NewFloatingMinimumCompositePrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * An ISO 4217 currency string for which this price is billed in.
@@ -5068,7 +5068,7 @@ export interface NewFloatingPackagePrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * An ISO 4217 currency string for which this price is billed in.
@@ -5171,7 +5171,7 @@ export interface NewFloatingPackageWithAllocationPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * An ISO 4217 currency string for which this price is billed in.
@@ -5287,7 +5287,7 @@ export interface NewFloatingScalableMatrixWithTieredPricingPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * An ISO 4217 currency string for which this price is billed in.
@@ -5436,7 +5436,7 @@ export interface NewFloatingScalableMatrixWithUnitPricingPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * An ISO 4217 currency string for which this price is billed in.
@@ -5589,7 +5589,7 @@ export interface NewFloatingThresholdTotalAmountPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * An ISO 4217 currency string for which this price is billed in.
@@ -5724,7 +5724,7 @@ export interface NewFloatingTieredPackagePrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * An ISO 4217 currency string for which this price is billed in.
@@ -5858,7 +5858,7 @@ export interface NewFloatingTieredPackageWithMinimumPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * An ISO 4217 currency string for which this price is billed in.
@@ -5989,7 +5989,7 @@ export interface NewFloatingTieredPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * An ISO 4217 currency string for which this price is billed in.
@@ -6092,7 +6092,7 @@ export interface NewFloatingTieredWithMinimumPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * An ISO 4217 currency string for which this price is billed in.
@@ -6234,7 +6234,7 @@ export interface NewFloatingTieredWithProrationPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * An ISO 4217 currency string for which this price is billed in.
@@ -6367,7 +6367,7 @@ export interface NewFloatingUnitPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * An ISO 4217 currency string for which this price is billed in.
@@ -6470,7 +6470,7 @@ export interface NewFloatingUnitWithPercentPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * An ISO 4217 currency string for which this price is billed in.
@@ -6590,7 +6590,7 @@ export interface NewFloatingUnitWithProrationPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * An ISO 4217 currency string for which this price is billed in.
@@ -6898,7 +6898,7 @@ export interface NewPlanBulkPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -7008,7 +7008,7 @@ export interface NewPlanBulkWithProrationPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -7142,7 +7142,7 @@ export interface NewPlanCumulativeGroupedBulkPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * Configuration for cumulative_grouped_bulk pricing
@@ -7288,7 +7288,7 @@ export interface NewPlanGroupedAllocationPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * Configuration for grouped_allocation pricing
@@ -7420,7 +7420,7 @@ export interface NewPlanGroupedTieredPackagePrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * Configuration for grouped_tiered_package pricing
@@ -7564,7 +7564,7 @@ export interface NewPlanGroupedTieredPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * Configuration for grouped_tiered pricing
@@ -7706,7 +7706,7 @@ export interface NewPlanGroupedWithMeteredMinimumPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * Configuration for grouped_with_metered_minimum pricing
@@ -7878,7 +7878,7 @@ export interface NewPlanGroupedWithProratedMinimumPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * Configuration for grouped_with_prorated_minimum pricing
@@ -8010,7 +8010,7 @@ export interface NewPlanMatrixPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -8120,7 +8120,7 @@ export interface NewPlanMatrixWithAllocationPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -8230,7 +8230,7 @@ export interface NewPlanMatrixWithDisplayNamePrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -8379,7 +8379,7 @@ export interface NewPlanMaxGroupTieredPackagePrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -8522,7 +8522,7 @@ export interface NewPlanMinimumCompositePrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -8649,7 +8649,7 @@ export interface NewPlanPackagePrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -8759,7 +8759,7 @@ export interface NewPlanPackageWithAllocationPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -8882,7 +8882,7 @@ export interface NewPlanScalableMatrixWithTieredPricingPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -9038,7 +9038,7 @@ export interface NewPlanScalableMatrixWithUnitPricingPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -9198,7 +9198,7 @@ export interface NewPlanThresholdTotalAmountPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -9340,7 +9340,7 @@ export interface NewPlanTieredPackagePrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -9481,7 +9481,7 @@ export interface NewPlanTieredPackageWithMinimumPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -9619,7 +9619,7 @@ export interface NewPlanTieredPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -9729,7 +9729,7 @@ export interface NewPlanTieredWithMinimumPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -9878,7 +9878,7 @@ export interface NewPlanUnitPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -9988,7 +9988,7 @@ export interface NewPlanUnitWithPercentPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -10115,7 +10115,7 @@ export interface NewPlanUnitWithProrationPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.

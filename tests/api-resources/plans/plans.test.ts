@@ -48,7 +48,7 @@ describe('resource plans', () => {
             per_unit_cost_basis: 'per_unit_cost_basis',
           },
           license_allocation_price: {
-            cadence: 'annual',
+            cadence: 'one_time',
             item_id: 'item_id',
             license_allocations: [
               {
@@ -88,7 +88,7 @@ describe('resource plans', () => {
           },
           plan_phase_order: 0,
           price: {
-            cadence: 'annual',
+            cadence: 'one_time',
             item_id: 'item_id',
             model_type: 'unit',
             name: 'Annual fee',

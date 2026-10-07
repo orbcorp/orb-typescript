@@ -38,7 +38,7 @@ export class Prices extends APIResource {
    * @example
    * ```ts
    * const price = await client.prices.create({
-   *   cadence: 'annual',
+   *   cadence: 'one_time',
    *   currency: 'currency',
    *   item_id: 'item_id',
    *   model_type: 'unit',
@@ -351,7 +351,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -454,7 +454,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -562,7 +562,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -665,7 +665,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -812,7 +812,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -915,7 +915,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -1018,7 +1018,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -1153,7 +1153,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -1287,7 +1287,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -1429,7 +1429,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -1564,7 +1564,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -1709,7 +1709,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -1840,7 +1840,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -1956,7 +1956,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -2076,7 +2076,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -2179,7 +2179,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -2333,7 +2333,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -2499,7 +2499,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -2632,7 +2632,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -2747,7 +2747,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -2877,7 +2877,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -3004,7 +3004,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -3129,7 +3129,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -3294,7 +3294,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -3424,7 +3424,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -3566,7 +3566,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -3703,7 +3703,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -3839,7 +3839,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -3992,7 +3992,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -4141,7 +4141,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * Configuration for cumulative_grouped_bulk pricing
@@ -4280,7 +4280,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * Configuration for cumulative_grouped_allocation pricing
@@ -4410,7 +4410,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -4566,7 +4566,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -4711,7 +4711,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -4831,7 +4831,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -4963,7 +4963,7 @@ export declare namespace PriceCreateParams {
     /**
      * The cadence to bill for this price on.
      */
-    cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
     /**
      * An ISO 4217 currency string for which this price is billed in.
@@ -5253,7 +5253,7 @@ export namespace PriceEvaluateMultipleParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * An ISO 4217 currency string for which this price is billed in.
@@ -5400,7 +5400,7 @@ export namespace PriceEvaluateMultipleParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * An ISO 4217 currency string for which this price is billed in.
@@ -5545,7 +5545,7 @@ export namespace PriceEvaluateMultipleParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * An ISO 4217 currency string for which this price is billed in.
@@ -5699,7 +5699,7 @@ export namespace PriceEvaluateMultipleParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * An ISO 4217 currency string for which this price is billed in.
@@ -5865,7 +5865,7 @@ export namespace PriceEvaluateMultipleParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * An ISO 4217 currency string for which this price is billed in.
@@ -5995,7 +5995,7 @@ export namespace PriceEvaluateMultipleParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * Configuration for cumulative_grouped_allocation pricing
@@ -6125,7 +6125,7 @@ export namespace PriceEvaluateMultipleParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * An ISO 4217 currency string for which this price is billed in.
@@ -6281,7 +6281,7 @@ export namespace PriceEvaluateMultipleParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * An ISO 4217 currency string for which this price is billed in.
@@ -6426,7 +6426,7 @@ export namespace PriceEvaluateMultipleParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * An ISO 4217 currency string for which this price is billed in.
@@ -6558,7 +6558,7 @@ export namespace PriceEvaluateMultipleParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * An ISO 4217 currency string for which this price is billed in.
@@ -6832,7 +6832,7 @@ export namespace PriceEvaluatePreviewEventsParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * An ISO 4217 currency string for which this price is billed in.
@@ -6979,7 +6979,7 @@ export namespace PriceEvaluatePreviewEventsParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * An ISO 4217 currency string for which this price is billed in.
@@ -7124,7 +7124,7 @@ export namespace PriceEvaluatePreviewEventsParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * An ISO 4217 currency string for which this price is billed in.
@@ -7278,7 +7278,7 @@ export namespace PriceEvaluatePreviewEventsParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * An ISO 4217 currency string for which this price is billed in.
@@ -7444,7 +7444,7 @@ export namespace PriceEvaluatePreviewEventsParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * An ISO 4217 currency string for which this price is billed in.
@@ -7574,7 +7574,7 @@ export namespace PriceEvaluatePreviewEventsParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * Configuration for cumulative_grouped_allocation pricing
@@ -7704,7 +7704,7 @@ export namespace PriceEvaluatePreviewEventsParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * An ISO 4217 currency string for which this price is billed in.
@@ -7860,7 +7860,7 @@ export namespace PriceEvaluatePreviewEventsParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * An ISO 4217 currency string for which this price is billed in.
@@ -8005,7 +8005,7 @@ export namespace PriceEvaluatePreviewEventsParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * An ISO 4217 currency string for which this price is billed in.
@@ -8137,7 +8137,7 @@ export namespace PriceEvaluatePreviewEventsParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * An ISO 4217 currency string for which this price is billed in.

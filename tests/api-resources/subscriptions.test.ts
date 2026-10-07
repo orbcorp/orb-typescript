@@ -296,7 +296,7 @@ describe('resource subscriptions', () => {
           minimum_amount: '1.23',
           plan_phase_order: 0,
           price: {
-            cadence: 'annual',
+            cadence: 'one_time',
             item_id: 'item_id',
             model_type: 'unit',
             name: 'Annual fee',
@@ -412,7 +412,7 @@ describe('resource subscriptions', () => {
           metric_parameter_overrides: { foo: 'bar' },
           minimum_amount: '1.23',
           price: {
-            cadence: 'annual',
+            cadence: 'one_time',
             item_id: 'item_id',
             model_type: 'unit',
             name: 'Annual fee',

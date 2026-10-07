@@ -549,9 +549,9 @@ export class Subscriptions extends APIResource {
    * but do not have the key set). Currently, it is only possible to view usage
    * grouped by a single attribute at a time.
    *
-   * When viewing grouped usage, Orb uses pagination to limit the response size to
-   * 1000 groups by default. If there are more groups for a given subscription,
-   * pagination metadata in the response can be used to fetch all of the data.
+   * When viewing grouped usage, all groups are returned in a single response. For
+   * metrics with a large number of groups, Orb recommends using a shorter timeframe
+   * to keep response size and latency manageable.
    *
    * The following example shows usage for an "API Requests" billable metric grouped
    * by `region`. Note the extra `metric_group` dictionary in the response, which
@@ -1261,7 +1261,7 @@ export interface NewSubscriptionBulkPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -1371,7 +1371,7 @@ export interface NewSubscriptionBulkWithProrationPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -1505,7 +1505,7 @@ export interface NewSubscriptionCumulativeGroupedBulkPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * Configuration for cumulative_grouped_bulk pricing
@@ -1651,7 +1651,7 @@ export interface NewSubscriptionGroupedAllocationPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * Configuration for grouped_allocation pricing
@@ -1783,7 +1783,7 @@ export interface NewSubscriptionGroupedTieredPackagePrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * Configuration for grouped_tiered_package pricing
@@ -1927,7 +1927,7 @@ export interface NewSubscriptionGroupedTieredPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * Configuration for grouped_tiered pricing
@@ -2069,7 +2069,7 @@ export interface NewSubscriptionGroupedWithMeteredMinimumPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * Configuration for grouped_with_metered_minimum pricing
@@ -2241,7 +2241,7 @@ export interface NewSubscriptionGroupedWithProratedMinimumPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * Configuration for grouped_with_prorated_minimum pricing
@@ -2373,7 +2373,7 @@ export interface NewSubscriptionMatrixPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -2483,7 +2483,7 @@ export interface NewSubscriptionMatrixWithAllocationPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -2593,7 +2593,7 @@ export interface NewSubscriptionMatrixWithDisplayNamePrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -2742,7 +2742,7 @@ export interface NewSubscriptionMaxGroupTieredPackagePrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -2885,7 +2885,7 @@ export interface NewSubscriptionMinimumCompositePrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -3012,7 +3012,7 @@ export interface NewSubscriptionPackagePrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -3122,7 +3122,7 @@ export interface NewSubscriptionPackageWithAllocationPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -3245,7 +3245,7 @@ export interface NewSubscriptionScalableMatrixWithTieredPricingPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -3401,7 +3401,7 @@ export interface NewSubscriptionScalableMatrixWithUnitPricingPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -3561,7 +3561,7 @@ export interface NewSubscriptionThresholdTotalAmountPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -3703,7 +3703,7 @@ export interface NewSubscriptionTieredPackagePrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -3844,7 +3844,7 @@ export interface NewSubscriptionTieredPackageWithMinimumPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -3982,7 +3982,7 @@ export interface NewSubscriptionTieredPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -4092,7 +4092,7 @@ export interface NewSubscriptionTieredWithMinimumPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -4241,7 +4241,7 @@ export interface NewSubscriptionUnitPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -4351,7 +4351,7 @@ export interface NewSubscriptionUnitWithPercentPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -4478,7 +4478,7 @@ export interface NewSubscriptionUnitWithProrationPrice {
   /**
    * The cadence to bill for this price on.
    */
-  cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+  cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
   /**
    * The id of the item the price will be associated with.
@@ -5385,7 +5385,7 @@ export namespace SubscriptionCreateParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * The id of the item the price will be associated with.
@@ -5539,7 +5539,7 @@ export namespace SubscriptionCreateParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * Configuration for grouped_tiered_matrix pricing
@@ -5691,7 +5691,7 @@ export namespace SubscriptionCreateParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * The id of the item the price will be associated with.
@@ -5852,7 +5852,7 @@ export namespace SubscriptionCreateParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * The id of the item the price will be associated with.
@@ -6025,7 +6025,7 @@ export namespace SubscriptionCreateParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * The id of the item the price will be associated with.
@@ -6165,7 +6165,7 @@ export namespace SubscriptionCreateParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * Configuration for grouped_with_min_max_thresholds pricing
@@ -6302,7 +6302,7 @@ export namespace SubscriptionCreateParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * Configuration for cumulative_grouped_allocation pricing
@@ -6439,7 +6439,7 @@ export namespace SubscriptionCreateParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * Configuration for daily_credit_allowance pricing
@@ -6602,7 +6602,7 @@ export namespace SubscriptionCreateParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * The id of the item the price will be associated with.
@@ -6754,7 +6754,7 @@ export namespace SubscriptionCreateParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * The id of the item the price will be associated with.
@@ -6893,7 +6893,7 @@ export namespace SubscriptionCreateParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * Configuration for event_output pricing
@@ -7245,7 +7245,7 @@ export namespace SubscriptionCreateParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * The id of the item the price will be associated with.
@@ -7399,7 +7399,7 @@ export namespace SubscriptionCreateParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * Configuration for grouped_tiered_matrix pricing
@@ -7551,7 +7551,7 @@ export namespace SubscriptionCreateParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * The id of the item the price will be associated with.
@@ -7712,7 +7712,7 @@ export namespace SubscriptionCreateParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * The id of the item the price will be associated with.
@@ -7885,7 +7885,7 @@ export namespace SubscriptionCreateParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * The id of the item the price will be associated with.
@@ -8025,7 +8025,7 @@ export namespace SubscriptionCreateParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * Configuration for grouped_with_min_max_thresholds pricing
@@ -8162,7 +8162,7 @@ export namespace SubscriptionCreateParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * Configuration for cumulative_grouped_allocation pricing
@@ -8299,7 +8299,7 @@ export namespace SubscriptionCreateParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * Configuration for daily_credit_allowance pricing
@@ -8462,7 +8462,7 @@ export namespace SubscriptionCreateParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * The id of the item the price will be associated with.
@@ -8614,7 +8614,7 @@ export namespace SubscriptionCreateParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * The id of the item the price will be associated with.
@@ -8753,7 +8753,7 @@ export namespace SubscriptionCreateParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * Configuration for event_output pricing
@@ -9266,7 +9266,7 @@ export namespace SubscriptionPriceIntervalsParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * An ISO 4217 currency string for which this price is billed in.
@@ -9413,7 +9413,7 @@ export namespace SubscriptionPriceIntervalsParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * An ISO 4217 currency string for which this price is billed in.
@@ -9558,7 +9558,7 @@ export namespace SubscriptionPriceIntervalsParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * An ISO 4217 currency string for which this price is billed in.
@@ -9712,7 +9712,7 @@ export namespace SubscriptionPriceIntervalsParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * An ISO 4217 currency string for which this price is billed in.
@@ -9878,7 +9878,7 @@ export namespace SubscriptionPriceIntervalsParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * An ISO 4217 currency string for which this price is billed in.
@@ -10008,7 +10008,7 @@ export namespace SubscriptionPriceIntervalsParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * Configuration for cumulative_grouped_allocation pricing
@@ -10138,7 +10138,7 @@ export namespace SubscriptionPriceIntervalsParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * An ISO 4217 currency string for which this price is billed in.
@@ -10294,7 +10294,7 @@ export namespace SubscriptionPriceIntervalsParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * An ISO 4217 currency string for which this price is billed in.
@@ -10439,7 +10439,7 @@ export namespace SubscriptionPriceIntervalsParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * An ISO 4217 currency string for which this price is billed in.
@@ -10571,7 +10571,7 @@ export namespace SubscriptionPriceIntervalsParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * An ISO 4217 currency string for which this price is billed in.
@@ -11330,7 +11330,7 @@ export namespace SubscriptionSchedulePlanChangeParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * The id of the item the price will be associated with.
@@ -11484,7 +11484,7 @@ export namespace SubscriptionSchedulePlanChangeParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * Configuration for grouped_tiered_matrix pricing
@@ -11636,7 +11636,7 @@ export namespace SubscriptionSchedulePlanChangeParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * The id of the item the price will be associated with.
@@ -11797,7 +11797,7 @@ export namespace SubscriptionSchedulePlanChangeParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * The id of the item the price will be associated with.
@@ -11970,7 +11970,7 @@ export namespace SubscriptionSchedulePlanChangeParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * The id of the item the price will be associated with.
@@ -12110,7 +12110,7 @@ export namespace SubscriptionSchedulePlanChangeParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * Configuration for grouped_with_min_max_thresholds pricing
@@ -12247,7 +12247,7 @@ export namespace SubscriptionSchedulePlanChangeParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * Configuration for cumulative_grouped_allocation pricing
@@ -12384,7 +12384,7 @@ export namespace SubscriptionSchedulePlanChangeParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * Configuration for daily_credit_allowance pricing
@@ -12547,7 +12547,7 @@ export namespace SubscriptionSchedulePlanChangeParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * The id of the item the price will be associated with.
@@ -12699,7 +12699,7 @@ export namespace SubscriptionSchedulePlanChangeParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * The id of the item the price will be associated with.
@@ -12838,7 +12838,7 @@ export namespace SubscriptionSchedulePlanChangeParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * Configuration for event_output pricing
@@ -13190,7 +13190,7 @@ export namespace SubscriptionSchedulePlanChangeParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * The id of the item the price will be associated with.
@@ -13344,7 +13344,7 @@ export namespace SubscriptionSchedulePlanChangeParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * Configuration for grouped_tiered_matrix pricing
@@ -13496,7 +13496,7 @@ export namespace SubscriptionSchedulePlanChangeParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * The id of the item the price will be associated with.
@@ -13657,7 +13657,7 @@ export namespace SubscriptionSchedulePlanChangeParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * The id of the item the price will be associated with.
@@ -13830,7 +13830,7 @@ export namespace SubscriptionSchedulePlanChangeParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * The id of the item the price will be associated with.
@@ -13970,7 +13970,7 @@ export namespace SubscriptionSchedulePlanChangeParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * Configuration for grouped_with_min_max_thresholds pricing
@@ -14107,7 +14107,7 @@ export namespace SubscriptionSchedulePlanChangeParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * Configuration for cumulative_grouped_allocation pricing
@@ -14244,7 +14244,7 @@ export namespace SubscriptionSchedulePlanChangeParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * Configuration for daily_credit_allowance pricing
@@ -14407,7 +14407,7 @@ export namespace SubscriptionSchedulePlanChangeParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * The id of the item the price will be associated with.
@@ -14559,7 +14559,7 @@ export namespace SubscriptionSchedulePlanChangeParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * The id of the item the price will be associated with.
@@ -14698,7 +14698,7 @@ export namespace SubscriptionSchedulePlanChangeParams {
       /**
        * The cadence to bill for this price on.
        */
-      cadence: 'annual' | 'semi_annual' | 'monthly' | 'quarterly' | 'one_time' | 'custom';
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
 
       /**
        * Configuration for event_output pricing

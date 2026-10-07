@@ -10,7 +10,7 @@ const client = new Orb({
 describe('resource prices', () => {
   test('create: only required params', async () => {
     const responsePromise = client.prices.create({
-      cadence: 'annual',
+      cadence: 'one_time',
       currency: 'currency',
       item_id: 'item_id',
       model_type: 'unit',
@@ -28,7 +28,7 @@ describe('resource prices', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.prices.create({
-      cadence: 'annual',
+      cadence: 'one_time',
       currency: 'currency',
       item_id: 'item_id',
       model_type: 'unit',
@@ -142,7 +142,7 @@ describe('resource prices', () => {
           grouping_keys: ["case when my_event_type = 'foo' then true else false end"],
           metric_parameter_overrides: { foo: 'bar' },
           price: {
-            cadence: 'annual',
+            cadence: 'one_time',
             currency: 'currency',
             item_id: 'item_id',
             model_type: 'unit',
@@ -214,7 +214,7 @@ describe('resource prices', () => {
           grouping_keys: ["case when my_event_type = 'foo' then true else false end"],
           metric_parameter_overrides: { foo: 'bar' },
           price: {
-            cadence: 'annual',
+            cadence: 'one_time',
             currency: 'currency',
             item_id: 'item_id',
             model_type: 'unit',
