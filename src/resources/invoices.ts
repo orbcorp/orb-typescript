@@ -268,12 +268,14 @@ export class Invoices extends APIResource {
    *
    * @example
    * ```ts
-   * const invoice = await client.invoices.pay('invoice_id', {
-   *   shared_payment_token_id: 'shared_payment_token_id',
-   * });
+   * const invoice = await client.invoices.pay('invoice_id');
    * ```
    */
-  pay(invoiceID: string, body: InvoicePayParams, options?: RequestOptions): APIPromise<Shared.Invoice> {
+  pay(
+    invoiceID: string,
+    body: InvoicePayParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Shared.Invoice> {
     return this._client.post(path`/invoices/${invoiceID}/pay`, { body, ...options });
   }
 
@@ -2316,7 +2318,7 @@ export interface InvoicePayParams {
   /**
    * The ID of a shared payment token granted by an agent to use for this payment.
    */
-  shared_payment_token_id: string;
+  shared_payment_token_id?: string | null;
 }
 
 export declare namespace Invoices {
