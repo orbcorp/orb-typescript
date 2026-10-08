@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.26.0](https://github.com/orbcorp/orb-typescript/compare/v6.25.0...v6.26.0) (2026-10-08)
+
+
+### Features
+
+* **api:** add endpoint to bulk create dimensional price group prices ([ca548da](https://github.com/orbcorp/orb-typescript/commit/ca548da28afa92c4edd70536fcf18faf23648111))
+
+
+### Bug Fixes
+
+* **api:** clarify grouped subscription usage returns all groups in one response, no pagination ([ca548da](https://github.com/orbcorp/orb-typescript/commit/ca548da28afa92c4edd70536fcf18faf23648111))
+
 ## [6.25.0](https://github.com/orbcorp/orb-typescript/compare/v6.24.0...v6.25.0) (2026-10-07)
 
 
