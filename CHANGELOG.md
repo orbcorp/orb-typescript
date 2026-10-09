@@ -1,5 +1,18 @@
 # Changelog
 
+## [6.27.0](https://github.com/orbcorp/orb-typescript/compare/v6.26.0...v6.27.0) (2026-10-09)
+
+
+### Features
+
+* **api:** api update ([1fd1168](https://github.com/orbcorp/orb-typescript/commit/1fd11684ae93895dc9f96c2e973e95d22e8e2454))
+* **api:** support listing pricebook prices and filtering by product_id in GET /v1/prices ([1fd1168](https://github.com/orbcorp/orb-typescript/commit/1fd11684ae93895dc9f96c2e973e95d22e8e2454))
+
+
+### Bug Fixes
+
+* **api:** make shared_payment_token_id optional when paying an invoice ([1fd1168](https://github.com/orbcorp/orb-typescript/commit/1fd11684ae93895dc9f96c2e973e95d22e8e2454))
+
 ## [6.26.0](https://github.com/orbcorp/orb-typescript/compare/v6.25.0...v6.26.0) (2026-10-08)
 
 
