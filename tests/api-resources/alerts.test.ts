@@ -138,6 +138,38 @@ describe('resource alerts', () => {
     });
   });
 
+  test('createForPlan: only required params', async () => {
+    const responsePromise = client.alerts.createForPlan('plan_id', {
+      thresholds: [{ value: 0 }],
+      type: 'usage_exceeded',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('createForPlan: required and optional params', async () => {
+    const response = await client.alerts.createForPlan('plan_id', {
+      thresholds: [{ value: 0 }],
+      type: 'usage_exceeded',
+      currency: 'currency',
+      grouping_keys: ['string'],
+      metric_id: 'metric_id',
+      plan_version: 0,
+      price_filters: [
+        {
+          field: 'price_id',
+          operator: 'includes',
+          values: ['string'],
+        },
+      ],
+    });
+  });
+
   test('createForSubscription: only required params', async () => {
     const responsePromise = client.alerts.createForSubscription('subscription_id', {
       thresholds: [{ value: 0 }],

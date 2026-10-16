@@ -7,6 +7,8 @@ import {
   ExternalDimensionalPriceGroupID,
   ExternalDimensionalPriceGroupIDUpdateParams,
 } from './external-dimensional-price-group-id';
+import * as PricesAPI from './prices';
+import { PriceCreateParams, PriceCreateResponse, PriceListParams, Prices } from './prices';
 import { APIPromise } from '../../core/api-promise';
 import { Page, type PageParams, PagePromise } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
@@ -15,6 +17,7 @@ import { path } from '../../internal/utils/path';
 export class DimensionalPriceGroups extends APIResource {
   externalDimensionalPriceGroupID: ExternalDimensionalPriceGroupIDAPI.ExternalDimensionalPriceGroupID =
     new ExternalDimensionalPriceGroupIDAPI.ExternalDimensionalPriceGroupID(this._client);
+  prices: PricesAPI.Prices = new PricesAPI.Prices(this._client);
 
   /**
    * A dimensional price group is used to partition the result of a billable metric
@@ -211,6 +214,7 @@ export interface DimensionalPriceGroupListParams extends PageParams {
 }
 
 DimensionalPriceGroups.ExternalDimensionalPriceGroupID = ExternalDimensionalPriceGroupID;
+DimensionalPriceGroups.Prices = Prices;
 
 export declare namespace DimensionalPriceGroups {
   export {
@@ -225,5 +229,12 @@ export declare namespace DimensionalPriceGroups {
   export {
     ExternalDimensionalPriceGroupID as ExternalDimensionalPriceGroupID,
     type ExternalDimensionalPriceGroupIDUpdateParams as ExternalDimensionalPriceGroupIDUpdateParams,
+  };
+
+  export {
+    Prices as Prices,
+    type PriceCreateResponse as PriceCreateResponse,
+    type PriceCreateParams as PriceCreateParams,
+    type PriceListParams as PriceListParams,
   };
 }

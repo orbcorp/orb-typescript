@@ -107,6 +107,29 @@ export class Alerts extends APIResource {
   }
 
   /**
+   * This endpoint is used to create alerts at the plan level. Plan level alerts are
+   * automatically propagated to all subscriptions associated with the plan. These
+   * alerts are scoped to a specific plan version; if no version is specified, the
+   * active plan version is used.
+   *
+   * Plan level alerts can be of three types: `usage_exceeded`, `cost_exceeded`, or
+   * `spend_exceeded`. A `usage_exceeded` alert is scoped to a particular metric and
+   * is triggered when the usage of that metric exceeds predefined thresholds during
+   * the current billing cycle. A `cost_exceeded` alert is triggered when the total
+   * amount due during the current billing cycle surpasses predefined thresholds.
+   * `cost_exceeded` alerts do not include burndown of pre-purchase credits. A
+   * `spend_exceeded` alert is triggered when the rated spend (the pricing subtotal,
+   * before invoice-level adjustments and credits) denominated in the alert's
+   * currency exceeds predefined thresholds during the current billing cycle;
+   * `price_filters` can scope which prices contribute. Each plan can have one
+   * `cost_exceeded` alert and one `usage_exceeded` alert per metric that is a part
+   * of the plan.
+   */
+  createForPlan(planID: string, body: AlertCreateForPlanParams, options?: RequestOptions): APIPromise<Alert> {
+    return this._client.post(path`/alerts/plan_id/${planID}`, { body, ...options });
+  }
+
+  /**
    * This endpoint is used to create alerts at the subscription level.
    *
    * Subscription level alerts can be one of three types: `usage_exceeded`,
@@ -498,6 +521,68 @@ export interface AlertCreateForExternalCustomerParams {
   thresholds?: Array<Threshold> | null;
 }
 
+export interface AlertCreateForPlanParams {
+  /**
+   * The thresholds that define the values at which the alert will be triggered.
+   */
+  thresholds: Array<Threshold>;
+
+  /**
+   * The type of alert to create. This must be a valid alert type.
+   */
+  type: 'usage_exceeded' | 'cost_exceeded' | 'spend_exceeded';
+
+  /**
+   * The case sensitive currency or custom pricing unit the alert is denominated in.
+   * Required for spend_exceeded alerts and when grouping_keys is set.
+   */
+  currency?: string | null;
+
+  /**
+   * The property keys to group cost alerts by. Only applicable for cost_exceeded
+   * alerts.
+   */
+  grouping_keys?: Array<string> | null;
+
+  /**
+   * The metric to track usage for.
+   */
+  metric_id?: string | null;
+
+  /**
+   * The plan version to create alerts for. If not specified, the default will be the
+   * plan's active plan version.
+   */
+  plan_version?: number | null;
+
+  /**
+   * Filters to scope which prices are included in alert evaluation. Supports
+   * filtering by price_id, item_id, or price_type with includes/excludes operators.
+   * Only applicable to spend_exceeded alerts and to cost_exceeded alerts with
+   * grouping_keys set.
+   */
+  price_filters?: Array<AlertCreateForPlanParams.PriceFilter> | null;
+}
+
+export namespace AlertCreateForPlanParams {
+  export interface PriceFilter {
+    /**
+     * The property of the price to filter on.
+     */
+    field: 'price_id' | 'item_id' | 'price_type' | 'currency' | 'pricing_unit_id';
+
+    /**
+     * Should prices that match the filter be included or excluded.
+     */
+    operator: 'includes' | 'excludes';
+
+    /**
+     * The IDs or values that match this filter.
+     */
+    values: Array<string>;
+  }
+}
+
 export interface AlertCreateForSubscriptionParams {
   /**
    * The thresholds that define the values at which the alert will be triggered.
@@ -615,6 +700,7 @@ export declare namespace Alerts {
     type AlertListParams as AlertListParams,
     type AlertCreateForCustomerParams as AlertCreateForCustomerParams,
     type AlertCreateForExternalCustomerParams as AlertCreateForExternalCustomerParams,
+    type AlertCreateForPlanParams as AlertCreateForPlanParams,
     type AlertCreateForSubscriptionParams as AlertCreateForSubscriptionParams,
     type AlertDisableParams as AlertDisableParams,
     type AlertEnableParams as AlertEnableParams,

@@ -12,3 +12,4 @@ export {
   ExternalDimensionalPriceGroupID,
   type ExternalDimensionalPriceGroupIDUpdateParams,
 } from './external-dimensional-price-group-id';
+export { Prices, type PriceCreateResponse, type PriceCreateParams, type PriceListParams } from './prices';

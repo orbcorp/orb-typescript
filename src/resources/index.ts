@@ -9,6 +9,7 @@ export {
   type AlertListParams,
   type AlertCreateForCustomerParams,
   type AlertCreateForExternalCustomerParams,
+  type AlertCreateForPlanParams,
   type AlertCreateForSubscriptionParams,
   type AlertDisableParams,
   type AlertEnableParams,
@@ -217,6 +218,15 @@ export {
   type SubscriptionFetchScheduleResponsesPage,
 } from './subscriptions';
 export { TopLevel, type TopLevelPingResponse } from './top-level';
+export {
+  WebhookEndpoints,
+  type WebhookEndpoint,
+  type WebhookEndpointWithSecret,
+  type WebhookEndpointCreateParams,
+  type WebhookEndpointUpdateParams,
+  type WebhookEndpointListParams,
+  type WebhookEndpointsPage,
+} from './webhook-endpoints';
 export {
   Webhooks,
   type BackfillReflectedWebhookEvent,

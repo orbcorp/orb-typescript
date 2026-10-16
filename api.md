@@ -482,6 +482,23 @@ Methods:
 - <code title="post /items/{item_id}/archive">client.items.<a href="./src/resources/items.ts">archive</a>(itemID) -> Item</code>
 - <code title="get /items/{item_id}">client.items.<a href="./src/resources/items.ts">fetch</a>(itemID) -> Item</code>
 
+# WebhookEndpoints
+
+Types:
+
+- <code><a href="./src/resources/webhook-endpoints.ts">WebhookEndpoint</a></code>
+- <code><a href="./src/resources/webhook-endpoints.ts">WebhookEndpointWithSecret</a></code>
+
+Methods:
+
+- <code title="post /webhook_endpoints">client.webhookEndpoints.<a href="./src/resources/webhook-endpoints.ts">create</a>({ ...params }) -> WebhookEndpointWithSecret</code>
+- <code title="get /webhook_endpoints/{webhook_endpoint_id}">client.webhookEndpoints.<a href="./src/resources/webhook-endpoints.ts">retrieve</a>(webhookEndpointID) -> WebhookEndpoint</code>
+- <code title="put /webhook_endpoints/{webhook_endpoint_id}">client.webhookEndpoints.<a href="./src/resources/webhook-endpoints.ts">update</a>(webhookEndpointID, { ...params }) -> WebhookEndpoint</code>
+- <code title="get /webhook_endpoints">client.webhookEndpoints.<a href="./src/resources/webhook-endpoints.ts">list</a>({ ...params }) -> WebhookEndpointsPage</code>
+- <code title="delete /webhook_endpoints/{webhook_endpoint_id}">client.webhookEndpoints.<a href="./src/resources/webhook-endpoints.ts">delete</a>(webhookEndpointID) -> void</code>
+- <code title="post /webhook_endpoints/{webhook_endpoint_id}/disable">client.webhookEndpoints.<a href="./src/resources/webhook-endpoints.ts">disable</a>(webhookEndpointID) -> WebhookEndpoint</code>
+- <code title="post /webhook_endpoints/{webhook_endpoint_id}/enable">client.webhookEndpoints.<a href="./src/resources/webhook-endpoints.ts">enable</a>(webhookEndpointID) -> WebhookEndpoint</code>
+
 # Metrics
 
 Types:
@@ -626,6 +643,7 @@ Methods:
 - <code title="delete /alerts/{alert_configuration_id}">client.alerts.<a href="./src/resources/alerts.ts">delete</a>(alertConfigurationID) -> void</code>
 - <code title="post /alerts/customer_id/{customer_id}">client.alerts.<a href="./src/resources/alerts.ts">createForCustomer</a>(customerID, { ...params }) -> Alert</code>
 - <code title="post /alerts/external_customer_id/{external_customer_id}">client.alerts.<a href="./src/resources/alerts.ts">createForExternalCustomer</a>(externalCustomerID, { ...params }) -> Alert</code>
+- <code title="post /alerts/plan_id/{plan_id}">client.alerts.<a href="./src/resources/alerts.ts">createForPlan</a>(planID, { ...params }) -> Alert</code>
 - <code title="post /alerts/subscription_id/{subscription_id}">client.alerts.<a href="./src/resources/alerts.ts">createForSubscription</a>(subscriptionID, { ...params }) -> Alert</code>
 - <code title="post /alerts/{alert_configuration_id}/disable">client.alerts.<a href="./src/resources/alerts.ts">disable</a>(alertConfigurationID, { ...params }) -> Alert</code>
 - <code title="post /alerts/{alert_configuration_id}/enable">client.alerts.<a href="./src/resources/alerts.ts">enable</a>(alertConfigurationID, { ...params }) -> Alert</code>
@@ -650,6 +668,17 @@ Methods:
 
 - <code title="get /dimensional_price_groups/external_dimensional_price_group_id/{external_dimensional_price_group_id}">client.dimensionalPriceGroups.externalDimensionalPriceGroupID.<a href="./src/resources/dimensional-price-groups/external-dimensional-price-group-id.ts">retrieve</a>(externalDimensionalPriceGroupID) -> DimensionalPriceGroup</code>
 - <code title="put /dimensional_price_groups/external_dimensional_price_group_id/{external_dimensional_price_group_id}">client.dimensionalPriceGroups.externalDimensionalPriceGroupID.<a href="./src/resources/dimensional-price-groups/external-dimensional-price-group-id.ts">update</a>(externalDimensionalPriceGroupID, { ...params }) -> DimensionalPriceGroup</code>
+
+## Prices
+
+Types:
+
+- <code><a href="./src/resources/dimensional-price-groups/prices.ts">PriceCreateResponse</a></code>
+
+Methods:
+
+- <code title="post /dimensional_price_groups/{dimensional_price_group_id}/prices">client.dimensionalPriceGroups.prices.<a href="./src/resources/dimensional-price-groups/prices.ts">create</a>(dimensionalPriceGroupID, { ...params }) -> PriceCreateResponse</code>
+- <code title="get /dimensional_price_groups/{dimensional_price_group_id}/prices">client.dimensionalPriceGroups.prices.<a href="./src/resources/dimensional-price-groups/prices.ts">list</a>(dimensionalPriceGroupID, { ...params }) -> PricesPage</code>
 
 # SubscriptionChanges
 

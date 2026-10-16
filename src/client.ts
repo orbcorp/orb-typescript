@@ -23,6 +23,7 @@ import {
   Alert,
   AlertCreateForCustomerParams,
   AlertCreateForExternalCustomerParams,
+  AlertCreateForPlanParams,
   AlertCreateForSubscriptionParams,
   AlertDisableParams,
   AlertEnableParams,
@@ -147,6 +148,15 @@ import {
   SubscriptionsPage,
 } from './resources/subscriptions';
 import { TopLevel, TopLevelPingResponse } from './resources/top-level';
+import {
+  WebhookEndpoint,
+  WebhookEndpointCreateParams,
+  WebhookEndpointListParams,
+  WebhookEndpointUpdateParams,
+  WebhookEndpointWithSecret,
+  WebhookEndpoints,
+  WebhookEndpointsPage,
+} from './resources/webhook-endpoints';
 import {
   BackfillReflectedWebhookEvent,
   BackfillRevertedWebhookEvent,
@@ -1142,6 +1152,10 @@ export class Orb {
    */
   items: API.Items = new API.Items(this);
   /**
+   * A webhook endpoint is an HTTPS URL that Orb sends [webhook events](/integrations-and-exports/webhooks) to.
+   */
+  webhookEndpoints: API.WebhookEndpoints = new API.WebhookEndpoints(this);
+  /**
    * The Metric resource represents a calculation of a quantity based on events.
    * Metrics are defined by the query that transforms raw usage events into meaningful values for your customers.
    */
@@ -1194,6 +1208,7 @@ Orb.Events = Events;
 Orb.InvoiceLineItems = InvoiceLineItems;
 Orb.Invoices = Invoices;
 Orb.Items = Items;
+Orb.WebhookEndpoints = WebhookEndpoints;
 Orb.Metrics = Metrics;
 Orb.Plans = Plans;
 Orb.Prices = Prices;
@@ -1387,6 +1402,16 @@ export declare namespace Orb {
   };
 
   export {
+    WebhookEndpoints as WebhookEndpoints,
+    type WebhookEndpoint as WebhookEndpoint,
+    type WebhookEndpointWithSecret as WebhookEndpointWithSecret,
+    type WebhookEndpointsPage as WebhookEndpointsPage,
+    type WebhookEndpointCreateParams as WebhookEndpointCreateParams,
+    type WebhookEndpointUpdateParams as WebhookEndpointUpdateParams,
+    type WebhookEndpointListParams as WebhookEndpointListParams,
+  };
+
+  export {
     Metrics as Metrics,
     type BillableMetric as BillableMetric,
     type BillableMetricsPage as BillableMetricsPage,
@@ -1477,6 +1502,7 @@ export declare namespace Orb {
     type AlertListParams as AlertListParams,
     type AlertCreateForCustomerParams as AlertCreateForCustomerParams,
     type AlertCreateForExternalCustomerParams as AlertCreateForExternalCustomerParams,
+    type AlertCreateForPlanParams as AlertCreateForPlanParams,
     type AlertCreateForSubscriptionParams as AlertCreateForSubscriptionParams,
     type AlertDisableParams as AlertDisableParams,
     type AlertEnableParams as AlertEnableParams,
