@@ -9,14 +9,6 @@ import * as Shared from './shared';
 import * as SubscriptionsAPI from './subscriptions';
 import * as CustomersAPI from './customers/customers';
 
-function getRequiredHeader(headers: HeadersLike, name: string): string {
-  const value = buildHeaders([headers]).values.get(name);
-  if (value === null || value === undefined) {
-    throw new Error(`Could not find ${name} header`);
-  }
-  return value;
-}
-
 export class Webhooks extends APIResource {
   /**
    * Validates that the given payload was sent by Orb and parses the payload.
@@ -30,6 +22,14 @@ export class Webhooks extends APIResource {
   ): UnwrapWebhookEvent {
     this.verifySignature(payload, headers, secret);
     return JSON.parse(payload) as UnwrapWebhookEvent;
+  }
+
+  private getRequiredHeader(headers: HeadersLike, name: string): string {
+    const value = buildHeaders([headers]).values.get(name);
+    if (value === null || value === undefined) {
+      throw new Error(`Could not find ${name} header`);
+    }
+    return value;
   }
 
   private parseSecret(secret: string | null | undefined): Uint8Array {
@@ -102,8 +102,8 @@ export class Webhooks extends APIResource {
   ): void {
     const whsecret = this.parseSecret(secret);
 
-    const msgTimestamp = getRequiredHeader(headers, 'X-Orb-Timestamp');
-    const msgSignature = getRequiredHeader(headers, 'X-Orb-Signature');
+    const msgTimestamp = this.getRequiredHeader(headers, 'X-Orb-Timestamp');
+    const msgSignature = this.getRequiredHeader(headers, 'X-Orb-Signature');
 
     const nowSeconds = Math.floor(Date.now() / 1000);
     // The timestamp header does not include a timezone (it is UTC by default)
