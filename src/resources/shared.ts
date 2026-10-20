@@ -17104,6 +17104,20 @@ export interface TaxAmount {
    * The tax rate percentage, out of 100.
    */
   tax_rate_percentage: string | null;
+
+  /**
+   * Why this tax was or was not charged, such as reverse_charge or customer_exempt.
+   * Null on tax calculated before reasons were recorded.
+   */
+  tax_reason?:
+    | 'taxed'
+    | 'reverse_charge'
+    | 'customer_exempt'
+    | 'product_exempt'
+    | 'not_registered'
+    | 'zero_rated'
+    | 'not_taxed_other'
+    | null;
 }
 
 /**

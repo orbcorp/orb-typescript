@@ -8,6 +8,7 @@ import * as MetricsAPI from './metrics';
 import * as Shared from './shared';
 import * as SubscriptionsAPI from './subscriptions';
 import * as CustomersAPI from './customers/customers';
+import * as PlansAPI from './plans/plans';
 
 export class Webhooks extends APIResource {
   /**
@@ -4785,6 +4786,45 @@ export namespace PaymentMethodDeletedWebhookEvent {
 }
 
 /**
+ * Issued when a plan is created, or when a draft plan is published.
+ */
+export interface PlanCreatedWebhookEvent {
+  /**
+   * The ID of this webhook event.
+   */
+  id: string;
+
+  /**
+   * The time at which this event was created, to the second.
+   */
+  created_at: string;
+
+  plan: PlanCreatedWebhookEvent.Plan;
+
+  properties: unknown;
+
+  /**
+   * The event this payload describes.
+   */
+  type: 'plan.created';
+}
+
+export namespace PlanCreatedWebhookEvent {
+  export interface Plan {
+    id: string | null;
+
+    /**
+     * An optional user-defined ID for this plan resource, used throughout the system
+     * as an alias for this Plan. Use this field to identify a plan by an existing
+     * identifier in your system.
+     */
+    external_plan_id: string | null;
+
+    name: string | null;
+  }
+}
+
+/**
  * Issued when a plan's default version is set.
  */
 export interface PlanDefaultVersionSetWebhookEvent {
@@ -4826,6 +4866,63 @@ export namespace PlanDefaultVersionSetWebhookEvent {
     new_default_version_number: number;
 
     previous_default_version_number: number;
+  }
+}
+
+/**
+ * Issued when a plan's name, description, external plan ID, metadata or status is
+ * edited.
+ */
+export interface PlanEditedWebhookEvent {
+  /**
+   * The ID of this webhook event.
+   */
+  id: string;
+
+  /**
+   * The time at which this event was created, to the second.
+   */
+  created_at: string;
+
+  /**
+   * The [Plan](/core-concepts#plan-and-price) resource represents a plan that can be
+   * subscribed to by a customer. Plans define the billing behavior of the
+   * subscription. You can see more about how to configure prices in the
+   * [Price resource](/reference/price).
+   */
+  plan: PlansAPI.Plan;
+
+  properties: PlanEditedWebhookEvent.Properties;
+
+  /**
+   * The event this payload describes.
+   */
+  type: 'plan.edited';
+}
+
+export namespace PlanEditedWebhookEvent {
+  export interface Properties {
+    /**
+     * metadata values are non-null on the wire, as on the price event.
+     */
+    previous_attributes: Properties.PreviousAttributes;
+  }
+
+  export namespace Properties {
+    /**
+     * metadata values are non-null on the wire, as on the price event.
+     */
+    export interface PreviousAttributes {
+      description?: string | null;
+
+      external_plan_id?: string | null;
+
+      metadata?: { [key: string]: string } | null;
+
+      name?: string | null;
+
+      status?: 'active' | 'archived' | 'draft' | null;
+    }
   }
 }
 
@@ -8105,7 +8202,9 @@ export type UnwrapWebhookEvent =
   | MetricEventsDroppedByWatermarkWebhookEvent
   | PaymentMethodCreatedWebhookEvent
   | PaymentMethodDeletedWebhookEvent
+  | PlanCreatedWebhookEvent
   | PlanDefaultVersionSetWebhookEvent
+  | PlanEditedWebhookEvent
   | PlanVersionCreatedWebhookEvent
   | PriceEditedWebhookEvent
   | ResourceEventTestWebhookEvent
@@ -8187,7 +8286,9 @@ export declare namespace Webhooks {
     type MetricEventsDroppedByWatermarkWebhookEvent as MetricEventsDroppedByWatermarkWebhookEvent,
     type PaymentMethodCreatedWebhookEvent as PaymentMethodCreatedWebhookEvent,
     type PaymentMethodDeletedWebhookEvent as PaymentMethodDeletedWebhookEvent,
+    type PlanCreatedWebhookEvent as PlanCreatedWebhookEvent,
     type PlanDefaultVersionSetWebhookEvent as PlanDefaultVersionSetWebhookEvent,
+    type PlanEditedWebhookEvent as PlanEditedWebhookEvent,
     type PlanVersionCreatedWebhookEvent as PlanVersionCreatedWebhookEvent,
     type PriceEditedWebhookEvent as PriceEditedWebhookEvent,
     type ResourceEventTestWebhookEvent as ResourceEventTestWebhookEvent,

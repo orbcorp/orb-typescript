@@ -186,7 +186,9 @@ Types:
 - <code><a href="./src/resources/webhooks.ts">MetricEventsDroppedByWatermarkWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">PaymentMethodCreatedWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">PaymentMethodDeletedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">PlanCreatedWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">PlanDefaultVersionSetWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">PlanEditedWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">PlanVersionCreatedWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">PriceEditedWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">ResourceEventTestWebhookEvent</a></code>
