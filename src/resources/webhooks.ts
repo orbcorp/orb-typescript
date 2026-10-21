@@ -180,6 +180,12 @@ export interface BackfillReflectedWebhookEvent {
    */
   created_at: string;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: unknown;
 
   /**
@@ -264,6 +270,12 @@ export interface BackfillRevertedWebhookEvent {
    * The time at which this event was created, to the second.
    */
   created_at: string;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   properties: unknown;
 
@@ -351,6 +363,12 @@ export interface BillableMetricEditedWebhookEvent {
    */
   created_at: string;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: BillableMetricEditedWebhookEvent.Properties;
 
   /**
@@ -401,6 +419,12 @@ export interface CreditBlockAccountingSyncFailedWebhookEvent {
    * The time at which this event was created, to the second.
    */
   created_at: string;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   properties: CreditBlockAccountingSyncFailedWebhookEvent.Properties;
 
@@ -593,6 +617,12 @@ export interface CreditBlockAccountingSyncSucceededWebhookEvent {
    */
   created_at: string;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: CreditBlockAccountingSyncSucceededWebhookEvent.Properties;
 
   /**
@@ -783,6 +813,12 @@ export interface CreditNoteAccountingSyncFailedWebhookEvent {
    */
   credit_note: Shared.CreditNote;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: CreditNoteAccountingSyncFailedWebhookEvent.Properties;
 
   /**
@@ -847,6 +883,12 @@ export interface CreditNoteAccountingSyncSucceededWebhookEvent {
    */
   credit_note: Shared.CreditNote;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: CreditNoteAccountingSyncSucceededWebhookEvent.Properties;
 
   /**
@@ -907,6 +949,12 @@ export interface CreditNoteIssuedWebhookEvent {
    */
   credit_note: Shared.CreditNote;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: unknown;
 
   /**
@@ -934,6 +982,12 @@ export interface CreditNoteMarkedAsVoidWebhookEvent {
    * been applied to a particular invoice.
    */
   credit_note: Shared.CreditNote;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   properties: unknown;
 
@@ -980,6 +1034,12 @@ export interface CustomerAccountingSyncFailedWebhookEvent {
    * information on what this timezone parameter influences within Orb.
    */
   customer: CustomersAPI.Customer;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   properties: CustomerAccountingSyncFailedWebhookEvent.Properties;
 
@@ -1059,6 +1119,12 @@ export interface CustomerAccountingSyncSucceededWebhookEvent {
    */
   customer: CustomersAPI.Customer;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: CustomerAccountingSyncSucceededWebhookEvent.Properties;
 
   /**
@@ -1132,6 +1198,12 @@ export interface CustomerBalanceTransactionCreatedWebhookEvent {
    * information on what this timezone parameter influences within Orb.
    */
   customer: CustomersAPI.Customer;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   properties: CustomerBalanceTransactionCreatedWebhookEvent.Properties;
 
@@ -1238,6 +1310,12 @@ export interface CustomerCreatedWebhookEvent {
    */
   customer: CustomersAPI.Customer;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: unknown;
 
   /**
@@ -1281,6 +1359,12 @@ export interface CustomerCreditBalanceDepletedWebhookEvent {
    * information on what this timezone parameter influences within Orb.
    */
   customer: CustomersAPI.Customer;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   properties: CustomerCreditBalanceDepletedWebhookEvent.Properties;
 
@@ -1576,6 +1660,12 @@ export interface CustomerCreditBalanceDroppedWebhookEvent {
    * information on what this timezone parameter influences within Orb.
    */
   customer: CustomersAPI.Customer;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   properties: CustomerCreditBalanceDroppedWebhookEvent.Properties;
 
@@ -1873,6 +1963,12 @@ export interface CustomerCreditBalanceRecoveredWebhookEvent {
    */
   customer: CustomersAPI.Customer;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: CustomerCreditBalanceRecoveredWebhookEvent.Properties;
 
   /**
@@ -2167,6 +2263,12 @@ export interface CustomerCreditLedgerIncrementedWebhookEvent {
    */
   customer: CustomersAPI.Customer;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: CustomerCreditLedgerIncrementedWebhookEvent.Properties;
 
   /**
@@ -2365,6 +2467,12 @@ export interface CustomerEditedWebhookEvent {
    * information on what this timezone parameter influences within Orb.
    */
   customer: CustomersAPI.Customer;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   properties: CustomerEditedWebhookEvent.Properties;
 
@@ -2584,6 +2692,12 @@ export interface DataExportsTransferErrorWebhookEvent {
    */
   created_at: string;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: DataExportsTransferErrorWebhookEvent.Properties;
 
   /**
@@ -2624,6 +2738,12 @@ export interface DataExportsTransferSuccessWebhookEvent {
    */
   created_at: string;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: DataExportsTransferSuccessWebhookEvent.Properties;
 
   /**
@@ -2661,6 +2781,12 @@ export interface EventUnmatchedEventWebhookEvent {
    * The time at which this event was created, to the second.
    */
   created_at: string;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   properties: EventUnmatchedEventWebhookEvent.Properties;
 
@@ -2706,6 +2832,12 @@ export interface IngestionUnmatchedCustomerIDsWebhookEvent {
    */
   created_at: string;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: IngestionUnmatchedCustomerIDsWebhookEvent.Properties;
 
   /**
@@ -2744,6 +2876,12 @@ export interface InvoiceAccountingSyncFailedWebhookEvent {
    * end of a billing period, or as the result of an action, such as a cancellation.
    */
   invoice: Shared.Invoice;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   properties: InvoiceAccountingSyncFailedWebhookEvent.Properties;
 
@@ -2812,6 +2950,12 @@ export interface InvoiceAccountingSyncSucceededWebhookEvent {
    */
   invoice: Shared.Invoice;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: InvoiceAccountingSyncSucceededWebhookEvent.Properties;
 
   /**
@@ -2872,6 +3016,12 @@ export interface InvoiceAutomationScheduleStepExecutedWebhookEvent {
    * against.
    */
   invoice: InvoiceAutomationScheduleStepExecutedWebhookEvent.Invoice;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   properties: InvoiceAutomationScheduleStepExecutedWebhookEvent.Properties;
 
@@ -2980,6 +3130,12 @@ export interface InvoiceCostDataExportedWebhookEvent {
 
   invoice: string;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: InvoiceCostDataExportedWebhookEvent.Properties;
 
   /**
@@ -3020,6 +3176,12 @@ export interface InvoiceDunningScheduleCreatedWebhookEvent {
    * end of a billing period, or as the result of an action, such as a cancellation.
    */
   invoice: Shared.Invoice;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   properties: InvoiceDunningScheduleCreatedWebhookEvent.Properties;
 
@@ -3096,6 +3258,12 @@ export interface InvoiceDunningScheduleEndedWebhookEvent {
    */
   invoice: Shared.Invoice;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: InvoiceDunningScheduleEndedWebhookEvent.Properties;
 
   /**
@@ -3168,6 +3336,12 @@ export interface InvoiceDunningScheduleResetWebhookEvent {
    * end of a billing period, or as the result of an action, such as a cancellation.
    */
   invoice: Shared.Invoice;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   properties: InvoiceDunningScheduleResetWebhookEvent.Properties;
 
@@ -3254,6 +3428,12 @@ export interface InvoiceDunningScheduleStepExecutedWebhookEvent {
    */
   invoice: Shared.Invoice;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: InvoiceDunningScheduleStepExecutedWebhookEvent.Properties;
 
   /**
@@ -3310,6 +3490,12 @@ export interface InvoiceEditedWebhookEvent {
    * end of a billing period, or as the result of an action, such as a cancellation.
    */
   invoice: Shared.Invoice;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   properties: InvoiceEditedWebhookEvent.Properties;
 
@@ -3579,6 +3765,12 @@ export interface InvoiceInvoiceDateElapsedWebhookEvent {
 
   invoice: InvoiceInvoiceDateElapsedWebhookEvent.Invoice;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: InvoiceInvoiceDateElapsedWebhookEvent.Properties;
 
   /**
@@ -3628,6 +3820,12 @@ export interface InvoiceIssueFailedWebhookEvent {
    */
   invoice: Shared.Invoice;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: InvoiceIssueFailedWebhookEvent.Properties;
 
   /**
@@ -3665,6 +3863,12 @@ export interface InvoiceIssuedWebhookEvent {
    */
   invoice: Shared.Invoice;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: InvoiceIssuedWebhookEvent.Properties;
 
   /**
@@ -3698,6 +3902,12 @@ export interface InvoiceIssuedSummaryWebhookEvent {
    * #InvoiceApiResourceWithoutLineItems
    */
   invoice: InvoiceIssuedSummaryWebhookEvent.Invoice;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   properties: InvoiceIssuedSummaryWebhookEvent.Properties;
 
@@ -4204,6 +4414,12 @@ export interface InvoiceManuallyMarkedAsPaidWebhookEvent {
    */
   invoice: Shared.Invoice;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: InvoiceManuallyMarkedAsPaidWebhookEvent.Properties;
 
   /**
@@ -4245,6 +4461,12 @@ export interface InvoiceManuallyMarkedAsVoidWebhookEvent {
    */
   invoice: Shared.Invoice;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: unknown;
 
   /**
@@ -4276,6 +4498,12 @@ export interface InvoicePaymentFailedWebhookEvent {
    * end of a billing period, or as the result of an action, such as a cancellation.
    */
   invoice: Shared.Invoice;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   properties: InvoicePaymentFailedWebhookEvent.Properties;
 
@@ -4318,6 +4546,12 @@ export interface InvoicePaymentProcessingWebhookEvent {
    */
   invoice: Shared.Invoice;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: InvoicePaymentProcessingWebhookEvent.Properties;
 
   /**
@@ -4357,6 +4591,12 @@ export interface InvoicePaymentSucceededWebhookEvent {
    * end of a billing period, or as the result of an action, such as a cancellation.
    */
   invoice: Shared.Invoice;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   /**
    * `shared_payment_token_id` is only on the wire when the payment used one.
@@ -4407,6 +4647,12 @@ export interface InvoiceSyncFailedWebhookEvent {
    */
   invoice: Shared.Invoice;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: InvoiceSyncFailedWebhookEvent.Properties;
 
   /**
@@ -4445,6 +4691,12 @@ export interface InvoiceSyncSucceededWebhookEvent {
    * end of a billing period, or as the result of an action, such as a cancellation.
    */
   invoice: Shared.Invoice;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   properties: InvoiceSyncSucceededWebhookEvent.Properties;
 
@@ -4485,6 +4737,12 @@ export interface InvoiceUndoMarkAsPaidWebhookEvent {
    */
   invoice: Shared.Invoice;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: unknown;
 
   /**
@@ -4506,6 +4764,12 @@ export interface InvoiceDueDateRecalculationCanceledWebhookEvent {
    * The time at which this event was created, to the second.
    */
   created_at: string;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   properties: InvoiceDueDateRecalculationCanceledWebhookEvent.Properties;
 
@@ -4537,6 +4801,12 @@ export interface InvoiceDueDateRecalculationCompletedWebhookEvent {
    */
   created_at: string;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: InvoiceDueDateRecalculationCompletedWebhookEvent.Properties;
 
   /**
@@ -4567,6 +4837,12 @@ export interface InvoiceDueDateRecalculationStartedWebhookEvent {
    */
   created_at: string;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: InvoiceDueDateRecalculationStartedWebhookEvent.Properties;
 
   /**
@@ -4594,6 +4870,12 @@ export interface MetricEventsDroppedByWatermarkWebhookEvent {
    * The time at which this event was created, to the second.
    */
   created_at: string;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   /**
    * `window_start` and `window_end` are ISO-8601 strings rather than datetimes: the
@@ -4640,6 +4922,12 @@ export interface PaymentMethodCreatedWebhookEvent {
    * The time at which this event was created, to the second.
    */
   created_at: string;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   /**
    * A payment method represents a customer's stored payment instrument held with an
@@ -4721,6 +5009,12 @@ export interface PaymentMethodDeletedWebhookEvent {
   created_at: string;
 
   /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
+  /**
    * A payment method represents a customer's stored payment instrument held with an
    * external payment provider (such as Adyen or Stripe).
    *
@@ -4799,6 +5093,12 @@ export interface PlanCreatedWebhookEvent {
    */
   created_at: string;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   plan: PlanCreatedWebhookEvent.Plan;
 
   properties: unknown;
@@ -4837,6 +5137,12 @@ export interface PlanDefaultVersionSetWebhookEvent {
    * The time at which this event was created, to the second.
    */
   created_at: string;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   plan: PlanDefaultVersionSetWebhookEvent.Plan;
 
@@ -4883,6 +5189,12 @@ export interface PlanEditedWebhookEvent {
    * The time at which this event was created, to the second.
    */
   created_at: string;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   /**
    * The [Plan](/core-concepts#plan-and-price) resource represents a plan that can be
@@ -4940,6 +5252,12 @@ export interface PlanVersionCreatedWebhookEvent {
    */
   created_at: string;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   plan: PlanVersionCreatedWebhookEvent.Plan;
 
   properties: PlanVersionCreatedWebhookEvent.Properties;
@@ -4984,6 +5302,12 @@ export interface PriceEditedWebhookEvent {
    * The time at which this event was created, to the second.
    */
   created_at: string;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   /**
    * The Price resource represents a price that can be billed on a subscription,
@@ -5043,6 +5367,12 @@ export interface ResourceEventTestWebhookEvent {
    */
   created_at: string;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: ResourceEventTestWebhookEvent.Properties;
 
   /**
@@ -5081,6 +5411,12 @@ export interface SalesOrderAccountingSyncFailedWebhookEvent {
    * end of a billing period, or as the result of an action, such as a cancellation.
    */
   invoice: Shared.Invoice;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   properties: SalesOrderAccountingSyncFailedWebhookEvent.Properties;
 
@@ -5149,6 +5485,12 @@ export interface SalesOrderAccountingSyncSucceededWebhookEvent {
    */
   invoice: Shared.Invoice;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: SalesOrderAccountingSyncSucceededWebhookEvent.Properties;
 
   /**
@@ -5204,6 +5546,12 @@ export interface SubscriptionAccountingSyncFailedWebhookEvent {
    * The time at which this event was created, to the second.
    */
   created_at: string;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   properties: SubscriptionAccountingSyncFailedWebhookEvent.Properties;
 
@@ -5286,6 +5634,12 @@ export interface SubscriptionAccountingSyncSucceededWebhookEvent {
    */
   created_at: string;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: SubscriptionAccountingSyncSucceededWebhookEvent.Properties;
 
   /**
@@ -5362,6 +5716,12 @@ export interface SubscriptionAlertDisabledWebhookEvent {
    * The time at which this event was created, to the second.
    */
   created_at: string;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   /**
    * Sent when the system disables an alert on its own, currently for
@@ -5674,6 +6034,12 @@ export interface SubscriptionCancellationScheduledWebhookEvent {
    */
   created_at: string;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: SubscriptionCancellationScheduledWebhookEvent.Properties;
 
   /**
@@ -5725,6 +6091,12 @@ export interface SubscriptionCancellationUnscheduledWebhookEvent {
    */
   created_at: string;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: SubscriptionCancellationUnscheduledWebhookEvent.Properties;
 
   /**
@@ -5775,6 +6147,12 @@ export interface SubscriptionCostExceededWebhookEvent {
    * The time at which this event was created, to the second.
    */
   created_at: string;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   properties: SubscriptionCostExceededWebhookEvent.Properties;
 
@@ -6061,6 +6439,12 @@ export interface SubscriptionCreatedWebhookEvent {
    */
   created_at: string;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: unknown;
 
   /**
@@ -6105,6 +6489,12 @@ export interface SubscriptionEditedWebhookEvent {
    * The time at which this event was created, to the second.
    */
   created_at: string;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   properties: SubscriptionEditedWebhookEvent.Properties;
 
@@ -6173,6 +6563,12 @@ export interface SubscriptionEndedWebhookEvent {
    */
   created_at: string;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: unknown;
 
   /**
@@ -6217,6 +6613,12 @@ export interface SubscriptionFixedFeeQuantityUpdatedWebhookEvent {
    * The time at which this event was created, to the second.
    */
   created_at: string;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   properties: SubscriptionFixedFeeQuantityUpdatedWebhookEvent.Properties;
 
@@ -6274,6 +6676,12 @@ export interface SubscriptionGroupedCostExceededWebhookEvent {
    * The time at which this event was created, to the second.
    */
   created_at: string;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   /**
    * Every group that crossed a threshold for one alert, batched into a single
@@ -6597,6 +7005,12 @@ export interface SubscriptionInvoicingThresholdExceededWebhookEvent {
    */
   created_at: string;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: SubscriptionInvoicingThresholdExceededWebhookEvent.Properties;
 
   /**
@@ -6673,6 +7087,12 @@ export interface SubscriptionLicenseAllocationResetWebhookEvent {
    * The time at which this event was created, to the second.
    */
   created_at: string;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   /**
    * Fires at the start of a billing period when license allocations are replenished.
@@ -6769,6 +7189,12 @@ export interface SubscriptionLicenseBalanceThresholdReachedWebhookEvent {
    * The time at which this event was created, to the second.
    */
   created_at: string;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   /**
    * Every license that crossed a threshold for one alert, batched into a single
@@ -7089,6 +7515,12 @@ export interface SubscriptionPlanChangeScheduledWebhookEvent {
    */
   created_at: string;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: SubscriptionPlanChangeScheduledWebhookEvent.Properties;
 
   /**
@@ -7144,6 +7576,12 @@ export interface SubscriptionPlanChangedWebhookEvent {
    */
   created_at: string;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: SubscriptionPlanChangedWebhookEvent.Properties;
 
   /**
@@ -7194,6 +7632,12 @@ export interface SubscriptionPlanVersionChangeScheduledWebhookEvent {
    * The time at which this event was created, to the second.
    */
   created_at: string;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   properties: SubscriptionPlanVersionChangeScheduledWebhookEvent.Properties;
 
@@ -7250,6 +7694,12 @@ export interface SubscriptionPlanVersionChangedWebhookEvent {
    */
   created_at: string;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: SubscriptionPlanVersionChangedWebhookEvent.Properties;
 
   /**
@@ -7305,6 +7755,12 @@ export interface SubscriptionSpendExceededWebhookEvent {
    * The time at which this event was created, to the second.
    */
   created_at: string;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   properties: SubscriptionSpendExceededWebhookEvent.Properties;
 
@@ -7591,6 +8047,12 @@ export interface SubscriptionStartedWebhookEvent {
    */
   created_at: string;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: unknown;
 
   /**
@@ -7635,6 +8097,12 @@ export interface SubscriptionTrialEndedWebhookEvent {
    * The time at which this event was created, to the second.
    */
   created_at: string;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   properties: unknown;
 
@@ -7681,6 +8149,12 @@ export interface SubscriptionUsageExceededWebhookEvent {
    * The time at which this event was created, to the second.
    */
   created_at: string;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   properties: SubscriptionUsageExceededWebhookEvent.Properties;
 
@@ -7971,6 +8445,12 @@ export interface TransactionAccountingSyncFailedWebhookEvent {
    */
   created_at: string;
 
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
+
   properties: TransactionAccountingSyncFailedWebhookEvent.Properties;
 
   transaction: TransactionAccountingSyncFailedWebhookEvent.Transaction;
@@ -8068,6 +8548,12 @@ export interface TransactionAccountingSyncSucceededWebhookEvent {
    * The time at which this event was created, to the second.
    */
   created_at: string;
+
+  /**
+   * The serialization style this payload was rendered in, as configured on the
+   * endpoint.
+   */
+  payload_style: 'expanded' | 'standard';
 
   properties: TransactionAccountingSyncSucceededWebhookEvent.Properties;
 
