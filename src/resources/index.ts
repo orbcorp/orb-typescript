@@ -311,4 +311,4 @@ export {
   type TransactionAccountingSyncFailedWebhookEvent,
   type TransactionAccountingSyncSucceededWebhookEvent,
   type UnwrapWebhookEvent,
-} from './webhooks';
+} from './webhooks/webhooks';
