@@ -5,7 +5,7 @@
 
 ### Features
 
-* **api:** api update ([a7cb58e](https://github.com/orbcorp/orb-typescript/commit/a7cb58e56f2d2f6426038cc8f83339be93c25f49))
+* **api:** add `payload_style` to webhook payloads, and publish standard payload types and the `UnwrapWebhookEventStandard` union ([a7cb58e](https://github.com/orbcorp/orb-typescript/commit/a7cb58e56f2d2f6426038cc8f83339be93c25f49))
 
 
 ### Bug Fixes
