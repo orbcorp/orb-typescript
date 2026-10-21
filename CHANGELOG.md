@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.29.0](https://github.com/orbcorp/orb-typescript/compare/v6.28.0...v6.29.0) (2026-10-21)
+
+
+### Features
+
+* **api:** api update ([a7cb58e](https://github.com/orbcorp/orb-typescript/commit/a7cb58e56f2d2f6426038cc8f83339be93c25f49))
+
+
+### Bug Fixes
+
+* **webhooks:** move getRequiredHeader into the Webhooks class ([a0cbc40](https://github.com/orbcorp/orb-typescript/commit/a0cbc40b82a534ec8e12b234f0bed7067cccc1a5))
+
 ## [6.28.0](https://github.com/orbcorp/orb-typescript/compare/v6.27.0...v6.28.0) (2026-10-16)
 
 
