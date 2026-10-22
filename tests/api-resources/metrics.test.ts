@@ -67,6 +67,7 @@ describe('resource metrics', () => {
           'created_at[lte]': '2019-12-27T18:11:19.117Z',
           cursor: 'cursor',
           limit: 1,
+          status: 'active',
         },
         { path: '/_stainless_unknown_path' },
       ),

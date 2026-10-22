@@ -4006,7 +4006,8 @@ export interface InvoiceIssuedSummaryWebhookEvent {
   created_at: string;
 
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   invoice: InvoiceIssuedSummaryWebhookEvent.Invoice;
 
@@ -4026,7 +4027,8 @@ export interface InvoiceIssuedSummaryWebhookEvent {
 
 export namespace InvoiceIssuedSummaryWebhookEvent {
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   export interface Invoice {
     id: string;
@@ -5837,10 +5839,8 @@ export interface SubscriptionAlertDisabledWebhookEvent {
   properties: SubscriptionAlertDisabledWebhookEvent.Properties;
 
   /**
-   * A lightweight subscription representation for webhook payloads.
-   *
-   * This avoids the expensive to_subscription_params() call required for full
-   * serialization.
+   * The subscription in a license or grouped cost webhook payload: its status,
+   * dates, plan and customer.
    */
   subscription: SubscriptionAlertDisabledWebhookEvent.Subscription;
 
@@ -6092,10 +6092,8 @@ export namespace SubscriptionAlertDisabledWebhookEvent {
   }
 
   /**
-   * A lightweight subscription representation for webhook payloads.
-   *
-   * This avoids the expensive to_subscription_params() call required for full
-   * serialization.
+   * The subscription in a license or grouped cost webhook payload: its status,
+   * dates, plan and customer.
    */
   export interface Subscription {
     id: string;
@@ -6797,10 +6795,8 @@ export interface SubscriptionGroupedCostExceededWebhookEvent {
   properties: SubscriptionGroupedCostExceededWebhookEvent.Properties;
 
   /**
-   * A lightweight subscription representation for webhook payloads.
-   *
-   * This avoids the expensive to_subscription_params() call required for full
-   * serialization.
+   * The subscription in a license or grouped cost webhook payload: its status,
+   * dates, plan and customer.
    */
   subscription: SubscriptionGroupedCostExceededWebhookEvent.Subscription;
 
@@ -7062,10 +7058,8 @@ export namespace SubscriptionGroupedCostExceededWebhookEvent {
   }
 
   /**
-   * A lightweight subscription representation for webhook payloads.
-   *
-   * This avoids the expensive to_subscription_params() call required for full
-   * serialization.
+   * The subscription in a license or grouped cost webhook payload: its status,
+   * dates, plan and customer.
    */
   export interface Subscription {
     id: string;
@@ -7121,10 +7115,8 @@ export interface SubscriptionInvoicingThresholdExceededWebhookEvent {
   properties: SubscriptionInvoicingThresholdExceededWebhookEvent.Properties;
 
   /**
-   * A lightweight subscription representation for webhook payloads.
-   *
-   * This avoids the expensive to_subscription_params() call required for full
-   * serialization.
+   * The subscription in a license or grouped cost webhook payload: its status,
+   * dates, plan and customer.
    */
   subscription: SubscriptionInvoicingThresholdExceededWebhookEvent.Subscription;
 
@@ -7146,10 +7138,8 @@ export namespace SubscriptionInvoicingThresholdExceededWebhookEvent {
   }
 
   /**
-   * A lightweight subscription representation for webhook payloads.
-   *
-   * This avoids the expensive to_subscription_params() call required for full
-   * serialization.
+   * The subscription in a license or grouped cost webhook payload: its status,
+   * dates, plan and customer.
    */
   export interface Subscription {
     id: string;
@@ -7208,10 +7198,8 @@ export interface SubscriptionLicenseAllocationResetWebhookEvent {
   properties: SubscriptionLicenseAllocationResetWebhookEvent.Properties;
 
   /**
-   * A lightweight subscription representation for webhook payloads.
-   *
-   * This avoids the expensive to_subscription_params() call required for full
-   * serialization.
+   * The subscription in a license or grouped cost webhook payload: its status,
+   * dates, plan and customer.
    */
   subscription: SubscriptionLicenseAllocationResetWebhookEvent.Subscription;
 
@@ -7248,10 +7236,8 @@ export namespace SubscriptionLicenseAllocationResetWebhookEvent {
   }
 
   /**
-   * A lightweight subscription representation for webhook payloads.
-   *
-   * This avoids the expensive to_subscription_params() call required for full
-   * serialization.
+   * The subscription in a license or grouped cost webhook payload: its status,
+   * dates, plan and customer.
    */
   export interface Subscription {
     id: string;
@@ -7310,10 +7296,8 @@ export interface SubscriptionLicenseBalanceThresholdReachedWebhookEvent {
   properties: SubscriptionLicenseBalanceThresholdReachedWebhookEvent.Properties;
 
   /**
-   * A lightweight subscription representation for webhook payloads.
-   *
-   * This avoids the expensive to_subscription_params() call required for full
-   * serialization.
+   * The subscription in a license or grouped cost webhook payload: its status,
+   * dates, plan and customer.
    */
   subscription: SubscriptionLicenseBalanceThresholdReachedWebhookEvent.Subscription;
 
@@ -7573,10 +7557,8 @@ export namespace SubscriptionLicenseBalanceThresholdReachedWebhookEvent {
   }
 
   /**
-   * A lightweight subscription representation for webhook payloads.
-   *
-   * This avoids the expensive to_subscription_params() call required for full
-   * serialization.
+   * The subscription in a license or grouped cost webhook payload: its status,
+   * dates, plan and customer.
    */
   export interface Subscription {
     id: string;

@@ -13,8 +13,9 @@ import { path } from '../../internal/utils/path';
  */
 export class ExternalPlanID extends APIResource {
   /**
-   * This endpoint can be used to update the `external_plan_id`, `description`, and
-   * `metadata` of an existing plan.
+   * This endpoint can be used to update the `name`, `external_plan_id`,
+   * `description`, and `metadata` of an existing plan. A plan's `name` cannot be
+   * empty.
    *
    * Other fields on a plan are currently immutable.
    */
@@ -68,6 +69,11 @@ export interface ExternalPlanIDUpdateParams {
    * by setting `metadata` to `null`.
    */
   metadata?: { [key: string]: string | null } | null;
+
+  /**
+   * The name of the plan.
+   */
+  name?: string | null;
 }
 
 export declare namespace ExternalPlanID {

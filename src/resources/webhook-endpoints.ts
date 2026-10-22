@@ -106,6 +106,14 @@ export interface WebhookEndpoint {
   enabled_event_types: Array<string> | null;
 
   /**
+   * The payload style of the webhook events sent to this endpoint. `standard`
+   * payloads include each object's own fields and references to related objects,
+   * without invoice line items or subscription price intervals. `expanded` payloads
+   * include every object fully expanded.
+   */
+  payload_style: 'expanded' | 'standard';
+
+  /**
    * The HTTPS URL that Orb sends webhook events to.
    */
   url: string;
@@ -138,6 +146,14 @@ export interface WebhookEndpointWithSecret {
   enabled_event_types: Array<string> | null;
 
   /**
+   * The payload style of the webhook events sent to this endpoint. `standard`
+   * payloads include each object's own fields and references to related objects,
+   * without invoice line items or subscription price intervals. `expanded` payloads
+   * include every object fully expanded.
+   */
+  payload_style: 'expanded' | 'standard';
+
+  /**
    * The secret used to sign the webhook events sent to this endpoint. Only returned
    * when the endpoint is created.
    */
@@ -160,6 +176,12 @@ export interface WebhookEndpointCreateParams {
    * types are sent.
    */
   enabled_event_types?: Array<string> | null;
+
+  /**
+   * The payload style of the webhook events sent to this endpoint. If omitted or
+   * null, the account's default style is used.
+   */
+  payload_style?: 'expanded' | 'standard' | null;
 }
 
 export interface WebhookEndpointUpdateParams {
@@ -168,6 +190,12 @@ export interface WebhookEndpointUpdateParams {
    * omit to leave them unchanged.
    */
   enabled_event_types?: Array<string> | null;
+
+  /**
+   * The payload style of the webhook events sent to this endpoint. Applies to events
+   * created after the change; omit to leave it unchanged.
+   */
+  payload_style?: 'expanded' | 'standard' | null;
 
   /**
    * The HTTPS URL that Orb sends webhook events to.

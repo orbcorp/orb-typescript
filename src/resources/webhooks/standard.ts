@@ -2736,7 +2736,8 @@ export interface InvoiceAccountingSyncFailedStandardWebhookEvent {
   created_at: string;
 
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   invoice: InvoiceAccountingSyncFailedStandardWebhookEvent.Invoice;
 
@@ -2782,7 +2783,8 @@ export namespace InvoiceAccountingSyncFailedStandardWebhookEvent {
   }
 
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   export interface Invoice {
     id: string;
@@ -3273,7 +3275,8 @@ export interface InvoiceAccountingSyncSucceededStandardWebhookEvent {
   created_at: string;
 
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   invoice: InvoiceAccountingSyncSucceededStandardWebhookEvent.Invoice;
 
@@ -3319,7 +3322,8 @@ export namespace InvoiceAccountingSyncSucceededStandardWebhookEvent {
   }
 
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   export interface Invoice {
     id: string;
@@ -3964,7 +3968,8 @@ export interface InvoiceDunningScheduleCreatedStandardWebhookEvent {
   created_at: string;
 
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   invoice: InvoiceDunningScheduleCreatedStandardWebhookEvent.Invoice;
 
@@ -3984,7 +3989,8 @@ export interface InvoiceDunningScheduleCreatedStandardWebhookEvent {
 
 export namespace InvoiceDunningScheduleCreatedStandardWebhookEvent {
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   export interface Invoice {
     id: string;
@@ -4509,7 +4515,8 @@ export interface InvoiceDunningScheduleEndedStandardWebhookEvent {
   created_at: string;
 
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   invoice: InvoiceDunningScheduleEndedStandardWebhookEvent.Invoice;
 
@@ -4529,7 +4536,8 @@ export interface InvoiceDunningScheduleEndedStandardWebhookEvent {
 
 export namespace InvoiceDunningScheduleEndedStandardWebhookEvent {
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   export interface Invoice {
     id: string;
@@ -5052,7 +5060,8 @@ export interface InvoiceDunningScheduleResetStandardWebhookEvent {
   created_at: string;
 
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   invoice: InvoiceDunningScheduleResetStandardWebhookEvent.Invoice;
 
@@ -5072,7 +5081,8 @@ export interface InvoiceDunningScheduleResetStandardWebhookEvent {
 
 export namespace InvoiceDunningScheduleResetStandardWebhookEvent {
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   export interface Invoice {
     id: string;
@@ -5607,7 +5617,8 @@ export interface InvoiceDunningScheduleStepExecutedStandardWebhookEvent {
   created_at: string;
 
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   invoice: InvoiceDunningScheduleStepExecutedStandardWebhookEvent.Invoice;
 
@@ -5627,7 +5638,8 @@ export interface InvoiceDunningScheduleStepExecutedStandardWebhookEvent {
 
 export namespace InvoiceDunningScheduleStepExecutedStandardWebhookEvent {
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   export interface Invoice {
     id: string;
@@ -6134,7 +6146,8 @@ export interface InvoiceEditedStandardWebhookEvent {
   created_at: string;
 
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   invoice: InvoiceEditedStandardWebhookEvent.Invoice;
 
@@ -6154,7 +6167,8 @@ export interface InvoiceEditedStandardWebhookEvent {
 
 export namespace InvoiceEditedStandardWebhookEvent {
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   export interface Invoice {
     id: string;
@@ -6927,7 +6941,8 @@ export interface InvoiceIssueFailedStandardWebhookEvent {
   created_at: string;
 
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   invoice: InvoiceIssueFailedStandardWebhookEvent.Invoice;
 
@@ -6947,7 +6962,8 @@ export interface InvoiceIssueFailedStandardWebhookEvent {
 
 export namespace InvoiceIssueFailedStandardWebhookEvent {
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   export interface Invoice {
     id: string;
@@ -7434,7 +7450,8 @@ export interface InvoiceIssuedStandardWebhookEvent {
   created_at: string;
 
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   invoice: InvoiceIssuedStandardWebhookEvent.Invoice;
 
@@ -7454,7 +7471,8 @@ export interface InvoiceIssuedStandardWebhookEvent {
 
 export namespace InvoiceIssuedStandardWebhookEvent {
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   export interface Invoice {
     id: string;
@@ -7942,7 +7960,8 @@ export interface InvoiceIssuedSummaryStandardWebhookEvent {
   created_at: string;
 
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   invoice: InvoiceIssuedSummaryStandardWebhookEvent.Invoice;
 
@@ -7962,7 +7981,8 @@ export interface InvoiceIssuedSummaryStandardWebhookEvent {
 
 export namespace InvoiceIssuedSummaryStandardWebhookEvent {
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   export interface Invoice {
     id: string;
@@ -8449,7 +8469,8 @@ export interface InvoiceManuallyMarkedAsPaidStandardWebhookEvent {
   created_at: string;
 
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   invoice: InvoiceManuallyMarkedAsPaidStandardWebhookEvent.Invoice;
 
@@ -8469,7 +8490,8 @@ export interface InvoiceManuallyMarkedAsPaidStandardWebhookEvent {
 
 export namespace InvoiceManuallyMarkedAsPaidStandardWebhookEvent {
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   export interface Invoice {
     id: string;
@@ -8960,7 +8982,8 @@ export interface InvoiceManuallyMarkedAsVoidStandardWebhookEvent {
   created_at: string;
 
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   invoice: InvoiceManuallyMarkedAsVoidStandardWebhookEvent.Invoice;
 
@@ -8980,7 +9003,8 @@ export interface InvoiceManuallyMarkedAsVoidStandardWebhookEvent {
 
 export namespace InvoiceManuallyMarkedAsVoidStandardWebhookEvent {
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   export interface Invoice {
     id: string;
@@ -9464,7 +9488,8 @@ export interface InvoicePaymentFailedStandardWebhookEvent {
   created_at: string;
 
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   invoice: InvoicePaymentFailedStandardWebhookEvent.Invoice;
 
@@ -9484,7 +9509,8 @@ export interface InvoicePaymentFailedStandardWebhookEvent {
 
 export namespace InvoicePaymentFailedStandardWebhookEvent {
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   export interface Invoice {
     id: string;
@@ -9975,7 +10001,8 @@ export interface InvoicePaymentProcessingStandardWebhookEvent {
   created_at: string;
 
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   invoice: InvoicePaymentProcessingStandardWebhookEvent.Invoice;
 
@@ -9995,7 +10022,8 @@ export interface InvoicePaymentProcessingStandardWebhookEvent {
 
 export namespace InvoicePaymentProcessingStandardWebhookEvent {
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   export interface Invoice {
     id: string;
@@ -10485,7 +10513,8 @@ export interface InvoicePaymentSucceededStandardWebhookEvent {
   created_at: string;
 
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   invoice: InvoicePaymentSucceededStandardWebhookEvent.Invoice;
 
@@ -10508,7 +10537,8 @@ export interface InvoicePaymentSucceededStandardWebhookEvent {
 
 export namespace InvoicePaymentSucceededStandardWebhookEvent {
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   export interface Invoice {
     id: string;
@@ -11004,7 +11034,8 @@ export interface InvoiceSyncFailedStandardWebhookEvent {
   created_at: string;
 
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   invoice: InvoiceSyncFailedStandardWebhookEvent.Invoice;
 
@@ -11024,7 +11055,8 @@ export interface InvoiceSyncFailedStandardWebhookEvent {
 
 export namespace InvoiceSyncFailedStandardWebhookEvent {
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   export interface Invoice {
     id: string;
@@ -11513,7 +11545,8 @@ export interface InvoiceSyncSucceededStandardWebhookEvent {
   created_at: string;
 
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   invoice: InvoiceSyncSucceededStandardWebhookEvent.Invoice;
 
@@ -11533,7 +11566,8 @@ export interface InvoiceSyncSucceededStandardWebhookEvent {
 
 export namespace InvoiceSyncSucceededStandardWebhookEvent {
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   export interface Invoice {
     id: string;
@@ -12022,7 +12056,8 @@ export interface InvoiceUndoMarkAsPaidStandardWebhookEvent {
   created_at: string;
 
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   invoice: InvoiceUndoMarkAsPaidStandardWebhookEvent.Invoice;
 
@@ -12042,7 +12077,8 @@ export interface InvoiceUndoMarkAsPaidStandardWebhookEvent {
 
 export namespace InvoiceUndoMarkAsPaidStandardWebhookEvent {
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   export interface Invoice {
     id: string;
@@ -13163,7 +13199,8 @@ export interface SalesOrderAccountingSyncFailedStandardWebhookEvent {
   created_at: string;
 
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   invoice: SalesOrderAccountingSyncFailedStandardWebhookEvent.Invoice;
 
@@ -13209,7 +13246,8 @@ export namespace SalesOrderAccountingSyncFailedStandardWebhookEvent {
   }
 
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   export interface Invoice {
     id: string;
@@ -13700,7 +13738,8 @@ export interface SalesOrderAccountingSyncSucceededStandardWebhookEvent {
   created_at: string;
 
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   invoice: SalesOrderAccountingSyncSucceededStandardWebhookEvent.Invoice;
 
@@ -13746,7 +13785,8 @@ export namespace SalesOrderAccountingSyncSucceededStandardWebhookEvent {
   }
 
   /**
-   * #InvoiceApiResourceWithoutLineItems
+   * An invoice without its line items, subtotal, discounts, minimums or maximums.
+   * Fetch the invoice for those.
    */
   export interface Invoice {
     id: string;
@@ -14243,9 +14283,9 @@ export interface SubscriptionAccountingSyncFailedStandardWebhookEvent {
   properties: SubscriptionAccountingSyncFailedStandardWebhookEvent.Properties;
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   subscription: SubscriptionAccountingSyncFailedStandardWebhookEvent.Subscription;
 
@@ -14289,9 +14329,9 @@ export namespace SubscriptionAccountingSyncFailedStandardWebhookEvent {
   }
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   export interface Subscription {
     id: string;
@@ -14369,9 +14409,9 @@ export interface SubscriptionAccountingSyncSucceededStandardWebhookEvent {
   properties: SubscriptionAccountingSyncSucceededStandardWebhookEvent.Properties;
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   subscription: SubscriptionAccountingSyncSucceededStandardWebhookEvent.Subscription;
 
@@ -14413,9 +14453,9 @@ export namespace SubscriptionAccountingSyncSucceededStandardWebhookEvent {
   }
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   export interface Subscription {
     id: string;
@@ -14495,10 +14535,8 @@ export interface SubscriptionAlertDisabledStandardWebhookEvent {
   properties: SubscriptionAlertDisabledStandardWebhookEvent.Properties;
 
   /**
-   * A lightweight subscription representation for webhook payloads.
-   *
-   * This avoids the expensive to_subscription_params() call required for full
-   * serialization.
+   * The subscription in a license or grouped cost webhook payload: its status,
+   * dates, plan and customer.
    */
   subscription: SubscriptionAlertDisabledStandardWebhookEvent.Subscription;
 
@@ -14750,10 +14788,8 @@ export namespace SubscriptionAlertDisabledStandardWebhookEvent {
   }
 
   /**
-   * A lightweight subscription representation for webhook payloads.
-   *
-   * This avoids the expensive to_subscription_params() call required for full
-   * serialization.
+   * The subscription in a license or grouped cost webhook payload: its status,
+   * dates, plan and customer.
    */
   export interface Subscription {
     id: string;
@@ -14808,9 +14844,9 @@ export interface SubscriptionCancellationScheduledStandardWebhookEvent {
   properties: SubscriptionCancellationScheduledStandardWebhookEvent.Properties;
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   subscription: SubscriptionCancellationScheduledStandardWebhookEvent.Subscription;
 
@@ -14826,9 +14862,9 @@ export namespace SubscriptionCancellationScheduledStandardWebhookEvent {
   }
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   export interface Subscription {
     id: string;
@@ -14904,9 +14940,9 @@ export interface SubscriptionCancellationUnscheduledStandardWebhookEvent {
   properties: SubscriptionCancellationUnscheduledStandardWebhookEvent.Properties;
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   subscription: SubscriptionCancellationUnscheduledStandardWebhookEvent.Subscription;
 
@@ -14922,9 +14958,9 @@ export namespace SubscriptionCancellationUnscheduledStandardWebhookEvent {
   }
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   export interface Subscription {
     id: string;
@@ -15000,9 +15036,9 @@ export interface SubscriptionCostExceededStandardWebhookEvent {
   properties: SubscriptionCostExceededStandardWebhookEvent.Properties;
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   subscription: SubscriptionCostExceededStandardWebhookEvent.Subscription;
 
@@ -15252,9 +15288,9 @@ export namespace SubscriptionCostExceededStandardWebhookEvent {
   }
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   export interface Subscription {
     id: string;
@@ -15330,9 +15366,9 @@ export interface SubscriptionCreatedStandardWebhookEvent {
   properties: unknown;
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   subscription: SubscriptionCreatedStandardWebhookEvent.Subscription;
 
@@ -15344,9 +15380,9 @@ export interface SubscriptionCreatedStandardWebhookEvent {
 
 export namespace SubscriptionCreatedStandardWebhookEvent {
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   export interface Subscription {
     id: string;
@@ -15422,9 +15458,9 @@ export interface SubscriptionEditedStandardWebhookEvent {
   properties: SubscriptionEditedStandardWebhookEvent.Properties;
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   subscription: SubscriptionEditedStandardWebhookEvent.Subscription;
 
@@ -15456,9 +15492,9 @@ export namespace SubscriptionEditedStandardWebhookEvent {
   }
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   export interface Subscription {
     id: string;
@@ -15534,9 +15570,9 @@ export interface SubscriptionEndedStandardWebhookEvent {
   properties: unknown;
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   subscription: SubscriptionEndedStandardWebhookEvent.Subscription;
 
@@ -15548,9 +15584,9 @@ export interface SubscriptionEndedStandardWebhookEvent {
 
 export namespace SubscriptionEndedStandardWebhookEvent {
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   export interface Subscription {
     id: string;
@@ -15626,9 +15662,9 @@ export interface SubscriptionFixedFeeQuantityUpdatedStandardWebhookEvent {
   properties: SubscriptionFixedFeeQuantityUpdatedStandardWebhookEvent.Properties;
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   subscription: SubscriptionFixedFeeQuantityUpdatedStandardWebhookEvent.Subscription;
 
@@ -15650,9 +15686,9 @@ export namespace SubscriptionFixedFeeQuantityUpdatedStandardWebhookEvent {
   }
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   export interface Subscription {
     id: string;
@@ -15732,10 +15768,8 @@ export interface SubscriptionGroupedCostExceededStandardWebhookEvent {
   properties: SubscriptionGroupedCostExceededStandardWebhookEvent.Properties;
 
   /**
-   * A lightweight subscription representation for webhook payloads.
-   *
-   * This avoids the expensive to_subscription_params() call required for full
-   * serialization.
+   * The subscription in a license or grouped cost webhook payload: its status,
+   * dates, plan and customer.
    */
   subscription: SubscriptionGroupedCostExceededStandardWebhookEvent.Subscription;
 
@@ -15997,10 +16031,8 @@ export namespace SubscriptionGroupedCostExceededStandardWebhookEvent {
   }
 
   /**
-   * A lightweight subscription representation for webhook payloads.
-   *
-   * This avoids the expensive to_subscription_params() call required for full
-   * serialization.
+   * The subscription in a license or grouped cost webhook payload: its status,
+   * dates, plan and customer.
    */
   export interface Subscription {
     id: string;
@@ -16056,10 +16088,8 @@ export interface SubscriptionInvoicingThresholdExceededStandardWebhookEvent {
   properties: SubscriptionInvoicingThresholdExceededStandardWebhookEvent.Properties;
 
   /**
-   * A lightweight subscription representation for webhook payloads.
-   *
-   * This avoids the expensive to_subscription_params() call required for full
-   * serialization.
+   * The subscription in a license or grouped cost webhook payload: its status,
+   * dates, plan and customer.
    */
   subscription: SubscriptionInvoicingThresholdExceededStandardWebhookEvent.Subscription;
 
@@ -16081,10 +16111,8 @@ export namespace SubscriptionInvoicingThresholdExceededStandardWebhookEvent {
   }
 
   /**
-   * A lightweight subscription representation for webhook payloads.
-   *
-   * This avoids the expensive to_subscription_params() call required for full
-   * serialization.
+   * The subscription in a license or grouped cost webhook payload: its status,
+   * dates, plan and customer.
    */
   export interface Subscription {
     id: string;
@@ -16143,10 +16171,8 @@ export interface SubscriptionLicenseAllocationResetStandardWebhookEvent {
   properties: SubscriptionLicenseAllocationResetStandardWebhookEvent.Properties;
 
   /**
-   * A lightweight subscription representation for webhook payloads.
-   *
-   * This avoids the expensive to_subscription_params() call required for full
-   * serialization.
+   * The subscription in a license or grouped cost webhook payload: its status,
+   * dates, plan and customer.
    */
   subscription: SubscriptionLicenseAllocationResetStandardWebhookEvent.Subscription;
 
@@ -16183,10 +16209,8 @@ export namespace SubscriptionLicenseAllocationResetStandardWebhookEvent {
   }
 
   /**
-   * A lightweight subscription representation for webhook payloads.
-   *
-   * This avoids the expensive to_subscription_params() call required for full
-   * serialization.
+   * The subscription in a license or grouped cost webhook payload: its status,
+   * dates, plan and customer.
    */
   export interface Subscription {
     id: string;
@@ -16245,10 +16269,8 @@ export interface SubscriptionLicenseBalanceThresholdReachedStandardWebhookEvent 
   properties: SubscriptionLicenseBalanceThresholdReachedStandardWebhookEvent.Properties;
 
   /**
-   * A lightweight subscription representation for webhook payloads.
-   *
-   * This avoids the expensive to_subscription_params() call required for full
-   * serialization.
+   * The subscription in a license or grouped cost webhook payload: its status,
+   * dates, plan and customer.
    */
   subscription: SubscriptionLicenseBalanceThresholdReachedStandardWebhookEvent.Subscription;
 
@@ -16508,10 +16530,8 @@ export namespace SubscriptionLicenseBalanceThresholdReachedStandardWebhookEvent 
   }
 
   /**
-   * A lightweight subscription representation for webhook payloads.
-   *
-   * This avoids the expensive to_subscription_params() call required for full
-   * serialization.
+   * The subscription in a license or grouped cost webhook payload: its status,
+   * dates, plan and customer.
    */
   export interface Subscription {
     id: string;
@@ -16566,9 +16586,9 @@ export interface SubscriptionPlanChangeScheduledStandardWebhookEvent {
   properties: SubscriptionPlanChangeScheduledStandardWebhookEvent.Properties;
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   subscription: SubscriptionPlanChangeScheduledStandardWebhookEvent.Subscription;
 
@@ -16588,9 +16608,9 @@ export namespace SubscriptionPlanChangeScheduledStandardWebhookEvent {
   }
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   export interface Subscription {
     id: string;
@@ -16666,9 +16686,9 @@ export interface SubscriptionPlanChangedStandardWebhookEvent {
   properties: SubscriptionPlanChangedStandardWebhookEvent.Properties;
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   subscription: SubscriptionPlanChangedStandardWebhookEvent.Subscription;
 
@@ -16684,9 +16704,9 @@ export namespace SubscriptionPlanChangedStandardWebhookEvent {
   }
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   export interface Subscription {
     id: string;
@@ -16762,9 +16782,9 @@ export interface SubscriptionPlanVersionChangeScheduledStandardWebhookEvent {
   properties: SubscriptionPlanVersionChangeScheduledStandardWebhookEvent.Properties;
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   subscription: SubscriptionPlanVersionChangeScheduledStandardWebhookEvent.Subscription;
 
@@ -16784,9 +16804,9 @@ export namespace SubscriptionPlanVersionChangeScheduledStandardWebhookEvent {
   }
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   export interface Subscription {
     id: string;
@@ -16862,9 +16882,9 @@ export interface SubscriptionPlanVersionChangedStandardWebhookEvent {
   properties: SubscriptionPlanVersionChangedStandardWebhookEvent.Properties;
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   subscription: SubscriptionPlanVersionChangedStandardWebhookEvent.Subscription;
 
@@ -16884,9 +16904,9 @@ export namespace SubscriptionPlanVersionChangedStandardWebhookEvent {
   }
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   export interface Subscription {
     id: string;
@@ -16963,9 +16983,9 @@ export interface SubscriptionSpendExceededStandardWebhookEvent {
   properties: SubscriptionSpendExceededStandardWebhookEvent.Properties;
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   subscription: SubscriptionSpendExceededStandardWebhookEvent.Subscription;
 
@@ -17215,9 +17235,9 @@ export namespace SubscriptionSpendExceededStandardWebhookEvent {
   }
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   export interface Subscription {
     id: string;
@@ -17293,9 +17313,9 @@ export interface SubscriptionStartedStandardWebhookEvent {
   properties: unknown;
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   subscription: SubscriptionStartedStandardWebhookEvent.Subscription;
 
@@ -17307,9 +17327,9 @@ export interface SubscriptionStartedStandardWebhookEvent {
 
 export namespace SubscriptionStartedStandardWebhookEvent {
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   export interface Subscription {
     id: string;
@@ -17385,9 +17405,9 @@ export interface SubscriptionTrialEndedStandardWebhookEvent {
   properties: unknown;
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   subscription: SubscriptionTrialEndedStandardWebhookEvent.Subscription;
 
@@ -17399,9 +17419,9 @@ export interface SubscriptionTrialEndedStandardWebhookEvent {
 
 export namespace SubscriptionTrialEndedStandardWebhookEvent {
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   export interface Subscription {
     id: string;
@@ -17478,9 +17498,9 @@ export interface SubscriptionUsageExceededStandardWebhookEvent {
   properties: SubscriptionUsageExceededStandardWebhookEvent.Properties;
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   subscription: SubscriptionUsageExceededStandardWebhookEvent.Subscription;
 
@@ -17732,9 +17752,9 @@ export namespace SubscriptionUsageExceededStandardWebhookEvent {
   }
 
   /**
-   * The subscription in a standard webhook payload: the fields readable without
-   * to_subscription_params(), which every interval, billing period and plan phase
-   * depends on.
+   * The subscription in a standard webhook payload: its own fields, with its plan
+   * and customer as references. Fetch the subscription for its price intervals,
+   * billing periods, plan phases and other derived fields.
    */
   export interface Subscription {
     id: string;

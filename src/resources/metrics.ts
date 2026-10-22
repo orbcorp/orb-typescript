@@ -32,9 +32,10 @@ export class Metrics extends APIResource {
   }
 
   /**
-   * This endpoint allows you to update the `metadata` property on a metric. If you
-   * pass `null` for the metadata value, it will clear any existing metadata for that
-   * invoice.
+   * This endpoint allows you to update the `name`, `description`, and `metadata`
+   * properties on a metric. Fields left out of the request are not changed, and
+   * `name` cannot be empty. If you pass `null` for the metadata value, it will clear
+   * any existing metadata for that metric.
    *
    * @example
    * ```ts
@@ -50,6 +51,9 @@ export class Metrics extends APIResource {
   /**
    * This endpoint is used to list [metrics](/core-concepts#metric). It returns
    * information about the metrics including its name, description, and item.
+   *
+   * Pass `status` to only return metrics with that status, e.g. `status=active` to
+   * leave out archived metrics.
    *
    * @example
    * ```ts
@@ -154,11 +158,21 @@ export interface MetricCreateParams {
 
 export interface MetricUpdateParams {
   /**
+   * A description of the metric.
+   */
+  description?: string | null;
+
+  /**
    * User-specified key/value pairs for the resource. Individual keys can be removed
    * by setting the value to `null`, and the entire metadata mapping can be cleared
    * by setting `metadata` to `null`.
    */
   metadata?: { [key: string]: string | null } | null;
+
+  /**
+   * The name of the metric.
+   */
+  name?: string | null;
 }
 
 export interface MetricListParams extends PageParams {
@@ -169,6 +183,11 @@ export interface MetricListParams extends PageParams {
   'created_at[lt]'?: string | null;
 
   'created_at[lte]'?: string | null;
+
+  /**
+   * The metric status to filter to ('active', 'archived', or 'draft').
+   */
+  status?: 'active' | 'archived' | 'draft' | null;
 }
 
 export declare namespace Metrics {

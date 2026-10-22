@@ -1079,7 +1079,8 @@ export namespace InvoiceFetchUpcomingResponse {
 }
 
 /**
- * #InvoiceApiResourceWithoutLineItems
+ * An invoice without its line items, subtotal, discounts, minimums or maximums.
+ * Fetch the invoice for those.
  */
 export interface InvoiceIssueSummaryResponse {
   id: string;
@@ -1547,7 +1548,8 @@ export namespace InvoiceIssueSummaryResponse {
 }
 
 /**
- * #InvoiceApiResourceWithoutLineItems
+ * An invoice without its line items, subtotal, discounts, minimums or maximums.
+ * Fetch the invoice for those.
  */
 export interface InvoiceListSummaryResponse {
   id: string;

@@ -20,7 +20,11 @@ describe('resource webhookEndpoints', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await client.webhookEndpoints.create({ url: 'url', enabled_event_types: ['string'] });
+    const response = await client.webhookEndpoints.create({
+      url: 'url',
+      enabled_event_types: ['string'],
+      payload_style: 'expanded',
+    });
   });
 
   test('retrieve', async () => {
