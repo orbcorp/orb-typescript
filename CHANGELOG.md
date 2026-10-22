@@ -5,7 +5,7 @@
 
 ### Features
 
-* **api:** api update ([6c8d77e](https://github.com/orbcorp/orb-typescript/commit/6c8d77ef1af3e2aa4b227f43ca0d6cf536a4bf2e))
+* **api:** add `webhooks.standard.unwrapStandard`, aliased as `webhooks.unwrapStandard`, which verifies and parses standard webhook payloads; `webhooks.unwrap` throws on a standard payload ([6c8d77e](https://github.com/orbcorp/orb-typescript/commit/6c8d77ef1af3e2aa4b227f43ca0d6cf536a4bf2e))
 
 
 ### Chores
