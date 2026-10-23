@@ -14283,9 +14283,10 @@ export interface SubscriptionAccountingSyncFailedStandardWebhookEvent {
   properties: SubscriptionAccountingSyncFailedStandardWebhookEvent.Properties;
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   subscription: SubscriptionAccountingSyncFailedStandardWebhookEvent.Subscription;
 
@@ -14329,9 +14330,10 @@ export namespace SubscriptionAccountingSyncFailedStandardWebhookEvent {
   }
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   export interface Subscription {
     id: string;
@@ -14409,9 +14411,10 @@ export interface SubscriptionAccountingSyncSucceededStandardWebhookEvent {
   properties: SubscriptionAccountingSyncSucceededStandardWebhookEvent.Properties;
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   subscription: SubscriptionAccountingSyncSucceededStandardWebhookEvent.Subscription;
 
@@ -14453,9 +14456,10 @@ export namespace SubscriptionAccountingSyncSucceededStandardWebhookEvent {
   }
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   export interface Subscription {
     id: string;
@@ -14844,9 +14848,10 @@ export interface SubscriptionCancellationScheduledStandardWebhookEvent {
   properties: SubscriptionCancellationScheduledStandardWebhookEvent.Properties;
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   subscription: SubscriptionCancellationScheduledStandardWebhookEvent.Subscription;
 
@@ -14862,9 +14867,10 @@ export namespace SubscriptionCancellationScheduledStandardWebhookEvent {
   }
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   export interface Subscription {
     id: string;
@@ -14940,9 +14946,10 @@ export interface SubscriptionCancellationUnscheduledStandardWebhookEvent {
   properties: SubscriptionCancellationUnscheduledStandardWebhookEvent.Properties;
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   subscription: SubscriptionCancellationUnscheduledStandardWebhookEvent.Subscription;
 
@@ -14958,9 +14965,10 @@ export namespace SubscriptionCancellationUnscheduledStandardWebhookEvent {
   }
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   export interface Subscription {
     id: string;
@@ -15036,9 +15044,10 @@ export interface SubscriptionCostExceededStandardWebhookEvent {
   properties: SubscriptionCostExceededStandardWebhookEvent.Properties;
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   subscription: SubscriptionCostExceededStandardWebhookEvent.Subscription;
 
@@ -15288,9 +15297,10 @@ export namespace SubscriptionCostExceededStandardWebhookEvent {
   }
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   export interface Subscription {
     id: string;
@@ -15366,9 +15376,10 @@ export interface SubscriptionCreatedStandardWebhookEvent {
   properties: unknown;
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   subscription: SubscriptionCreatedStandardWebhookEvent.Subscription;
 
@@ -15380,9 +15391,10 @@ export interface SubscriptionCreatedStandardWebhookEvent {
 
 export namespace SubscriptionCreatedStandardWebhookEvent {
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   export interface Subscription {
     id: string;
@@ -15458,9 +15470,10 @@ export interface SubscriptionEditedStandardWebhookEvent {
   properties: SubscriptionEditedStandardWebhookEvent.Properties;
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   subscription: SubscriptionEditedStandardWebhookEvent.Subscription;
 
@@ -15492,9 +15505,10 @@ export namespace SubscriptionEditedStandardWebhookEvent {
   }
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   export interface Subscription {
     id: string;
@@ -15570,9 +15584,10 @@ export interface SubscriptionEndedStandardWebhookEvent {
   properties: unknown;
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   subscription: SubscriptionEndedStandardWebhookEvent.Subscription;
 
@@ -15584,9 +15599,10 @@ export interface SubscriptionEndedStandardWebhookEvent {
 
 export namespace SubscriptionEndedStandardWebhookEvent {
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   export interface Subscription {
     id: string;
@@ -15662,9 +15678,10 @@ export interface SubscriptionFixedFeeQuantityUpdatedStandardWebhookEvent {
   properties: SubscriptionFixedFeeQuantityUpdatedStandardWebhookEvent.Properties;
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   subscription: SubscriptionFixedFeeQuantityUpdatedStandardWebhookEvent.Subscription;
 
@@ -15686,9 +15703,10 @@ export namespace SubscriptionFixedFeeQuantityUpdatedStandardWebhookEvent {
   }
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   export interface Subscription {
     id: string;
@@ -16586,9 +16604,10 @@ export interface SubscriptionPlanChangeScheduledStandardWebhookEvent {
   properties: SubscriptionPlanChangeScheduledStandardWebhookEvent.Properties;
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   subscription: SubscriptionPlanChangeScheduledStandardWebhookEvent.Subscription;
 
@@ -16608,9 +16627,10 @@ export namespace SubscriptionPlanChangeScheduledStandardWebhookEvent {
   }
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   export interface Subscription {
     id: string;
@@ -16686,9 +16706,10 @@ export interface SubscriptionPlanChangedStandardWebhookEvent {
   properties: SubscriptionPlanChangedStandardWebhookEvent.Properties;
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   subscription: SubscriptionPlanChangedStandardWebhookEvent.Subscription;
 
@@ -16704,9 +16725,10 @@ export namespace SubscriptionPlanChangedStandardWebhookEvent {
   }
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   export interface Subscription {
     id: string;
@@ -16782,9 +16804,10 @@ export interface SubscriptionPlanVersionChangeScheduledStandardWebhookEvent {
   properties: SubscriptionPlanVersionChangeScheduledStandardWebhookEvent.Properties;
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   subscription: SubscriptionPlanVersionChangeScheduledStandardWebhookEvent.Subscription;
 
@@ -16804,9 +16827,10 @@ export namespace SubscriptionPlanVersionChangeScheduledStandardWebhookEvent {
   }
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   export interface Subscription {
     id: string;
@@ -16882,9 +16906,10 @@ export interface SubscriptionPlanVersionChangedStandardWebhookEvent {
   properties: SubscriptionPlanVersionChangedStandardWebhookEvent.Properties;
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   subscription: SubscriptionPlanVersionChangedStandardWebhookEvent.Subscription;
 
@@ -16904,9 +16929,10 @@ export namespace SubscriptionPlanVersionChangedStandardWebhookEvent {
   }
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   export interface Subscription {
     id: string;
@@ -16983,9 +17009,10 @@ export interface SubscriptionSpendExceededStandardWebhookEvent {
   properties: SubscriptionSpendExceededStandardWebhookEvent.Properties;
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   subscription: SubscriptionSpendExceededStandardWebhookEvent.Subscription;
 
@@ -17235,9 +17262,10 @@ export namespace SubscriptionSpendExceededStandardWebhookEvent {
   }
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   export interface Subscription {
     id: string;
@@ -17313,9 +17341,10 @@ export interface SubscriptionStartedStandardWebhookEvent {
   properties: unknown;
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   subscription: SubscriptionStartedStandardWebhookEvent.Subscription;
 
@@ -17327,9 +17356,10 @@ export interface SubscriptionStartedStandardWebhookEvent {
 
 export namespace SubscriptionStartedStandardWebhookEvent {
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   export interface Subscription {
     id: string;
@@ -17405,9 +17435,10 @@ export interface SubscriptionTrialEndedStandardWebhookEvent {
   properties: unknown;
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   subscription: SubscriptionTrialEndedStandardWebhookEvent.Subscription;
 
@@ -17419,9 +17450,10 @@ export interface SubscriptionTrialEndedStandardWebhookEvent {
 
 export namespace SubscriptionTrialEndedStandardWebhookEvent {
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   export interface Subscription {
     id: string;
@@ -17498,9 +17530,10 @@ export interface SubscriptionUsageExceededStandardWebhookEvent {
   properties: SubscriptionUsageExceededStandardWebhookEvent.Properties;
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   subscription: SubscriptionUsageExceededStandardWebhookEvent.Subscription;
 
@@ -17752,9 +17785,10 @@ export namespace SubscriptionUsageExceededStandardWebhookEvent {
   }
 
   /**
-   * The subscription in a standard webhook payload: its own fields, with its plan
-   * and customer as references. Fetch the subscription for its price intervals,
-   * billing periods, plan phases and other derived fields.
+   * A subscription's own fields, with its plan and customer as references, as listed
+   * by List subscription summaries and carried in standard webhook payloads. Fetch
+   * the subscription for its price intervals, billing periods, plan phases and other
+   * derived fields.
    */
   export interface Subscription {
     id: string;
