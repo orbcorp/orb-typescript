@@ -36,6 +36,8 @@ import {
 import {
   CreditBlockListInvoicesResponse,
   CreditBlockRetrieveResponse,
+  CreditBlockUpdateParams,
+  CreditBlockUpdateResponse,
   CreditBlocks,
 } from './resources/credit-blocks';
 import { CreditNoteCreateParams, CreditNoteListParams, CreditNotes } from './resources/credit-notes';
@@ -1536,7 +1538,9 @@ export declare namespace Orb {
   export {
     CreditBlocks as CreditBlocks,
     type CreditBlockRetrieveResponse as CreditBlockRetrieveResponse,
+    type CreditBlockUpdateResponse as CreditBlockUpdateResponse,
     type CreditBlockListInvoicesResponse as CreditBlockListInvoicesResponse,
+    type CreditBlockUpdateParams as CreditBlockUpdateParams,
   };
 
   export {

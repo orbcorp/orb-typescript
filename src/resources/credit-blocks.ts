@@ -19,6 +19,25 @@ export class CreditBlocks extends APIResource {
   }
 
   /**
+   * This endpoint updates the `metadata` of a credit block. Keys you pass are added
+   * to the block's existing metadata or overwrite the value already stored for that
+   * key, and setting a key to `null` removes it. Passing `null` for `metadata`
+   * clears all of the block's metadata. The block's `increment` entry in the
+   * [credits ledger](fetch-customer-credits-ledger) reports the block's metadata, so
+   * it shows the update too.
+   *
+   * Other fields on a credit block cannot be changed through this endpoint. Deleted
+   * credit blocks return a 404.
+   */
+  update(
+    blockID: string,
+    body: CreditBlockUpdateParams,
+    options?: RequestOptions,
+  ): APIPromise<CreditBlockUpdateResponse> {
+    return this._client.put(path`/credit_blocks/${blockID}`, { body, ...options });
+  }
+
+  /**
    * This endpoint deletes a credit block by its ID.
    *
    * When a credit block is deleted:
@@ -117,6 +136,132 @@ export interface CreditBlockRetrieveResponse {
 }
 
 export namespace CreditBlockRetrieveResponse {
+  export interface Filter {
+    /**
+     * The property of the price to filter on.
+     */
+    field: 'price_id' | 'item_id' | 'price_type' | 'currency' | 'pricing_unit_id';
+
+    /**
+     * Should prices that match the filter be included or excluded.
+     */
+    operator: 'includes' | 'excludes';
+
+    /**
+     * The IDs or values that match this filter.
+     */
+    values: Array<string>;
+  }
+
+  /**
+   * The credit allocation that funded a block. Extends the allocation resource
+   * serialized on prices with the catalog-item attribution of the funding price.
+   */
+  export interface CreditAllocation {
+    allows_rollover: boolean;
+
+    currency: string;
+
+    custom_expiration: Shared.CustomExpiration | null;
+
+    /**
+     * The ID of the catalog item this block was allocated from, derived from the
+     * allocation's price.
+     */
+    item_id: string;
+
+    filters?: Array<CreditAllocation.Filter>;
+
+    license_type_id?: string | null;
+  }
+
+  export namespace CreditAllocation {
+    export interface Filter {
+      /**
+       * The property of the price to filter on.
+       */
+      field: 'price_id' | 'item_id' | 'price_type' | 'currency' | 'pricing_unit_id';
+
+      /**
+       * Should prices that match the filter be included or excluded.
+       */
+      operator: 'includes' | 'excludes';
+
+      /**
+       * The IDs or values that match this filter.
+       */
+      values: Array<string>;
+    }
+  }
+
+  /**
+   * The subscription commitment whose true-up rolled forward into this credit block.
+   * Present only when `credit_block_source` is `commitment`.
+   */
+  export interface CreditCommitment {
+    /**
+     * The ID of the subscription commitment this block was rolled forward from.
+     */
+    id: string;
+
+    /**
+     * The subscription the commitment belongs to.
+     */
+    subscription_id?: string | null;
+  }
+}
+
+/**
+ * The Credit Block resource models prepaid credits within Orb.
+ */
+export interface CreditBlockUpdateResponse {
+  id: string;
+
+  balance: number;
+
+  /**
+   * How this credit block was created: `allocation` (a subscription's recurring
+   * credit allocation), `top_up` (an automatic balance-threshold top-up),
+   * `commitment` (a subscription commitment true-up rolled forward as credit), or
+   * `manual` (a manual credit ledger increment, including credits voided or expired
+   * off another block).
+   */
+  credit_block_source: 'allocation' | 'top_up' | 'commitment' | 'manual';
+
+  effective_date: string | null;
+
+  expiry_date: string | null;
+
+  filters: Array<CreditBlockUpdateResponse.Filter>;
+
+  maximum_initial_balance: number | null;
+
+  /**
+   * User specified key-value pairs for the resource. If not present, this defaults
+   * to an empty dictionary. Individual keys can be removed by setting the value to
+   * `null`, and the entire metadata mapping can be cleared by setting `metadata` to
+   * `null`.
+   */
+  metadata: { [key: string]: string };
+
+  per_unit_cost_basis: string | null;
+
+  status: 'active' | 'pending_payment';
+
+  /**
+   * The credit allocation that funded a block. Extends the allocation resource
+   * serialized on prices with the catalog-item attribution of the funding price.
+   */
+  credit_allocation?: CreditBlockUpdateResponse.CreditAllocation | null;
+
+  /**
+   * The subscription commitment whose true-up rolled forward into this credit block.
+   * Present only when `credit_block_source` is `commitment`.
+   */
+  credit_commitment?: CreditBlockUpdateResponse.CreditCommitment | null;
+}
+
+export namespace CreditBlockUpdateResponse {
   export interface Filter {
     /**
      * The property of the price to filter on.
@@ -341,9 +486,20 @@ export namespace CreditBlockListInvoicesResponse {
   }
 }
 
+export interface CreditBlockUpdateParams {
+  /**
+   * User-specified key/value pairs for the resource. Individual keys can be removed
+   * by setting the value to `null`, and the entire metadata mapping can be cleared
+   * by setting `metadata` to `null`.
+   */
+  metadata?: { [key: string]: string | null } | null;
+}
+
 export declare namespace CreditBlocks {
   export {
     type CreditBlockRetrieveResponse as CreditBlockRetrieveResponse,
+    type CreditBlockUpdateResponse as CreditBlockUpdateResponse,
     type CreditBlockListInvoicesResponse as CreditBlockListInvoicesResponse,
+    type CreditBlockUpdateParams as CreditBlockUpdateParams,
   };
 }

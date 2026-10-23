@@ -71,6 +71,26 @@ export class Metrics extends APIResource {
   }
 
   /**
+   * This endpoint archives a [metric](/core-concepts#metric). Archived metrics are
+   * left out of `GET /v1/metrics` when filtering with `status=active`, and can't be
+   * chosen when creating new plans in the Orb dashboard.
+   *
+   * Archiving does not change existing prices, plans, or subscriptions that use the
+   * metric, and usage on those prices continues to be billed. A metric that is
+   * already archived cannot be archived again.
+   *
+   * @example
+   * ```ts
+   * const billableMetric = await client.metrics.archive(
+   *   'metric_id',
+   * );
+   * ```
+   */
+  archive(metricID: string, options?: RequestOptions): APIPromise<BillableMetric> {
+    return this._client.post(path`/metrics/${metricID}/archive`, options);
+  }
+
+  /**
    * This endpoint is used to fetch [metric](/core-concepts#metric) details given a
    * metric identifier. It returns information about the metrics including its name,
    * description, and item.
@@ -84,6 +104,22 @@ export class Metrics extends APIResource {
    */
   fetch(metricID: string, options?: RequestOptions): APIPromise<BillableMetric> {
     return this._client.get(path`/metrics/${metricID}`, options);
+  }
+
+  /**
+   * This endpoint restores an archived [metric](/core-concepts#metric) to `active`,
+   * so it can be chosen for new plans again. Only archived metrics can be
+   * unarchived.
+   *
+   * @example
+   * ```ts
+   * const billableMetric = await client.metrics.unarchive(
+   *   'metric_id',
+   * );
+   * ```
+   */
+  unarchive(metricID: string, options?: RequestOptions): APIPromise<BillableMetric> {
+    return this._client.post(path`/metrics/${metricID}/unarchive`, options);
   }
 }
 

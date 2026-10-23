@@ -603,7 +603,9 @@ Methods:
 - <code title="post /metrics">client.metrics.<a href="./src/resources/metrics.ts">create</a>({ ...params }) -> BillableMetric</code>
 - <code title="put /metrics/{metric_id}">client.metrics.<a href="./src/resources/metrics.ts">update</a>(metricID, { ...params }) -> BillableMetric</code>
 - <code title="get /metrics">client.metrics.<a href="./src/resources/metrics.ts">list</a>({ ...params }) -> BillableMetricsPage</code>
+- <code title="post /metrics/{metric_id}/archive">client.metrics.<a href="./src/resources/metrics.ts">archive</a>(metricID) -> BillableMetric</code>
 - <code title="get /metrics/{metric_id}">client.metrics.<a href="./src/resources/metrics.ts">fetch</a>(metricID) -> BillableMetric</code>
+- <code title="post /metrics/{metric_id}/unarchive">client.metrics.<a href="./src/resources/metrics.ts">unarchive</a>(metricID) -> BillableMetric</code>
 
 # Plans
 
@@ -795,11 +797,13 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/credit-blocks.ts">CreditBlockRetrieveResponse</a></code>
+- <code><a href="./src/resources/credit-blocks.ts">CreditBlockUpdateResponse</a></code>
 - <code><a href="./src/resources/credit-blocks.ts">CreditBlockListInvoicesResponse</a></code>
 
 Methods:
 
 - <code title="get /credit_blocks/{block_id}">client.creditBlocks.<a href="./src/resources/credit-blocks.ts">retrieve</a>(blockID) -> CreditBlockRetrieveResponse</code>
+- <code title="put /credit_blocks/{block_id}">client.creditBlocks.<a href="./src/resources/credit-blocks.ts">update</a>(blockID, { ...params }) -> CreditBlockUpdateResponse</code>
 - <code title="delete /credit_blocks/{block_id}">client.creditBlocks.<a href="./src/resources/credit-blocks.ts">delete</a>(blockID) -> void</code>
 - <code title="get /credit_blocks/{block_id}/invoices">client.creditBlocks.<a href="./src/resources/credit-blocks.ts">listInvoices</a>(blockID) -> CreditBlockListInvoicesResponse</code>
 

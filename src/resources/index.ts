@@ -33,7 +33,9 @@ export {
 export {
   CreditBlocks,
   type CreditBlockRetrieveResponse,
+  type CreditBlockUpdateResponse,
   type CreditBlockListInvoicesResponse,
+  type CreditBlockUpdateParams,
 } from './credit-blocks';
 export { CreditNotes, type CreditNoteCreateParams, type CreditNoteListParams } from './credit-notes';
 export {
