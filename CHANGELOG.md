@@ -1,5 +1,21 @@
 # Changelog
 
+## [6.31.0](https://github.com/orbcorp/orb-typescript/compare/v6.30.0...v6.31.0) (2026-10-23)
+
+
+### Features
+
+* **api:** Add customer credit balance summary endpoints ([2f18836](https://github.com/orbcorp/orb-typescript/commit/2f18836074bb5a59c6f4bed8f629cac252b7d782))
+* **api:** Add endpoint to update credit block metadata ([6d3d5f7](https://github.com/orbcorp/orb-typescript/commit/6d3d5f7a9207c84966d35f41676626e6e47cf127))
+* **api:** api update ([6d3d5f7](https://github.com/orbcorp/orb-typescript/commit/6d3d5f7a9207c84966d35f41676626e6e47cf127))
+* **api:** api update ([6d3d5f7](https://github.com/orbcorp/orb-typescript/commit/6d3d5f7a9207c84966d35f41676626e6e47cf127))
+* **api:** api update ([6d3d5f7](https://github.com/orbcorp/orb-typescript/commit/6d3d5f7a9207c84966d35f41676626e6e47cf127))
+
+
+### Chores
+
+* correct the standard webhook unwrap changelog entry ([#10](https://github.com/orbcorp/orb-typescript/issues/10)) ([4b6a2c5](https://github.com/orbcorp/orb-typescript/commit/4b6a2c53f59edeef92eac8f70626dcd33edef6bd))
+
 ## [6.30.0](https://github.com/orbcorp/orb-typescript/compare/v6.29.0...v6.30.0) (2026-10-22)
 
 
