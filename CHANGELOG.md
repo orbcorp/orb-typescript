@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.32.0](https://github.com/orbcorp/orb-typescript/compare/v6.31.0...v6.32.0) (2026-10-24)
+
+
+### Features
+
+* **api:** add list endpoint for lightweight subscription summaries ([072a175](https://github.com/orbcorp/orb-typescript/commit/072a17510fa259232fc8289ae752e06b868840fb))
+
 ## [6.31.0](https://github.com/orbcorp/orb-typescript/compare/v6.30.0...v6.31.0) (2026-10-23)
 
 
