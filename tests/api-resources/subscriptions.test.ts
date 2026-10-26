@@ -186,6 +186,39 @@ describe('resource subscriptions', () => {
     ).rejects.toThrow(Orb.NotFoundError);
   });
 
+  test('listSummary', async () => {
+    const responsePromise = client.subscriptions.listSummary();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('listSummary: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.subscriptions.listSummary(
+        {
+          'created_at[gt]': '2019-12-27T18:11:19.117Z',
+          'created_at[gte]': '2019-12-27T18:11:19.117Z',
+          'created_at[lt]': '2019-12-27T18:11:19.117Z',
+          'created_at[lte]': '2019-12-27T18:11:19.117Z',
+          cursor: 'cursor',
+          customer_id: 'customer_id',
+          external_customer_id: 'external_customer_id',
+          external_plan_id: 'external_plan_id',
+          limit: 1,
+          plan_id: 'plan_id',
+          status: 'active',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Orb.NotFoundError);
+  });
+
   // Incorrect example breaks Prism
   test.skip('priceIntervals', async () => {
     const responsePromise = client.subscriptions.priceIntervals('subscription_id', {});

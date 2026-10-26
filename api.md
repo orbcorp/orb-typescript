@@ -702,6 +702,7 @@ Types:
 - <code><a href="./src/resources/subscriptions.ts">Subscriptions</a></code>
 - <code><a href="./src/resources/subscriptions.ts">SubscriptionFetchCostsResponse</a></code>
 - <code><a href="./src/resources/subscriptions.ts">SubscriptionFetchScheduleResponse</a></code>
+- <code><a href="./src/resources/subscriptions.ts">SubscriptionListSummaryResponse</a></code>
 
 Methods:
 
@@ -713,6 +714,7 @@ Methods:
 - <code title="get /subscriptions/{subscription_id}/costs">client.subscriptions.<a href="./src/resources/subscriptions.ts">fetchCosts</a>(subscriptionID, { ...params }) -> SubscriptionFetchCostsResponse</code>
 - <code title="get /subscriptions/{subscription_id}/schedule">client.subscriptions.<a href="./src/resources/subscriptions.ts">fetchSchedule</a>(subscriptionID, { ...params }) -> SubscriptionFetchScheduleResponsesPage</code>
 - <code title="get /subscriptions/{subscription_id}/usage">client.subscriptions.<a href="./src/resources/subscriptions.ts">fetchUsage</a>(subscriptionID, { ...params }) -> SubscriptionUsage</code>
+- <code title="get /subscriptions/summary">client.subscriptions.<a href="./src/resources/subscriptions.ts">listSummary</a>({ ...params }) -> SubscriptionListSummaryResponsesPage</code>
 - <code title="post /subscriptions/{subscription_id}/price_intervals">client.subscriptions.<a href="./src/resources/subscriptions.ts">priceIntervals</a>(subscriptionID, { ...params }) -> MutatedSubscription</code>
 - <code title="post /subscriptions/{subscription_id}/redeem_coupon">client.subscriptions.<a href="./src/resources/subscriptions.ts">redeemCoupon</a>(subscriptionID, { ...params }) -> MutatedSubscription</code>
 - <code title="post /subscriptions/{subscription_id}/schedule_plan_change">client.subscriptions.<a href="./src/resources/subscriptions.ts">schedulePlanChange</a>(subscriptionID, { ...params }) -> MutatedSubscription</code>

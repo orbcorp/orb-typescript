@@ -698,6 +698,35 @@ export class Subscriptions extends APIResource {
   }
 
   /**
+   * This is a lighter-weight version of
+   * [List subscriptions](/api-reference/subscription/list-subscriptions), with the
+   * same filters, pagination and order. It returns each subscription's own fields,
+   * with its plan and customer as references, and leaves out price intervals,
+   * billing periods, plan phases and other derived fields, making it faster to
+   * respond. Fetch a subscription for those.
+   *
+   * This is the same summary of a subscription that standard
+   * [webhook payloads](/integrations-and-exports/webhook-payload-styles) carry.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const subscriptionListSummaryResponse of client.subscriptions.listSummary()) {
+   *   // ...
+   * }
+   * ```
+   */
+  listSummary(
+    query: SubscriptionListSummaryParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<SubscriptionListSummaryResponsesPage, SubscriptionListSummaryResponse> {
+    return this._client.getAPIList('/subscriptions/summary', Page<SubscriptionListSummaryResponse>, {
+      query,
+      ...options,
+    });
+  }
+
+  /**
    * This endpoint is used to add and edit subscription
    * [price intervals](/api-reference/price-interval/add-or-edit-price-intervals). By
    * making modifications to a subscription’s price intervals, you can
@@ -1230,6 +1259,8 @@ export class Subscriptions extends APIResource {
 export type SubscriptionsPage = Page<Subscription>;
 
 export type SubscriptionFetchScheduleResponsesPage = Page<SubscriptionFetchScheduleResponse>;
+
+export type SubscriptionListSummaryResponsesPage = Page<SubscriptionListSummaryResponse>;
 
 export interface DiscountOverride {
   discount_type: 'percentage' | 'usage' | 'amount';
@@ -4957,6 +4988,62 @@ export interface SubscriptionFetchScheduleResponse {
 }
 
 export namespace SubscriptionFetchScheduleResponse {
+  export interface Plan {
+    id: string | null;
+
+    /**
+     * An optional user-defined ID for this plan resource, used throughout the system
+     * as an alias for this Plan. Use this field to identify a plan by an existing
+     * identifier in your system.
+     */
+    external_plan_id: string | null;
+
+    name: string | null;
+  }
+}
+
+/**
+ * A subscription's own fields, with its plan and customer as references, as listed
+ * by List subscription summaries and carried in standard webhook payloads. Fetch
+ * the subscription for its price intervals, billing periods, plan phases and other
+ * derived fields.
+ */
+export interface SubscriptionListSummaryResponse {
+  id: string;
+
+  created_at: string;
+
+  customer: Shared.CustomerMinified;
+
+  /**
+   * The date Orb stops billing for this subscription.
+   */
+  end_date: string | null;
+
+  /**
+   * User specified key-value pairs for the resource. If not present, this defaults
+   * to an empty dictionary. Individual keys can be removed by setting the value to
+   * `null`, and the entire metadata mapping can be cleared by setting `metadata` to
+   * `null`.
+   */
+  metadata: { [key: string]: string };
+
+  /**
+   * The name of the subscription.
+   */
+  name: string;
+
+  plan: SubscriptionListSummaryResponse.Plan | null;
+
+  /**
+   * The date Orb starts billing for this subscription.
+   */
+  start_date: string;
+
+  status: 'active' | 'ended' | 'upcoming';
+}
+
+export namespace SubscriptionListSummaryResponse {
   export interface Plan {
     id: string | null;
 
@@ -9049,6 +9136,26 @@ export interface SubscriptionFetchUsageParams {
    * behavior.
    */
   view_mode?: 'periodic' | 'cumulative' | null;
+}
+
+export interface SubscriptionListSummaryParams extends PageParams {
+  'created_at[gt]'?: string | null;
+
+  'created_at[gte]'?: string | null;
+
+  'created_at[lt]'?: string | null;
+
+  'created_at[lte]'?: string | null;
+
+  customer_id?: string | null;
+
+  external_customer_id?: string | null;
+
+  external_plan_id?: string | null;
+
+  plan_id?: string | null;
+
+  status?: 'active' | 'ended' | 'upcoming' | null;
 }
 
 export interface SubscriptionPriceIntervalsParams {
@@ -14930,8 +15037,10 @@ export declare namespace Subscriptions {
     type Subscriptions as Subscriptions,
     type SubscriptionFetchCostsResponse as SubscriptionFetchCostsResponse,
     type SubscriptionFetchScheduleResponse as SubscriptionFetchScheduleResponse,
+    type SubscriptionListSummaryResponse as SubscriptionListSummaryResponse,
     type SubscriptionsPage as SubscriptionsPage,
     type SubscriptionFetchScheduleResponsesPage as SubscriptionFetchScheduleResponsesPage,
+    type SubscriptionListSummaryResponsesPage as SubscriptionListSummaryResponsesPage,
     type SubscriptionCreateParams as SubscriptionCreateParams,
     type SubscriptionUpdateParams as SubscriptionUpdateParams,
     type SubscriptionListParams as SubscriptionListParams,
@@ -14939,6 +15048,7 @@ export declare namespace Subscriptions {
     type SubscriptionFetchCostsParams as SubscriptionFetchCostsParams,
     type SubscriptionFetchScheduleParams as SubscriptionFetchScheduleParams,
     type SubscriptionFetchUsageParams as SubscriptionFetchUsageParams,
+    type SubscriptionListSummaryParams as SubscriptionListSummaryParams,
     type SubscriptionPriceIntervalsParams as SubscriptionPriceIntervalsParams,
     type SubscriptionRedeemCouponParams as SubscriptionRedeemCouponParams,
     type SubscriptionSchedulePlanChangeParams as SubscriptionSchedulePlanChangeParams,

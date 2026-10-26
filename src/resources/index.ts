@@ -202,6 +202,7 @@ export {
   type SubscriptionUsage,
   type SubscriptionFetchCostsResponse,
   type SubscriptionFetchScheduleResponse,
+  type SubscriptionListSummaryResponse,
   type SubscriptionCreateParams,
   type SubscriptionUpdateParams,
   type SubscriptionListParams,
@@ -209,6 +210,7 @@ export {
   type SubscriptionFetchCostsParams,
   type SubscriptionFetchScheduleParams,
   type SubscriptionFetchUsageParams,
+  type SubscriptionListSummaryParams,
   type SubscriptionPriceIntervalsParams,
   type SubscriptionRedeemCouponParams,
   type SubscriptionSchedulePlanChangeParams,
@@ -218,6 +220,7 @@ export {
   type SubscriptionUpdateTrialParams,
   type SubscriptionsPage,
   type SubscriptionFetchScheduleResponsesPage,
+  type SubscriptionListSummaryResponsesPage,
 } from './subscriptions';
 export { TopLevel, type TopLevelPingResponse } from './top-level';
 export {
