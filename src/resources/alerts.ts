@@ -122,8 +122,9 @@ export class Alerts extends APIResource {
    * before invoice-level adjustments and credits) denominated in the alert's
    * currency exceeds predefined thresholds during the current billing cycle;
    * `price_filters` can scope which prices contribute. Each plan can have one
-   * `cost_exceeded` alert and one `usage_exceeded` alert per metric that is a part
-   * of the plan.
+   * `cost_exceeded` alert, one `usage_exceeded` alert per metric that is a part of
+   * the plan, and up to 50 `spend_exceeded` alerts, one per combination of currency
+   * and `price_filters`, so separate products can each have their own spend alert.
    */
   createForPlan(planID: string, body: AlertCreateForPlanParams, options?: RequestOptions): APIPromise<Alert> {
     return this._client.post(path`/alerts/plan_id/${planID}`, { body, ...options });
@@ -142,8 +143,10 @@ export class Alerts extends APIResource {
    * spend (the pricing subtotal, before invoice-level adjustments and credits)
    * denominated in the alert's currency exceeds predefined thresholds during the
    * current billing cycle; `price_filters` can scope which prices contribute. Each
-   * subscription can have one `cost_exceeded` alert and one `usage_exceeded` alert
-   * per metric that is a part of the subscription.
+   * subscription can have one `cost_exceeded` alert, one `usage_exceeded` alert per
+   * metric that is a part of the subscription, and up to 50 `spend_exceeded` alerts,
+   * one per combination of currency and `price_filters`, so separate products can
+   * each have their own spend alert.
    */
   createForSubscription(
     subscriptionID: string,
