@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.33.0](https://github.com/orbcorp/orb-typescript/compare/v6.32.0...v6.33.0) (2026-10-27)
+
+
+### Features
+
+* **api:** allow up to 50 spend_exceeded alerts per plan or subscription ([bc3438d](https://github.com/orbcorp/orb-typescript/commit/bc3438dd393267f8f4d91d9e3f35e2822cbbe065))
+
 ## [6.32.0](https://github.com/orbcorp/orb-typescript/compare/v6.31.0...v6.32.0) (2026-10-24)
 
 
