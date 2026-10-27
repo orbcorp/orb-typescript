@@ -41,6 +41,7 @@ import {
   TopUpListResponsesPage,
   TopUps,
 } from './top-ups';
+import { APIPromise } from '../../../core/api-promise';
 import { Page, type PageParams, PagePromise } from '../../../core/pagination';
 import { RequestOptions } from '../../../internal/request-options';
 import { path } from '../../../internal/utils/path';
@@ -72,6 +73,57 @@ export class Credits extends APIResource {
     options?: RequestOptions,
   ): PagePromise<CreditListResponsesPage, CreditListResponse> {
     return this._client.getAPIList(path`/customers/${customerID}/credits`, Page<CreditListResponse>, {
+      query,
+      ...options,
+    });
+  }
+
+  /**
+   * This endpoint returns a customer's credit balance in a single currency or custom
+   * pricing unit: the total available balance, the balance waiting on payment, and
+   * the next upcoming expiration.
+   *
+   * `balance` is the sum of `balance` across the customer's `active` credit blocks,
+   * as listed by
+   * [Fetch customer credit balance](/api-reference/credit/fetch-customer-credit-balance).
+   * Expired, depleted, and voided blocks are not included. Blocks in
+   * `pending_payment` status are totaled in `pending_payment_balance` instead, and
+   * become available once their invoice is paid.
+   *
+   * Note that `currency` defaults to credits if not specified. To use a real world
+   * currency, set `currency` to an ISO 4217 string. A customer with no credits in
+   * that currency returns a balance of `0`.
+   */
+  fetchBalance(
+    customerID: string,
+    query: CreditFetchBalanceParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<CreditFetchBalanceResponse> {
+    return this._client.get(path`/customers/${customerID}/credits/balance`, { query, ...options });
+  }
+
+  /**
+   * This endpoint returns a customer's credit balance in a single currency or custom
+   * pricing unit: the total available balance, the balance waiting on payment, and
+   * the next upcoming expiration.
+   *
+   * `balance` is the sum of `balance` across the customer's `active` credit blocks,
+   * as listed by
+   * [Fetch customer credit balance](/api-reference/credit/fetch-customer-credit-balance).
+   * Expired, depleted, and voided blocks are not included. Blocks in
+   * `pending_payment` status are totaled in `pending_payment_balance` instead, and
+   * become available once their invoice is paid.
+   *
+   * Note that `currency` defaults to credits if not specified. To use a real world
+   * currency, set `currency` to an ISO 4217 string. A customer with no credits in
+   * that currency returns a balance of `0`.
+   */
+  fetchBalanceByExternalID(
+    externalCustomerID: string,
+    query: CreditFetchBalanceByExternalIDParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<CreditFetchBalanceByExternalIDResponse> {
+    return this._client.get(path`/customers/external_customer_id/${externalCustomerID}/credits/balance`, {
       query,
       ...options,
     });
@@ -234,6 +286,72 @@ export namespace CreditListResponse {
   }
 }
 
+export interface CreditFetchBalanceResponse {
+  /**
+   * The customer's available credit balance: the sum of `balance` across their
+   * `active` credit blocks.
+   */
+  balance: number;
+
+  /**
+   * The currency or custom pricing unit the balances are denominated in. Null when
+   * no `currency` is passed and the customer has no credit ledger, in which case
+   * every balance is `0`.
+   */
+  currency: string | null;
+
+  /**
+   * The balance that expires on `next_expiry_date`. Null if `next_expiry_date` is
+   * null.
+   */
+  next_expiry_balance: number | null;
+
+  /**
+   * The earliest `expiry_date` among active credit blocks. Null if none of them
+   * expire.
+   */
+  next_expiry_date: string | null;
+
+  /**
+   * The total balance of credit blocks in `pending_payment` status. Not included in
+   * `balance` until the invoice that funds them is paid.
+   */
+  pending_payment_balance: number;
+}
+
+export interface CreditFetchBalanceByExternalIDResponse {
+  /**
+   * The customer's available credit balance: the sum of `balance` across their
+   * `active` credit blocks.
+   */
+  balance: number;
+
+  /**
+   * The currency or custom pricing unit the balances are denominated in. Null when
+   * no `currency` is passed and the customer has no credit ledger, in which case
+   * every balance is `0`.
+   */
+  currency: string | null;
+
+  /**
+   * The balance that expires on `next_expiry_date`. Null if `next_expiry_date` is
+   * null.
+   */
+  next_expiry_balance: number | null;
+
+  /**
+   * The earliest `expiry_date` among active credit blocks. Null if none of them
+   * expire.
+   */
+  next_expiry_date: string | null;
+
+  /**
+   * The total balance of credit blocks in `pending_payment` status. Not included in
+   * `balance` until the invoice that funds them is paid.
+   */
+  pending_payment_balance: number;
+}
+
 export interface CreditListByExternalIDResponse {
   id: string;
 
@@ -381,6 +499,20 @@ export interface CreditListParams extends PageParams {
   include_all_blocks?: boolean;
 }
 
+export interface CreditFetchBalanceParams {
+  /**
+   * The ledger currency or custom pricing unit to use.
+   */
+  currency?: string | null;
+}
+
+export interface CreditFetchBalanceByExternalIDParams {
+  /**
+   * The ledger currency or custom pricing unit to use.
+   */
+  currency?: string | null;
+}
+
 export interface CreditListByExternalIDParams extends PageParams {
   /**
    * The ledger currency or custom pricing unit to use.
@@ -408,10 +540,14 @@ Credits.TopUps = TopUps;
 export declare namespace Credits {
   export {
     type CreditListResponse as CreditListResponse,
+    type CreditFetchBalanceResponse as CreditFetchBalanceResponse,
+    type CreditFetchBalanceByExternalIDResponse as CreditFetchBalanceByExternalIDResponse,
     type CreditListByExternalIDResponse as CreditListByExternalIDResponse,
     type CreditListResponsesPage as CreditListResponsesPage,
     type CreditListByExternalIDResponsesPage as CreditListByExternalIDResponsesPage,
     type CreditListParams as CreditListParams,
+    type CreditFetchBalanceParams as CreditFetchBalanceParams,
+    type CreditFetchBalanceByExternalIDParams as CreditFetchBalanceByExternalIDParams,
     type CreditListByExternalIDParams as CreditListByExternalIDParams,
   };
 

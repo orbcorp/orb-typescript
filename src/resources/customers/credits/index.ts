@@ -3,8 +3,12 @@
 export {
   Credits,
   type CreditListResponse,
+  type CreditFetchBalanceResponse,
+  type CreditFetchBalanceByExternalIDResponse,
   type CreditListByExternalIDResponse,
   type CreditListParams,
+  type CreditFetchBalanceParams,
+  type CreditFetchBalanceByExternalIDParams,
   type CreditListByExternalIDParams,
   type CreditListResponsesPage,
   type CreditListByExternalIDResponsesPage,

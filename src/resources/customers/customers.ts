@@ -21,6 +21,10 @@ import {
 } from './costs';
 import * as CreditsAPI from './credits/credits';
 import {
+  CreditFetchBalanceByExternalIDParams,
+  CreditFetchBalanceByExternalIDResponse,
+  CreditFetchBalanceParams,
+  CreditFetchBalanceResponse,
   CreditListByExternalIDParams,
   CreditListByExternalIDResponse,
   CreditListByExternalIDResponsesPage,
@@ -1856,10 +1860,14 @@ export declare namespace Customers {
   export {
     Credits as Credits,
     type CreditListResponse as CreditListResponse,
+    type CreditFetchBalanceResponse as CreditFetchBalanceResponse,
+    type CreditFetchBalanceByExternalIDResponse as CreditFetchBalanceByExternalIDResponse,
     type CreditListByExternalIDResponse as CreditListByExternalIDResponse,
     type CreditListResponsesPage as CreditListResponsesPage,
     type CreditListByExternalIDResponsesPage as CreditListByExternalIDResponsesPage,
     type CreditListParams as CreditListParams,
+    type CreditFetchBalanceParams as CreditFetchBalanceParams,
+    type CreditFetchBalanceByExternalIDParams as CreditFetchBalanceByExternalIDParams,
     type CreditListByExternalIDParams as CreditListByExternalIDParams,
   };
 

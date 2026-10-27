@@ -39,6 +39,50 @@ describe('resource credits', () => {
     ).rejects.toThrow(Orb.NotFoundError);
   });
 
+  test('fetchBalance', async () => {
+    const responsePromise = client.customers.credits.fetchBalance('customer_id');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('fetchBalance: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.customers.credits.fetchBalance(
+        'customer_id',
+        { currency: 'currency' },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Orb.NotFoundError);
+  });
+
+  test('fetchBalanceByExternalID', async () => {
+    const responsePromise = client.customers.credits.fetchBalanceByExternalID('external_customer_id');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('fetchBalanceByExternalID: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.customers.credits.fetchBalanceByExternalID(
+        'external_customer_id',
+        { currency: 'currency' },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Orb.NotFoundError);
+  });
+
   test('listByExternalID', async () => {
     const responsePromise = client.customers.credits.listByExternalID('external_customer_id');
     const rawResponse = await responsePromise.asResponse();

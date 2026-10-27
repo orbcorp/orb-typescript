@@ -420,11 +420,15 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/customers/credits/credits.ts">CreditListResponse</a></code>
+- <code><a href="./src/resources/customers/credits/credits.ts">CreditFetchBalanceResponse</a></code>
+- <code><a href="./src/resources/customers/credits/credits.ts">CreditFetchBalanceByExternalIDResponse</a></code>
 - <code><a href="./src/resources/customers/credits/credits.ts">CreditListByExternalIDResponse</a></code>
 
 Methods:
 
 - <code title="get /customers/{customer_id}/credits">client.customers.credits.<a href="./src/resources/customers/credits/credits.ts">list</a>(customerID, { ...params }) -> CreditListResponsesPage</code>
+- <code title="get /customers/{customer_id}/credits/balance">client.customers.credits.<a href="./src/resources/customers/credits/credits.ts">fetchBalance</a>(customerID, { ...params }) -> CreditFetchBalanceResponse</code>
+- <code title="get /customers/external_customer_id/{external_customer_id}/credits/balance">client.customers.credits.<a href="./src/resources/customers/credits/credits.ts">fetchBalanceByExternalID</a>(externalCustomerID, { ...params }) -> CreditFetchBalanceByExternalIDResponse</code>
 - <code title="get /customers/external_customer_id/{external_customer_id}/credits">client.customers.credits.<a href="./src/resources/customers/credits/credits.ts">listByExternalID</a>(externalCustomerID, { ...params }) -> CreditListByExternalIDResponsesPage</code>
 
 ### Ledger
