@@ -680,6 +680,20 @@ export namespace ChangedSubscriptionResources {
      */
     scheduled_issue_at: string | null;
 
+    /**
+     * The latest `end_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_end: string | null;
+
+    /**
+     * The earliest `start_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_start: string | null;
+
     shipping_address: Shared.Address | null;
 
     status: 'issued' | 'paid' | 'synced' | 'void' | 'draft';
@@ -2132,6 +2146,20 @@ export interface Invoice {
    * scheduled to be issued.
    */
   scheduled_issue_at: string | null;
+
+  /**
+   * The latest `end_date` of the invoice's line items, including any line items
+   * hidden because they have zero quantity. This is `null` when the invoice has no
+   * line items.
+   */
+  service_period_end: string | null;
+
+  /**
+   * The earliest `start_date` of the invoice's line items, including any line items
+   * hidden because they have zero quantity. This is `null` when the invoice has no
+   * line items.
+   */
+  service_period_start: string | null;
 
   shipping_address: Address | null;
 

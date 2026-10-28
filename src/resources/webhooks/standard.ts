@@ -3075,6 +3075,20 @@ export namespace InvoiceAccountingSyncFailedStandardWebhookEvent {
      */
     scheduled_issue_at: string | null;
 
+    /**
+     * The latest `end_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_end: string | null;
+
+    /**
+     * The earliest `start_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_start: string | null;
+
     shipping_address: Shared.Address | null;
 
     status: 'issued' | 'paid' | 'synced' | 'void' | 'draft';
@@ -3613,6 +3627,20 @@ export namespace InvoiceAccountingSyncSucceededStandardWebhookEvent {
      * scheduled to be issued.
      */
     scheduled_issue_at: string | null;
+
+    /**
+     * The latest `end_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_end: string | null;
+
+    /**
+     * The earliest `start_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_start: string | null;
 
     shipping_address: Shared.Address | null;
 
@@ -4281,6 +4309,20 @@ export namespace InvoiceDunningScheduleCreatedStandardWebhookEvent {
      */
     scheduled_issue_at: string | null;
 
+    /**
+     * The latest `end_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_end: string | null;
+
+    /**
+     * The earliest `start_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_start: string | null;
+
     shipping_address: Shared.Address | null;
 
     status: 'issued' | 'paid' | 'synced' | 'void' | 'draft';
@@ -4828,6 +4870,20 @@ export namespace InvoiceDunningScheduleEndedStandardWebhookEvent {
      */
     scheduled_issue_at: string | null;
 
+    /**
+     * The latest `end_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_end: string | null;
+
+    /**
+     * The earliest `start_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_start: string | null;
+
     shipping_address: Shared.Address | null;
 
     status: 'issued' | 'paid' | 'synced' | 'void' | 'draft';
@@ -5372,6 +5428,20 @@ export namespace InvoiceDunningScheduleResetStandardWebhookEvent {
      * scheduled to be issued.
      */
     scheduled_issue_at: string | null;
+
+    /**
+     * The latest `end_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_end: string | null;
+
+    /**
+     * The earliest `start_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_start: string | null;
 
     shipping_address: Shared.Address | null;
 
@@ -5930,6 +6000,20 @@ export namespace InvoiceDunningScheduleStepExecutedStandardWebhookEvent {
      */
     scheduled_issue_at: string | null;
 
+    /**
+     * The latest `end_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_end: string | null;
+
+    /**
+     * The earliest `start_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_start: string | null;
+
     shipping_address: Shared.Address | null;
 
     status: 'issued' | 'paid' | 'synced' | 'void' | 'draft';
@@ -6458,6 +6542,20 @@ export namespace InvoiceEditedStandardWebhookEvent {
      * scheduled to be issued.
      */
     scheduled_issue_at: string | null;
+
+    /**
+     * The latest `end_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_end: string | null;
+
+    /**
+     * The earliest `start_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_start: string | null;
 
     shipping_address: Shared.Address | null;
 
@@ -7254,6 +7352,20 @@ export namespace InvoiceIssueFailedStandardWebhookEvent {
      */
     scheduled_issue_at: string | null;
 
+    /**
+     * The latest `end_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_end: string | null;
+
+    /**
+     * The earliest `start_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_start: string | null;
+
     shipping_address: Shared.Address | null;
 
     status: 'issued' | 'paid' | 'synced' | 'void' | 'draft';
@@ -7762,6 +7874,20 @@ export namespace InvoiceIssuedStandardWebhookEvent {
      * scheduled to be issued.
      */
     scheduled_issue_at: string | null;
+
+    /**
+     * The latest `end_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_end: string | null;
+
+    /**
+     * The earliest `start_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_start: string | null;
 
     shipping_address: Shared.Address | null;
 
@@ -8273,6 +8399,20 @@ export namespace InvoiceIssuedSummaryStandardWebhookEvent {
      */
     scheduled_issue_at: string | null;
 
+    /**
+     * The latest `end_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_end: string | null;
+
+    /**
+     * The earliest `start_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_start: string | null;
+
     shipping_address: Shared.Address | null;
 
     status: 'issued' | 'paid' | 'synced' | 'void' | 'draft';
@@ -8781,6 +8921,20 @@ export namespace InvoiceManuallyMarkedAsPaidStandardWebhookEvent {
      * scheduled to be issued.
      */
     scheduled_issue_at: string | null;
+
+    /**
+     * The latest `end_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_end: string | null;
+
+    /**
+     * The earliest `start_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_start: string | null;
 
     shipping_address: Shared.Address | null;
 
@@ -9295,6 +9449,20 @@ export namespace InvoiceManuallyMarkedAsVoidStandardWebhookEvent {
      */
     scheduled_issue_at: string | null;
 
+    /**
+     * The latest `end_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_end: string | null;
+
+    /**
+     * The earliest `start_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_start: string | null;
+
     shipping_address: Shared.Address | null;
 
     status: 'issued' | 'paid' | 'synced' | 'void' | 'draft';
@@ -9800,6 +9968,20 @@ export namespace InvoicePaymentFailedStandardWebhookEvent {
      * scheduled to be issued.
      */
     scheduled_issue_at: string | null;
+
+    /**
+     * The latest `end_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_end: string | null;
+
+    /**
+     * The earliest `start_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_start: string | null;
 
     shipping_address: Shared.Address | null;
 
@@ -10313,6 +10495,20 @@ export namespace InvoicePaymentProcessingStandardWebhookEvent {
      * scheduled to be issued.
      */
     scheduled_issue_at: string | null;
+
+    /**
+     * The latest `end_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_end: string | null;
+
+    /**
+     * The earliest `start_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_start: string | null;
 
     shipping_address: Shared.Address | null;
 
@@ -10828,6 +11024,20 @@ export namespace InvoicePaymentSucceededStandardWebhookEvent {
      * scheduled to be issued.
      */
     scheduled_issue_at: string | null;
+
+    /**
+     * The latest `end_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_end: string | null;
+
+    /**
+     * The earliest `start_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_start: string | null;
 
     shipping_address: Shared.Address | null;
 
@@ -11347,6 +11557,20 @@ export namespace InvoiceSyncFailedStandardWebhookEvent {
      */
     scheduled_issue_at: string | null;
 
+    /**
+     * The latest `end_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_end: string | null;
+
+    /**
+     * The earliest `start_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_start: string | null;
+
     shipping_address: Shared.Address | null;
 
     status: 'issued' | 'paid' | 'synced' | 'void' | 'draft';
@@ -11858,6 +12082,20 @@ export namespace InvoiceSyncSucceededStandardWebhookEvent {
      */
     scheduled_issue_at: string | null;
 
+    /**
+     * The latest `end_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_end: string | null;
+
+    /**
+     * The earliest `start_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_start: string | null;
+
     shipping_address: Shared.Address | null;
 
     status: 'issued' | 'paid' | 'synced' | 'void' | 'draft';
@@ -12368,6 +12606,20 @@ export namespace InvoiceUndoMarkAsPaidStandardWebhookEvent {
      * scheduled to be issued.
      */
     scheduled_issue_at: string | null;
+
+    /**
+     * The latest `end_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_end: string | null;
+
+    /**
+     * The earliest `start_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_start: string | null;
 
     shipping_address: Shared.Address | null;
 
@@ -13538,6 +13790,20 @@ export namespace SalesOrderAccountingSyncFailedStandardWebhookEvent {
      */
     scheduled_issue_at: string | null;
 
+    /**
+     * The latest `end_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_end: string | null;
+
+    /**
+     * The earliest `start_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_start: string | null;
+
     shipping_address: Shared.Address | null;
 
     status: 'issued' | 'paid' | 'synced' | 'void' | 'draft';
@@ -14076,6 +14342,20 @@ export namespace SalesOrderAccountingSyncSucceededStandardWebhookEvent {
      * scheduled to be issued.
      */
     scheduled_issue_at: string | null;
+
+    /**
+     * The latest `end_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_end: string | null;
+
+    /**
+     * The earliest `start_date` of the invoice's line items, including any line items
+     * hidden because they have zero quantity. This is `null` when the invoice has no
+     * line items.
+     */
+    service_period_start: string | null;
 
     shipping_address: Shared.Address | null;
 
