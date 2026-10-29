@@ -14,7 +14,7 @@ describe('resource prices', () => {
       currency: 'USD',
       item_id: 'item_id',
       model_type: 'unit',
-      prices: [{ amounts: [0], dimension_values: ['string'] }],
+      prices: [{ amounts: [0], dimension_values: ['x'] }],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -34,7 +34,7 @@ describe('resource prices', () => {
       prices: [
         {
           amounts: [0],
-          dimension_values: ['string'],
+          dimension_values: ['x'],
           name: 'name',
         },
       ],

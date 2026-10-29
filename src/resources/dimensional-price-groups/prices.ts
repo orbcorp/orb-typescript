@@ -24,9 +24,7 @@ export class Prices extends APIResource {
    *       currency: 'USD',
    *       item_id: 'item_id',
    *       model_type: 'unit',
-   *       prices: [
-   *         { amounts: [0], dimension_values: ['string'] },
-   *       ],
+   *       prices: [{ amounts: [0], dimension_values: ['x'] }],
    *     },
    *   );
    * ```
