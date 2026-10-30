@@ -12,7 +12,8 @@ import { path } from '../internal/utils/path';
  */
 export class CreditBlocks extends APIResource {
   /**
-   * This endpoint returns a credit block identified by its block_id.
+   * This endpoint returns a credit block identified by its block_id. A deleted
+   * credit block is returned with a `status` of `void` and a `balance` of 0.
    */
   retrieve(blockID: string, options?: RequestOptions): APIPromise<CreditBlockRetrieveResponse> {
     return this._client.get(path`/credit_blocks/${blockID}`, options);
@@ -120,7 +121,11 @@ export interface CreditBlockRetrieveResponse {
 
   per_unit_cost_basis: string | null;
 
-  status: 'active' | 'pending_payment';
+  /**
+   * `void` means the credit block was deleted. A voided block's `balance` is
+   * always 0.
+   */
+  status: 'active' | 'pending_payment' | 'void';
 
   /**
    * The credit allocation that funded a block. Extends the allocation resource
@@ -246,7 +251,11 @@ export interface CreditBlockUpdateResponse {
 
   per_unit_cost_basis: string | null;
 
-  status: 'active' | 'pending_payment';
+  /**
+   * `void` means the credit block was deleted. A voided block's `balance` is
+   * always 0.
+   */
+  status: 'active' | 'pending_payment' | 'void';
 
   /**
    * The credit allocation that funded a block. Extends the allocation resource
@@ -382,7 +391,11 @@ export namespace CreditBlockListInvoicesResponse {
 
     per_unit_cost_basis: string | null;
 
-    status: 'active' | 'pending_payment';
+    /**
+     * `void` means the credit block was deleted. A voided block's `balance` is
+     * always 0.
+     */
+    status: 'active' | 'pending_payment' | 'void';
 
     /**
      * The credit allocation that funded a block. Extends the allocation resource
