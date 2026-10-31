@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.36.0](https://github.com/orbcorp/orb-typescript/compare/v6.35.0...v6.36.0) (2026-10-31)
+
+
+### Features
+
+* **api:** add void status for deleted credit blocks in CreditBlock schema ([5300679](https://github.com/orbcorp/orb-typescript/commit/5300679be0960ffebdc0abd2db5ae59f9d32a195))
+
 ## [6.35.0](https://github.com/orbcorp/orb-typescript/compare/v6.34.0...v6.35.0) (2026-10-30)
 
 
