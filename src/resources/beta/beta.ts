@@ -199,6 +199,11 @@ export interface PlanVersionPhase {
    * Determines the ordering of the phase in a plan's lifecycle. 1 = first phase.
    */
   order: number;
+
+  /**
+   * The IDs of the prices active in this phase.
+   */
+  price_ids: Array<string>;
 }
 
 export interface BetaCreatePlanVersionParams {
