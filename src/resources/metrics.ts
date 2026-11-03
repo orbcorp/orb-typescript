@@ -111,6 +111,23 @@ export class Metrics extends APIResource {
   }
 
   /**
+   * This endpoint publishes a [metric](/core-concepts#metric) in `draft` status,
+   * making it `active`. Only draft metrics can be published, and an active metric
+   * can't be moved back into `draft`, so its `sql` and `item_id` can no longer be
+   * changed.
+   *
+   * @example
+   * ```ts
+   * const billableMetric = await client.metrics.publish(
+   *   'metric_id',
+   * );
+   * ```
+   */
+  publish(metricID: string, options?: RequestOptions): APIPromise<BillableMetric> {
+    return this._client.post(path`/metrics/${metricID}/publish`, options);
+  }
+
+  /**
    * This endpoint restores an archived [metric](/core-concepts#metric) to `active`,
    * so it can be chosen for new plans again. Only archived metrics can be
    * unarchived.

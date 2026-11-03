@@ -609,6 +609,7 @@ Methods:
 - <code title="get /metrics">client.metrics.<a href="./src/resources/metrics.ts">list</a>({ ...params }) -> BillableMetricsPage</code>
 - <code title="post /metrics/{metric_id}/archive">client.metrics.<a href="./src/resources/metrics.ts">archive</a>(metricID) -> BillableMetric</code>
 - <code title="get /metrics/{metric_id}">client.metrics.<a href="./src/resources/metrics.ts">fetch</a>(metricID) -> BillableMetric</code>
+- <code title="post /metrics/{metric_id}/publish">client.metrics.<a href="./src/resources/metrics.ts">publish</a>(metricID) -> BillableMetric</code>
 - <code title="post /metrics/{metric_id}/unarchive">client.metrics.<a href="./src/resources/metrics.ts">unarchive</a>(metricID) -> BillableMetric</code>
 
 # Plans
