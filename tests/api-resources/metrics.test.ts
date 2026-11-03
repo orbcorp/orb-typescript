@@ -31,6 +31,7 @@ describe('resource metrics', () => {
       name: 'Bytes downloaded',
       sql: "SELECT sum(bytes_downloaded) FROM events WHERE download_speed = 'fast'",
       metadata: { foo: 'string' },
+      status: 'active',
     });
   });
 

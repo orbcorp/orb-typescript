@@ -499,9 +499,15 @@ export namespace BillableMetricEditedWebhookEvent {
     export interface PreviousAttributes {
       description?: string | null;
 
+      item_id?: string | null;
+
       metadata?: { [key: string]: string } | null;
 
       name?: string | null;
+
+      sql?: string | null;
+
+      status?: 'active' | 'archived' | 'draft' | null;
     }
   }
 }

@@ -37,6 +37,10 @@ export class Metrics extends APIResource {
    * `name` cannot be empty. If you pass `null` for the metadata value, it will clear
    * any existing metadata for that metric.
    *
+   * While a metric is in `draft` status, its `sql` and `item_id` can also be
+   * changed. Use [publish metric](/api-reference/metric/publish-metric) to make a
+   * draft metric active.
+   *
    * @example
    * ```ts
    * const billableMetric = await client.metrics.update(
@@ -190,6 +194,13 @@ export interface MetricCreateParams {
    * by setting `metadata` to `null`.
    */
   metadata?: { [key: string]: string | null } | null;
+
+  /**
+   * The status of the metric to create (either active or draft). If not specified,
+   * this defaults to active. A draft metric's `sql` and `item_id` can be changed
+   * until it's published.
+   */
+  status?: 'active' | 'draft';
 }
 
 export interface MetricUpdateParams {
@@ -197,6 +208,12 @@ export interface MetricUpdateParams {
    * A description of the metric.
    */
   description?: string | null;
+
+  /**
+   * The id of the item to associate the metric with. Can only be changed while the
+   * metric is in `draft` status.
+   */
+  item_id?: string | null;
 
   /**
    * User-specified key/value pairs for the resource. Individual keys can be removed
@@ -209,6 +226,13 @@ export interface MetricUpdateParams {
    * The name of the metric.
    */
   name?: string | null;
+
+  /**
+   * A new sql string defining the metric. Can only be changed while the metric is in
+   * `draft` status and no price uses it. If the metric has parameters, the new sql
+   * must use the same ones.
+   */
+  sql?: string | null;
 }
 
 export interface MetricListParams extends PageParams {
@@ -223,7 +247,7 @@ export interface MetricListParams extends PageParams {
   /**
    * The metric status to filter to ('active', 'archived', or 'draft').
    */
-  status?: 'active' | 'archived' | 'draft' | null;
+  status?: 'active' | 'draft' | 'archived' | null;
 }
 
 export declare namespace Metrics {
