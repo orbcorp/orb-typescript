@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.37.0](https://github.com/orbcorp/orb-typescript/compare/v6.36.0...v6.37.0) (2026-11-04)
+
+
+### Features
+
+* **api:** add price_ids to plan phases in plan responses ([f08e09e](https://github.com/orbcorp/orb-typescript/commit/f08e09eed381838d3cca62631751fd38a21a323e))
+* **api:** support draft billable metrics with SQL/item edits and publish ([b1d0f2a](https://github.com/orbcorp/orb-typescript/commit/b1d0f2aef0631789b038cefbf1465b0e7520b132))
+
 ## [6.36.0](https://github.com/orbcorp/orb-typescript/compare/v6.35.0...v6.36.0) (2026-10-31)
 
 
