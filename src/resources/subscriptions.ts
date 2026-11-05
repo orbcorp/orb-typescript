@@ -7126,6 +7126,11 @@ export namespace SubscriptionCreateParams {
     external_price_id?: string | null;
 
     /**
+     * The phase to remove this price from.
+     */
+    plan_phase_order?: number | null;
+
+    /**
      * The id of the price to remove on the subscription.
      */
     price_id?: string | null;
@@ -7273,6 +7278,11 @@ export namespace SubscriptionCreateParams {
      * amount for the replacement price.
      */
     minimum_amount?: string | null;
+
+    /**
+     * The phase to replace this price in.
+     */
+    plan_phase_order?: number | null;
 
     /**
      * New subscription price request body params.
@@ -13091,6 +13101,11 @@ export namespace SubscriptionSchedulePlanChangeParams {
     external_price_id?: string | null;
 
     /**
+     * The phase to remove this price from.
+     */
+    plan_phase_order?: number | null;
+
+    /**
      * The id of the price to remove on the subscription.
      */
     price_id?: string | null;
@@ -13238,6 +13253,11 @@ export namespace SubscriptionSchedulePlanChangeParams {
      * amount for the replacement price.
      */
     minimum_amount?: string | null;
+
+    /**
+     * The phase to replace this price in.
+     */
+    plan_phase_order?: number | null;
 
     /**
      * New subscription price request body params.

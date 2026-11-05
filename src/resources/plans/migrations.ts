@@ -72,9 +72,21 @@ export interface MigrationRetrieveResponse {
   effective_time: (string & {}) | (string & {}) | 'end_of_term' | 'end_of_invoice' | null;
 
   /**
+   * When the migration completed or was canceled, or null if it is still in
+   * progress.
+   */
+  ended_at: string | null;
+
+  /**
    * The ID of the plan being migrated.
    */
   plan_id: string;
+
+  /**
+   * When Orb began migrating the plan's subscriptions. Null if the migration has not
+   * begun, or was canceled before it began.
+   */
+  started_at: string | null;
 
   /**
    * Current status of the migration: 'not_started', 'in_progress', 'completed',
@@ -97,9 +109,21 @@ export interface MigrationListResponse {
   effective_time: (string & {}) | (string & {}) | 'end_of_term' | 'end_of_invoice' | null;
 
   /**
+   * When the migration completed or was canceled, or null if it is still in
+   * progress.
+   */
+  ended_at: string | null;
+
+  /**
    * The ID of the plan being migrated.
    */
   plan_id: string;
+
+  /**
+   * When Orb began migrating the plan's subscriptions. Null if the migration has not
+   * begun, or was canceled before it began.
+   */
+  started_at: string | null;
 
   /**
    * Current status of the migration: 'not_started', 'in_progress', 'completed',
@@ -122,9 +146,21 @@ export interface MigrationCancelResponse {
   effective_time: (string & {}) | (string & {}) | 'end_of_term' | 'end_of_invoice' | null;
 
   /**
+   * When the migration completed or was canceled, or null if it is still in
+   * progress.
+   */
+  ended_at: string | null;
+
+  /**
    * The ID of the plan being migrated.
    */
   plan_id: string;
+
+  /**
+   * When Orb began migrating the plan's subscriptions. Null if the migration has not
+   * begun, or was canceled before it began.
+   */
+  started_at: string | null;
 
   /**
    * Current status of the migration: 'not_started', 'in_progress', 'completed',

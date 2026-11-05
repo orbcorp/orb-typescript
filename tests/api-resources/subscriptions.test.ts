@@ -387,7 +387,13 @@ describe('resource subscriptions', () => {
       plan_version_number: 0,
       price_overrides: [{}],
       remove_adjustments: [{ adjustment_id: 'h74gfhdjvn7ujokd' }],
-      remove_prices: [{ external_price_id: 'external_price_id', price_id: 'h74gfhdjvn7ujokd' }],
+      remove_prices: [
+        {
+          external_price_id: 'external_price_id',
+          plan_phase_order: 0,
+          price_id: 'h74gfhdjvn7ujokd',
+        },
+      ],
       replace_adjustments: [
         {
           adjustment: {
@@ -444,6 +450,7 @@ describe('resource subscriptions', () => {
           maximum_amount: '1.23',
           metric_parameter_overrides: { foo: 'bar' },
           minimum_amount: '1.23',
+          plan_phase_order: 0,
           price: {
             cadence: 'one_time',
             item_id: 'item_id',
