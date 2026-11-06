@@ -10845,7 +10845,8 @@ export type Price =
   | Price.MeteredAllowancePrice
   | Price.MinimumCompositePrice
   | Price.PercentCompositePrice
-  | Price.EventOutputPrice;
+  | Price.EventOutputPrice
+  | Price.UnitWithMultiplierPrice;
 
 export namespace Price {
   export interface UnitPrice {
@@ -16978,6 +16979,180 @@ export namespace Price {
        * also be grouped by their unit rate.
        */
       grouping_key?: string | null;
+    }
+
+    /**
+     * The LicenseType resource represents a type of license that can be assigned to
+     * users. License types are used during billing by grouping metrics on the
+     * configured grouping key.
+     */
+    export interface LicenseType {
+      /**
+       * The Orb-assigned unique identifier for the license type.
+       */
+      id: string;
+
+      /**
+       * The key used for grouping licenses of this type. This is typically a user
+       * identifier field.
+       */
+      grouping_key: string;
+
+      /**
+       * The name of the license type.
+       */
+      name: string;
+    }
+  }
+
+  export interface UnitWithMultiplierPrice {
+    id: string;
+
+    billable_metric: Shared.BillableMetricTiny | null;
+
+    billing_cycle_configuration: Shared.BillingCycleConfiguration;
+
+    billing_mode: 'in_advance' | 'in_arrear';
+
+    cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
+
+    composite_price_filters: Array<UnitWithMultiplierPrice.CompositePriceFilter> | null;
+
+    conversion_rate: number | null;
+
+    conversion_rate_config: Shared.UnitConversionRateConfig | Shared.TieredConversionRateConfig | null;
+
+    created_at: string;
+
+    credit_allocation: Shared.Allocation | null;
+
+    currency: string;
+
+    /**
+     * @deprecated
+     */
+    discount: Shared.Discount | null;
+
+    external_price_id: string | null;
+
+    fixed_price_quantity: number | null;
+
+    invoice_grouping_key: string | null;
+
+    invoicing_cycle_configuration: Shared.BillingCycleConfiguration | null;
+
+    /**
+     * A minimal representation of an Item containing only the essential identifying
+     * information.
+     */
+    item: Shared.ItemSlim;
+
+    /**
+     * @deprecated
+     */
+    maximum: Shared.Maximum | null;
+
+    /**
+     * @deprecated
+     */
+    maximum_amount: string | null;
+
+    /**
+     * User specified key-value pairs for the resource. If not present, this defaults
+     * to an empty dictionary. Individual keys can be removed by setting the value to
+     * `null`, and the entire metadata mapping can be cleared by setting `metadata` to
+     * `null`.
+     */
+    metadata: { [key: string]: string };
+
+    /**
+     * @deprecated
+     */
+    minimum: Shared.Minimum | null;
+
+    /**
+     * @deprecated
+     */
+    minimum_amount: string | null;
+
+    /**
+     * The pricing model type
+     */
+    model_type: 'unit_with_multiplier';
+
+    name: string;
+
+    plan_phase_order: number | null;
+
+    price_type: 'usage_price' | 'fixed_price' | 'composite_price';
+
+    /**
+     * The price id this price replaces. This price will take the place of the replaced
+     * price in plan version migrations.
+     */
+    replaces_price_id: string | null;
+
+    /**
+     * Configuration for unit_with_multiplier pricing
+     */
+    unit_with_multiplier_config: UnitWithMultiplierPrice.UnitWithMultiplierConfig;
+
+    dimensional_price_configuration?: Shared.DimensionalPriceConfiguration | null;
+
+    /**
+     * The LicenseType resource represents a type of license that can be assigned to
+     * users. License types are used during billing by grouping metrics on the
+     * configured grouping key.
+     */
+    license_type?: UnitWithMultiplierPrice.LicenseType | null;
+  }
+
+  export namespace UnitWithMultiplierPrice {
+    export interface CompositePriceFilter {
+      /**
+       * The property of the price to filter on.
+       */
+      field: 'price_id' | 'item_id' | 'price_type' | 'currency' | 'pricing_unit_id';
+
+      /**
+       * Should prices that match the filter be included or excluded.
+       */
+      operator: 'includes' | 'excludes';
+
+      /**
+       * The IDs or values that match this filter.
+       */
+      values: Array<string>;
+    }
+
+    /**
+     * Configuration for unit_with_multiplier pricing
+     */
+    export interface UnitWithMultiplierConfig {
+      /**
+       * Sub-line label for list-price events that don't set display_name_key. Unlabeled
+       * events with another multiplier are labeled by their multiplier (e.g. '0.8×
+       * rate').
+       */
+      default_display_name: string;
+
+      /**
+       * Event property holding the sub-line label for the event's rate (e.g.
+       * 'Off-peak').
+       */
+      display_name_key: string;
+
+      /**
+       * Event property holding the multiplier applied to unit_amount (e.g. 0.8 for a 20%
+       * discount). Events without a number between 0 and 1000 with at most 12 decimal
+       * places are charged at unit_amount.
+       */
+      multiplier_key: string;
+
+      /**
+       * List price per unit, before the event's multiplier is applied.
+       */
+      unit_amount: string;
     }
 
     /**

@@ -5447,6 +5447,7 @@ export namespace SubscriptionCreateParams {
       | SubscriptionsAPI.NewSubscriptionMinimumCompositePrice
       | AddPrice.NewSubscriptionPercentCompositePrice
       | AddPrice.NewSubscriptionEventOutputPrice
+      | AddPrice.NewSubscriptionUnitWithMultiplierPrice
       | null;
 
     /**
@@ -7110,6 +7111,148 @@ export namespace SubscriptionCreateParams {
         grouping_key?: string | null;
       }
     }
+
+    export interface NewSubscriptionUnitWithMultiplierPrice {
+      /**
+       * The cadence to bill for this price on.
+       */
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
+
+      /**
+       * The id of the item the price will be associated with.
+       */
+      item_id: string;
+
+      /**
+       * The pricing model type
+       */
+      model_type: 'unit_with_multiplier';
+
+      /**
+       * The name of the price.
+       */
+      name: string;
+
+      /**
+       * Configuration for unit_with_multiplier pricing
+       */
+      unit_with_multiplier_config: NewSubscriptionUnitWithMultiplierPrice.UnitWithMultiplierConfig;
+
+      /**
+       * The id of the billable metric for the price. Only needed if the price is
+       * usage-based.
+       */
+      billable_metric_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, the price will be billed in-advance if
+       * this is true, and in-arrears if this is false.
+       */
+      billed_in_advance?: boolean | null;
+
+      /**
+       * For custom cadence: specifies the duration of the billing period in days or
+       * months.
+       */
+      billing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The per unit conversion rate of the price currency to the invoicing currency.
+       */
+      conversion_rate?: number | null;
+
+      /**
+       * The configuration for the rate of the price currency to the invoicing currency.
+       */
+      conversion_rate_config?: Shared.UnitConversionRateConfig | Shared.TieredConversionRateConfig | null;
+
+      /**
+       * An ISO 4217 currency string, or custom pricing unit identifier, in which this
+       * price is billed.
+       */
+      currency?: string | null;
+
+      /**
+       * For dimensional price: specifies a price group and dimension values
+       */
+      dimensional_price_configuration?: Shared.NewDimensionalPriceConfiguration | null;
+
+      /**
+       * An alias for the price.
+       */
+      external_price_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, this represents the quantity of units
+       * applied.
+       */
+      fixed_price_quantity?: number | null;
+
+      /**
+       * The property used to group this price on an invoice
+       */
+      invoice_grouping_key?: string | null;
+
+      /**
+       * Within each billing cycle, specifies the cadence at which invoices are produced.
+       * If unspecified, a single invoice is produced per billing cycle.
+       */
+      invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
+       */
+      license_type_id?: string | null;
+
+      /**
+       * User-specified key/value pairs for the resource. Individual keys can be removed
+       * by setting the value to `null`, and the entire metadata mapping can be cleared
+       * by setting `metadata` to `null`.
+       */
+      metadata?: { [key: string]: string | null } | null;
+
+      /**
+       * A transient ID that can be used to reference this price when adding adjustments
+       * in the same API call.
+       */
+      reference_id?: string | null;
+    }
+
+    export namespace NewSubscriptionUnitWithMultiplierPrice {
+      /**
+       * Configuration for unit_with_multiplier pricing
+       */
+      export interface UnitWithMultiplierConfig {
+        /**
+         * Sub-line label for list-price events that don't set display_name_key. Unlabeled
+         * events with another multiplier are labeled by their multiplier (e.g. '0.8×
+         * rate').
+         */
+        default_display_name: string;
+
+        /**
+         * Event property holding the sub-line label for the event's rate (e.g.
+         * 'Off-peak').
+         */
+        display_name_key: string;
+
+        /**
+         * Event property holding the multiplier applied to unit_amount (e.g. 0.8 for a 20%
+         * discount). Events without a number between 0 and 1000 with at most 12 decimal
+         * places are charged at unit_amount.
+         */
+        multiplier_key: string;
+
+        /**
+         * List price per unit, before the event's multiplier is applied.
+         */
+        unit_amount: string;
+      }
+    }
   }
 
   export interface RemoveAdjustment {
@@ -7324,6 +7467,7 @@ export namespace SubscriptionCreateParams {
       | SubscriptionsAPI.NewSubscriptionMinimumCompositePrice
       | ReplacePrice.NewSubscriptionPercentCompositePrice
       | ReplacePrice.NewSubscriptionEventOutputPrice
+      | ReplacePrice.NewSubscriptionUnitWithMultiplierPrice
       | null;
 
     /**
@@ -8980,6 +9124,148 @@ export namespace SubscriptionCreateParams {
         grouping_key?: string | null;
       }
     }
+
+    export interface NewSubscriptionUnitWithMultiplierPrice {
+      /**
+       * The cadence to bill for this price on.
+       */
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
+
+      /**
+       * The id of the item the price will be associated with.
+       */
+      item_id: string;
+
+      /**
+       * The pricing model type
+       */
+      model_type: 'unit_with_multiplier';
+
+      /**
+       * The name of the price.
+       */
+      name: string;
+
+      /**
+       * Configuration for unit_with_multiplier pricing
+       */
+      unit_with_multiplier_config: NewSubscriptionUnitWithMultiplierPrice.UnitWithMultiplierConfig;
+
+      /**
+       * The id of the billable metric for the price. Only needed if the price is
+       * usage-based.
+       */
+      billable_metric_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, the price will be billed in-advance if
+       * this is true, and in-arrears if this is false.
+       */
+      billed_in_advance?: boolean | null;
+
+      /**
+       * For custom cadence: specifies the duration of the billing period in days or
+       * months.
+       */
+      billing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The per unit conversion rate of the price currency to the invoicing currency.
+       */
+      conversion_rate?: number | null;
+
+      /**
+       * The configuration for the rate of the price currency to the invoicing currency.
+       */
+      conversion_rate_config?: Shared.UnitConversionRateConfig | Shared.TieredConversionRateConfig | null;
+
+      /**
+       * An ISO 4217 currency string, or custom pricing unit identifier, in which this
+       * price is billed.
+       */
+      currency?: string | null;
+
+      /**
+       * For dimensional price: specifies a price group and dimension values
+       */
+      dimensional_price_configuration?: Shared.NewDimensionalPriceConfiguration | null;
+
+      /**
+       * An alias for the price.
+       */
+      external_price_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, this represents the quantity of units
+       * applied.
+       */
+      fixed_price_quantity?: number | null;
+
+      /**
+       * The property used to group this price on an invoice
+       */
+      invoice_grouping_key?: string | null;
+
+      /**
+       * Within each billing cycle, specifies the cadence at which invoices are produced.
+       * If unspecified, a single invoice is produced per billing cycle.
+       */
+      invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
+       */
+      license_type_id?: string | null;
+
+      /**
+       * User-specified key/value pairs for the resource. Individual keys can be removed
+       * by setting the value to `null`, and the entire metadata mapping can be cleared
+       * by setting `metadata` to `null`.
+       */
+      metadata?: { [key: string]: string | null } | null;
+
+      /**
+       * A transient ID that can be used to reference this price when adding adjustments
+       * in the same API call.
+       */
+      reference_id?: string | null;
+    }
+
+    export namespace NewSubscriptionUnitWithMultiplierPrice {
+      /**
+       * Configuration for unit_with_multiplier pricing
+       */
+      export interface UnitWithMultiplierConfig {
+        /**
+         * Sub-line label for list-price events that don't set display_name_key. Unlabeled
+         * events with another multiplier are labeled by their multiplier (e.g. '0.8×
+         * rate').
+         */
+        default_display_name: string;
+
+        /**
+         * Event property holding the sub-line label for the event's rate (e.g.
+         * 'Off-peak').
+         */
+        display_name_key: string;
+
+        /**
+         * Event property holding the multiplier applied to unit_amount (e.g. 0.8 for a 20%
+         * discount). Events without a number between 0 and 1000 with at most 12 decimal
+         * places are charged at unit_amount.
+         */
+        multiplier_key: string;
+
+        /**
+         * List price per unit, before the event's multiplier is applied.
+         */
+        unit_amount: string;
+      }
+    }
   }
 }
 
@@ -9314,6 +9600,7 @@ export namespace SubscriptionPriceIntervalsParams {
       | Shared.NewFloatingMinimumCompositePrice
       | Add.NewFloatingPercentCompositePrice
       | Add.NewFloatingEventOutputPrice
+      | Add.NewFloatingUnitWithMultiplierPrice
       | null;
 
     /**
@@ -10811,6 +11098,141 @@ export namespace SubscriptionPriceIntervalsParams {
         grouping_key?: string | null;
       }
     }
+
+    export interface NewFloatingUnitWithMultiplierPrice {
+      /**
+       * The cadence to bill for this price on.
+       */
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
+
+      /**
+       * An ISO 4217 currency string for which this price is billed in.
+       */
+      currency: string;
+
+      /**
+       * The id of the item the price will be associated with.
+       */
+      item_id: string;
+
+      /**
+       * The pricing model type
+       */
+      model_type: 'unit_with_multiplier';
+
+      /**
+       * The name of the price.
+       */
+      name: string;
+
+      /**
+       * Configuration for unit_with_multiplier pricing
+       */
+      unit_with_multiplier_config: NewFloatingUnitWithMultiplierPrice.UnitWithMultiplierConfig;
+
+      /**
+       * The id of the billable metric for the price. Only needed if the price is
+       * usage-based.
+       */
+      billable_metric_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, the price will be billed in-advance if
+       * this is true, and in-arrears if this is false.
+       */
+      billed_in_advance?: boolean | null;
+
+      /**
+       * For custom cadence: specifies the duration of the billing period in days or
+       * months.
+       */
+      billing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The per unit conversion rate of the price currency to the invoicing currency.
+       */
+      conversion_rate?: number | null;
+
+      /**
+       * The configuration for the rate of the price currency to the invoicing currency.
+       */
+      conversion_rate_config?: Shared.UnitConversionRateConfig | Shared.TieredConversionRateConfig | null;
+
+      /**
+       * For dimensional price: specifies a price group and dimension values
+       */
+      dimensional_price_configuration?: Shared.NewDimensionalPriceConfiguration | null;
+
+      /**
+       * An alias for the price.
+       */
+      external_price_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, this represents the quantity of units
+       * applied.
+       */
+      fixed_price_quantity?: number | null;
+
+      /**
+       * The property used to group this price on an invoice
+       */
+      invoice_grouping_key?: string | null;
+
+      /**
+       * Within each billing cycle, specifies the cadence at which invoices are produced.
+       * If unspecified, a single invoice is produced per billing cycle.
+       */
+      invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
+       */
+      license_type_id?: string | null;
+
+      /**
+       * User-specified key/value pairs for the resource. Individual keys can be removed
+       * by setting the value to `null`, and the entire metadata mapping can be cleared
+       * by setting `metadata` to `null`.
+       */
+      metadata?: { [key: string]: string | null } | null;
+    }
+
+    export namespace NewFloatingUnitWithMultiplierPrice {
+      /**
+       * Configuration for unit_with_multiplier pricing
+       */
+      export interface UnitWithMultiplierConfig {
+        /**
+         * Sub-line label for list-price events that don't set display_name_key. Unlabeled
+         * events with another multiplier are labeled by their multiplier (e.g. '0.8×
+         * rate').
+         */
+        default_display_name: string;
+
+        /**
+         * Event property holding the sub-line label for the event's rate (e.g.
+         * 'Off-peak').
+         */
+        display_name_key: string;
+
+        /**
+         * Event property holding the multiplier applied to unit_amount (e.g. 0.8 for a 20%
+         * discount). Events without a number between 0 and 1000 with at most 12 decimal
+         * places are charged at unit_amount.
+         */
+        multiplier_key: string;
+
+        /**
+         * List price per unit, before the event's multiplier is applied.
+         */
+        unit_amount: string;
+      }
+    }
   }
 
   export interface AddAdjustment {
@@ -11422,6 +11844,7 @@ export namespace SubscriptionSchedulePlanChangeParams {
       | SubscriptionsAPI.NewSubscriptionMinimumCompositePrice
       | AddPrice.NewSubscriptionPercentCompositePrice
       | AddPrice.NewSubscriptionEventOutputPrice
+      | AddPrice.NewSubscriptionUnitWithMultiplierPrice
       | null;
 
     /**
@@ -13085,6 +13508,148 @@ export namespace SubscriptionSchedulePlanChangeParams {
         grouping_key?: string | null;
       }
     }
+
+    export interface NewSubscriptionUnitWithMultiplierPrice {
+      /**
+       * The cadence to bill for this price on.
+       */
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
+
+      /**
+       * The id of the item the price will be associated with.
+       */
+      item_id: string;
+
+      /**
+       * The pricing model type
+       */
+      model_type: 'unit_with_multiplier';
+
+      /**
+       * The name of the price.
+       */
+      name: string;
+
+      /**
+       * Configuration for unit_with_multiplier pricing
+       */
+      unit_with_multiplier_config: NewSubscriptionUnitWithMultiplierPrice.UnitWithMultiplierConfig;
+
+      /**
+       * The id of the billable metric for the price. Only needed if the price is
+       * usage-based.
+       */
+      billable_metric_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, the price will be billed in-advance if
+       * this is true, and in-arrears if this is false.
+       */
+      billed_in_advance?: boolean | null;
+
+      /**
+       * For custom cadence: specifies the duration of the billing period in days or
+       * months.
+       */
+      billing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The per unit conversion rate of the price currency to the invoicing currency.
+       */
+      conversion_rate?: number | null;
+
+      /**
+       * The configuration for the rate of the price currency to the invoicing currency.
+       */
+      conversion_rate_config?: Shared.UnitConversionRateConfig | Shared.TieredConversionRateConfig | null;
+
+      /**
+       * An ISO 4217 currency string, or custom pricing unit identifier, in which this
+       * price is billed.
+       */
+      currency?: string | null;
+
+      /**
+       * For dimensional price: specifies a price group and dimension values
+       */
+      dimensional_price_configuration?: Shared.NewDimensionalPriceConfiguration | null;
+
+      /**
+       * An alias for the price.
+       */
+      external_price_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, this represents the quantity of units
+       * applied.
+       */
+      fixed_price_quantity?: number | null;
+
+      /**
+       * The property used to group this price on an invoice
+       */
+      invoice_grouping_key?: string | null;
+
+      /**
+       * Within each billing cycle, specifies the cadence at which invoices are produced.
+       * If unspecified, a single invoice is produced per billing cycle.
+       */
+      invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
+       */
+      license_type_id?: string | null;
+
+      /**
+       * User-specified key/value pairs for the resource. Individual keys can be removed
+       * by setting the value to `null`, and the entire metadata mapping can be cleared
+       * by setting `metadata` to `null`.
+       */
+      metadata?: { [key: string]: string | null } | null;
+
+      /**
+       * A transient ID that can be used to reference this price when adding adjustments
+       * in the same API call.
+       */
+      reference_id?: string | null;
+    }
+
+    export namespace NewSubscriptionUnitWithMultiplierPrice {
+      /**
+       * Configuration for unit_with_multiplier pricing
+       */
+      export interface UnitWithMultiplierConfig {
+        /**
+         * Sub-line label for list-price events that don't set display_name_key. Unlabeled
+         * events with another multiplier are labeled by their multiplier (e.g. '0.8×
+         * rate').
+         */
+        default_display_name: string;
+
+        /**
+         * Event property holding the sub-line label for the event's rate (e.g.
+         * 'Off-peak').
+         */
+        display_name_key: string;
+
+        /**
+         * Event property holding the multiplier applied to unit_amount (e.g. 0.8 for a 20%
+         * discount). Events without a number between 0 and 1000 with at most 12 decimal
+         * places are charged at unit_amount.
+         */
+        multiplier_key: string;
+
+        /**
+         * List price per unit, before the event's multiplier is applied.
+         */
+        unit_amount: string;
+      }
+    }
   }
 
   export interface RemoveAdjustment {
@@ -13299,6 +13864,7 @@ export namespace SubscriptionSchedulePlanChangeParams {
       | SubscriptionsAPI.NewSubscriptionMinimumCompositePrice
       | ReplacePrice.NewSubscriptionPercentCompositePrice
       | ReplacePrice.NewSubscriptionEventOutputPrice
+      | ReplacePrice.NewSubscriptionUnitWithMultiplierPrice
       | null;
 
     /**
@@ -14953,6 +15519,148 @@ export namespace SubscriptionSchedulePlanChangeParams {
          * also be grouped by their unit rate.
          */
         grouping_key?: string | null;
+      }
+    }
+
+    export interface NewSubscriptionUnitWithMultiplierPrice {
+      /**
+       * The cadence to bill for this price on.
+       */
+      cadence: 'one_time' | 'monthly' | 'quarterly' | 'semi_annual' | 'annual' | 'custom';
+
+      /**
+       * The id of the item the price will be associated with.
+       */
+      item_id: string;
+
+      /**
+       * The pricing model type
+       */
+      model_type: 'unit_with_multiplier';
+
+      /**
+       * The name of the price.
+       */
+      name: string;
+
+      /**
+       * Configuration for unit_with_multiplier pricing
+       */
+      unit_with_multiplier_config: NewSubscriptionUnitWithMultiplierPrice.UnitWithMultiplierConfig;
+
+      /**
+       * The id of the billable metric for the price. Only needed if the price is
+       * usage-based.
+       */
+      billable_metric_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, the price will be billed in-advance if
+       * this is true, and in-arrears if this is false.
+       */
+      billed_in_advance?: boolean | null;
+
+      /**
+       * For custom cadence: specifies the duration of the billing period in days or
+       * months.
+       */
+      billing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The per unit conversion rate of the price currency to the invoicing currency.
+       */
+      conversion_rate?: number | null;
+
+      /**
+       * The configuration for the rate of the price currency to the invoicing currency.
+       */
+      conversion_rate_config?: Shared.UnitConversionRateConfig | Shared.TieredConversionRateConfig | null;
+
+      /**
+       * An ISO 4217 currency string, or custom pricing unit identifier, in which this
+       * price is billed.
+       */
+      currency?: string | null;
+
+      /**
+       * For dimensional price: specifies a price group and dimension values
+       */
+      dimensional_price_configuration?: Shared.NewDimensionalPriceConfiguration | null;
+
+      /**
+       * An alias for the price.
+       */
+      external_price_id?: string | null;
+
+      /**
+       * If the Price represents a fixed cost, this represents the quantity of units
+       * applied.
+       */
+      fixed_price_quantity?: number | null;
+
+      /**
+       * The property used to group this price on an invoice
+       */
+      invoice_grouping_key?: string | null;
+
+      /**
+       * Within each billing cycle, specifies the cadence at which invoices are produced.
+       * If unspecified, a single invoice is produced per billing cycle.
+       */
+      invoicing_cycle_configuration?: Shared.NewBillingCycleConfiguration | null;
+
+      /**
+       * The ID of the license type to associate with this price. On a usage price this
+       * also marks the price as eligible to draw down from that license type's
+       * allocation; a usage price created without it is billed normally. Usage prices
+       * with a license type must use the `unit` model, and only draw down when their
+       * currency matches the allocation's.
+       */
+      license_type_id?: string | null;
+
+      /**
+       * User-specified key/value pairs for the resource. Individual keys can be removed
+       * by setting the value to `null`, and the entire metadata mapping can be cleared
+       * by setting `metadata` to `null`.
+       */
+      metadata?: { [key: string]: string | null } | null;
+
+      /**
+       * A transient ID that can be used to reference this price when adding adjustments
+       * in the same API call.
+       */
+      reference_id?: string | null;
+    }
+
+    export namespace NewSubscriptionUnitWithMultiplierPrice {
+      /**
+       * Configuration for unit_with_multiplier pricing
+       */
+      export interface UnitWithMultiplierConfig {
+        /**
+         * Sub-line label for list-price events that don't set display_name_key. Unlabeled
+         * events with another multiplier are labeled by their multiplier (e.g. '0.8×
+         * rate').
+         */
+        default_display_name: string;
+
+        /**
+         * Event property holding the sub-line label for the event's rate (e.g.
+         * 'Off-peak').
+         */
+        display_name_key: string;
+
+        /**
+         * Event property holding the multiplier applied to unit_amount (e.g. 0.8 for a 20%
+         * discount). Events without a number between 0 and 1000 with at most 12 decimal
+         * places are charged at unit_amount.
+         */
+        multiplier_key: string;
+
+        /**
+         * List price per unit, before the event's multiplier is applied.
+         */
+        unit_amount: string;
       }
     }
   }

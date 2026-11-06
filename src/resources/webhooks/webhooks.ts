@@ -612,10 +612,10 @@ export namespace CreditBlockAccountingSyncFailedWebhookEvent {
     per_unit_cost_basis: string | null;
 
     /**
-     * `void` means the credit block was deleted. A voided block's `balance` is
+     * A deleted credit block keeps its historical fields, and its `balance` is
      * always 0.
      */
-    status: 'active' | 'pending_payment' | 'void';
+    status: 'active' | 'pending_payment' | 'deleted';
 
     /**
      * The credit allocation that funded a block. Extends the allocation resource
@@ -813,10 +813,10 @@ export namespace CreditBlockAccountingSyncSucceededWebhookEvent {
     per_unit_cost_basis: string | null;
 
     /**
-     * `void` means the credit block was deleted. A voided block's `balance` is
+     * A deleted credit block keeps its historical fields, and its `balance` is
      * always 0.
      */
-    status: 'active' | 'pending_payment' | 'void';
+    status: 'active' | 'pending_payment' | 'deleted';
 
     /**
      * The credit allocation that funded a block. Extends the allocation resource
@@ -2448,10 +2448,10 @@ export namespace CustomerCreditLedgerIncrementedWebhookEvent {
       per_unit_cost_basis: string | null;
 
       /**
-       * `void` means the credit block was deleted. A voided block's `balance` is
+       * A deleted credit block keeps its historical fields, and its `balance` is
        * always 0.
        */
-      status: 'active' | 'pending_payment' | 'void';
+      status: 'active' | 'pending_payment' | 'deleted';
 
       /**
        * The credit allocation that funded a block. Extends the allocation resource
