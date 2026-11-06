@@ -1,5 +1,14 @@
 # Changelog
 
+## [6.38.0](https://github.com/orbcorp/orb-typescript/compare/v6.37.0...v6.38.0) (2026-11-06)
+
+
+### Features
+
+* **api:** add plan migration started, completed, and canceled webhooks ([ca570e8](https://github.com/orbcorp/orb-typescript/commit/ca570e82e70f6e290189e09fcbe9130c0c3e642f))
+* **api:** add started_at and ended_at to plan migration resource ([ca570e8](https://github.com/orbcorp/orb-typescript/commit/ca570e82e70f6e290189e09fcbe9130c0c3e642f))
+* **api:** api update ([ca570e8](https://github.com/orbcorp/orb-typescript/commit/ca570e82e70f6e290189e09fcbe9130c0c3e642f))
+
 ## [6.37.0](https://github.com/orbcorp/orb-typescript/compare/v6.36.0...v6.37.0) (2026-11-04)
 
 
