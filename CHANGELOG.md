@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.39.0](https://github.com/orbcorp/orb-typescript/compare/v6.38.0...v6.39.0) (2026-11-07)
+
+
+### Features
+
+* **api:** api update ([c5fc007](https://github.com/orbcorp/orb-typescript/commit/c5fc0074922e363ccbd96cc33cd5a87e1fbf3485))
+* **api:** credit block status `void` renamed to `deleted` for deleted blocks ([c5fc007](https://github.com/orbcorp/orb-typescript/commit/c5fc0074922e363ccbd96cc33cd5a87e1fbf3485))
+
 ## [6.38.0](https://github.com/orbcorp/orb-typescript/compare/v6.37.0...v6.38.0) (2026-11-06)
 
 
