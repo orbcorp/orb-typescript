@@ -65,11 +65,19 @@ export interface MigrationRetrieveResponse {
   id: string;
 
   /**
-   * When the migration takes effect. Can be a specific date/time, 'end_of_term' when
-   * scheduled to be at the end of the current billing period, or 'end_of_invoice'
-   * when scheduled to be at the start of the next invoice.
+   * When the migration takes effect. Can be a specific date/time, 'start_of_term' or
+   * 'end_of_term' when scheduled to be at the start or end of the current billing
+   * period, or 'start_of_invoice' or 'end_of_invoice' when scheduled to be at the
+   * start of the current or next invoice.
    */
-  effective_time: (string & {}) | (string & {}) | 'end_of_term' | 'end_of_invoice' | null;
+  effective_time:
+    | (string & {})
+    | (string & {})
+    | 'start_of_term'
+    | 'end_of_term'
+    | 'start_of_invoice'
+    | 'end_of_invoice'
+    | null;
 
   /**
    * When the migration completed or was canceled, or null if it is still in
@@ -93,6 +101,11 @@ export interface MigrationRetrieveResponse {
    * 'action_needed', or 'canceled'.
    */
   status: 'not_started' | 'in_progress' | 'completed' | 'action_needed' | 'canceled';
+
+  /**
+   * The plan version subscriptions are migrated to.
+   */
+  target_plan_version_number: number;
 }
 
 export interface MigrationListResponse {
@@ -102,11 +115,19 @@ export interface MigrationListResponse {
   id: string;
 
   /**
-   * When the migration takes effect. Can be a specific date/time, 'end_of_term' when
-   * scheduled to be at the end of the current billing period, or 'end_of_invoice'
-   * when scheduled to be at the start of the next invoice.
+   * When the migration takes effect. Can be a specific date/time, 'start_of_term' or
+   * 'end_of_term' when scheduled to be at the start or end of the current billing
+   * period, or 'start_of_invoice' or 'end_of_invoice' when scheduled to be at the
+   * start of the current or next invoice.
    */
-  effective_time: (string & {}) | (string & {}) | 'end_of_term' | 'end_of_invoice' | null;
+  effective_time:
+    | (string & {})
+    | (string & {})
+    | 'start_of_term'
+    | 'end_of_term'
+    | 'start_of_invoice'
+    | 'end_of_invoice'
+    | null;
 
   /**
    * When the migration completed or was canceled, or null if it is still in
@@ -130,6 +151,11 @@ export interface MigrationListResponse {
    * 'action_needed', or 'canceled'.
    */
   status: 'not_started' | 'in_progress' | 'completed' | 'action_needed' | 'canceled';
+
+  /**
+   * The plan version subscriptions are migrated to.
+   */
+  target_plan_version_number: number;
 }
 
 export interface MigrationCancelResponse {
@@ -139,11 +165,19 @@ export interface MigrationCancelResponse {
   id: string;
 
   /**
-   * When the migration takes effect. Can be a specific date/time, 'end_of_term' when
-   * scheduled to be at the end of the current billing period, or 'end_of_invoice'
-   * when scheduled to be at the start of the next invoice.
+   * When the migration takes effect. Can be a specific date/time, 'start_of_term' or
+   * 'end_of_term' when scheduled to be at the start or end of the current billing
+   * period, or 'start_of_invoice' or 'end_of_invoice' when scheduled to be at the
+   * start of the current or next invoice.
    */
-  effective_time: (string & {}) | (string & {}) | 'end_of_term' | 'end_of_invoice' | null;
+  effective_time:
+    | (string & {})
+    | (string & {})
+    | 'start_of_term'
+    | 'end_of_term'
+    | 'start_of_invoice'
+    | 'end_of_invoice'
+    | null;
 
   /**
    * When the migration completed or was canceled, or null if it is still in
@@ -167,6 +201,11 @@ export interface MigrationCancelResponse {
    * 'action_needed', or 'canceled'.
    */
   status: 'not_started' | 'in_progress' | 'completed' | 'action_needed' | 'canceled';
+
+  /**
+   * The plan version subscriptions are migrated to.
+   */
+  target_plan_version_number: number;
 }
 
 export interface MigrationRetrieveParams {
