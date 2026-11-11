@@ -138,6 +138,7 @@ export {
   type MetricListParams,
   type BillableMetricsPage,
 } from './metrics';
+export { Migrations } from './migrations/migrations';
 export {
   Plans,
   type Plan,

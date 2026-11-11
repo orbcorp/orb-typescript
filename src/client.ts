@@ -229,6 +229,7 @@ import {
   LicenseRetrieveResponse,
   Licenses,
 } from './resources/licenses/licenses';
+import { Migrations } from './resources/migrations/migrations';
 import {
   Plan,
   PlanCreateParams,
@@ -1173,6 +1174,7 @@ export class Orb {
    * in the [Price resource](/reference/price).
    */
   plans: API.Plans = new API.Plans(this);
+  migrations: API.Migrations = new API.Migrations(this);
   /**
    * The Price resource represents a price that can be billed on a subscription, resulting in a charge on an invoice in
    * the form of an invoice line item. Prices take a quantity and determine an amount to bill.
@@ -1218,6 +1220,7 @@ Orb.Items = Items;
 Orb.WebhookEndpoints = WebhookEndpoints;
 Orb.Metrics = Metrics;
 Orb.Plans = Plans;
+Orb.Migrations = Migrations;
 Orb.Prices = Prices;
 Orb.Alerts = Alerts;
 Orb.SubscriptionChanges = SubscriptionChanges;
@@ -1437,6 +1440,8 @@ export declare namespace Orb {
     type PlanUpdateParams as PlanUpdateParams,
     type PlanListParams as PlanListParams,
   };
+
+  export { Migrations as Migrations };
 
   export {
     Prices as Prices,

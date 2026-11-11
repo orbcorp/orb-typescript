@@ -646,6 +646,10 @@ Methods:
 - <code title="get /plans/{plan_id}/migrations">client.plans.migrations.<a href="./src/resources/plans/migrations.ts">list</a>(planID, { ...params }) -> MigrationListResponsesPage</code>
 - <code title="post /plans/{plan_id}/migrations/{migration_id}/cancel">client.plans.migrations.<a href="./src/resources/plans/migrations.ts">cancel</a>(migrationID, { ...params }) -> MigrationCancelResponse</code>
 
+# Migrations
+
+## Subscriptions
+
 # Prices
 
 Types:
