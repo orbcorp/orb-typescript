@@ -138,7 +138,18 @@ export {
   type MetricListParams,
   type BillableMetricsPage,
 } from './metrics';
-export { Migrations } from './migrations/migrations';
+export {
+  Migrations,
+  type MigrationSubscription,
+  type MigrationCreateResponse,
+  type MigrationRetrieveResponse,
+  type MigrationListResponse,
+  type MigrationCancelResponse,
+  type MigrationCreateParams,
+  type MigrationListParams,
+  type MigrationSubscriptionsPage,
+  type MigrationListResponsesPage,
+} from './migrations/migrations';
 export {
   Plans,
   type Plan,

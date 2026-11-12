@@ -648,7 +648,26 @@ Methods:
 
 # Migrations
 
+Types:
+
+- <code><a href="./src/resources/migrations/migrations.ts">MigrationSubscription</a></code>
+- <code><a href="./src/resources/migrations/migrations.ts">MigrationCreateResponse</a></code>
+- <code><a href="./src/resources/migrations/migrations.ts">MigrationRetrieveResponse</a></code>
+- <code><a href="./src/resources/migrations/migrations.ts">MigrationListResponse</a></code>
+- <code><a href="./src/resources/migrations/migrations.ts">MigrationCancelResponse</a></code>
+
+Methods:
+
+- <code title="post /migrations">client.migrations.<a href="./src/resources/migrations/migrations.ts">create</a>({ ...params }) -> MigrationCreateResponse</code>
+- <code title="get /migrations/{migration_id}">client.migrations.<a href="./src/resources/migrations/migrations.ts">retrieve</a>(migrationID) -> MigrationRetrieveResponse</code>
+- <code title="get /migrations">client.migrations.<a href="./src/resources/migrations/migrations.ts">list</a>({ ...params }) -> MigrationListResponsesPage</code>
+- <code title="post /migrations/{migration_id}/cancel">client.migrations.<a href="./src/resources/migrations/migrations.ts">cancel</a>(migrationID) -> MigrationCancelResponse</code>
+
 ## Subscriptions
+
+Methods:
+
+- <code title="get /migrations/{migration_id}/subscriptions">client.migrations.subscriptions.<a href="./src/resources/migrations/subscriptions.ts">list</a>(migrationID, { ...params }) -> MigrationSubscriptionsPage</code>
 
 # Prices
 

@@ -229,7 +229,17 @@ import {
   LicenseRetrieveResponse,
   Licenses,
 } from './resources/licenses/licenses';
-import { Migrations } from './resources/migrations/migrations';
+import {
+  MigrationCancelResponse,
+  MigrationCreateParams,
+  MigrationCreateResponse,
+  MigrationListParams,
+  MigrationListResponse,
+  MigrationListResponsesPage,
+  MigrationRetrieveResponse,
+  MigrationSubscription,
+  Migrations,
+} from './resources/migrations/migrations';
 import {
   Plan,
   PlanCreateParams,
@@ -1174,6 +1184,11 @@ export class Orb {
    * in the [Price resource](/reference/price).
    */
   plans: API.Plans = new API.Plans(this);
+  /**
+   * The [Plan](/core-concepts#plan-and-price) resource represents a plan that can be subscribed to by a
+   * customer. Plans define the billing behavior of the subscription. You can see more about how to configure prices
+   * in the [Price resource](/reference/price).
+   */
   migrations: API.Migrations = new API.Migrations(this);
   /**
    * The Price resource represents a price that can be billed on a subscription, resulting in a charge on an invoice in
@@ -1441,7 +1456,17 @@ export declare namespace Orb {
     type PlanListParams as PlanListParams,
   };
 
-  export { Migrations as Migrations };
+  export {
+    Migrations as Migrations,
+    type MigrationSubscription as MigrationSubscription,
+    type MigrationCreateResponse as MigrationCreateResponse,
+    type MigrationRetrieveResponse as MigrationRetrieveResponse,
+    type MigrationListResponse as MigrationListResponse,
+    type MigrationCancelResponse as MigrationCancelResponse,
+    type MigrationListResponsesPage as MigrationListResponsesPage,
+    type MigrationCreateParams as MigrationCreateParams,
+    type MigrationListParams as MigrationListParams,
+  };
 
   export {
     Prices as Prices,
