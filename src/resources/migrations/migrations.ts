@@ -10,9 +10,9 @@ import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
 /**
- * The [Plan](/core-concepts#plan-and-price) resource represents a plan that can be subscribed to by a
- * customer. Plans define the billing behavior of the subscription. You can see more about how to configure prices
- * in the [Price resource](/reference/price).
+ * A migration moves a plan's subscriptions onto one of the plan's versions. Each subscription is migrated
+ * asynchronously, either immediately or at a scheduled time, and the migration reports its overall status as it
+ * progresses.
  */
 export class Migrations extends APIResource {
   subscriptions: SubscriptionsAPI.Subscriptions = new SubscriptionsAPI.Subscriptions(this._client);
@@ -90,6 +90,11 @@ export interface MigrationSubscription {
   subscription_id: string;
 }
 
+/**
+ * A migration moves a plan's subscriptions onto one of the plan's versions. Each
+ * subscription is migrated asynchronously, either immediately or at a scheduled
+ * time, and the migration reports its overall status as it progresses.
+ */
 export interface MigrationCreateResponse {
   /**
    * Unique identifier for this plan version change.
@@ -140,6 +145,11 @@ export interface MigrationCreateResponse {
   target_plan_version_number: number;
 }
 
+/**
+ * A migration moves a plan's subscriptions onto one of the plan's versions. Each
+ * subscription is migrated asynchronously, either immediately or at a scheduled
+ * time, and the migration reports its overall status as it progresses.
+ */
 export interface MigrationRetrieveResponse {
   /**
    * Unique identifier for this plan version change.
@@ -190,6 +200,11 @@ export interface MigrationRetrieveResponse {
   target_plan_version_number: number;
 }
 
+/**
+ * A migration moves a plan's subscriptions onto one of the plan's versions. Each
+ * subscription is migrated asynchronously, either immediately or at a scheduled
+ * time, and the migration reports its overall status as it progresses.
+ */
 export interface MigrationListResponse {
   /**
    * Unique identifier for this plan version change.
@@ -240,6 +255,11 @@ export interface MigrationListResponse {
   target_plan_version_number: number;
 }
 
+/**
+ * A migration moves a plan's subscriptions onto one of the plan's versions. Each
+ * subscription is migrated asynchronously, either immediately or at a scheduled
+ * time, and the migration reports its overall status as it progresses.
+ */
 export interface MigrationCancelResponse {
   /**
    * Unique identifier for this plan version change.

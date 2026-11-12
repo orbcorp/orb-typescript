@@ -58,6 +58,11 @@ export class Migrations extends APIResource {
 
 export type MigrationListResponsesPage = Page<MigrationListResponse>;
 
+/**
+ * A migration moves a plan's subscriptions onto one of the plan's versions. Each
+ * subscription is migrated asynchronously, either immediately or at a scheduled
+ * time, and the migration reports its overall status as it progresses.
+ */
 export interface MigrationRetrieveResponse {
   /**
    * Unique identifier for this plan version change.
@@ -108,6 +113,11 @@ export interface MigrationRetrieveResponse {
   target_plan_version_number: number;
 }
 
+/**
+ * A migration moves a plan's subscriptions onto one of the plan's versions. Each
+ * subscription is migrated asynchronously, either immediately or at a scheduled
+ * time, and the migration reports its overall status as it progresses.
+ */
 export interface MigrationListResponse {
   /**
    * Unique identifier for this plan version change.
@@ -158,6 +168,11 @@ export interface MigrationListResponse {
   target_plan_version_number: number;
 }
 
+/**
+ * A migration moves a plan's subscriptions onto one of the plan's versions. Each
+ * subscription is migrated asynchronously, either immediately or at a scheduled
+ * time, and the migration reports its overall status as it progresses.
+ */
 export interface MigrationCancelResponse {
   /**
    * Unique identifier for this plan version change.
