@@ -150,6 +150,11 @@ export interface Plan {
   external_plan_id: string | null;
 
   /**
+   * Whether the plan has an unpublished draft version.
+   */
+  has_draft: boolean;
+
+  /**
    * An ISO 4217 currency string for which this plan is billed in. Matches `currency`
    * unless `currency` is a custom pricing unit.
    */
