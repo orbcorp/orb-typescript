@@ -9331,7 +9331,7 @@ export interface SubscriptionListParams extends PageParams {
 
   plan_id?: string | null;
 
-  status?: 'active' | 'ended' | 'upcoming' | null;
+  status?: Array<'active' | 'ended' | 'upcoming'> | null;
 }
 
 export interface SubscriptionCancelParams {
@@ -9443,15 +9443,15 @@ export interface SubscriptionListSummaryParams extends PageParams {
 
   'created_at[lte]'?: string | null;
 
-  customer_id?: string | null;
+  customer_id?: Array<string> | null;
 
-  external_customer_id?: string | null;
+  external_customer_id?: Array<string> | null;
 
   external_plan_id?: string | null;
 
   plan_id?: string | null;
 
-  status?: 'active' | 'ended' | 'upcoming' | null;
+  status?: Array<'active' | 'ended' | 'upcoming'> | null;
 }
 
 export interface SubscriptionPriceIntervalsParams {
