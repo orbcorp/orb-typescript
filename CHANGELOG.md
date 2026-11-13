@@ -1,5 +1,14 @@
 # Changelog
 
+## [6.40.0](https://github.com/orbcorp/orb-typescript/compare/v6.39.0...v6.40.0) (2026-11-13)
+
+
+### Features
+
+* **api:** allow changing item_id on active metrics ([2269f04](https://github.com/orbcorp/orb-typescript/commit/2269f0418f72ad5912a7c5a749cb8b217bcb1839))
+* **api:** api update ([3e6c3fe](https://github.com/orbcorp/orb-typescript/commit/3e6c3fee0ae1634b1f9f199a75f50c3cccf189b1))
+* **api:** api update ([17d41da](https://github.com/orbcorp/orb-typescript/commit/17d41dacb682a4ae91123960917c8e46fbeb4780))
+
 ## [6.39.0](https://github.com/orbcorp/orb-typescript/compare/v6.38.0...v6.39.0) (2026-11-07)
 
 
