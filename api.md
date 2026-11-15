@@ -629,8 +629,30 @@ Methods:
 
 Methods:
 
-- <code title="put /plans/external_plan_id/{external_plan_id}">client.plans.externalPlanID.<a href="./src/resources/plans/external-plan-id.ts">update</a>(otherExternalPlanID, { ...params }) -> Plan</code>
-- <code title="get /plans/external_plan_id/{external_plan_id}">client.plans.externalPlanID.<a href="./src/resources/plans/external-plan-id.ts">fetch</a>(externalPlanID) -> Plan</code>
+- <code title="put /plans/external_plan_id/{external_plan_id}">client.plans.externalPlanID.<a href="./src/resources/plans/external-plan-id/external-plan-id.ts">update</a>(otherExternalPlanID, { ...params }) -> Plan</code>
+- <code title="get /plans/external_plan_id/{external_plan_id}">client.plans.externalPlanID.<a href="./src/resources/plans/external-plan-id/external-plan-id.ts">fetch</a>(externalPlanID) -> Plan</code>
+
+### Draft
+
+Methods:
+
+- <code title="delete /plans/external_plan_id/{external_plan_id}/draft">client.plans.externalPlanID.draft.<a href="./src/resources/plans/external-plan-id/draft.ts">discard</a>(externalPlanID) -> void</code>
+- <code title="get /plans/external_plan_id/{external_plan_id}/draft">client.plans.externalPlanID.draft.<a href="./src/resources/plans/external-plan-id/draft.ts">fetch</a>(externalPlanID) -> PlanVersionDraft</code>
+- <code title="post /plans/external_plan_id/{external_plan_id}/draft/publish">client.plans.externalPlanID.draft.<a href="./src/resources/plans/external-plan-id/draft.ts">publish</a>(externalPlanID, { ...params }) -> PlanVersion</code>
+- <code title="put /plans/external_plan_id/{external_plan_id}/draft">client.plans.externalPlanID.draft.<a href="./src/resources/plans/external-plan-id/draft.ts">save</a>(externalPlanID, { ...params }) -> PlanVersionDraft</code>
+
+## Draft
+
+Types:
+
+- <code><a href="./src/resources/plans/draft.ts">PlanVersionDraft</a></code>
+
+Methods:
+
+- <code title="delete /plans/{plan_id}/draft">client.plans.draft.<a href="./src/resources/plans/draft.ts">discard</a>(planID) -> void</code>
+- <code title="get /plans/{plan_id}/draft">client.plans.draft.<a href="./src/resources/plans/draft.ts">fetch</a>(planID) -> PlanVersionDraft</code>
+- <code title="post /plans/{plan_id}/draft/publish">client.plans.draft.<a href="./src/resources/plans/draft.ts">publish</a>(planID, { ...params }) -> PlanVersion</code>
+- <code title="put /plans/{plan_id}/draft">client.plans.draft.<a href="./src/resources/plans/draft.ts">save</a>(planID, { ...params }) -> PlanVersionDraft</code>
 
 ## Migrations
 

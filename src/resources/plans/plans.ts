@@ -2,8 +2,8 @@
 
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
-import * as ExternalPlanIDAPI from './external-plan-id';
-import { ExternalPlanID, ExternalPlanIDUpdateParams } from './external-plan-id';
+import * as DraftAPI from './draft';
+import { Draft, DraftPublishParams, DraftSaveParams, PlanVersionDraft } from './draft';
 import * as MigrationsAPI from './migrations';
 import {
   MigrationCancelParams,
@@ -15,6 +15,8 @@ import {
   MigrationRetrieveResponse,
   Migrations,
 } from './migrations';
+import * as ExternalPlanIDAPI from './external-plan-id/external-plan-id';
+import { ExternalPlanID, ExternalPlanIDUpdateParams } from './external-plan-id/external-plan-id';
 import { APIPromise } from '../../core/api-promise';
 import { Page, type PageParams, PagePromise } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
@@ -27,6 +29,7 @@ import { path } from '../../internal/utils/path';
  */
 export class Plans extends APIResource {
   externalPlanID: ExternalPlanIDAPI.ExternalPlanID = new ExternalPlanIDAPI.ExternalPlanID(this._client);
+  draft: DraftAPI.Draft = new DraftAPI.Draft(this._client);
   migrations: MigrationsAPI.Migrations = new MigrationsAPI.Migrations(this._client);
 
   /**
@@ -2588,6 +2591,7 @@ export interface PlanListParams extends PageParams {
 }
 
 Plans.ExternalPlanID = ExternalPlanID;
+Plans.Draft = Draft;
 Plans.Migrations = Migrations;
 
 export declare namespace Plans {
@@ -2600,6 +2604,13 @@ export declare namespace Plans {
   };
 
   export { ExternalPlanID as ExternalPlanID, type ExternalPlanIDUpdateParams as ExternalPlanIDUpdateParams };
+
+  export {
+    Draft as Draft,
+    type PlanVersionDraft as PlanVersionDraft,
+    type DraftPublishParams as DraftPublishParams,
+    type DraftSaveParams as DraftSaveParams,
+  };
 
   export {
     Migrations as Migrations,

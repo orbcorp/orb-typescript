@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { ExternalPlanID, type ExternalPlanIDUpdateParams } from './external-plan-id';
+export { Draft, type PlanVersionDraft, type DraftPublishParams, type DraftSaveParams } from './draft';
+export { ExternalPlanID, type ExternalPlanIDUpdateParams } from './external-plan-id/index';
 export {
   Migrations,
   type MigrationRetrieveResponse,
