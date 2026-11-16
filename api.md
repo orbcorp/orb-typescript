@@ -325,27 +325,6 @@ Methods:
 
 - <code title="get /ping">client.topLevel.<a href="./src/resources/top-level.ts">ping</a>() -> TopLevelPingResponse</code>
 
-# Beta
-
-Types:
-
-- <code><a href="./src/resources/beta/beta.ts">PlanVersion</a></code>
-- <code><a href="./src/resources/beta/beta.ts">PlanVersionPhase</a></code>
-
-Methods:
-
-- <code title="post /plans/{plan_id}/versions">client.beta.<a href="./src/resources/beta/beta.ts">createPlanVersion</a>(planID, { ...params }) -> PlanVersion</code>
-- <code title="get /plans/{plan_id}/versions/{version}">client.beta.<a href="./src/resources/beta/beta.ts">fetchPlanVersion</a>(version, { ...params }) -> PlanVersion</code>
-- <code title="post /plans/{plan_id}/set_default_version">client.beta.<a href="./src/resources/beta/beta.ts">setDefaultPlanVersion</a>(planID, { ...params }) -> Plan</code>
-
-## ExternalPlanID
-
-Methods:
-
-- <code title="post /plans/external_plan_id/{external_plan_id}/versions">client.beta.externalPlanID.<a href="./src/resources/beta/external-plan-id.ts">createPlanVersion</a>(externalPlanID, { ...params }) -> PlanVersion</code>
-- <code title="get /plans/external_plan_id/{external_plan_id}/versions/{version}">client.beta.externalPlanID.<a href="./src/resources/beta/external-plan-id.ts">fetchPlanVersion</a>(version, { ...params }) -> PlanVersion</code>
-- <code title="post /plans/external_plan_id/{external_plan_id}/set_default_version">client.beta.externalPlanID.<a href="./src/resources/beta/external-plan-id.ts">setDefaultPlanVersion</a>(externalPlanID, { ...params }) -> Plan</code>
-
 # Coupons
 
 Types:
@@ -617,20 +596,28 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/plans/plans.ts">Plan</a></code>
+- <code><a href="./src/resources/plans/plans.ts">PlanVersion</a></code>
+- <code><a href="./src/resources/plans/plans.ts">PlanVersionPhase</a></code>
 
 Methods:
 
 - <code title="post /plans">client.plans.<a href="./src/resources/plans/plans.ts">create</a>({ ...params }) -> Plan</code>
 - <code title="put /plans/{plan_id}">client.plans.<a href="./src/resources/plans/plans.ts">update</a>(planID, { ...params }) -> Plan</code>
 - <code title="get /plans">client.plans.<a href="./src/resources/plans/plans.ts">list</a>({ ...params }) -> PlansPage</code>
+- <code title="post /plans/{plan_id}/versions">client.plans.<a href="./src/resources/plans/plans.ts">createPlanVersion</a>(planID, { ...params }) -> PlanVersion</code>
 - <code title="get /plans/{plan_id}">client.plans.<a href="./src/resources/plans/plans.ts">fetch</a>(planID) -> Plan</code>
+- <code title="get /plans/{plan_id}/versions/{version}">client.plans.<a href="./src/resources/plans/plans.ts">fetchPlanVersion</a>(version, { ...params }) -> PlanVersion</code>
+- <code title="post /plans/{plan_id}/set_default_version">client.plans.<a href="./src/resources/plans/plans.ts">setDefaultPlanVersion</a>(planID, { ...params }) -> Plan</code>
 
 ## ExternalPlanID
 
 Methods:
 
 - <code title="put /plans/external_plan_id/{external_plan_id}">client.plans.externalPlanID.<a href="./src/resources/plans/external-plan-id/external-plan-id.ts">update</a>(otherExternalPlanID, { ...params }) -> Plan</code>
+- <code title="post /plans/external_plan_id/{external_plan_id}/versions">client.plans.externalPlanID.<a href="./src/resources/plans/external-plan-id/external-plan-id.ts">createPlanVersion</a>(externalPlanID, { ...params }) -> PlanVersion</code>
 - <code title="get /plans/external_plan_id/{external_plan_id}">client.plans.externalPlanID.<a href="./src/resources/plans/external-plan-id/external-plan-id.ts">fetch</a>(externalPlanID) -> Plan</code>
+- <code title="get /plans/external_plan_id/{external_plan_id}/versions/{version}">client.plans.externalPlanID.<a href="./src/resources/plans/external-plan-id/external-plan-id.ts">fetchPlanVersion</a>(version, { ...params }) -> PlanVersion</code>
+- <code title="post /plans/external_plan_id/{external_plan_id}/set_default_version">client.plans.externalPlanID.<a href="./src/resources/plans/external-plan-id/external-plan-id.ts">setDefaultPlanVersion</a>(externalPlanID, { ...params }) -> Plan</code>
 
 ### Draft
 

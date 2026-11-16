@@ -163,14 +163,6 @@ import {
   WebhookEndpointsPage,
 } from './resources/webhook-endpoints';
 import {
-  Beta,
-  BetaCreatePlanVersionParams,
-  BetaFetchPlanVersionParams,
-  BetaSetDefaultPlanVersionParams,
-  PlanVersion,
-  PlanVersionPhase,
-} from './resources/beta/beta';
-import {
   Coupon,
   CouponCreateParams,
   CouponListParams,
@@ -243,8 +235,13 @@ import {
 import {
   Plan,
   PlanCreateParams,
+  PlanCreatePlanVersionParams,
+  PlanFetchPlanVersionParams,
   PlanListParams,
+  PlanSetDefaultPlanVersionParams,
   PlanUpdateParams,
+  PlanVersion,
+  PlanVersionPhase,
   Plans,
   PlansPage,
 } from './resources/plans/plans';
@@ -1113,12 +1110,6 @@ export class Orb {
 
   topLevel: API.TopLevel = new API.TopLevel(this);
   /**
-   * The [Plan](/core-concepts#plan-and-price) resource represents a plan that can be subscribed to by a
-   * customer. Plans define the billing behavior of the subscription. You can see more about how to configure prices
-   * in the [Price resource](/reference/price).
-   */
-  beta: API.Beta = new API.Beta(this);
-  /**
    * A coupon represents a reusable discount configuration that can be applied either as a fixed or percentage amount to an invoice or subscription. Coupons are activated using a redemption code, which applies the discount to a subscription or invoice. The duration of a coupon determines how long it remains available for use by end users.
    */
   coupons: API.Coupons = new API.Coupons(this);
@@ -1224,7 +1215,6 @@ export class Orb {
 }
 
 Orb.TopLevel = TopLevel;
-Orb.Beta = Beta;
 Orb.Coupons = Coupons;
 Orb.CreditNotes = CreditNotes;
 Orb.Customers = Customers;
@@ -1339,15 +1329,6 @@ export declare namespace Orb {
   export { TopLevel as TopLevel, type TopLevelPingResponse as TopLevelPingResponse };
 
   export {
-    Beta as Beta,
-    type PlanVersion as PlanVersion,
-    type PlanVersionPhase as PlanVersionPhase,
-    type BetaCreatePlanVersionParams as BetaCreatePlanVersionParams,
-    type BetaFetchPlanVersionParams as BetaFetchPlanVersionParams,
-    type BetaSetDefaultPlanVersionParams as BetaSetDefaultPlanVersionParams,
-  };
-
-  export {
     Coupons as Coupons,
     type Coupon as Coupon,
     type CouponsPage as CouponsPage,
@@ -1450,10 +1431,15 @@ export declare namespace Orb {
   export {
     Plans as Plans,
     type Plan as Plan,
+    type PlanVersion as PlanVersion,
+    type PlanVersionPhase as PlanVersionPhase,
     type PlansPage as PlansPage,
     type PlanCreateParams as PlanCreateParams,
     type PlanUpdateParams as PlanUpdateParams,
     type PlanListParams as PlanListParams,
+    type PlanCreatePlanVersionParams as PlanCreatePlanVersionParams,
+    type PlanFetchPlanVersionParams as PlanFetchPlanVersionParams,
+    type PlanSetDefaultPlanVersionParams as PlanSetDefaultPlanVersionParams,
   };
 
   export {

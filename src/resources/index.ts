@@ -16,14 +16,6 @@ export {
   type AlertsPage,
 } from './alerts';
 export {
-  Beta,
-  type PlanVersion,
-  type PlanVersionPhase,
-  type BetaCreatePlanVersionParams,
-  type BetaFetchPlanVersionParams,
-  type BetaSetDefaultPlanVersionParams,
-} from './beta/beta';
-export {
   Coupons,
   type Coupon,
   type CouponCreateParams,
@@ -153,9 +145,14 @@ export {
 export {
   Plans,
   type Plan,
+  type PlanVersion,
+  type PlanVersionPhase,
   type PlanCreateParams,
   type PlanUpdateParams,
   type PlanListParams,
+  type PlanCreatePlanVersionParams,
+  type PlanFetchPlanVersionParams,
+  type PlanSetDefaultPlanVersionParams,
   type PlansPage,
 } from './plans/plans';
 export {

@@ -2,7 +2,7 @@
 
 import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
-import * as BetaAPI from '../beta/beta';
+import * as PlansAPI from './plans';
 import { APIPromise } from '../../core/api-promise';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
@@ -42,7 +42,7 @@ export class Draft extends APIResource {
     planID: string,
     body: DraftPublishParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<BetaAPI.PlanVersion> {
+  ): APIPromise<PlansAPI.PlanVersion> {
     return this._client.post(path`/plans/${planID}/draft/publish`, { body, ...options });
   }
 
@@ -89,7 +89,7 @@ export interface PlanVersionDraft {
 
   plan_id: string;
 
-  plan_phases: Array<BetaAPI.PlanVersionPhase> | null;
+  plan_phases: Array<PlansAPI.PlanVersionPhase> | null;
 
   /**
    * Prices on the draft. If the plan has phases, this includes prices across all
