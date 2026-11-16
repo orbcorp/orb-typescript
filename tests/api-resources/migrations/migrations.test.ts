@@ -36,6 +36,7 @@ describe('resource migrations', () => {
       plan_id: 'plan_id',
       plan_version_numbers: [0],
       reason: 'reason',
+      skip_grace_period: true,
       statuses: ['active'],
     });
   });

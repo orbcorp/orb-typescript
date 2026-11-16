@@ -387,6 +387,12 @@ export interface MigrationCreateParams {
   reason?: string | null;
 
   /**
+   * A new migration waits 5 minutes before it changes any subscriptions, so it can
+   * be canceled. When true, it starts right away instead.
+   */
+  skip_grace_period?: boolean;
+
+  /**
    * Migrate subscriptions with these statuses. Defaults to active subscriptions.
    */
   statuses?: Array<'active' | 'upcoming'>;
