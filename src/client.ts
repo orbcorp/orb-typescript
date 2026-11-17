@@ -61,6 +61,7 @@ import {
   InvoiceListSummaryResponsesPage,
   InvoiceMarkPaidParams,
   InvoicePayParams,
+  InvoiceStatusFilter,
   InvoiceUpdateParams,
   Invoices,
 } from './resources/invoices';
@@ -143,6 +144,7 @@ import {
   SubscriptionPriceIntervalsParams,
   SubscriptionRedeemCouponParams,
   SubscriptionSchedulePlanChangeParams,
+  SubscriptionStatusFilter,
   SubscriptionTriggerPhaseParams,
   SubscriptionUnscheduleFixedFeeQuantityUpdatesParams,
   SubscriptionUpdateFixedFeeQuantityParams,
@@ -1383,6 +1385,7 @@ export declare namespace Orb {
 
   export {
     Invoices as Invoices,
+    type InvoiceStatusFilter as InvoiceStatusFilter,
     type InvoiceFetchUpcomingResponse as InvoiceFetchUpcomingResponse,
     type InvoiceIssueSummaryResponse as InvoiceIssueSummaryResponse,
     type InvoiceListSummaryResponse as InvoiceListSummaryResponse,
@@ -1497,6 +1500,7 @@ export declare namespace Orb {
     type NewSubscriptionUnitWithPercentPrice as NewSubscriptionUnitWithPercentPrice,
     type NewSubscriptionUnitWithProrationPrice as NewSubscriptionUnitWithProrationPrice,
     type Subscription as Subscription,
+    type SubscriptionStatusFilter as SubscriptionStatusFilter,
     type SubscriptionUsage as SubscriptionUsage,
     type SubscriptionFetchCostsResponse as SubscriptionFetchCostsResponse,
     type SubscriptionFetchScheduleResponse as SubscriptionFetchScheduleResponse,

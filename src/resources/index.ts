@@ -76,6 +76,7 @@ export {
 } from './invoice-line-items';
 export {
   Invoices,
+  type InvoiceStatusFilter,
   type InvoiceFetchUpcomingResponse,
   type InvoiceIssueSummaryResponse,
   type InvoiceListSummaryResponse,
@@ -208,6 +209,7 @@ export {
   type NewSubscriptionUnitWithPercentPrice,
   type NewSubscriptionUnitWithProrationPrice,
   type Subscription,
+  type SubscriptionStatusFilter,
   type SubscriptionUsage,
   type SubscriptionFetchCostsResponse,
   type SubscriptionFetchScheduleResponse,

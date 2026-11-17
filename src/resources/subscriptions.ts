@@ -4891,6 +4891,8 @@ export namespace Subscription {
   }
 }
 
+export type SubscriptionStatusFilter = 'active' | 'ended' | 'upcoming';
+
 export type SubscriptionUsage =
   | SubscriptionUsage.UngroupedSubscriptionUsage
   | SubscriptionUsage.GroupedSubscriptionUsage;
@@ -9323,15 +9325,15 @@ export interface SubscriptionListParams extends PageParams {
 
   'created_at[lte]'?: string | null;
 
-  customer_id?: Array<string> | null;
+  customer_id?: string | Array<string> | null;
 
-  external_customer_id?: Array<string> | null;
+  external_customer_id?: string | Array<string> | null;
 
   external_plan_id?: string | null;
 
   plan_id?: string | null;
 
-  status?: 'active' | 'ended' | 'upcoming' | null;
+  status?: SubscriptionStatusFilter | Array<SubscriptionStatusFilter> | null;
 }
 
 export interface SubscriptionCancelParams {
@@ -9443,15 +9445,15 @@ export interface SubscriptionListSummaryParams extends PageParams {
 
   'created_at[lte]'?: string | null;
 
-  customer_id?: string | null;
+  customer_id?: string | Array<string> | null;
 
-  external_customer_id?: string | null;
+  external_customer_id?: string | Array<string> | null;
 
   external_plan_id?: string | null;
 
   plan_id?: string | null;
 
-  status?: 'active' | 'ended' | 'upcoming' | null;
+  status?: SubscriptionStatusFilter | Array<SubscriptionStatusFilter> | null;
 }
 
 export interface SubscriptionPriceIntervalsParams {
@@ -15761,6 +15763,7 @@ export declare namespace Subscriptions {
     type NewSubscriptionUnitWithPercentPrice as NewSubscriptionUnitWithPercentPrice,
     type NewSubscriptionUnitWithProrationPrice as NewSubscriptionUnitWithProrationPrice,
     type Subscription as Subscription,
+    type SubscriptionStatusFilter as SubscriptionStatusFilter,
     type SubscriptionUsage as SubscriptionUsage,
     type Subscriptions as Subscriptions,
     type SubscriptionFetchCostsResponse as SubscriptionFetchCostsResponse,

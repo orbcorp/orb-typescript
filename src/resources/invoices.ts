@@ -376,6 +376,8 @@ export class Invoices extends APIResource {
 
 export type InvoiceListSummaryResponsesPage = Page<InvoiceListSummaryResponse>;
 
+export type InvoiceStatusFilter = 'draft' | 'issued' | 'paid' | 'synced' | 'void';
+
 export interface InvoiceFetchUpcomingResponse {
   id: string;
 
@@ -2248,7 +2250,7 @@ export interface InvoiceListParams extends PageParams {
 
   is_recurring?: boolean | null;
 
-  status?: Array<'draft' | 'issued' | 'paid' | 'synced' | 'void'> | null;
+  status?: InvoiceStatusFilter | Array<InvoiceStatusFilter> | null;
 
   subscription_id?: string | null;
 }
@@ -2336,7 +2338,7 @@ export interface InvoiceListSummaryParams extends PageParams {
 
   is_recurring?: boolean | null;
 
-  status?: 'draft' | 'issued' | 'paid' | 'synced' | 'void' | null;
+  status?: InvoiceStatusFilter | Array<InvoiceStatusFilter> | null;
 
   subscription_id?: string | null;
 }
@@ -2367,6 +2369,7 @@ export interface InvoicePayParams {
 
 export declare namespace Invoices {
   export {
+    type InvoiceStatusFilter as InvoiceStatusFilter,
     type InvoiceFetchUpcomingResponse as InvoiceFetchUpcomingResponse,
     type InvoiceIssueSummaryResponse as InvoiceIssueSummaryResponse,
     type InvoiceListSummaryResponse as InvoiceListSummaryResponse,

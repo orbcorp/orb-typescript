@@ -523,6 +523,7 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/invoices.ts">InvoiceStatusFilter</a></code>
 - <code><a href="./src/resources/invoices.ts">InvoiceFetchUpcomingResponse</a></code>
 - <code><a href="./src/resources/invoices.ts">InvoiceIssueSummaryResponse</a></code>
 - <code><a href="./src/resources/invoices.ts">InvoiceListSummaryResponse</a></code>
@@ -735,6 +736,7 @@ Types:
 - <code><a href="./src/resources/subscriptions.ts">NewSubscriptionUnitWithPercentPrice</a></code>
 - <code><a href="./src/resources/subscriptions.ts">NewSubscriptionUnitWithProrationPrice</a></code>
 - <code><a href="./src/resources/subscriptions.ts">Subscription</a></code>
+- <code><a href="./src/resources/subscriptions.ts">SubscriptionStatusFilter</a></code>
 - <code><a href="./src/resources/subscriptions.ts">SubscriptionUsage</a></code>
 - <code><a href="./src/resources/subscriptions.ts">Subscriptions</a></code>
 - <code><a href="./src/resources/subscriptions.ts">SubscriptionFetchCostsResponse</a></code>
