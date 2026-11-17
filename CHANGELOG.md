@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.42.0](https://github.com/orbcorp/orb-typescript/compare/v6.41.0...v6.42.0) (2026-11-17)
+
+
+### Features
+
+* **api:** add plan.migration_scheduled webhook when a plan migration is created ([9a3b76d](https://github.com/orbcorp/orb-typescript/commit/9a3b76dab234d868120b047b3250bb8b03ec80c6))
+* **api:** add skip_grace_period option to plan version migrations ([9a3b76d](https://github.com/orbcorp/orb-typescript/commit/9a3b76dab234d868120b047b3250bb8b03ec80c6))
+
 ## [6.41.0](https://github.com/orbcorp/orb-typescript/compare/v6.40.0...v6.41.0) (2026-11-14)
 
 
