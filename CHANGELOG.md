@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.43.0](https://github.com/orbcorp/orb-typescript/compare/v6.42.0...v6.43.0) (2026-11-18)
+
+
+### Features
+
+* **api:** api update ([134a3a0](https://github.com/orbcorp/orb-typescript/commit/134a3a0271456d337bae0171f8bad6bca0b5712d))
+* **api:** document currency handling and void examples for ledger entries ([6f7bd00](https://github.com/orbcorp/orb-typescript/commit/6f7bd002e630df7938ce036de071779ee8f97af1))
+
 ## [6.42.0](https://github.com/orbcorp/orb-typescript/compare/v6.41.0...v6.42.0) (2026-11-17)
 
 
