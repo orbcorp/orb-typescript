@@ -235,11 +235,13 @@ export interface Plan {
   name: string;
 
   /**
-   * Determines the difference between the invoice issue date and the due date. A
-   * value of "0" here signifies that invoices are due on issue, whereas a value of
-   * "30" means that the customer has a month to pay the invoice before its overdue.
-   * Note that individual subscriptions or invoices may set a different net terms
-   * configuration.
+   * The number of days until invoices are due, counting the start date set by the
+   * account's
+   * [due date calculation method](/invoicing/payments#configuring-net-terms-and-collection-behavior)
+   * as day 1. A value of "0" here signifies that invoices are due on issue, whereas
+   * a value of "30" means that the customer has a month to pay the invoice before
+   * its overdue. Note that individual subscriptions or invoices may set a different
+   * net terms configuration.
    */
   net_terms: number | null;
 
@@ -607,9 +609,11 @@ export interface PlanCreateParams {
   metadata?: { [key: string]: string | null } | null;
 
   /**
-   * The net terms determines the difference between the invoice date and the issue
-   * date for the invoice. If you intend the invoice to be due on issue, set this
-   * to 0.
+   * The number of days until the invoice is due, counting the start date as day 1,
+   * so net 30 from October 1 is due October 30. The account's
+   * [due date calculation method](/invoicing/payments#configuring-net-terms-and-collection-behavior)
+   * sets whether the start date is the invoice date or the issuance date. If you
+   * intend the invoice to be due on issue, set this to 0.
    */
   net_terms?: number | null;
 

@@ -5112,7 +5112,8 @@ export namespace PaymentMethodCreatedWebhookEvent {
     customer_id: string;
 
     /**
-     * Whether this is the customer's default payment method.
+     * Whether this is the customer's default payment method on its payment gateway
+     * connection.
      */
     default: boolean;
 
@@ -5197,7 +5198,8 @@ export namespace PaymentMethodDeletedWebhookEvent {
     customer_id: string;
 
     /**
-     * Whether this is the customer's default payment method.
+     * Whether this is the customer's default payment method on its payment gateway
+     * connection.
      */
     default: boolean;
 

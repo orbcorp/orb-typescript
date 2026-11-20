@@ -4778,10 +4778,12 @@ export interface Subscription {
   name: string;
 
   /**
-   * Determines the difference between the invoice issue date for subscription
-   * invoices as the date that they are due. A value of `0` here represents that the
-   * invoice is due on issue, whereas a value of `30` represents that the customer
-   * has a month to pay the invoice.
+   * The number of days until subscription invoices are due, counting the start date
+   * set by the account's
+   * [due date calculation method](/invoicing/payments#configuring-net-terms-and-collection-behavior)
+   * as day 1. A value of `0` here represents that the invoice is due on issue,
+   * whereas a value of `30` represents that the customer has a month to pay the
+   * invoice.
    */
   net_terms: number;
 
@@ -5177,9 +5179,12 @@ export interface SubscriptionCreateParams {
   name?: string | null;
 
   /**
-   * The net terms determines the difference between the invoice date and the issue
-   * date for the invoice. If you intend the invoice to be due on issue, set this
-   * to 0. If not provided, this defaults to the value specified in the plan.
+   * The number of days until the invoice is due, counting the start date as day 1,
+   * so net 30 from October 1 is due October 30. The account's
+   * [due date calculation method](/invoicing/payments#configuring-net-terms-and-collection-behavior)
+   * sets whether the start date is the invoice date or the issuance date. If you
+   * intend the invoice to be due on issue, set this to 0. If not provided, this
+   * defaults to the value specified in the plan.
    */
   net_terms?: number | null;
 
@@ -9308,10 +9313,12 @@ export interface SubscriptionUpdateParams {
   metadata?: { [key: string]: string | null } | null;
 
   /**
-   * Determines the difference between the invoice issue date for subscription
-   * invoices as the date that they are due. A value of `0` here represents that the
-   * invoice is due on issue, whereas a value of `30` represents that the customer
-   * has a month to pay the invoice.
+   * The number of days until subscription invoices are due, counting the start date
+   * set by the account's
+   * [due date calculation method](/invoicing/payments#configuring-net-terms-and-collection-behavior)
+   * as day 1. A value of `0` here represents that the invoice is due on issue,
+   * whereas a value of `30` represents that the customer has a month to pay the
+   * invoice.
    */
   net_terms?: number | null;
 }
@@ -11576,9 +11583,12 @@ export interface SubscriptionSchedulePlanChangeParams {
   invoicing_threshold?: string | null;
 
   /**
-   * The net terms determines the difference between the invoice date and the issue
-   * date for the invoice. If you intend the invoice to be due on issue, set this
-   * to 0. If not provided, this defaults to the value specified in the plan.
+   * The number of days until the invoice is due, counting the start date as day 1,
+   * so net 30 from October 1 is due October 30. The account's
+   * [due date calculation method](/invoicing/payments#configuring-net-terms-and-collection-behavior)
+   * sets whether the start date is the invoice date or the issuance date. If you
+   * intend the invoice to be due on issue, set this to 0. If not provided, this
+   * defaults to the value specified in the plan.
    */
   net_terms?: number | null;
 

@@ -599,7 +599,8 @@ export namespace Customer {
     customer_id: string;
 
     /**
-     * Whether this is the customer's default payment method.
+     * Whether this is the customer's default payment method on its payment gateway
+     * connection.
      */
     default: boolean;
 
