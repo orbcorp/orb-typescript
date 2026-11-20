@@ -165,6 +165,11 @@ export interface Plan {
    */
   base_plan_id: string | null;
 
+  /**
+   * The id of the default billing entity of this plan.
+   */
+  billing_entity_id: string | null;
+
   created_at: string;
 
   /**
@@ -367,6 +372,11 @@ export namespace Plan {
     external_plan_id: string | null;
 
     name: string | null;
+
+    /**
+     * The id of the default billing entity of this plan.
+     */
+    billing_entity_id?: string | null;
   }
 
   export interface PlanPhase {
@@ -588,6 +598,11 @@ export interface PlanCreateParams {
    * across all phases of the plan.
    */
   adjustments?: Array<PlanCreateParams.Adjustment> | null;
+
+  /**
+   * The Orb ID of the active billing entity to set as this plan's default entity.
+   */
+  billing_entity_id?: string | null;
 
   /**
    * Free-form text which is available on the invoice PDF and the Orb invoice portal.
@@ -2743,6 +2758,12 @@ export namespace PlanCreateParams {
 }
 
 export interface PlanUpdateParams {
+  /**
+   * The Orb ID of the active billing entity to set as this plan's default entity.
+   * Pass `null` to clear it.
+   */
+  billing_entity_id?: string | null;
+
   /**
    * An optional user-defined description of the plan.
    */

@@ -1635,6 +1635,11 @@ export namespace CustomerCreditBalanceDepletedWebhookEvent {
         name: string | null;
 
         plan_version: string;
+
+        /**
+         * The id of the default billing entity of this plan.
+         */
+        billing_entity_id?: string | null;
       }
 
       /**
@@ -1938,6 +1943,11 @@ export namespace CustomerCreditBalanceDroppedWebhookEvent {
         name: string | null;
 
         plan_version: string;
+
+        /**
+         * The id of the default billing entity of this plan.
+         */
+        billing_entity_id?: string | null;
       }
 
       /**
@@ -2238,6 +2248,11 @@ export namespace CustomerCreditBalanceRecoveredWebhookEvent {
         name: string | null;
 
         plan_version: string;
+
+        /**
+         * The id of the default billing entity of this plan.
+         */
+        billing_entity_id?: string | null;
       }
 
       /**
@@ -2627,6 +2642,8 @@ export namespace CustomerEditedWebhookEvent {
       auto_collection?: boolean | null;
 
       billing_address?: Shared.Address | null;
+
+      billing_entity_id?: string | null;
 
       default_payment_method_id?: string | null;
 
@@ -4062,6 +4079,11 @@ export namespace InvoiceIssuedSummaryWebhookEvent {
     billing_address: Shared.Address | null;
 
     /**
+     * The id of the billing entity that issues this invoice.
+     */
+    billing_entity_id: string | null;
+
+    /**
      * The creation time of the resource in Orb.
      */
     created_at: string;
@@ -5264,6 +5286,11 @@ export namespace PlanCreatedWebhookEvent {
     external_plan_id: string | null;
 
     name: string | null;
+
+    /**
+     * The id of the default billing entity of this plan.
+     */
+    billing_entity_id?: string | null;
   }
 }
 
@@ -5309,6 +5336,11 @@ export namespace PlanDefaultVersionSetWebhookEvent {
     external_plan_id: string | null;
 
     name: string | null;
+
+    /**
+     * The id of the default billing entity of this plan.
+     */
+    billing_entity_id?: string | null;
   }
 
   export interface Properties {
@@ -5368,6 +5400,8 @@ export namespace PlanEditedWebhookEvent {
      * metadata values are non-null on the wire, as on the price event.
      */
     export interface PreviousAttributes {
+      billing_entity_id?: string | null;
+
       description?: string | null;
 
       external_plan_id?: string | null;
@@ -5423,6 +5457,11 @@ export namespace PlanVersionCreatedWebhookEvent {
     external_plan_id: string | null;
 
     name: string | null;
+
+    /**
+     * The id of the default billing entity of this plan.
+     */
+    billing_entity_id?: string | null;
   }
 
   export interface Properties {
@@ -6029,6 +6068,11 @@ export namespace SubscriptionAlertDisabledWebhookEvent {
         name: string | null;
 
         plan_version: string;
+
+        /**
+         * The id of the default billing entity of this plan.
+         */
+        billing_entity_id?: string | null;
       }
 
       /**
@@ -6155,6 +6199,11 @@ export namespace SubscriptionAlertDisabledWebhookEvent {
       external_plan_id: string | null;
 
       name: string | null;
+
+      /**
+       * The id of the default billing entity of this plan.
+       */
+      billing_entity_id?: string | null;
     }
   }
 }
@@ -6467,6 +6516,11 @@ export namespace SubscriptionCostExceededWebhookEvent {
         name: string | null;
 
         plan_version: string;
+
+        /**
+         * The id of the default billing entity of this plan.
+         */
+        billing_entity_id?: string | null;
       }
 
       /**
@@ -6987,6 +7041,11 @@ export namespace SubscriptionGroupedCostExceededWebhookEvent {
         name: string | null;
 
         plan_version: string;
+
+        /**
+         * The id of the default billing entity of this plan.
+         */
+        billing_entity_id?: string | null;
       }
 
       /**
@@ -7121,6 +7180,11 @@ export namespace SubscriptionGroupedCostExceededWebhookEvent {
       external_plan_id: string | null;
 
       name: string | null;
+
+      /**
+       * The id of the default billing entity of this plan.
+       */
+      billing_entity_id?: string | null;
     }
   }
 }
@@ -7201,6 +7265,11 @@ export namespace SubscriptionInvoicingThresholdExceededWebhookEvent {
       external_plan_id: string | null;
 
       name: string | null;
+
+      /**
+       * The id of the default billing entity of this plan.
+       */
+      billing_entity_id?: string | null;
     }
   }
 }
@@ -7299,6 +7368,11 @@ export namespace SubscriptionLicenseAllocationResetWebhookEvent {
       external_plan_id: string | null;
 
       name: string | null;
+
+      /**
+       * The id of the default billing entity of this plan.
+       */
+      billing_entity_id?: string | null;
     }
   }
 }
@@ -7486,6 +7560,11 @@ export namespace SubscriptionLicenseBalanceThresholdReachedWebhookEvent {
         name: string | null;
 
         plan_version: string;
+
+        /**
+         * The id of the default billing entity of this plan.
+         */
+        billing_entity_id?: string | null;
       }
 
       /**
@@ -7620,6 +7699,11 @@ export namespace SubscriptionLicenseBalanceThresholdReachedWebhookEvent {
       external_plan_id: string | null;
 
       name: string | null;
+
+      /**
+       * The id of the default billing entity of this plan.
+       */
+      billing_entity_id?: string | null;
     }
   }
 }
@@ -8059,6 +8143,11 @@ export namespace SubscriptionSpendExceededWebhookEvent {
         name: string | null;
 
         plan_version: string;
+
+        /**
+         * The id of the default billing entity of this plan.
+         */
+        billing_entity_id?: string | null;
       }
 
       /**
@@ -8455,6 +8544,11 @@ export namespace SubscriptionUsageExceededWebhookEvent {
         name: string | null;
 
         plan_version: string;
+
+        /**
+         * The id of the default billing entity of this plan.
+         */
+        billing_entity_id?: string | null;
       }
 
       /**

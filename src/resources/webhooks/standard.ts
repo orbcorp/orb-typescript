@@ -1395,6 +1395,11 @@ export namespace CustomerCreditBalanceDepletedStandardWebhookEvent {
         name: string | null;
 
         plan_version: string;
+
+        /**
+         * The id of the default billing entity of this plan.
+         */
+        billing_entity_id?: string | null;
       }
 
       /**
@@ -1698,6 +1703,11 @@ export namespace CustomerCreditBalanceDroppedStandardWebhookEvent {
         name: string | null;
 
         plan_version: string;
+
+        /**
+         * The id of the default billing entity of this plan.
+         */
+        billing_entity_id?: string | null;
       }
 
       /**
@@ -1998,6 +2008,11 @@ export namespace CustomerCreditBalanceRecoveredStandardWebhookEvent {
         name: string | null;
 
         plan_version: string;
+
+        /**
+         * The id of the default billing entity of this plan.
+         */
+        billing_entity_id?: string | null;
       }
 
       /**
@@ -2387,6 +2402,8 @@ export namespace CustomerEditedStandardWebhookEvent {
       auto_collection?: boolean | null;
 
       billing_address?: Shared.Address | null;
+
+      billing_entity_id?: string | null;
 
       default_payment_method_id?: string | null;
 
@@ -2816,6 +2833,11 @@ export namespace InvoiceAccountingSyncFailedStandardWebhookEvent {
     auto_collection: Invoice.AutoCollection;
 
     billing_address: Shared.Address | null;
+
+    /**
+     * The id of the billing entity that issues this invoice.
+     */
+    billing_entity_id: string | null;
 
     /**
      * The creation time of the resource in Orb.
@@ -3369,6 +3391,11 @@ export namespace InvoiceAccountingSyncSucceededStandardWebhookEvent {
     auto_collection: Invoice.AutoCollection;
 
     billing_address: Shared.Address | null;
+
+    /**
+     * The id of the billing entity that issues this invoice.
+     */
+    billing_entity_id: string | null;
 
     /**
      * The creation time of the resource in Orb.
@@ -4052,6 +4079,11 @@ export namespace InvoiceDunningScheduleCreatedStandardWebhookEvent {
     billing_address: Shared.Address | null;
 
     /**
+     * The id of the billing entity that issues this invoice.
+     */
+    billing_entity_id: string | null;
+
+    /**
      * The creation time of the resource in Orb.
      */
     created_at: string;
@@ -4613,6 +4645,11 @@ export namespace InvoiceDunningScheduleEndedStandardWebhookEvent {
     billing_address: Shared.Address | null;
 
     /**
+     * The id of the billing entity that issues this invoice.
+     */
+    billing_entity_id: string | null;
+
+    /**
      * The creation time of the resource in Orb.
      */
     created_at: string;
@@ -5170,6 +5207,11 @@ export namespace InvoiceDunningScheduleResetStandardWebhookEvent {
     auto_collection: Invoice.AutoCollection;
 
     billing_address: Shared.Address | null;
+
+    /**
+     * The id of the billing entity that issues this invoice.
+     */
+    billing_entity_id: string | null;
 
     /**
      * The creation time of the resource in Orb.
@@ -5743,6 +5785,11 @@ export namespace InvoiceDunningScheduleStepExecutedStandardWebhookEvent {
     billing_address: Shared.Address | null;
 
     /**
+     * The id of the billing entity that issues this invoice.
+     */
+    billing_entity_id: string | null;
+
+    /**
      * The creation time of the resource in Orb.
      */
     created_at: string;
@@ -6284,6 +6331,11 @@ export namespace InvoiceEditedStandardWebhookEvent {
     auto_collection: Invoice.AutoCollection;
 
     billing_address: Shared.Address | null;
+
+    /**
+     * The id of the billing entity that issues this invoice.
+     */
+    billing_entity_id: string | null;
 
     /**
      * The creation time of the resource in Orb.
@@ -7095,6 +7147,11 @@ export namespace InvoiceIssueFailedStandardWebhookEvent {
     billing_address: Shared.Address | null;
 
     /**
+     * The id of the billing entity that issues this invoice.
+     */
+    billing_entity_id: string | null;
+
+    /**
      * The creation time of the resource in Orb.
      */
     created_at: string;
@@ -7616,6 +7673,11 @@ export namespace InvoiceIssuedStandardWebhookEvent {
     auto_collection: Invoice.AutoCollection;
 
     billing_address: Shared.Address | null;
+
+    /**
+     * The id of the billing entity that issues this invoice.
+     */
+    billing_entity_id: string | null;
 
     /**
      * The creation time of the resource in Orb.
@@ -8142,6 +8204,11 @@ export namespace InvoiceIssuedSummaryStandardWebhookEvent {
     billing_address: Shared.Address | null;
 
     /**
+     * The id of the billing entity that issues this invoice.
+     */
+    billing_entity_id: string | null;
+
+    /**
      * The creation time of the resource in Orb.
      */
     created_at: string;
@@ -8663,6 +8730,11 @@ export namespace InvoiceManuallyMarkedAsPaidStandardWebhookEvent {
     auto_collection: Invoice.AutoCollection;
 
     billing_address: Shared.Address | null;
+
+    /**
+     * The id of the billing entity that issues this invoice.
+     */
+    billing_entity_id: string | null;
 
     /**
      * The creation time of the resource in Orb.
@@ -9192,6 +9264,11 @@ export namespace InvoiceManuallyMarkedAsVoidStandardWebhookEvent {
     billing_address: Shared.Address | null;
 
     /**
+     * The id of the billing entity that issues this invoice.
+     */
+    billing_entity_id: string | null;
+
+    /**
      * The creation time of the resource in Orb.
      */
     created_at: string;
@@ -9710,6 +9787,11 @@ export namespace InvoicePaymentFailedStandardWebhookEvent {
     auto_collection: Invoice.AutoCollection;
 
     billing_address: Shared.Address | null;
+
+    /**
+     * The id of the billing entity that issues this invoice.
+     */
+    billing_entity_id: string | null;
 
     /**
      * The creation time of the resource in Orb.
@@ -10239,6 +10321,11 @@ export namespace InvoicePaymentProcessingStandardWebhookEvent {
     billing_address: Shared.Address | null;
 
     /**
+     * The id of the billing entity that issues this invoice.
+     */
+    billing_entity_id: string | null;
+
+    /**
      * The creation time of the resource in Orb.
      */
     created_at: string;
@@ -10766,6 +10853,11 @@ export namespace InvoicePaymentSucceededStandardWebhookEvent {
     auto_collection: Invoice.AutoCollection;
 
     billing_address: Shared.Address | null;
+
+    /**
+     * The id of the billing entity that issues this invoice.
+     */
+    billing_entity_id: string | null;
 
     /**
      * The creation time of the resource in Orb.
@@ -11300,6 +11392,11 @@ export namespace InvoiceSyncFailedStandardWebhookEvent {
     billing_address: Shared.Address | null;
 
     /**
+     * The id of the billing entity that issues this invoice.
+     */
+    billing_entity_id: string | null;
+
+    /**
      * The creation time of the resource in Orb.
      */
     created_at: string;
@@ -11825,6 +11922,11 @@ export namespace InvoiceSyncSucceededStandardWebhookEvent {
     billing_address: Shared.Address | null;
 
     /**
+     * The id of the billing entity that issues this invoice.
+     */
+    billing_entity_id: string | null;
+
+    /**
      * The creation time of the resource in Orb.
      */
     created_at: string;
@@ -12348,6 +12450,11 @@ export namespace InvoiceUndoMarkAsPaidStandardWebhookEvent {
     auto_collection: Invoice.AutoCollection;
 
     billing_address: Shared.Address | null;
+
+    /**
+     * The id of the billing entity that issues this invoice.
+     */
+    billing_entity_id: string | null;
 
     /**
      * The creation time of the resource in Orb.
@@ -13188,6 +13295,11 @@ export namespace PlanCreatedStandardWebhookEvent {
     external_plan_id: string | null;
 
     name: string | null;
+
+    /**
+     * The id of the default billing entity of this plan.
+     */
+    billing_entity_id?: string | null;
   }
 }
 
@@ -13233,6 +13345,11 @@ export namespace PlanDefaultVersionSetStandardWebhookEvent {
     external_plan_id: string | null;
 
     name: string | null;
+
+    /**
+     * The id of the default billing entity of this plan.
+     */
+    billing_entity_id?: string | null;
   }
 
   export interface Properties {
@@ -13292,6 +13409,8 @@ export namespace PlanEditedStandardWebhookEvent {
      * metadata values are non-null on the wire, as on the price event.
      */
     export interface PreviousAttributes {
+      billing_entity_id?: string | null;
+
       description?: string | null;
 
       external_plan_id?: string | null;
@@ -13347,6 +13466,11 @@ export namespace PlanVersionCreatedStandardWebhookEvent {
     external_plan_id: string | null;
 
     name: string | null;
+
+    /**
+     * The id of the default billing entity of this plan.
+     */
+    billing_entity_id?: string | null;
   }
 
   export interface Properties {
@@ -13533,6 +13657,11 @@ export namespace SalesOrderAccountingSyncFailedStandardWebhookEvent {
     auto_collection: Invoice.AutoCollection;
 
     billing_address: Shared.Address | null;
+
+    /**
+     * The id of the billing entity that issues this invoice.
+     */
+    billing_entity_id: string | null;
 
     /**
      * The creation time of the resource in Orb.
@@ -14086,6 +14215,11 @@ export namespace SalesOrderAccountingSyncSucceededStandardWebhookEvent {
     auto_collection: Invoice.AutoCollection;
 
     billing_address: Shared.Address | null;
+
+    /**
+     * The id of the billing entity that issues this invoice.
+     */
+    billing_entity_id: string | null;
 
     /**
      * The creation time of the resource in Orb.
@@ -14682,6 +14816,11 @@ export namespace SubscriptionAccountingSyncFailedStandardWebhookEvent {
       external_plan_id: string | null;
 
       name: string | null;
+
+      /**
+       * The id of the default billing entity of this plan.
+       */
+      billing_entity_id?: string | null;
     }
   }
 }
@@ -14808,6 +14947,11 @@ export namespace SubscriptionAccountingSyncSucceededStandardWebhookEvent {
       external_plan_id: string | null;
 
       name: string | null;
+
+      /**
+       * The id of the default billing entity of this plan.
+       */
+      billing_entity_id?: string | null;
     }
   }
 }
@@ -14995,6 +15139,11 @@ export namespace SubscriptionAlertDisabledStandardWebhookEvent {
         name: string | null;
 
         plan_version: string;
+
+        /**
+         * The id of the default billing entity of this plan.
+         */
+        billing_entity_id?: string | null;
       }
 
       /**
@@ -15121,6 +15270,11 @@ export namespace SubscriptionAlertDisabledStandardWebhookEvent {
       external_plan_id: string | null;
 
       name: string | null;
+
+      /**
+       * The id of the default billing entity of this plan.
+       */
+      billing_entity_id?: string | null;
     }
   }
 }
@@ -15219,6 +15373,11 @@ export namespace SubscriptionCancellationScheduledStandardWebhookEvent {
       external_plan_id: string | null;
 
       name: string | null;
+
+      /**
+       * The id of the default billing entity of this plan.
+       */
+      billing_entity_id?: string | null;
     }
   }
 }
@@ -15317,6 +15476,11 @@ export namespace SubscriptionCancellationUnscheduledStandardWebhookEvent {
       external_plan_id: string | null;
 
       name: string | null;
+
+      /**
+       * The id of the default billing entity of this plan.
+       */
+      billing_entity_id?: string | null;
     }
   }
 }
@@ -15500,6 +15664,11 @@ export namespace SubscriptionCostExceededStandardWebhookEvent {
         name: string | null;
 
         plan_version: string;
+
+        /**
+         * The id of the default billing entity of this plan.
+         */
+        billing_entity_id?: string | null;
       }
 
       /**
@@ -15649,6 +15818,11 @@ export namespace SubscriptionCostExceededStandardWebhookEvent {
       external_plan_id: string | null;
 
       name: string | null;
+
+      /**
+       * The id of the default billing entity of this plan.
+       */
+      billing_entity_id?: string | null;
     }
   }
 }
@@ -15743,6 +15917,11 @@ export namespace SubscriptionCreatedStandardWebhookEvent {
       external_plan_id: string | null;
 
       name: string | null;
+
+      /**
+       * The id of the default billing entity of this plan.
+       */
+      billing_entity_id?: string | null;
     }
   }
 }
@@ -15857,6 +16036,11 @@ export namespace SubscriptionEditedStandardWebhookEvent {
       external_plan_id: string | null;
 
       name: string | null;
+
+      /**
+       * The id of the default billing entity of this plan.
+       */
+      billing_entity_id?: string | null;
     }
   }
 }
@@ -15951,6 +16135,11 @@ export namespace SubscriptionEndedStandardWebhookEvent {
       external_plan_id: string | null;
 
       name: string | null;
+
+      /**
+       * The id of the default billing entity of this plan.
+       */
+      billing_entity_id?: string | null;
     }
   }
 }
@@ -16055,6 +16244,11 @@ export namespace SubscriptionFixedFeeQuantityUpdatedStandardWebhookEvent {
       external_plan_id: string | null;
 
       name: string | null;
+
+      /**
+       * The id of the default billing entity of this plan.
+       */
+      billing_entity_id?: string | null;
     }
   }
 }
@@ -16244,6 +16438,11 @@ export namespace SubscriptionGroupedCostExceededStandardWebhookEvent {
         name: string | null;
 
         plan_version: string;
+
+        /**
+         * The id of the default billing entity of this plan.
+         */
+        billing_entity_id?: string | null;
       }
 
       /**
@@ -16378,6 +16577,11 @@ export namespace SubscriptionGroupedCostExceededStandardWebhookEvent {
       external_plan_id: string | null;
 
       name: string | null;
+
+      /**
+       * The id of the default billing entity of this plan.
+       */
+      billing_entity_id?: string | null;
     }
   }
 }
@@ -16458,6 +16662,11 @@ export namespace SubscriptionInvoicingThresholdExceededStandardWebhookEvent {
       external_plan_id: string | null;
 
       name: string | null;
+
+      /**
+       * The id of the default billing entity of this plan.
+       */
+      billing_entity_id?: string | null;
     }
   }
 }
@@ -16556,6 +16765,11 @@ export namespace SubscriptionLicenseAllocationResetStandardWebhookEvent {
       external_plan_id: string | null;
 
       name: string | null;
+
+      /**
+       * The id of the default billing entity of this plan.
+       */
+      billing_entity_id?: string | null;
     }
   }
 }
@@ -16743,6 +16957,11 @@ export namespace SubscriptionLicenseBalanceThresholdReachedStandardWebhookEvent 
         name: string | null;
 
         plan_version: string;
+
+        /**
+         * The id of the default billing entity of this plan.
+         */
+        billing_entity_id?: string | null;
       }
 
       /**
@@ -16877,6 +17096,11 @@ export namespace SubscriptionLicenseBalanceThresholdReachedStandardWebhookEvent 
       external_plan_id: string | null;
 
       name: string | null;
+
+      /**
+       * The id of the default billing entity of this plan.
+       */
+      billing_entity_id?: string | null;
     }
   }
 }
@@ -16979,6 +17203,11 @@ export namespace SubscriptionPlanChangeScheduledStandardWebhookEvent {
       external_plan_id: string | null;
 
       name: string | null;
+
+      /**
+       * The id of the default billing entity of this plan.
+       */
+      billing_entity_id?: string | null;
     }
   }
 }
@@ -17077,6 +17306,11 @@ export namespace SubscriptionPlanChangedStandardWebhookEvent {
       external_plan_id: string | null;
 
       name: string | null;
+
+      /**
+       * The id of the default billing entity of this plan.
+       */
+      billing_entity_id?: string | null;
     }
   }
 }
@@ -17179,6 +17413,11 @@ export namespace SubscriptionPlanVersionChangeScheduledStandardWebhookEvent {
       external_plan_id: string | null;
 
       name: string | null;
+
+      /**
+       * The id of the default billing entity of this plan.
+       */
+      billing_entity_id?: string | null;
     }
   }
 }
@@ -17281,6 +17520,11 @@ export namespace SubscriptionPlanVersionChangedStandardWebhookEvent {
       external_plan_id: string | null;
 
       name: string | null;
+
+      /**
+       * The id of the default billing entity of this plan.
+       */
+      billing_entity_id?: string | null;
     }
   }
 }
@@ -17465,6 +17709,11 @@ export namespace SubscriptionSpendExceededStandardWebhookEvent {
         name: string | null;
 
         plan_version: string;
+
+        /**
+         * The id of the default billing entity of this plan.
+         */
+        billing_entity_id?: string | null;
       }
 
       /**
@@ -17614,6 +17863,11 @@ export namespace SubscriptionSpendExceededStandardWebhookEvent {
       external_plan_id: string | null;
 
       name: string | null;
+
+      /**
+       * The id of the default billing entity of this plan.
+       */
+      billing_entity_id?: string | null;
     }
   }
 }
@@ -17708,6 +17962,11 @@ export namespace SubscriptionStartedStandardWebhookEvent {
       external_plan_id: string | null;
 
       name: string | null;
+
+      /**
+       * The id of the default billing entity of this plan.
+       */
+      billing_entity_id?: string | null;
     }
   }
 }
@@ -17802,6 +18061,11 @@ export namespace SubscriptionTrialEndedStandardWebhookEvent {
       external_plan_id: string | null;
 
       name: string | null;
+
+      /**
+       * The id of the default billing entity of this plan.
+       */
+      billing_entity_id?: string | null;
     }
   }
 }
@@ -17988,6 +18252,11 @@ export namespace SubscriptionUsageExceededStandardWebhookEvent {
         name: string | null;
 
         plan_version: string;
+
+        /**
+         * The id of the default billing entity of this plan.
+         */
+        billing_entity_id?: string | null;
       }
 
       /**
@@ -18137,6 +18406,11 @@ export namespace SubscriptionUsageExceededStandardWebhookEvent {
       external_plan_id: string | null;
 
       name: string | null;
+
+      /**
+       * The id of the default billing entity of this plan.
+       */
+      billing_entity_id?: string | null;
     }
   }
 }

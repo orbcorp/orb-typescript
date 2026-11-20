@@ -315,6 +315,11 @@ export namespace Alert {
     name: string | null;
 
     plan_version: string;
+
+    /**
+     * The id of the default billing entity of this plan.
+     */
+    billing_entity_id?: string | null;
   }
 
   /**

@@ -143,6 +143,7 @@ describe('resource plans', () => {
           plan_phase_order: 0,
         },
       ],
+      billing_entity_id: 'billing_entity_id',
       default_invoice_memo: 'default_invoice_memo',
       description: 'description',
       external_plan_id: 'external_plan_id',

@@ -38,6 +38,7 @@ describe('resource customers', () => {
         postal_code: 'postal_code',
         state: 'state',
       },
+      billing_entity_id: 'billing_entity_id',
       currency: 'currency',
       email_delivery: true,
       external_customer_id: 'external_customer_id',

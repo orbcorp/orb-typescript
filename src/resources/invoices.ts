@@ -406,6 +406,11 @@ export interface InvoiceFetchUpcomingResponse {
   billing_address: Shared.Address | null;
 
   /**
+   * The id of the billing entity that issues this invoice.
+   */
+  billing_entity_id: string | null;
+
+  /**
    * The creation time of the resource in Orb.
    */
   created_at: string;
@@ -1126,6 +1131,11 @@ export interface InvoiceIssueSummaryResponse {
   billing_address: Shared.Address | null;
 
   /**
+   * The id of the billing entity that issues this invoice.
+   */
+  billing_entity_id: string | null;
+
+  /**
    * The creation time of the resource in Orb.
    */
   created_at: string;
@@ -1607,6 +1617,11 @@ export interface InvoiceListSummaryResponse {
   auto_collection: InvoiceListSummaryResponse.AutoCollection;
 
   billing_address: Shared.Address | null;
+
+  /**
+   * The id of the billing entity that issues this invoice.
+   */
+  billing_entity_id: string | null;
 
   /**
    * The creation time of the resource in Orb.
@@ -2099,6 +2114,12 @@ export interface InvoiceCreateParams {
   auto_collection?: boolean | null;
 
   /**
+   * The id of the active billing entity that issues this invoice. If not specified,
+   * falls back to the customer's billing entity.
+   */
+  billing_entity_id?: string | null;
+
+  /**
    * The id of the `Customer` to create this invoice for. One of `customer_id` and
    * `external_customer_id` are required.
    */
@@ -2114,6 +2135,11 @@ export interface InvoiceCreateParams {
    * calculated based on the `net_terms` value.
    */
   due_date?: (string & {}) | (string & {}) | null;
+
+  /**
+   * The external id of the active billing entity that issues this invoice.
+   */
+  external_billing_entity_id?: string | null;
 
   /**
    * The `external_customer_id` of the `Customer` to create this invoice for. One of
@@ -2229,6 +2255,13 @@ export interface InvoiceListParams extends PageParams {
 
   'amount[lt]'?: string | null;
 
+  /**
+   * Filters to objects issued by this billing entity. Filtering on the account's
+   * default billing entity also matches objects created before the account had
+   * billing entities.
+   */
+  billing_entity_id?: string | null;
+
   customer_id?: string | null;
 
   date_type?: 'due_date' | 'invoice_date' | null;
@@ -2323,6 +2356,13 @@ export interface InvoiceListSummaryParams extends PageParams {
   'amount[gt]'?: string | null;
 
   'amount[lt]'?: string | null;
+
+  /**
+   * Filters to objects issued by this billing entity. Filtering on the account's
+   * default billing entity also matches objects created before the account had
+   * billing entities.
+   */
+  billing_entity_id?: string | null;
 
   customer_id?: string | null;
 

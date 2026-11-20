@@ -156,6 +156,13 @@ export namespace CreditNoteCreateParams {
 }
 
 export interface CreditNoteListParams extends PageParams {
+  /**
+   * Filters to objects issued by this billing entity. Filtering on the account's
+   * default billing entity also matches objects created before the account had
+   * billing entities.
+   */
+  billing_entity_id?: string | null;
+
   'created_at[gt]'?: string | null;
 
   'created_at[gte]'?: string | null;

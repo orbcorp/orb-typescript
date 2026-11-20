@@ -4688,6 +4688,11 @@ export interface Subscription {
    */
   billing_cycle_day: number;
 
+  /**
+   * The id of the billing entity that issues this subscription's invoices.
+   */
+  billing_entity_id: string | null;
+
   created_at: string;
 
   /**
@@ -5003,6 +5008,11 @@ export namespace SubscriptionFetchScheduleResponse {
     external_plan_id: string | null;
 
     name: string | null;
+
+    /**
+     * The id of the default billing entity of this plan.
+     */
+    billing_entity_id?: string | null;
   }
 }
 
@@ -5059,6 +5069,11 @@ export namespace SubscriptionListSummaryResponse {
     external_plan_id: string | null;
 
     name: string | null;
+
+    /**
+     * The id of the default billing entity of this plan.
+     */
+    billing_entity_id?: string | null;
   }
 }
 
@@ -5100,6 +5115,13 @@ export interface SubscriptionCreateParams {
   billing_cycle_anchor_configuration?: Shared.BillingCycleAnchorConfiguration | null;
 
   /**
+   * The id of the active billing entity that issues this subscription's invoices. If
+   * not specified, falls back to the customer's billing entity, then the plan's,
+   * then the account's default. This cannot be changed after creation.
+   */
+  billing_entity_id?: string | null;
+
+  /**
    * Redemption code to be used for this subscription. If the coupon cannot be found
    * by its redemption code, or cannot be redeemed, an error response will be
    * returned and the subscription creation or plan change will not be scheduled.
@@ -5126,6 +5148,12 @@ export interface SubscriptionCreateParams {
   default_invoice_memo?: string | null;
 
   end_date?: string | null;
+
+  /**
+   * The external id of the active billing entity that issues this subscription's
+   * invoices.
+   */
+  external_billing_entity_id?: string | null;
 
   external_customer_id?: string | null;
 
@@ -9324,6 +9352,13 @@ export interface SubscriptionUpdateParams {
 }
 
 export interface SubscriptionListParams extends PageParams {
+  /**
+   * Filters to objects issued by this billing entity. Filtering on the account's
+   * default billing entity also matches objects created before the account had
+   * billing entities.
+   */
+  billing_entity_id?: string | null;
+
   'created_at[gt]'?: string | null;
 
   'created_at[gte]'?: string | null;
@@ -9444,6 +9479,13 @@ export interface SubscriptionFetchUsageParams {
 }
 
 export interface SubscriptionListSummaryParams extends PageParams {
+  /**
+   * Filters to objects issued by this billing entity. Filtering on the account's
+   * default billing entity also matches objects created before the account had
+   * billing entities.
+   */
+  billing_entity_id?: string | null;
+
   'created_at[gt]'?: string | null;
 
   'created_at[gte]'?: string | null;

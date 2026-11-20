@@ -46,6 +46,7 @@ describe('resource subscriptions', () => {
     await expect(
       client.subscriptions.list(
         {
+          billing_entity_id: 'billing_entity_id',
           'created_at[gt]': '2019-12-27T18:11:19.117Z',
           'created_at[gte]': '2019-12-27T18:11:19.117Z',
           'created_at[lt]': '2019-12-27T18:11:19.117Z',
@@ -202,6 +203,7 @@ describe('resource subscriptions', () => {
     await expect(
       client.subscriptions.listSummary(
         {
+          billing_entity_id: 'billing_entity_id',
           'created_at[gt]': '2019-12-27T18:11:19.117Z',
           'created_at[gte]': '2019-12-27T18:11:19.117Z',
           'created_at[lt]': '2019-12-27T18:11:19.117Z',

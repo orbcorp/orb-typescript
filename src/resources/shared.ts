@@ -370,6 +370,11 @@ export namespace ChangedSubscriptionResources {
     billing_address: Shared.Address | null;
 
     /**
+     * The id of the billing entity that issues this invoice.
+     */
+    billing_entity_id: string | null;
+
+    /**
      * The creation time of the resource in Orb.
      */
     created_at: string;
@@ -1128,6 +1133,11 @@ export interface CreditNote {
   id: string;
 
   /**
+   * The id of the billing entity of the credit note's invoice.
+   */
+  billing_entity_id: string | null;
+
+  /**
    * The creation time of the resource in Orb.
    */
   created_at: string;
@@ -1840,6 +1850,11 @@ export interface Invoice {
   auto_collection: Invoice.AutoCollection;
 
   billing_address: Address | null;
+
+  /**
+   * The id of the billing entity that issues this invoice.
+   */
+  billing_entity_id: string | null;
 
   /**
    * The creation time of the resource in Orb.

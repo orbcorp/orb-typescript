@@ -111,6 +111,11 @@ export interface MutatedSubscription {
    */
   billing_cycle_day: number;
 
+  /**
+   * The id of the billing entity that issues this subscription's invoices.
+   */
+  billing_entity_id: string | null;
+
   created_at: string;
 
   /**

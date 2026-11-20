@@ -534,6 +534,11 @@ export interface Customer {
   automatic_tax_enabled?: boolean | null;
 
   /**
+   * The id of the default billing entity of this customer.
+   */
+  billing_entity_id?: string | null;
+
+  /**
    * A payment method represents a customer's stored payment instrument held with an
    * external payment provider (such as Adyen or Stripe).
    *
@@ -787,6 +792,12 @@ export interface CustomerCreateParams {
   auto_issuance?: boolean | null;
 
   billing_address?: AddressInput | null;
+
+  /**
+   * The Orb ID of the active billing entity to set as this customer's default
+   * entity.
+   */
+  billing_entity_id?: string | null;
 
   /**
    * An ISO 4217 currency string used for the customer's invoices and balance. If not
@@ -1116,6 +1127,12 @@ export interface CustomerUpdateParams {
   auto_issuance?: boolean | null;
 
   billing_address?: AddressInput | null;
+
+  /**
+   * The Orb ID of the active billing entity to set as this customer's default
+   * entity. Pass `null` to clear it.
+   */
+  billing_entity_id?: string | null;
 
   /**
    * An ISO 4217 currency string used for the customer's invoices and balance. This
@@ -1504,6 +1521,12 @@ export interface CustomerUpdateByExternalIDParams {
   auto_issuance?: boolean | null;
 
   billing_address?: AddressInput | null;
+
+  /**
+   * The Orb ID of the active billing entity to set as this customer's default
+   * entity. Pass `null` to clear it.
+   */
+  billing_entity_id?: string | null;
 
   /**
    * An ISO 4217 currency string used for the customer's invoices and balance. This

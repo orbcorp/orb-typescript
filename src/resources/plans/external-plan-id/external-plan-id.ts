@@ -95,6 +95,12 @@ export class ExternalPlanID extends APIResource {
 
 export interface ExternalPlanIDUpdateParams {
   /**
+   * The Orb ID of the active billing entity to set as this plan's default entity.
+   * Pass `null` to clear it.
+   */
+  billing_entity_id?: string | null;
+
+  /**
    * An optional user-defined description of the plan.
    */
   description?: string | null;
