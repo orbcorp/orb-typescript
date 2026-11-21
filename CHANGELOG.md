@@ -1,5 +1,15 @@
 # Changelog
 
+## [6.44.0](https://github.com/orbcorp/orb-typescript/compare/v6.43.0...v6.44.0) (2026-11-21)
+
+
+### Features
+
+* **api:** api update ([58df0a6](https://github.com/orbcorp/orb-typescript/commit/58df0a69d717aeb54c1465bbcb2c34d47ee52094))
+* **api:** api update ([84989e0](https://github.com/orbcorp/orb-typescript/commit/84989e054dd5a17302b2eef7d48db51175ea20a1))
+* **api:** clarify net_terms day counting, with start date as day 1 ([84989e0](https://github.com/orbcorp/orb-typescript/commit/84989e054dd5a17302b2eef7d48db51175ea20a1))
+* **api:** Remove unsupported filters from list credit notes description ([2234d10](https://github.com/orbcorp/orb-typescript/commit/2234d104057fa4ad5b5bd7c1a6665b3fe63b681f))
+
 ## [6.43.0](https://github.com/orbcorp/orb-typescript/compare/v6.42.0...v6.43.0) (2026-11-18)
 
 
