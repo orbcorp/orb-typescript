@@ -19,6 +19,21 @@ import {
   CostListResponse,
   Costs,
 } from './costs';
+import * as PaymentGatewayConnectionsAPI from './payment-gateway-connections';
+import {
+  CustomerPaymentGatewayConnection,
+  PaymentGatewayConnectionCreateByExternalIDParams,
+  PaymentGatewayConnectionCreateParams,
+  PaymentGatewayConnectionDeleteByExternalIDParams,
+  PaymentGatewayConnectionDeleteParams,
+  PaymentGatewayConnectionListByExternalIDParams,
+  PaymentGatewayConnectionListByExternalIDResponse,
+  PaymentGatewayConnectionListParams,
+  PaymentGatewayConnectionListResponse,
+  PaymentGatewayConnectionUpdateByExternalIDParams,
+  PaymentGatewayConnectionUpdateParams,
+  PaymentGatewayConnections,
+} from './payment-gateway-connections';
 import * as CreditsAPI from './credits/credits';
 import {
   CreditFetchBalanceByExternalIDParams,
@@ -60,6 +75,8 @@ export class Customers extends APIResource {
   credits: CreditsAPI.Credits = new CreditsAPI.Credits(this._client);
   balanceTransactions: BalanceTransactionsAPI.BalanceTransactions =
     new BalanceTransactionsAPI.BalanceTransactions(this._client);
+  paymentGatewayConnections: PaymentGatewayConnectionsAPI.PaymentGatewayConnections =
+    new PaymentGatewayConnectionsAPI.PaymentGatewayConnections(this._client);
 
   /**
    * This operation is used to create an Orb customer, who is party to the core
@@ -1850,6 +1867,7 @@ export namespace CustomerUpdateByExternalIDParams {
 Customers.Costs = Costs;
 Customers.Credits = Credits;
 Customers.BalanceTransactions = BalanceTransactions;
+Customers.PaymentGatewayConnections = PaymentGatewayConnections;
 
 export declare namespace Customers {
   export {
@@ -1902,5 +1920,20 @@ export declare namespace Customers {
     type BalanceTransactionListResponsesPage as BalanceTransactionListResponsesPage,
     type BalanceTransactionCreateParams as BalanceTransactionCreateParams,
     type BalanceTransactionListParams as BalanceTransactionListParams,
+  };
+
+  export {
+    PaymentGatewayConnections as PaymentGatewayConnections,
+    type CustomerPaymentGatewayConnection as CustomerPaymentGatewayConnection,
+    type PaymentGatewayConnectionListResponse as PaymentGatewayConnectionListResponse,
+    type PaymentGatewayConnectionListByExternalIDResponse as PaymentGatewayConnectionListByExternalIDResponse,
+    type PaymentGatewayConnectionCreateParams as PaymentGatewayConnectionCreateParams,
+    type PaymentGatewayConnectionUpdateParams as PaymentGatewayConnectionUpdateParams,
+    type PaymentGatewayConnectionListParams as PaymentGatewayConnectionListParams,
+    type PaymentGatewayConnectionDeleteParams as PaymentGatewayConnectionDeleteParams,
+    type PaymentGatewayConnectionCreateByExternalIDParams as PaymentGatewayConnectionCreateByExternalIDParams,
+    type PaymentGatewayConnectionDeleteByExternalIDParams as PaymentGatewayConnectionDeleteByExternalIDParams,
+    type PaymentGatewayConnectionListByExternalIDParams as PaymentGatewayConnectionListByExternalIDParams,
+    type PaymentGatewayConnectionUpdateByExternalIDParams as PaymentGatewayConnectionUpdateByExternalIDParams,
   };
 }

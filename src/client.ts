@@ -164,6 +164,7 @@ import {
   WebhookEndpoints,
   WebhookEndpointsPage,
 } from './resources/webhook-endpoints';
+import { Account } from './resources/account/account';
 import {
   Coupon,
   CouponCreateParams,
@@ -1120,6 +1121,7 @@ export class Orb {
    * particular invoice.
    */
   creditNotes: API.CreditNotes = new API.CreditNotes(this);
+  account: API.Account = new API.Account(this);
   /**
    * A customer is a buyer of your products, and the other party to the billing relationship.
    *
@@ -1219,6 +1221,7 @@ export class Orb {
 Orb.TopLevel = TopLevel;
 Orb.Coupons = Coupons;
 Orb.CreditNotes = CreditNotes;
+Orb.Account = Account;
 Orb.Customers = Customers;
 Orb.Events = Events;
 Orb.InvoiceLineItems = InvoiceLineItems;
@@ -1343,6 +1346,8 @@ export declare namespace Orb {
     type CreditNoteCreateParams as CreditNoteCreateParams,
     type CreditNoteListParams as CreditNoteListParams,
   };
+
+  export { Account as Account };
 
   export {
     Customers as Customers,

@@ -352,6 +352,38 @@ Methods:
 - <code title="get /credit_notes">client.creditNotes.<a href="./src/resources/credit-notes.ts">list</a>({ ...params }) -> CreditNotesPage</code>
 - <code title="get /credit_notes/{credit_note_id}">client.creditNotes.<a href="./src/resources/credit-notes.ts">fetch</a>(creditNoteID) -> CreditNote</code>
 
+# Account
+
+## BillingEntities
+
+Types:
+
+- <code><a href="./src/resources/account/billing-entities.ts">BillingEntity</a></code>
+
+Methods:
+
+- <code title="post /account/billing_entities">client.account.billingEntities.<a href="./src/resources/account/billing-entities.ts">create</a>({ ...params }) -> BillingEntity</code>
+- <code title="put /account/billing_entities/{billing_entity_id}">client.account.billingEntities.<a href="./src/resources/account/billing-entities.ts">update</a>(billingEntityID, { ...params }) -> BillingEntity</code>
+- <code title="get /account/billing_entities">client.account.billingEntities.<a href="./src/resources/account/billing-entities.ts">list</a>({ ...params }) -> BillingEntitiesPage</code>
+- <code title="post /account/billing_entities/{billing_entity_id}/archive">client.account.billingEntities.<a href="./src/resources/account/billing-entities.ts">archive</a>(billingEntityID) -> BillingEntity</code>
+- <code title="post /account/billing_entities/external_billing_entity_id/{external_billing_entity_id}/archive">client.account.billingEntities.<a href="./src/resources/account/billing-entities.ts">archiveByExternalID</a>(externalBillingEntityID) -> BillingEntity</code>
+- <code title="get /account/billing_entities/{billing_entity_id}">client.account.billingEntities.<a href="./src/resources/account/billing-entities.ts">fetch</a>(billingEntityID) -> BillingEntity</code>
+- <code title="get /account/billing_entities/external_billing_entity_id/{external_billing_entity_id}">client.account.billingEntities.<a href="./src/resources/account/billing-entities.ts">fetchByExternalID</a>(externalBillingEntityID) -> BillingEntity</code>
+- <code title="post /account/billing_entities/{billing_entity_id}/unarchive">client.account.billingEntities.<a href="./src/resources/account/billing-entities.ts">unarchive</a>(billingEntityID) -> BillingEntity</code>
+- <code title="post /account/billing_entities/external_billing_entity_id/{external_billing_entity_id}/unarchive">client.account.billingEntities.<a href="./src/resources/account/billing-entities.ts">unarchiveByExternalID</a>(externalBillingEntityID) -> BillingEntity</code>
+- <code title="put /account/billing_entities/external_billing_entity_id/{external_billing_entity_id}">client.account.billingEntities.<a href="./src/resources/account/billing-entities.ts">updateByExternalID</a>(externalBillingEntityID, { ...params }) -> BillingEntity</code>
+
+## PaymentGatewayConnections
+
+Types:
+
+- <code><a href="./src/resources/account/payment-gateway-connections.ts">PaymentGatewayConnection</a></code>
+
+Methods:
+
+- <code title="get /account/payment_gateway_connections">client.account.paymentGatewayConnections.<a href="./src/resources/account/payment-gateway-connections.ts">list</a>({ ...params }) -> PaymentGatewayConnectionsPage</code>
+- <code title="get /account/payment_gateway_connections/{payment_gateway_connection_id}">client.account.paymentGatewayConnections.<a href="./src/resources/account/payment-gateway-connections.ts">fetch</a>(paymentGatewayConnectionID) -> PaymentGatewayConnection</code>
+
 # Customers
 
 Types:
@@ -464,6 +496,25 @@ Methods:
 
 - <code title="post /customers/{customer_id}/balance_transactions">client.customers.balanceTransactions.<a href="./src/resources/customers/balance-transactions.ts">create</a>(customerID, { ...params }) -> BalanceTransactionCreateResponse</code>
 - <code title="get /customers/{customer_id}/balance_transactions">client.customers.balanceTransactions.<a href="./src/resources/customers/balance-transactions.ts">list</a>(customerID, { ...params }) -> BalanceTransactionListResponsesPage</code>
+
+## PaymentGatewayConnections
+
+Types:
+
+- <code><a href="./src/resources/customers/payment-gateway-connections.ts">CustomerPaymentGatewayConnection</a></code>
+- <code><a href="./src/resources/customers/payment-gateway-connections.ts">PaymentGatewayConnectionListResponse</a></code>
+- <code><a href="./src/resources/customers/payment-gateway-connections.ts">PaymentGatewayConnectionListByExternalIDResponse</a></code>
+
+Methods:
+
+- <code title="post /customers/{customer_id}/payment_gateway_connections">client.customers.paymentGatewayConnections.<a href="./src/resources/customers/payment-gateway-connections.ts">create</a>(customerID, { ...params }) -> CustomerPaymentGatewayConnection</code>
+- <code title="put /customers/{customer_id}/payment_gateway_connections/{payment_gateway_connection_id}">client.customers.paymentGatewayConnections.<a href="./src/resources/customers/payment-gateway-connections.ts">update</a>(paymentGatewayConnectionID, { ...params }) -> CustomerPaymentGatewayConnection</code>
+- <code title="get /customers/{customer_id}/payment_gateway_connections">client.customers.paymentGatewayConnections.<a href="./src/resources/customers/payment-gateway-connections.ts">list</a>(customerID, { ...params }) -> PaymentGatewayConnectionListResponse</code>
+- <code title="delete /customers/{customer_id}/payment_gateway_connections/{payment_gateway_connection_id}">client.customers.paymentGatewayConnections.<a href="./src/resources/customers/payment-gateway-connections.ts">delete</a>(paymentGatewayConnectionID, { ...params }) -> CustomerPaymentGatewayConnection</code>
+- <code title="post /customers/external_customer_id/{external_customer_id}/payment_gateway_connections">client.customers.paymentGatewayConnections.<a href="./src/resources/customers/payment-gateway-connections.ts">createByExternalID</a>(externalCustomerID, { ...params }) -> CustomerPaymentGatewayConnection</code>
+- <code title="delete /customers/external_customer_id/{external_customer_id}/payment_gateway_connections/{payment_gateway_connection_id}">client.customers.paymentGatewayConnections.<a href="./src/resources/customers/payment-gateway-connections.ts">deleteByExternalID</a>(paymentGatewayConnectionID, { ...params }) -> CustomerPaymentGatewayConnection</code>
+- <code title="get /customers/external_customer_id/{external_customer_id}/payment_gateway_connections">client.customers.paymentGatewayConnections.<a href="./src/resources/customers/payment-gateway-connections.ts">listByExternalID</a>(externalCustomerID, { ...params }) -> PaymentGatewayConnectionListByExternalIDResponse</code>
+- <code title="put /customers/external_customer_id/{external_customer_id}/payment_gateway_connections/{payment_gateway_connection_id}">client.customers.paymentGatewayConnections.<a href="./src/resources/customers/payment-gateway-connections.ts">updateByExternalID</a>(paymentGatewayConnectionID, { ...params }) -> CustomerPaymentGatewayConnection</code>
 
 # Events
 

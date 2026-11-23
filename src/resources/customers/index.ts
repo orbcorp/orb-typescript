@@ -49,3 +49,17 @@ export {
   type CustomerUpdateByExternalIDParams,
   type CustomersPage,
 } from './customers';
+export {
+  PaymentGatewayConnections,
+  type CustomerPaymentGatewayConnection,
+  type PaymentGatewayConnectionListResponse,
+  type PaymentGatewayConnectionListByExternalIDResponse,
+  type PaymentGatewayConnectionCreateParams,
+  type PaymentGatewayConnectionUpdateParams,
+  type PaymentGatewayConnectionListParams,
+  type PaymentGatewayConnectionDeleteParams,
+  type PaymentGatewayConnectionCreateByExternalIDParams,
+  type PaymentGatewayConnectionDeleteByExternalIDParams,
+  type PaymentGatewayConnectionListByExternalIDParams,
+  type PaymentGatewayConnectionUpdateByExternalIDParams,
+} from './payment-gateway-connections';
