@@ -36,14 +36,7 @@ describe('resource billingEntities', () => {
       legal_name: 'x',
       name: 'x',
       external_billing_entity_id: 'x',
-      invoice_settings: {
-        auto_collection: true,
-        automatic_tax_enabled: true,
-        email_delivery: true,
-        manual_issuance: true,
-        memo: 'memo',
-        net_terms: 0,
-      },
+      invoice_settings: { memo: 'memo' },
       tax_registrations: [
         {
           code: 'x',

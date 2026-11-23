@@ -27,10 +27,10 @@ export class BillingEntities extends APIResource {
    * This endpoint updates a billing entity, including the default one. Omitted
    * fields keep their value. A change to the name, legal name, address, or tax
    * registrations writes a new version of the billing entity; invoices already
-   * issued keep the version they were issued with. In `invoice_settings`, null
-   * clears a field so it inherits the account's setting; the default billing entity
-   * accepts only `memo` and `net_terms`. An archived billing entity cannot be
-   * updated until it is unarchived. This endpoint requires an admin API key.
+   * issued keep the version they were issued with. In `invoice_settings`, a null
+   * `memo` clears it so the billing entity uses the account's memo. An archived
+   * billing entity cannot be updated until it is unarchived. This endpoint requires
+   * an admin API key.
    *
    * `payment_gateway_connections` is the full set of connections the billing entity
    * collects payments through; a connection left out is disconnected from the
@@ -127,10 +127,10 @@ export class BillingEntities extends APIResource {
    * This endpoint updates a billing entity, including the default one. Omitted
    * fields keep their value. A change to the name, legal name, address, or tax
    * registrations writes a new version of the billing entity; invoices already
-   * issued keep the version they were issued with. In `invoice_settings`, null
-   * clears a field so it inherits the account's setting; the default billing entity
-   * accepts only `memo` and `net_terms`. An archived billing entity cannot be
-   * updated until it is unarchived. This endpoint requires an admin API key.
+   * issued keep the version they were issued with. In `invoice_settings`, a null
+   * `memo` clears it so the billing entity uses the account's memo. An archived
+   * billing entity cannot be updated until it is unarchived. This endpoint requires
+   * an admin API key.
    *
    * `payment_gateway_connections` is the full set of connections the billing entity
    * collects payments through; a connection left out is disconnected from the
@@ -221,37 +221,9 @@ export namespace BillingEntity {
    */
   export interface InvoiceSettings {
     /**
-     * Whether Orb charges the customer's payment method automatically.
-     */
-    auto_collection: boolean | null;
-
-    /**
-     * Whether Orb calculates tax through the tax provider.
-     */
-    automatic_tax_enabled: boolean | null;
-
-    /**
-     * Whether Orb emails invoices to customers.
-     */
-    email_delivery: boolean | null;
-
-    /**
-     * Whether invoices stay in draft until issued by hand.
-     */
-    manual_issuance: boolean | null;
-
-    /**
      * The memo printed on the entity's invoices.
      */
     memo: string | null;
-
-    /**
-     * The number of days until payment is due, counting the start date as day 1, so
-     * net 30 from October 1 is due October 30. The account's
-     * [due date calculation method](/invoicing/payments#configuring-net-terms-and-collection-behavior)
-     * sets whether the start date is the invoice date or the issuance date.
-     */
-    net_terms: number | null;
   }
 
   export interface PaymentGatewayConnection {
@@ -326,37 +298,9 @@ export namespace BillingEntityCreateParams {
    */
   export interface InvoiceSettings {
     /**
-     * Whether Orb charges the customer's payment method automatically.
-     */
-    auto_collection?: boolean | null;
-
-    /**
-     * Whether Orb calculates tax through the tax provider.
-     */
-    automatic_tax_enabled?: boolean | null;
-
-    /**
-     * Whether Orb emails invoices to customers.
-     */
-    email_delivery?: boolean | null;
-
-    /**
-     * Whether invoices stay in draft until issued by hand.
-     */
-    manual_issuance?: boolean | null;
-
-    /**
      * The memo printed on the entity's invoices.
      */
     memo?: string | null;
-
-    /**
-     * The number of days until payment is due, counting the start date as day 1, so
-     * net 30 from October 1 is due October 30. The account's
-     * [due date calculation method](/invoicing/payments#configuring-net-terms-and-collection-behavior)
-     * sets whether the start date is the invoice date or the issuance date.
-     */
-    net_terms?: number | null;
   }
 
   export interface TaxRegistration {
@@ -428,37 +372,9 @@ export namespace BillingEntityUpdateParams {
    */
   export interface InvoiceSettings {
     /**
-     * Whether Orb charges the customer's payment method automatically.
-     */
-    auto_collection?: boolean | null;
-
-    /**
-     * Whether Orb calculates tax through the tax provider.
-     */
-    automatic_tax_enabled?: boolean | null;
-
-    /**
-     * Whether Orb emails invoices to customers.
-     */
-    email_delivery?: boolean | null;
-
-    /**
-     * Whether invoices stay in draft until issued by hand.
-     */
-    manual_issuance?: boolean | null;
-
-    /**
      * The memo printed on the entity's invoices.
      */
     memo?: string | null;
-
-    /**
-     * The number of days until payment is due, counting the start date as day 1, so
-     * net 30 from October 1 is due October 30. The account's
-     * [due date calculation method](/invoicing/payments#configuring-net-terms-and-collection-behavior)
-     * sets whether the start date is the invoice date or the issuance date.
-     */
-    net_terms?: number | null;
   }
 
   export interface PaymentGatewayConnection {
@@ -549,37 +465,9 @@ export namespace BillingEntityUpdateByExternalIDParams {
    */
   export interface InvoiceSettings {
     /**
-     * Whether Orb charges the customer's payment method automatically.
-     */
-    auto_collection?: boolean | null;
-
-    /**
-     * Whether Orb calculates tax through the tax provider.
-     */
-    automatic_tax_enabled?: boolean | null;
-
-    /**
-     * Whether Orb emails invoices to customers.
-     */
-    email_delivery?: boolean | null;
-
-    /**
-     * Whether invoices stay in draft until issued by hand.
-     */
-    manual_issuance?: boolean | null;
-
-    /**
      * The memo printed on the entity's invoices.
      */
     memo?: string | null;
-
-    /**
-     * The number of days until payment is due, counting the start date as day 1, so
-     * net 30 from October 1 is due October 30. The account's
-     * [due date calculation method](/invoicing/payments#configuring-net-terms-and-collection-behavior)
-     * sets whether the start date is the invoice date or the issuance date.
-     */
-    net_terms?: number | null;
   }
 
   export interface PaymentGatewayConnection {
