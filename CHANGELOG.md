@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.45.0](https://github.com/orbcorp/orb-typescript/compare/v6.44.0...v6.45.0) (2026-11-24)
+
+
+### Features
+
+* **api:** api update ([c9c4a1d](https://github.com/orbcorp/orb-typescript/commit/c9c4a1dc476f17f62b07d216029df5766b6319f6))
+
 ## [6.44.0](https://github.com/orbcorp/orb-typescript/compare/v6.43.0...v6.44.0) (2026-11-21)
 
 
