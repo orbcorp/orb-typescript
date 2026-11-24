@@ -3694,7 +3694,11 @@ export namespace InvoiceEditedWebhookEvent {
 
         /**
          * The line amount after any adjustments and before overage conversion, credits and
-         * partial invoicing.
+         * partial invoicing. Unlike `subtotal` and `amount`, this is not rounded to the
+         * currency's precision, so it matches the `adjusted_subtotal` in data exports. To
+         * find the effect of adjustments, use `adjustments` rather than the difference
+         * between `subtotal` and `adjusted_subtotal`. Each adjustment amount is rounded to
+         * the currency's precision, so a sub-cent adjustment can show as zero.
          */
         adjusted_subtotal: string;
 
@@ -3781,7 +3785,8 @@ export namespace InvoiceEditedWebhookEvent {
         sub_line_items: Array<Shared.MatrixSubLineItem | Shared.TierSubLineItem | Shared.OtherSubLineItem>;
 
         /**
-         * The line amount before any adjustments.
+         * The line amount before any adjustments, rounded to the invoicing currency's
+         * precision.
          */
         subtotal: string;
 
