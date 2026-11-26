@@ -246,7 +246,9 @@ export namespace BillingEntity {
   export interface TaxRegistration {
     /**
      * The jurisdiction the registration applies to. If null, it applies to every
-     * customer.
+     * customer. A Canadian provincial registration (`CA PST-BC`, `CA PST-MB`,
+     * `CA PST-SK`, `CA QST`) only applies to customers in its province, whatever this
+     * field holds.
      */
     applies_to: string | null;
 
@@ -316,7 +318,9 @@ export namespace BillingEntityCreateParams {
 
     /**
      * The jurisdiction the registration applies to. If null, it applies to every
-     * customer.
+     * customer. A Canadian provincial registration (`CA PST-BC`, `CA PST-MB`,
+     * `CA PST-SK`, `CA QST`) only applies to customers in its province, whatever this
+     * field holds.
      */
     applies_to?: string | null;
   }
@@ -402,7 +406,9 @@ export namespace BillingEntityUpdateParams {
 
     /**
      * The jurisdiction the registration applies to. If null, it applies to every
-     * customer.
+     * customer. A Canadian provincial registration (`CA PST-BC`, `CA PST-MB`,
+     * `CA PST-SK`, `CA QST`) only applies to customers in its province, whatever this
+     * field holds.
      */
     applies_to?: string | null;
   }
@@ -495,7 +501,9 @@ export namespace BillingEntityUpdateByExternalIDParams {
 
     /**
      * The jurisdiction the registration applies to. If null, it applies to every
-     * customer.
+     * customer. A Canadian provincial registration (`CA PST-BC`, `CA PST-MB`,
+     * `CA PST-SK`, `CA QST`) only applies to customers in its province, whatever this
+     * field holds.
      */
     applies_to?: string | null;
   }
